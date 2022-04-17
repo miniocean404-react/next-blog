@@ -1,27 +1,54 @@
 {
-  "name": "forum",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "prettier-fix": "prettier --write  **/*.{scss,css} **/*.{jsx,tsx,js,ts}",
-    "eslint-fix": "eslint --fix --ext .jsx src"
-  },
-  "dependencies": {
-    "next": "12.1.5",
-    "react": "18.0.0",
-    "react-dom": "18.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "17.0.24",
-    "@types/react": "18.0.5",
-    "@types/react-dom": "18.0.1",
-    "eslint": "8.13.0", 
-    "eslint-config-next": "12.1.5",
-    "prettier": "^2.6.2",
-    "typescript": "4.6.3"
-  }
+	"name": "forum",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"prettier-format": "prettier --write  **/*.{scss,css} **/*.{jsx,tsx,js,ts}",
+		"eslint-fix": "eslint --ext .tsx --ext .ts  pages/*/** --fix",
+		"clean": "rm -rf node_modules &&  yarn cache clean",
+		"prepare-husky": "yarn husky install"
+	},
+	"license": "MIT",
+	"lint-staged": {
+		"*.{css,scss}": [
+			"yarn prettier-format",
+			"yarn eslint-fix"
+		],
+		"*.ts?(x)": [
+			"yarn prettier-format",
+			"yarn eslint-fix",
+			"git add ."
+		]
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "node script/verify-commit.ts",
+			"pre-commit": "lint-staged"
+		}
+	},
+	"dependencies": {
+		"next": "12.1.5",
+		"react": "18.0.0",
+		"react-dom": "18.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "17.0.24",
+		"@types/react": "18.0.5",
+		"@types/react-dom": "18.0.1",
+		"chalk": "^5.0.1",
+		"eslint": "8.13.0",
+		"eslint-config-next": "12.1.5",
+		"eslint-config-prettier": "^8.5.0",
+		"husky": "^7.0.4",
+		"lint-staged": "^12.3.8",
+		"prettier": "^2.6.2",
+		"typescript": "4.6.3"
+	},
+	"engines": {
+		"node": ">=14.0.0"
+	}
 }
