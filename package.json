@@ -49,7 +49,6 @@
 	"lint-staged": {
 		"*.{css,scss}": [
 			"yarn prettier-format",
-			"eslint --fix",
 			"git add ."
 		],
 		"*.ts?(x)": [
