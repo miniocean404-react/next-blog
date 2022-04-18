@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # 代码提交前的钩子
-yarn lint-staged
+ yarn lint-staged
