@@ -3,5 +3,5 @@
 
 # 通过钩子函数,判断 commit 信息是否符合规范
 
- node script/verify-commit.js $1
+ node script/verify-commit.ts $1
 
