@@ -14,7 +14,7 @@
 		"commit": "cz",
 		"prettier-format": "prettier --write  **/*.{scss,css} **/*.{jsx,tsx,js,ts}",
 		"eslint-fix": "eslint --ext .tsx --ext .ts  pages/*/** --fix",
-		"clean": "rm -rf node_modules &&  yarn cache clean",
+		"clean": "rimraf node_modules &&  yarn cache clean",
 		"prepare-husky": "yarn husky install"
 	},
 	"dependencies": {
@@ -41,6 +41,7 @@
 		"jest": "^27.5.1",
 		"lint-staged": "^12.3.8",
 		"prettier": "^2.6.2",
+		"rimraf": "^3.0.2",
 		"typescript": "4.6.3"
 	},
 	"volta": {
