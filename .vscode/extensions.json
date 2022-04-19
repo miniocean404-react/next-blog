@@ -1,0 +1,8 @@
+{
+	"recommendations": [
+		"ms-vscode.vscode-typescript-next",
+		"miclo.sort-typescript-imports",
+		"dbaeumer.vscode-eslint",
+		"Lokalise.i18n-ally"
+	]
+}
