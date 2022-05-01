@@ -7,7 +7,7 @@
 		"node": ">=16.14.1"
 	},
 	"scripts": {
-		"proxy": "node server/cross-domain-proxy.js",
+		"proxy-dev": "node script/cross-domain-proxy.js",
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
