@@ -7,16 +7,15 @@
 		"node": ">=16.14.1"
 	},
 	"scripts": {
-		"dev-proxy": "yarn dev & yarn proxy",
+		"proxy": "node server/cross-domain-proxy.js",
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"proxy": "node server/cross-domain-proxy.js",
 		"lint": "next lint",
 		"commit": "cz",
+		"clean": "rimraf node_modules &&  yarn cache clean",
 		"prettier-format": "prettier --write  **/*.{scss,css} **/*.{jsx,tsx,js,ts}",
 		"eslint-fix": "eslint --ext .tsx --ext .ts  pages/*/** --fix",
-		"clean": "rimraf node_modules &&  yarn cache clean",
 		"prepare-husky": "yarn husky install"
 	},
 	"dependencies": {

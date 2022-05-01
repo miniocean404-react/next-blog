@@ -2,7 +2,7 @@ const next = require('next')
 const express = require('express')
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
-const dev = process.env.NODE_ENV === 'development'
+const dev = process.env.NODE_ENV !== 'development'
 
 const devProxy = {
 	'/api': {
@@ -37,4 +37,4 @@ app
 			console.log(`> 代理启动在 http://localhost:${port}`)
 		})
 	})
-	.catch((err) => console.log('发生错误，无法启动服务器', '错误为:', err))
+	.catch((err) => console.log('发生错误，无法启动服务器', '\r\n错误为:', err))
