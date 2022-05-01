@@ -19,12 +19,26 @@ module.exports = {
 	plugins: ['@typescript-eslint'],
 	extends: [
 		'next/core-web-vitals',
-		// eslint-config-prettier插件:关闭所有不必要或可能与Prettier冲突的规则
 		'airbnb-base',
+		// eslint-config-prettier插件:关闭所有不必要或可能与Prettier冲突的规则
 		'prettier',
 	],
 	rules: {
 		'react/jsx-uses-react': 'off',
 		'react/react-in-jsx-scope': 'off',
+	},
+	settings: {
+		// import/parsers import/resolver 处理ts(import/extensions)问题
+		'import/parsers': {
+			'@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
+		},
+		'import/extensions': ['.ts', '.tsx', '.d.ts'],
+		'import/resolver': {
+			typescript: {
+				// always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+				alwaysTryTypes: true,
+				project: './tsconfig.json',
+			},
+		},
 	},
 }

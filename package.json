@@ -7,8 +7,8 @@
 		"node": ">=16.14.1"
 	},
 	"scripts": {
-		"proxy-dev": "node script/cross-domain-proxy.js",
 		"dev": "next dev",
+		"proxy-dev": "node script/cross-domain-proxy.js",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
@@ -19,6 +19,8 @@
 		"prepare-husky": "yarn husky install"
 	},
 	"dependencies": {
+		"antd": "^4.20.2",
+		"axios": "^0.27.2",
 		"next": "12.1.5",
 		"react": "18.0.0",
 		"react-dom": "18.0.0",
