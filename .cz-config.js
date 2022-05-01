@@ -42,30 +42,30 @@ module.exports = {
 		// 选择 scope: custom 时会出下面的提示
 		customScope: '请输入自定义的 scope-作用范围:\n',
 		subject: '填写简短精炼的变更描述-主题:\n',
-		body: '填写更加详细的变更描述(可选)。使用 "|" 换行-详细描述:\n',
+		body: '用动词开头填写更加详细的变更描述(可选)。使用 "|" 换行-详细描述:\n',
 		breaking: '列举非兼容性重大的变更（可选）:\n',
-		footer: '列举出所有变更的关闭issues ISSUES CLOSED(可选)。 例如: #31, #34:\n ',
+		footer:
+			'列举出所有变更的关闭issues或突破性变更 ISSUES CLOSED(可选) BREAKING CHANGE(可选)。 例如: #31, #34:\n ',
 		confirmCommit: '确定提交说明?(yes/no)',
 	},
 
 	// 设置只有 type 选择了 feat 或 fix，才询问 breaking message
 	allowBreakingChanges: ['feat', 'fix'],
 	// 跳过询问 body 和 footer
-	// skipQuestions: ['body', 'footer'],
+	skipQuestions: ['body', 'footer'],
 	// subject 限制长度
 	subjectLimit: 100,
-
 	// 换行符
 	breaklineChar: '|', // 支持 body 和 footer
-
 	// 是否允许自定义填写 scope，在 scope 选择的时候，会有 empty 和 custom 可以选择。
 	allowCustomScopes: true,
+	// foot的前缀
+	footerPrefix: 'ISSUES CLOSED:',
 
 	// allowTicketNumber: false,
 	// isTicketNumberRequired: false,
 	// ticketNumberPrefix: 'TICKET-',
 	// ticketNumberRegExp: '\\d{1,5}',
 
-	// footerPrefix : 'ISSUES CLOSED:'
 	// askForBreakingChangeFirst : true,
 }
