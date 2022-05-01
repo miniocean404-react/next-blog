@@ -46,7 +46,7 @@ module.exports = {
 		breaking: '列举非兼容性重大的变更（可选）:\n',
 		footer:
 			'列举出所有变更的关闭issues或突破性变更 ISSUES CLOSED(可选) BREAKING CHANGE(可选)。 例如: #31, #34:\n ',
-		confirmCommit: '确定提交说明?(yes/no)',
+		confirmCommit: '确定提交说明?(y/n)',
 	},
 
 	// 设置只有 type 选择了 feat 或 fix，才询问 breaking message
