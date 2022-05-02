@@ -10,7 +10,7 @@ const DynamicRoute: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <div>动态路由A</div>
+    <div>嵌套生成静态路由</div>
   </div>
 )
 
@@ -24,9 +24,9 @@ export async function getStaticPaths() {
       // '/learn/dynamic-route/static/a',
 
       // 对象变量
-      { params: { static: '1' } },
-      { params: { static: '2' } },
-      { params: { static: '3' } },
+      { params: { nested: 'nested1', child: 'child1' } },
+      { params: { nested: 'nested2', child: 'child2' } },
+      { params: { nested: 'nested3', child: 'child3' } },
     ],
     fallback: true,
   }

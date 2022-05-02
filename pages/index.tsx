@@ -17,7 +17,10 @@ const Home: NextPage = () => (
 
     {/* 路由使用 */}
     <Button>
-      <Link href="/learn/dynamic-route/static/a">动态路由</Link>
+      <Link href="/learn/dynamic-route/static/a">静态生成动态路由</Link>
+    </Button>
+    <Button>
+      <Link href="/learn/dynamic-route/2/3">嵌套静态生成动态路由</Link>
     </Button>
     <Button>
       <Link href="/learn/dynamic-route/server/xbox">服务端动态路由</Link>
@@ -31,7 +34,7 @@ const Home: NextPage = () => (
       <Link href="/learn/static-route/static-generation?a=1">静态生成</Link>
     </Button>
     <Button>
-      <Link href="/learn/static-route/server-side-rendering">服务端渲染</Link>
+      <Link href="/learn/static-route/server-side-rendering?category=xbox">服务端渲染</Link>
     </Button>
   </div>
 )

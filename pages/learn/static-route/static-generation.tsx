@@ -25,17 +25,23 @@ const StaticGeneration: NextPage<Prop> = (props) => {
 
 // 将 getStaticProps 这个函数 export 出来，不在客户端上运行,编译时可以从服务器拿死的数据进行页面生成
 export async function getStaticProps(context: GetStaticPropsContext) {
-  console.log(context)
+  // eslint-disable-next-line
+  const { locales, locale, defaultLocale } = context
 
-  const data = { show: '静态生成的数据' }
-  const res = await axios.get('http://www.baidu.com')
-  const str = res.data
+  try {
+    const data = { show: '静态生成的数据' }
+    const res = await axios.get('http://www.baidu.com')
+    const str = res.data
 
-  return {
-    props: {
-      data,
-      str,
-    },
+    return {
+      props: {
+        data,
+        str,
+      },
+    }
+  } catch (error) {
+    // 返回404页面
+    return { notFound: true }
   }
 }
 
