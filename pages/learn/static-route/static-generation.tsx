@@ -38,6 +38,9 @@ export async function getStaticProps(context: GetStaticPropsContext) {
         data,
         str,
       },
+      // 开启后Next.js 将在新的请求进来时尝试重新生成页面，最多10秒1次
+      // 增量静态生成，在原有基础上增量生成
+      revalidate: 10,
     }
   } catch (error) {
     // 返回404页面

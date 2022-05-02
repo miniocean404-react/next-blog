@@ -5,6 +5,7 @@ dist
 script
 server
 *.d.ts
+next.config.js
 
 pnpm-lock.yaml
 yarn.lock
