@@ -6,6 +6,7 @@ declare namespace SSGType {
   export interface Prop {
     data: Date
     str: string
+    staticParams: string
   }
 }
 

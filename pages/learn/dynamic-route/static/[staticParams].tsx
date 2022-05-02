@@ -1,9 +1,11 @@
 import styles from '@/styles/Home.module.scss'
+import type { Prop } from '@/typings/learn/static-generation'
 import type { GetStaticPaths, GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-const DynamicRoute: NextPage = () => {
+const DynamicRoute: NextPage<Prop> = (props) => {
+  const { staticParams } = props
   const router = useRouter()
 
   if (router.isFallback) {
@@ -18,7 +20,7 @@ const DynamicRoute: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div>动态路由A</div>
+      <div>静态生成{staticParams}</div>
     </div>
   )
 }
@@ -36,19 +38,18 @@ export const getStaticPaths: GetStaticPaths = async () => ({
     // '/learn/dynamic-route/static/a',
 
     // 对象变量 针对哪些属性生成静态文档,true,false都是生成这些
-    { params: { static: '1' } },
+    { params: { staticParams: '1' } },
   ],
   fallback: false,
 })
 
-export async function getStaticProps(context: GetStaticPropsContext) {
+export async function getStaticProps(context: GetStaticPropsContext<any>) {
   const { params } = context
-
+  const { staticParams } = params
   // eslint-disable-next-line
-  console.log(params)
 
   return {
-    props: {},
+    props: { staticParams },
   }
 }
 

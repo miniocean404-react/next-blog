@@ -5,8 +5,8 @@ import Head from 'next/head'
 const DynamicRoute: NextPage = () => (
   <div className={styles.container}>
     <Head>
-      <title>标题</title>
-      <meta name="description" content="描述" />
+      <title>嵌套路由</title>嵌套路由
+      <meta name="description" content="嵌套路由" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
 

@@ -31,10 +31,11 @@ const ServerSideRendering: NextPage<Prop> = (props) => {
 // 参数: 文件名[category]中的category
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req, res, query } = context
+  const { category } = query
 
-  const category = query.category
+  const type = query.category
 
-  const products = await getProductsByCategory(category || '')
+  const products = await getProductsByCategory(type || '')
 
   return { props: { products } }
 }
