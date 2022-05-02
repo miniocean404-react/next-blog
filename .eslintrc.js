@@ -30,7 +30,7 @@ module.exports = {
   plugins: ['jsx-a11y', 'react', 'import', '@typescript-eslint'],
   rules: {
     // 对于ts后缀的引入
-    'import/extensions': ['error', { ts: 'never' }],
+    'import/extensions': ['error', { ts: 'never', json: 'always' }],
 
     // 在ts,tsx中开启jsx属性
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],

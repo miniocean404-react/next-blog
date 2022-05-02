@@ -1,10 +1,12 @@
 import styles from '@/styles/Home.module.scss'
 import type { Prop } from '@/typings/learn/static-generation'
-import type { NextPage } from 'next'
+import axios from 'axios'
+import type { GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'
 
+// 静态页面，数据是死的,构建时进行渲染,简称SSG
 const StaticGeneration: NextPage<Prop> = (props) => {
-  const { data } = props
+  const { data, str } = props
 
   return (
     <div className={styles.container}>
@@ -15,16 +17,24 @@ const StaticGeneration: NextPage<Prop> = (props) => {
       </Head>
 
       <div>{data.show}</div>
+
+      <div>{str}</div>
     </div>
   )
 }
 
-export async function getStaticProps() {
+// 将 getStaticProps 这个函数 export 出来，不在客户端上运行,编译时可以从服务器拿死的数据进行页面生成
+export async function getStaticProps(context: GetStaticPropsContext) {
+  console.log(context)
+
   const data = { show: '静态生成的数据' }
+  const res = await axios.get('http://www.baidu.com')
+  const str = res.data
 
   return {
     props: {
       data,
+      str,
     },
   }
 }

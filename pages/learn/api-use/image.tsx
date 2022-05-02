@@ -15,7 +15,7 @@ const ImageUse: NextPage = () => (
     </Head>
 
     {/* Image使用 */}
-    {/* 远程:远程图片需要手动设置宽高,必须定义images: {domains: ['example.com', 'example2.com']}列表 */}
+    {/* 远程:远程图片需要手动设置宽高,必须定义images: {domains: ['example.com', 'example2.com']}列表或layout="fill" */}
     {/* 本地:本地图片自动获取图片原始宽高 */}
     {/* 宽高:layout="fill" layout设置图片的宽高 */}
     {/* 优先级:priority可以对要加载的图像进行特别优先排序 */}

@@ -1,5 +1,7 @@
 //https://juejin.cn/post/7055845836298649636#heading-7
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
 /* 初始化 */
 a,
 abbr,
@@ -139,6 +141,7 @@ body {
   height: 100%;
   line-height: 1.5; // WCAG 标准规定，行高应至少为 1.5。
   font: 14px/1 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 'Open Sans', sans-serif; // 获取@url获取的Google open sans字体
   -webkit-font-smoothing: antialiased; // 取消字体抗锯齿
   -moz-osx-font-smoothing: grayscale;
 }

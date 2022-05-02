@@ -1,3 +1,5 @@
+// https://blog.logrocket.com/content-management-in-next-js-with-sanity-cms/
+
 // import useSWR from 'swr'
 
 // function Profile() {
