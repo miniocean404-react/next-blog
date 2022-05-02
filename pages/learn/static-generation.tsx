@@ -2,9 +2,7 @@ import styles from '@/styles/Home.module.scss'
 import type { Prop } from '@/typings/learn/static-generation'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import A from '@/pages/a'
 
-A()
 const StaticGeneration: NextPage<Prop> = (props) => {
   const { data } = props
 

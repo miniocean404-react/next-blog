@@ -1,10 +1,10 @@
 // 10分钟上手next.js https://juejin.cn/post/7017303191687528485
 
+import Mac from '@/public/image/Mac壁纸.jpg'
+import styles from '@/styles/Home.module.scss'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '@/styles/Home.module.scss'
-import Mac from '@/public/image/Mac壁纸.jpg'
 
 const ImageUse: NextPage = () => (
   <div className={styles.container}>
