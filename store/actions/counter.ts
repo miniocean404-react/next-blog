@@ -1,3 +1,4 @@
+import type { Dispatch } from '@reduxjs/toolkit'
 import { ADD, MINUS } from '../constants/counter'
 
 export const add = () => ({
@@ -9,7 +10,7 @@ export const minus = () => ({
 
 // 异步的 actions
 export function asyncAdd() {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch) => {
     setTimeout(() => {
       dispatch(add())
     }, 2000)

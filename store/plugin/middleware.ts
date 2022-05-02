@@ -1,8 +1,12 @@
-// import { createLogger } from 'redux-logger'
+import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 
 const middlewares = [thunkMiddleware]
 
-if (process.env.NODE_ENV === 'development') middlewares.push()
+// 添加判断是否是浏览器环境
+if (process.env.NODE_ENV === 'development' && process.title === 'browser') {
+  // @ts-ignore
+  middlewares.push(createLogger())
+}
 
 export default middlewares
