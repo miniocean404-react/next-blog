@@ -10,6 +10,7 @@
     "dev": "next dev",
     "proxy-dev": "node script/cross-domain-proxy.js",
     "build": "next build",
+    "build-static": "next build &&  next export",
     "start": "next start",
     "lint": "next lint",
     "commit": "cz",

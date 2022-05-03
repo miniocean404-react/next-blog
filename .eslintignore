@@ -6,6 +6,7 @@ script
 server
 *.d.ts
 next.config.js
+*.md
 
 pnpm-lock.yaml
 yarn.lock
