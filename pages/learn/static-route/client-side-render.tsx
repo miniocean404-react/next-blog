@@ -1,13 +1,14 @@
 // https://blog.logrocket.com/content-management-in-next-js-with-sanity-cms/
 
-// import useSWR from 'swr'
-
+// 可以使用客户端axios进行类似spa应用的开发
 // function Profile() {
-// 	const { data, error } = useSWR('/api/user', fetch)
+//   const { isIdle, isLoading, isError, data, error, refetch, isFetching } = useQuery('todos', [], {
+//     enabled: false,
+//   })
 
-// 	if (error) return <div>failed to load</div>
-// 	if (!data) return <div>loading...</div>
-// 	return <div>hello {data.name}!</div>
+//   if (error) return <div>failed to load</div>
+//   if (!data) return <div>loading...</div>
+//   return <div>hello {data.name}!</div>
 // }
 
-// export default Profile
+export default Profile

@@ -32,6 +32,7 @@ module.exports = {
     // 对于ts后缀的引入
     'import/extensions': ['error', { ts: 'never', json: 'always' }],
     'default-param-last': 'off',
+    'no-console': 'off',
 
     // 在ts,tsx中开启jsx属性
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
