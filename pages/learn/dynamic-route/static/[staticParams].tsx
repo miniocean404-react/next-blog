@@ -12,8 +12,14 @@ const DynamicRoute: NextPage<Prop> = (props) => {
     return <div>Loading...</div>
   }
 
+  const click = () => {
+    // @ts-ignore
+    console.log(structuredClone(1))
+  }
+
   return (
-    <div className={styles.container}>
+    // eslint-disable-next-line
+    <div className={styles.container} onClick={click}>
       <Head>
         <title>标题</title>
         <meta name="description" content="描述" />
