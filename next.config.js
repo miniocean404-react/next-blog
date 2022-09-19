@@ -12,9 +12,8 @@ module.exports = (phase, { defaultConfig }) => {
   // 开发阶段阶段服务器配置
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
-      ...defaultConfig,
       reactStrictMode: true,
-      basePath: '/forum', // 路由前缀
+      basePath: '/next', // 路由前缀
       env: {
         // process.env.customKey
         customKey: 'value',
@@ -33,7 +32,6 @@ module.exports = (phase, { defaultConfig }) => {
   // 生产阶段服务器配置
   if (phase === PHASE_PRODUCTION_SERVER) {
     return {
-      ...defaultConfig,
       reactStrictMode: true, // 是否启动react严格模式<React.StrictMode>
       distDir: '.next', // 构建目录
       basePath: '/forum', // 路由前缀
