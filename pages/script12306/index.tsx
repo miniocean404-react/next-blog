@@ -46,6 +46,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req, res, query } = context
 
   const file = readNextFileSync('public/12306/stations.txt')
+  const file1 = readNextFileSync('public/12306/cdn.txt')
+
   let stationsList: string[] | object[] = file.split('@')
 
   stationsList = stationsList.map((item: string) => {
