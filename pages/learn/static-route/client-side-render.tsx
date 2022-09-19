@@ -11,4 +11,4 @@
 //   return <div>hello {data.name}!</div>
 // }
 
-export default Profile
+// export default Profile
