@@ -34,6 +34,7 @@ module.exports = {
     'default-param-last': 'off',
     'no-console': 'off',
     'no-unused-vars': 'off',
+    'no-param-reassign': 'off',
 
     // 在ts,tsx中开启jsx属性
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],

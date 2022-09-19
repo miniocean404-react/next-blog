@@ -1,7 +1,7 @@
 /**
  * @描述 业务码
  */
-export const handleAuthError = (error: string | number) => {
+export const handleAuthError = (error: string) => {
   const authErrMap: any = {
     '10031': '登录失效，需要重新登录', // token 失效
     '10032': '您太久没登录，请重新登录~', // token 过期
@@ -13,7 +13,7 @@ export const handleAuthError = (error: string | number) => {
     '10038': '账号未找到',
   }
 
-  if (authErrMap.hasOwnProperty(error)) {
+  if (authErrMap[error]) {
     console.error(authErrMap[error])
 
     // 授权错误，登出账户

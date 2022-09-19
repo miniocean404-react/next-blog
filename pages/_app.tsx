@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <>
       <Head>
-        <title></title>
+        <title />
         <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
       </Head>
 

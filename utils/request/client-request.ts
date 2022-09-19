@@ -1,6 +1,6 @@
-import axios from 'axios'
-import { AxiosResponse, AxiosRequestConfig } from 'axios'
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 
+import Qs from 'qs'
 import {
   removePendingRequest,
   addPendingRequest,
@@ -8,7 +8,6 @@ import {
   handleAuth,
 } from './req-interceptor'
 import { handleAuthError, handleGeneralError, handleNetworkError } from './res-interceptor'
-import Qs from 'qs'
 
 export const UserAgent =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36'
@@ -18,7 +17,7 @@ export const client = axios.create({
   baseURL: ``,
   timeout: 5000,
   withCredentials: true,
-  responseType: 'json', //文档设置为document自动转化为DOM、text为文字、blob等
+  responseType: 'json', // 文档设置为document自动转化为DOM、text为文字、blob等
   // xsrf 设置
   xsrfCookieName: 'XSRF-TOKEN',
   xsrfHeaderName: 'X-XSRF-TOKEN',
@@ -31,12 +30,12 @@ export const client = axios.create({
   },
 
   // 查询对象序列化函数
-  paramsSerializer: function (params: any) {
+  paramsSerializer(params: any) {
     return Qs.stringify(params, { arrayFormat: 'brackets' })
   },
 
   // 自定义错误状态码范围
-  validateStatus: function (status: number) {
+  validateStatus(status: number) {
     return status >= 200 && status < 400
   },
 
@@ -60,9 +59,7 @@ client.interceptors.request.use(
 
     return config
   },
-  (error: any) => {
-    return Promise.reject(error)
-  }
+  (error: any) => Promise.reject(error)
 )
 
 // 响应拦截器,响应拦截器中添加响应错误状态码、数据的判断
@@ -85,14 +82,14 @@ client.interceptors.response.use(
     removePendingRequest(err.config || {}) // 从pendingRequest对象中移除请求
 
     if (axios.isCancel(err)) {
-      console.log('已取消的重复请求：' + err.message)
+      console.log(`已取消的重复请求：${err.message}`)
     } else {
       // 添加异常处理
 
       // 处理 http 状态码
       handleNetworkError(err.response?.status)
     }
-    //根据上面的自定义状态码抛出错误
+    // 根据上面的自定义状态码抛出错误
     return Promise.reject(err)
   }
 )

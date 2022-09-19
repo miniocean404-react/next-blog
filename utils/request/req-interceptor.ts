@@ -5,14 +5,14 @@ import Qs from 'qs'
  * @描述 请求头 token
  */
 export const handleRequestHeader = (config: any) => {
-  config['xxxx'] = 'xxx'
+  config.xxxx = 'xxx'
   return config
 }
 
 export const handleAuth = (config: any) => {
   const token = null
 
-  config.headers['token'] = localStorage.getItem('token') || token || ''
+  config.headers.token = localStorage.getItem('token') || token || ''
   return config
 }
 

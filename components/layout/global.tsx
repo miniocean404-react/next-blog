@@ -11,7 +11,7 @@ export default function GlobalLayout({ children }: any) {
 GlobalLayout.getLayout = function getLayout(page: ReactElement) {
   return (
     <main>
-      <header></header>
+      <header />
       <div>{page}</div>
     </main>
   )

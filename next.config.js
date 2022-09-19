@@ -1,8 +1,4 @@
-const {
-  PHASE_DEVELOPMENT_SERVER,
-  PHASE_PRODUCTION_SERVER,
-  PHASE_PRODUCTION_BUILD,
-} = require('next/constants')
+const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants')
 const path = require('path')
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -33,8 +29,8 @@ module.exports = (phase, { defaultConfig }) => {
     }
   }
 
-  // 生产阶段服务器配置
-  if (phase === PHASE_PRODUCTION_SERVER) {
+  // 生产阶段服务器配置 生产打包配置
+  if (phase === PHASE_PRODUCTION_SERVER || phase === PHASE_PRODUCTION_BUILD) {
     return {
       reactStrictMode: false, // 是否启动react严格模式<React.StrictMode>
       distDir: '.next', // 构建目录
@@ -52,7 +48,7 @@ module.exports = (phase, { defaultConfig }) => {
       // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       compress: true,
       // CDN前缀
-      assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
+      // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
       // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
       webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => config,
       // https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
@@ -95,11 +91,6 @@ module.exports = (phase, { defaultConfig }) => {
         // autoPrerender: false,
       },
     }
-  }
-
-  // 生产打包配置
-  if (phase === PHASE_PRODUCTION_BUILD) {
-    return {}
   }
 
   return defaultConfig

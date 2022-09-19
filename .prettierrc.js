@@ -2,7 +2,7 @@ module.exports = {
   useTabs: false, // 使用tab缩进，默认false
   tabWidth: 2, // tab缩进大小,默认为2
   semi: false, // 使用分号, 默认true
-  printWidth: 100, // 超过最大值换行
+  printWidth: 180, // 超过最大值换行
   singleQuote: true, // 使用单引号, 默认false(在jsx中配置无效, 默认都是双引号)
   bracketSpacing: true, // 对象中的空格 默认true
   endOfLine: 'auto', // 结尾是 \n \r \n\r auto
