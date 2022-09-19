@@ -5,30 +5,36 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { GetServerSidePropsContext } from 'next'
 import { Prop } from '@/typings/script12306'
-import fs from 'fs'
+import fs, { readFileSync } from 'fs'
 import path from 'path'
 import Image from 'next/image'
 import getConfig from 'next/config'
-import { WEB_PREFIX } from '@/constant/runtime'
+import { readNextFileSync } from '@/utils/file'
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
-const Script12306Home: NextPage<Prop> = ({ products }) => {
+const Script12306Home: NextPage<Prop> = ({ stationsList }) => {
   return (
     <div className={styles.container}>
       <Head>
         <title>标题</title>
         <meta name="description" content="描述" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
       </Head>
 
       <div>
-        {Array.isArray(products) &&
-          products?.map((item: any) => {
-            return <div>{item}</div>
+        {Array.isArray(stationsList) &&
+          stationsList?.map((item: any) => {
+            console.log(item)
+            return <div>{JSON.stringify(item)}</div>
           })}
       </div>
-      <Image src={`${WEB_PREFIX}/image/Mac壁纸.jpg`} alt={''} width={50} height={50} />
+      <Image
+        src={`${publicRuntimeConfig.staticFolder}/image/Mac壁纸.jpg`}
+        alt={''}
+        width={50}
+        height={50}
+      />
     </div>
   )
 }
@@ -38,18 +44,21 @@ const Script12306Home: NextPage<Prop> = ({ products }) => {
 // 参数: 文件名[category]中的category
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req, res, query } = context
-  const { category } = query
 
-  console.log(serverRuntimeConfig)
-  const url = path.join(WEB_PREFIX, 'utf-8', '12306/stations.txt')
-  fs.readFile(url, (err, data) => {
-    console.log(data)
+  const file = readNextFileSync('public/12306/stations.txt')
+  let stationsList: string[] | object[] = file.split('@')
+
+  stationsList = stationsList.map((item: string) => {
+    const temp = item.split('|')
+    return {
+      key: temp[2],
+      name: temp[1],
+      pinyin: temp[3],
+      id: temp[5],
+    }
   })
 
-  const type = query.category
-
-  const products = ['1']
-  return { props: { products } }
+  return { props: { stationsList } }
 }
 
 export default Script12306Home

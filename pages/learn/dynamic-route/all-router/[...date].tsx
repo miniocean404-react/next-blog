@@ -1,13 +1,16 @@
 import styles from '@/styles/Home.module.scss'
 import type { GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'
+import getConfig from 'next/config'
+
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
 const DynamicRoute: NextPage = () => (
   <div className={styles.container}>
     <Head>
       <title>所有路由</title>
       <meta name="description" content="所有路由" />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
     </Head>
 
     <h1>所有路由</h1>

@@ -6,6 +6,9 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter, withRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
+import getConfig from 'next/config'
+
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
 const ProgramRouter: NextPage = () => {
   // pathname: String- 当前路线。即页面的路径/pages，配置basePath或locale不包括在内。
@@ -97,7 +100,7 @@ const ProgramRouter: NextPage = () => {
       <Head>
         <title>图片使用</title>
         <meta name="description" content="描述" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
       </Head>
 
       <Button onClick={() => routerClick('img')}>跳转图片</Button>

@@ -20,7 +20,7 @@ module.exports = (phase, { defaultConfig }) => {
       },
       publicRuntimeConfig: {
         // 服务器，客户端可用
-        staticFolder: '/static',
+        staticFolder: process.env.NEXT_PUBLIC_WEB_PREFIX,
       },
       images: {
         // 图片可用的域名

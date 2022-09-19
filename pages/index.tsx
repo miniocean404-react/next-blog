@@ -4,6 +4,9 @@ import Page from '@/pages/learn/api-use/layout'
 import styles from '@/styles/Home.module.scss'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import getConfig from 'next/config'
+
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
 const Home: NextPage = () => (
   <div className={styles.container}>
@@ -11,7 +14,7 @@ const Home: NextPage = () => (
     <Head>
       <title>标题</title>
       <meta name="description" content="描述" />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
     </Head>
 
     <Page />

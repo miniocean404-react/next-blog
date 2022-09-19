@@ -9,6 +9,7 @@ declare namespace Script12306HomeType {
     str: string
     staticParams: string
     products: string | string[]
+    stationsList: object[]
   }
 }
 
