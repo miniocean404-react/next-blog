@@ -3,9 +3,6 @@ import type { Prop } from '@/typings/learn/static-generation'
 import axios from 'axios'
 import type { GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'
-import getConfig from 'next/config'
-
-const { publicRuntimeConfig } = getConfig()
 
 // 静态页面，数据是死的,构建时进行渲染,简称SSG
 const StaticGeneration: NextPage<Prop> = (props) => {

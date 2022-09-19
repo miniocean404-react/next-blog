@@ -8,5 +8,6 @@ next.config.js
 *.md
 
 yarn.lock
+**/*.json
 
 !.*

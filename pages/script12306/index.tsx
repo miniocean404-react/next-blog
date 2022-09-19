@@ -4,25 +4,22 @@ import type { NextPage } from 'next'
 import { GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import { Prop } from '@/typings/script12306'
-import Image from 'next/image'
 import getConfig from 'next/config'
-import styles from './index.module.scss'
 import { useEffect, useState } from 'react'
+import { getStations } from '@/http/client/example-use'
+import styles from './index.module.scss'
 
 // eslint-disable-next-line
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
 const Script12306Home: NextPage<Prop> = ({ stationsList }) => {
-  const [stations, setStations] = useState([])
+  const [stations, setStations] = useState<object[]>([])
 
   useEffect(() => {
-    fetch('/next/api/script12306').then(async (res) => {
-      const data = await res.json()
-      setStations(data.data)
+    getStations().then(([_, res]: any) => {
+      setStations(res.data.data)
     })
   }, [])
-
-  console.log(stations)
 
   return (
     <div className={styles.container}>
@@ -31,9 +28,9 @@ const Script12306Home: NextPage<Prop> = ({ stationsList }) => {
       </Head>
 
       <div>
-        {stations?.map((item: any) => {
-          return <div>{JSON.stringify(item)}</div>
-        })}
+        {stations?.map((item: any) => (
+          <div>{JSON.stringify(item)}</div>
+        ))}
       </div>
     </div>
   )

@@ -1,9 +1,6 @@
 import styles from '@/styles/Home.module.scss'
 import type { GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'
-import getConfig from 'next/config'
-
-const { publicRuntimeConfig } = getConfig()
 
 const DynamicRoute: NextPage = () => (
   <div className={styles.container}>

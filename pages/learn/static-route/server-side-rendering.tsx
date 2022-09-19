@@ -4,9 +4,6 @@ import type { Prop } from '@/typings/learn/server-side-rendering'
 import type { GetServerSidePropsContext, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import getConfig from 'next/config'
-
-const { publicRuntimeConfig } = getConfig()
 
 // 服务端渲染好的html返回,在请求时获取数据并预先渲染页面
 const ServerSideRendering: NextPage<Prop> = (props) => {

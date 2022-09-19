@@ -5,9 +5,6 @@ import { Button } from 'antd'
 import type { NextPage } from 'next'
 import { useRouter, withRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
-import getConfig from 'next/config'
-
-const { publicRuntimeConfig } = getConfig()
 
 const ProgramRouter: NextPage = () => {
   // pathname: String- 当前路线。即页面的路径/pages，配置basePath或locale不包括在内。

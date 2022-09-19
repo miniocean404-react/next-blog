@@ -2,9 +2,6 @@ import styles from '@/styles/Home.module.scss'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Script from 'next/script'
-import getConfig from 'next/config'
-
-const { publicRuntimeConfig } = getConfig()
 
 // 可以设置Script的加载优先级
 // beforeInteractive：在页面交互之前加载

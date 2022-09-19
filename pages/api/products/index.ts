@@ -1,5 +1,5 @@
-import data from '@/mock/data.json'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import data from './data.json'
 
 export function getProducts() {
   return data

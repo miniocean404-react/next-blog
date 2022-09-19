@@ -2,7 +2,7 @@
 // 关于：https://nextjs.org/learn/foundations/about-nextjs
 // 例子：https://github.com/vercel/next.js/tree/canary/examples
 // 部署：https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app
-import configStore from '@/store'
+import { persist, store } from '@/store'
 import '@/styles/globals.scss'
 import 'antd/dist/antd.css'
 import { Provider } from 'react-redux'
@@ -11,8 +11,6 @@ import { ReactElement } from 'react'
 import { AppPropsWithLayout } from '@/typings/layout'
 import Head from 'next/head'
 import getConfig from 'next/config'
-
-const { store, persist } = configStore()
 
 // eslint-disable-next-line
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()

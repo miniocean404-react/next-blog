@@ -1,22 +1,25 @@
-import middlewares from '@/store/plugin/middleware'
-import persistedReducer from '@/store/plugin/persist'
-import { applyMiddleware, compose, legacy_createStore as createStore } from '@reduxjs/toolkit'
-import { persistStore } from 'redux-persist'
+import { middleware } from '@/store/plugin/middleware'
+import { persistReducer, persistStore } from 'redux-persist'
+import { configureStore } from '@reduxjs/toolkit'
+import { persistConfig } from '@/store/plugin/persist'
+import { reducers } from '@/store/feature'
 
-// 是否开启浏览器开发者工具扩展
-const composeEnhancers =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose
+// https://juejin.cn/post/7101688098781659172#heading-3
+const persistedReducer = persistReducer(persistConfig, reducers)
 
-const enhancer = composeEnhancers(applyMiddleware(...middlewares))
-
-export default function configStore() {
-  const store = createStore(persistedReducer, enhancer)
-  const persist = persistStore(store)
-
-  return {
-    store,
-    persist,
-  }
+// 设置 reducer 的初始状态值 （只能是 reducers 包含的）
+const preloadedState: any = {
+  counter: {
+    title: '',
+    value: '',
+  },
 }
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware,
+  preloadedState,
+})
+
+export const persist = persistStore(store)
