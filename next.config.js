@@ -13,10 +13,14 @@ module.exports = (phase, { defaultConfig }) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       reactStrictMode: true,
-      basePath: '/next', // 路由前缀
+      basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
       env: {
         // process.env.customKey
         customKey: 'value',
+      },
+      publicRuntimeConfig: {
+        // 服务器，客户端可用
+        staticFolder: '/static',
       },
       images: {
         // 图片可用的域名
@@ -34,7 +38,7 @@ module.exports = (phase, { defaultConfig }) => {
     return {
       reactStrictMode: true, // 是否启动react严格模式<React.StrictMode>
       distDir: '.next', // 构建目录
-      basePath: '/forum', // 路由前缀
+      basePath: '/next', // 路由前缀
       env: {
         customKey: 'value',
       },
