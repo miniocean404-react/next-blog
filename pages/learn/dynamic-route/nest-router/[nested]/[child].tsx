@@ -3,14 +3,13 @@ import type { GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'
 import getConfig from 'next/config'
 
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+const { publicRuntimeConfig } = getConfig()
 
 const DynamicRoute: NextPage = () => (
   <div className={styles.container}>
     <Head>
       <title>嵌套路由</title>嵌套路由
       <meta name="description" content="嵌套路由" />
-      <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
     </Head>
 
     <div>嵌套生成静态路由</div>

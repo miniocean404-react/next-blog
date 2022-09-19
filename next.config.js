@@ -12,7 +12,7 @@ module.exports = (phase, { defaultConfig }) => {
   // 开发阶段阶段服务器配置
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
-      reactStrictMode: true,
+      reactStrictMode: false, // 可防止一次 DOM 渲染
       basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
       env: {
         // process.env.customKey
@@ -36,9 +36,9 @@ module.exports = (phase, { defaultConfig }) => {
   // 生产阶段服务器配置
   if (phase === PHASE_PRODUCTION_SERVER) {
     return {
-      reactStrictMode: true, // 是否启动react严格模式<React.StrictMode>
+      reactStrictMode: false, // 是否启动react严格模式<React.StrictMode>
       distDir: '.next', // 构建目录
-      basePath: '/next', // 路由前缀
+      basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
       env: {
         customKey: 'value',
       },
@@ -63,7 +63,7 @@ module.exports = (phase, { defaultConfig }) => {
       },
       publicRuntimeConfig: {
         // 服务器，客户端可用
-        staticFolder: '/static',
+        staticFolder: process.env.NEXT_PUBLIC_WEB_PREFIX,
       },
       // 默认为true, 默认情况下 Next.js 将添加x-powered-by标题
       poweredByHeader: true,
@@ -81,7 +81,7 @@ module.exports = (phase, { defaultConfig }) => {
         pagesBufferLength: 2,
       },
       // 默认false，是否在构建时忽略eslint
-      ignoreDuringBuilds: false,
+      // ignoreDuringBuilds: false,
       // 默认false，是否在构建时忽略typescript错误
       typescript: {
         ignoreBuildErrors: false,
@@ -92,7 +92,7 @@ module.exports = (phase, { defaultConfig }) => {
       optimizeFonts: true,
       // 默认为true 是否开启可以优化为静态html的提示
       devIndicators: {
-        autoPrerender: false,
+        // autoPrerender: false,
       },
     }
   }

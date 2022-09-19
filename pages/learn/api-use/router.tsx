@@ -3,12 +3,11 @@
 import styles from '@/styles/Home.module.scss'
 import { Button } from 'antd'
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import { useRouter, withRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
 import getConfig from 'next/config'
 
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+const { publicRuntimeConfig } = getConfig()
 
 const ProgramRouter: NextPage = () => {
   // pathname: String- 当前路线。即页面的路径/pages，配置basePath或locale不包括在内。
@@ -97,12 +96,6 @@ const ProgramRouter: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>图片使用</title>
-        <meta name="description" content="描述" />
-        <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
-      </Head>
-
       <Button onClick={() => routerClick('img')}>跳转图片</Button>
       <Button onClick={() => routerClick('nest')}>跳转嵌套路由</Button>
       <Button onClick={() => routerClick('replace')}>替换</Button>

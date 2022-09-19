@@ -6,7 +6,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import getConfig from 'next/config'
 
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+const { publicRuntimeConfig } = getConfig()
 
 // 服务端渲染好的html返回,在请求时获取数据并预先渲染页面
 const ServerSideRendering: NextPage<Prop> = (props) => {
@@ -17,7 +17,6 @@ const ServerSideRendering: NextPage<Prop> = (props) => {
       <Head>
         <title>服务端渲染</title>
         <meta name="description" content="服务端渲染" />
-        <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
       </Head>
 
       <h1>服务端渲染数据</h1>

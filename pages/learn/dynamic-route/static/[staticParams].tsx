@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import getConfig from 'next/config'
 
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+const { publicRuntimeConfig } = getConfig()
 
 const DynamicRoute: NextPage<Prop> = (props) => {
   const { staticParams } = props
@@ -26,7 +26,6 @@ const DynamicRoute: NextPage<Prop> = (props) => {
       <Head>
         <title>标题</title>
         <meta name="description" content="描述" />
-        <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
       </Head>
 
       <div>静态生成{staticParams}</div>

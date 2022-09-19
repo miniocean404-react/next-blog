@@ -1,40 +1,40 @@
 // 10分钟上手next.js https://juejin.cn/post/7017303191687528485
 
-import styles from './index.module.scss'
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import { GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
 import { Prop } from '@/typings/script12306'
-import fs, { readFileSync } from 'fs'
-import path from 'path'
 import Image from 'next/image'
 import getConfig from 'next/config'
-import { readNextFileSync } from '@/utils/file'
+import styles from './index.module.scss'
+import { useEffect, useState } from 'react'
 
+// eslint-disable-next-line
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
 const Script12306Home: NextPage<Prop> = ({ stationsList }) => {
+  const [stations, setStations] = useState([])
+
+  useEffect(() => {
+    fetch('/next/api/script12306').then(async (res) => {
+      const data = await res.json()
+      setStations(data.data)
+    })
+  }, [])
+
+  console.log(stations)
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>标题</title>
-        <meta name="description" content="描述" />
-        <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
+        <title>12306</title>
       </Head>
 
       <div>
-        {Array.isArray(stationsList) &&
-          stationsList?.map((item: any) => {
-            console.log(item)
-            return <div>{JSON.stringify(item)}</div>
-          })}
+        {stations?.map((item: any) => {
+          return <div>{JSON.stringify(item)}</div>
+        })}
       </div>
-      <Image
-        src={`${publicRuntimeConfig.staticFolder}/image/Mac壁纸.jpg`}
-        alt={''}
-        width={50}
-        height={50}
-      />
     </div>
   )
 }
@@ -43,24 +43,10 @@ const Script12306Home: NextPage<Prop> = ({ stationsList }) => {
 // 值: server / 后边的值,
 // 参数: 文件名[category]中的category
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  // eslint-disable-next-line
   const { req, res, query } = context
 
-  const file = readNextFileSync('public/12306/stations.txt')
-  const file1 = readNextFileSync('public/12306/cdn.txt')
-
-  let stationsList: string[] | object[] = file.split('@')
-
-  stationsList = stationsList.map((item: string) => {
-    const temp = item.split('|')
-    return {
-      key: temp[2],
-      name: temp[1],
-      pinyin: temp[3],
-      id: temp[5],
-    }
-  })
-
-  return { props: { stationsList } }
+  return { props: { stationsList: [] } }
 }
 
 export default Script12306Home

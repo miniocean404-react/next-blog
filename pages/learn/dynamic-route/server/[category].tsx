@@ -17,7 +17,6 @@ const ServerSideRendering: NextPage<Prop> = (props) => {
       <Head>
         <title>服务端渲染</title>
         <meta name="description" content="服务端渲染" />
-        <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
       </Head>
 
       <h1>服务端渲染图片数据</h1>

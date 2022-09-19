@@ -5,19 +5,35 @@
 import configStore from '@/store'
 import '@/styles/globals.scss'
 import 'antd/dist/antd.css'
-import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
+import { ReactElement } from 'react'
+import { AppPropsWithLayout } from '@/typings/layout'
+import Head from 'next/head'
+import getConfig from 'next/config'
 
 const { store, persist } = configStore()
 
-function MyApp({ Component, pageProps }: AppProps) {
+// eslint-disable-next-line
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  // 如果有就使用布局，否则就返回组件传入的组件page(没有布局的信息)
+  const getLayout = Component.getLayout ?? ((page: ReactElement) => page)
+
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persist}>
-        <Component {...pageProps} />
-      </PersistGate>
-    </Provider>
+    <>
+      <Head>
+        <title></title>
+        <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
+      </Head>
+
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persist}>
+          {getLayout(<Component {...pageProps} />)}
+        </PersistGate>
+      </Provider>
+    </>
   )
 }
 

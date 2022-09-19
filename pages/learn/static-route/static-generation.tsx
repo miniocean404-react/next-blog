@@ -5,7 +5,7 @@ import type { GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'
 import getConfig from 'next/config'
 
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+const { publicRuntimeConfig } = getConfig()
 
 // 静态页面，数据是死的,构建时进行渲染,简称SSG
 const StaticGeneration: NextPage<Prop> = (props) => {
@@ -16,7 +16,6 @@ const StaticGeneration: NextPage<Prop> = (props) => {
       <Head>
         <title>静态生成</title>
         <meta name="description" content="静态生成" />
-        <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
       </Head>
 
       <div>{data.show}</div>
