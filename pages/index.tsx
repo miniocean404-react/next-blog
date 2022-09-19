@@ -2,10 +2,8 @@
 
 import Page from '@/pages/learn/api-use/layout'
 import styles from '@/styles/Home.module.scss'
-import { Button } from 'antd'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
 
 const Home: NextPage = () => (
   <div className={styles.container}>
