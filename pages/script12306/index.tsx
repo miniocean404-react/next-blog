@@ -28,8 +28,8 @@ const Script12306Home: NextPage<Prop> = ({ stationsList }) => {
       </Head>
 
       <div>
-        {stations?.map((item: any) => (
-          <div>{JSON.stringify(item)}</div>
+        {stations?.map((item: any, index: number) => (
+          <div key={index}>{JSON.stringify(item)}</div>
         ))}
       </div>
     </div>

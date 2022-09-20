@@ -1,16 +1,10 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 
 import Qs from 'qs'
-import {
-  removePendingRequest,
-  addPendingRequest,
-  handleRequestHeader,
-  handleAuth,
-} from './req-interceptor'
+import { removePendingRequest, addPendingRequest, handleRequestHeader, handleAuth } from './req-interceptor'
 import { handleAuthError, handleGeneralError, handleNetworkError } from './res-interceptor'
 
-export const UserAgent =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36'
+export const UserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36'
 export const ContentType = 'application/x-www-form-urlencoded'
 
 export const client = axios.create({
@@ -38,13 +32,6 @@ export const client = axios.create({
   validateStatus(status: number) {
     return status >= 200 && status < 400
   },
-
-  // adapter: http
-
-  // proxy: {
-  // 	host: '127.0.0.1',
-  // 	port: 9000
-  // }
 })
 
 // 请求拦截器
