@@ -21,7 +21,7 @@ export const server = axios.create({
   // 最大响应数据大小
   maxContentLength: 200000,
   headers: {
-    'Content-Type': 'application/json;charset=UTF-8',
+    UserAgent,
   },
 
   // 查询对象序列化函数
