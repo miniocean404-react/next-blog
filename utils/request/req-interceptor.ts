@@ -12,7 +12,9 @@ export const handleRequestHeader = (config: any) => {
 export const handleAuth = (config: any) => {
   const token = null
 
-  config.headers.token = localStorage.getItem('token') || token || ''
+  if (process.title === 'browser') {
+    config.headers.token = localStorage.getItem('token') || token || ''
+  }
   return config
 }
 

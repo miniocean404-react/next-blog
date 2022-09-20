@@ -1,11 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { readNextFileSync } from '@/utils/file'
+import { initTicketsType, queryTickets } from '@/http/server/script12306/stations'
 
-export default function getStations(req: NextApiRequest, res: NextApiResponse) {
+export default async function getStations(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', ['GET'])
     res.status(405).json({ message: `Method ${req.method} is not allowed` })
   } else {
+    // const [err, res1]: any = await initTicketsType()
+    // const [err1, res1]: any = await queryTickets()
+
     const file = readNextFileSync('public/12306/stations.txt')
 
     let stationsList: string[] | object[] = file.split('@')

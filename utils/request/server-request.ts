@@ -2,16 +2,10 @@ import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 import https from 'https'
 import Qs from 'qs'
 
-import {
-  removePendingRequest,
-  addPendingRequest,
-  handleRequestHeader,
-  handleAuth,
-} from './req-interceptor'
+import { removePendingRequest, addPendingRequest, handleRequestHeader, handleAuth } from './req-interceptor'
 import { handleAuthError, handleGeneralError, handleNetworkError } from './res-interceptor'
 
-export const UserAgent =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36'
+export const UserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36'
 export const ContentType = 'application/x-www-form-urlencoded'
 
 export const server = axios.create({
@@ -34,9 +28,6 @@ export const server = axios.create({
   paramsSerializer(params: any) {
     return Qs.stringify(params, { arrayFormat: 'brackets' })
   },
-
-  // 请求后的数据处理 (responseType 的处理)
-  transformResponse: [(data: AxiosResponse) => data],
 
   // 自定义错误状态码范围
   validateStatus(status: number) {
@@ -93,9 +84,8 @@ server.interceptors.response.use(
       console.log(`已取消的重复请求：${err.message}`)
     } else {
       // 添加异常处理
-
       // 处理 http 状态码
-      handleNetworkError(err.response.status)
+      // handleNetworkError(err.response)
     }
     // 根据上面的自定义状态码抛出错误
     return Promise.reject(err)

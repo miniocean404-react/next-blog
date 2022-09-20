@@ -6,8 +6,8 @@ import Head from 'next/head'
 import { Prop } from '@/typings/script12306'
 import getConfig from 'next/config'
 import { useEffect, useState } from 'react'
-import { getStations } from '@/http/client/example-use'
 import styles from './index.module.scss'
+import { getStations } from '@/http/client/script12306/stations'
 
 // eslint-disable-next-line
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
