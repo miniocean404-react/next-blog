@@ -1,4 +1,4 @@
-import styles from '@/styles/Home.module.scss'
+import styles from '@/css/index.module.scss'
 import type { Prop } from '@/typings/learn/static-generation'
 import type { GetStaticPaths, GetStaticPropsContext, NextPage } from 'next'
 import Head from 'next/head'

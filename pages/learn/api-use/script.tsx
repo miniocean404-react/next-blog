@@ -1,4 +1,4 @@
-import styles from '@/styles/Home.module.scss'
+import styles from '@/css/index.module.scss'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Script from 'next/script'
@@ -40,11 +40,7 @@ const ScriptUse: NextPage = () => (
     />
 
     {/* 自定义属性 */}
-    <Script
-      src="https://www.google-analytics.com/analytics.js"
-      nonce="XUENAJFW"
-      data-test="analytics"
-    />
+    <Script src="https://www.google-analytics.com/analytics.js" nonce="XUENAJFW" data-test="analytics" />
   </div>
 )
 

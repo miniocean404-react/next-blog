@@ -1,6 +1,6 @@
 // 10分钟上手next.js https://juejin.cn/post/7017303191687528485
 
-import styles from '@/styles/Home.module.scss'
+import styles from '@/css/index.module.scss'
 import { Button } from 'antd'
 import type { NextPage } from 'next'
 import { useRouter, withRouter } from 'next/router'
@@ -88,7 +88,7 @@ const ProgramRouter: NextPage = () => {
           break
       }
     },
-    [router]
+    [router],
   )
 
   return (

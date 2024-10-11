@@ -1,7 +1,7 @@
 // 10分钟上手next.js https://juejin.cn/post/7017303191687528485
 
+import styles from '@/css/index.module.scss'
 import Page from '@/pages/learn/api-use/layout'
-import styles from '@/styles/Home.module.scss'
 import type { NextPage } from 'next'
 import getConfig from 'next/config'
 import { useEffect } from 'react'

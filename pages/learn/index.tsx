@@ -1,8 +1,8 @@
-import { NextPage } from 'next'
+import styles from '@/css/index.module.scss'
 import { Prop } from '@/typings/learn/static-generation'
 import { Button } from 'antd'
+import { NextPage } from 'next'
 import Link from 'next/link'
-import styles from '@/styles/Home.module.scss'
 
 const LearnHome: NextPage<Prop> = ({ className }) => {
   const containerClass = `${styles['learn-home']} ${className || ''}`
