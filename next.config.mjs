@@ -47,7 +47,7 @@ export default (phase, { defaultConfig }) => {
             headers: [
               { key: 'Access-Control-Allow-Credentials', value: 'true' },
               // 在这里添加你的白名单来源
-              { key: 'Access-Control-Allow-Origin', value: '<your-origin>' },
+              { key: 'Access-Control-Allow-Origin', value: '*' },
               { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT' },
               {
                 key: 'Access-Control-Allow-Headers',
