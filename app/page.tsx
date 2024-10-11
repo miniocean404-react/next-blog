@@ -1,12 +1,12 @@
 // 10分钟上手next.js https://juejin.cn/post/7017303191687528485
+'use client'
 
+import Page from '@/app/learn/api-use/layout'
 import styles from '@/css/index.module.scss'
-import Page from '@/pages/learn/api-use/layout'
 import type { NextPage } from 'next'
-import getConfig from 'next/config'
 import { useEffect } from 'react'
 
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+// const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
 const Home: NextPage = () => {
   useEffect(() => {

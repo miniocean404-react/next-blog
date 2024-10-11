@@ -26,7 +26,7 @@ export default (phase, { defaultConfig }) => {
       },
       compress: true, // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       sassOptions: {
-        includePaths: [path.join('styles')],
+        includePaths: [path.join('css')],
       },
       // 跨域处理
       // https://juejin.cn/post/7366177423775531008?share_token=fc72ebf6-93f2-43e6-9678-6b4fc608378d#heading-7
@@ -79,7 +79,7 @@ export default (phase, { defaultConfig }) => {
         domains: ['imgur.com'],
       },
       sassOptions: {
-        includePaths: [path.join('styles')],
+        includePaths: [path.join('css')],
       },
       // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       compress: true,

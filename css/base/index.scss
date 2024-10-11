@@ -1,6 +1,6 @@
 //https://juejin.cn/post/7055845836298649636#heading-7
-@import "./normalize";
-@import "./tool";
+@import './normalize';
+@import './tool';
 
 /* 初始化 */
 a,
@@ -151,23 +151,23 @@ xmp {
 @font-face {
   font-family: Emoji;
   // Apple Color Emojiji（苹果 Emoji）Segoe UI Symbol（win8.1/10）Segoe UI Symbol（win7/8）Noto Color Emoji（安卓）
-  src: local("Apple Color Emojiji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"), local("Noto Color Emoji");
+  src: local('Apple Color Emojiji'), local('Segoe UI Emoji'), local('Segoe UI Symbol'), local('Noto Color Emoji');
   // 限制Emoji字体作用的字符范围，不限制的话,兜底字符的Unicode范围覆盖了emoji字体
   //   unicode-range限制了Emoji字体的作用范围，符合该范围则使用Emoji这个font-family
   unicode-range: U+1F000-1F644, U+203C-3299;
 }
 
 // 可变商用字体，可使用 font-variation-settings
-@font-face {
-  font-family: MiSans VF;
-  src: url("../MiSans/MiSans VF.ttf");
-  font-display: block;
-  font-style: normal italic;
-  font-weight: 100 900;
-  font-stretch: 0% 400%;
-  font-feature-settings: normal;
-  font-variation-settings: normal;
-}
+// @font-face {
+//   font-family: MiSans VF;
+//   src: url("../MiSans/MiSans VF.ttf");
+//   font-display: block;
+//   font-style: normal italic;
+//   font-weight: 100 900;
+//   font-stretch: 0% 400%;
+//   font-feature-settings: normal;
+//   font-variation-settings: normal;
+// }
 
 // 没有字体文件暂时注释
 // @font-face {
@@ -177,12 +177,12 @@ xmp {
 
 // 适合标题的衬线字体
 .font-serif {
-  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
 // 适合代码的等宽字体：
 .font-mono {
-  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 @page {
@@ -214,11 +214,29 @@ body {
   // font-style 是否斜体, font-variant 和 font-weight 必须在 font-size 之前
   // line-height 必须跟在 font-size 后面，由 "/" 分隔，例如 "16px/3"
   // font-family 必须最后指定
-  font: 16px / 1.5 Ping fang SC Medium, system-ui, —apple-system, Segoe UI, Rototo, Emoji, Helvetica, Arial, sans-serif,
+  font:
+    16px / 1.5 Ping fang SC Medium,
+    system-ui,
+    —apple-system,
+    Segoe UI,
+    Rototo,
+    Emoji,
+    Helvetica,
+    Arial,
+    sans-serif,
     MiSans VF;
 
   // 张旭鑫推荐 字体 系统字体：system-ui(chrome、safari) —apple-system(firefox)  兜底字体：Segoe UI(window) Arial(旧windows) sans-serif (旧Android) Segoe UI(Android字体) Helvetica(Mac Os iOS)
-  font-family: Ping fang SC Medium, system-ui, —apple-system, Segoe UI, Rototo, Emoji, Helvetica, Arial, sans-serif,
+  font-family:
+    Ping fang SC Medium,
+    system-ui,
+    —apple-system,
+    Segoe UI,
+    Rototo,
+    Emoji,
+    Helvetica,
+    Arial,
+    sans-serif,
     MiSans VF;
 
   -webkit-font-smoothing: antialiased; // 取消字体抗锯齿
