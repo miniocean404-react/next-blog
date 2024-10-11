@@ -7,7 +7,7 @@ const corsOptions = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 }
 
-export function middleware(request) {
+export function middleware(request:any) {
   // 检查请求的 origin 属性
   const origin = request.headers.get('origin') ?? ''
   const isAllowedOrigin = allowedOrigins.includes(origin)
