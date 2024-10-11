@@ -1,7 +1,7 @@
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
+import axios, { AxiosResponse, type InternalAxiosRequestConfig } from 'axios'
 
 import Qs from 'qs'
-import { removePendingRequest, addPendingRequest, handleRequestHeader, handleAuth } from './req-interceptor'
+import { addPendingRequest, handleAuth, handleRequestHeader, removePendingRequest } from './req-interceptor'
 import { handleAuthError, handleGeneralError, handleNetworkError } from './res-interceptor'
 
 export const UserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36'
@@ -36,7 +36,7 @@ export const client = axios.create({
 
 // 请求拦截器
 client.interceptors.request.use(
-  (config: AxiosRequestConfig<any>) => {
+  (config: InternalAxiosRequestConfig) => {
     removePendingRequest(config) // 检查是否存在重复请求，若存在则取消已发的请求
     addPendingRequest(config) // 把当前请求信息添加到pendingRequest对象中
 
@@ -46,7 +46,7 @@ client.interceptors.request.use(
 
     return config
   },
-  (error: any) => Promise.reject(error)
+  (error: any) => Promise.reject(error),
 )
 
 // 响应拦截器,响应拦截器中添加响应错误状态码、数据的判断
@@ -78,5 +78,5 @@ client.interceptors.response.use(
     }
     // 根据上面的自定义状态码抛出错误
     return Promise.reject(err)
-  }
+  },
 )

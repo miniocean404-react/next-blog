@@ -19,16 +19,13 @@
     "esModuleInterop": true, // 解析非相对模块名的基准目录
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.d.ts",
-    "next.config.js",
-    "script/cross-domain-proxy.ts",
-    "script/cross-domain-proxy.ts"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.d.ts", "next.config.mjs", "script/cross-domain-proxy.ts", "script/cross-domain-proxy.ts", ".next/types/**/*.ts"],
   "exclude": ["node_modules", ".next", "script"]
 }

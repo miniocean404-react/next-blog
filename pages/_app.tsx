@@ -2,15 +2,12 @@
 // 关于：https://nextjs.org/learn/foundations/about-nextjs
 // 例子：https://github.com/vercel/next.js/tree/canary/examples
 // 部署：https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app
-import { persist, store } from '@/store'
 import '@/styles/globals.scss'
-import 'antd/dist/antd.css'
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
-import { ReactElement } from 'react'
 import { AppPropsWithLayout } from '@/typings/layout'
-import Head from 'next/head'
+import 'antd/dist/antd.css'
 import getConfig from 'next/config'
+import Head from 'next/head'
+import { ReactElement } from 'react'
 
 // eslint-disable-next-line
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
@@ -26,11 +23,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <link rel="icon" href={`${publicRuntimeConfig.staticFolder}/favicon.ico`} />
       </Head>
 
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persist}>
-          {getLayout(<Component {...pageProps} />)}
-        </PersistGate>
-      </Provider>
+      {getLayout(<Component {...pageProps} />)}
     </>
   )
 }

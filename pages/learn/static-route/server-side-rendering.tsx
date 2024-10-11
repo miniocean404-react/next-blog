@@ -1,4 +1,4 @@
-import { getProductsByCategory } from '@/app/api/products/[category]'
+import { getProductsByCategory } from '@/pages/api/products/[category]'
 import styles from '@/styles/Home.module.scss'
 import type { Prop } from '@/typings/learn/server-side-rendering'
 import type { GetServerSidePropsContext, NextPage } from 'next'

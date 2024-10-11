@@ -1,14 +1,16 @@
-const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants')
-const path = require('path')
+import { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_PRODUCTION_SERVER } from 'next/constants.js'
+import path from 'path'
 
 const isProd = process.env.NODE_ENV === 'production'
 
-/** 类型来自:@type {import('next').NextConfig} */
-module.exports = (phase, { defaultConfig }) => {
+export default (phase, { defaultConfig }) => {
   // 开发阶段阶段服务器配置
   if (phase === PHASE_DEVELOPMENT_SERVER) {
-    return {
-      reactStrictMode: false, // 可防止一次 DOM 渲染
+    /**
+     * @type {import('next').NextConfig}
+     */
+    const dev = {
+      reactStrictMode: false, // 可防止多渲染一次 DOM
       basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
       env: {
         // process.env.customKey
@@ -24,7 +26,7 @@ module.exports = (phase, { defaultConfig }) => {
       },
       compress: true, // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       sassOptions: {
-        includePaths: [path.join(__dirname, 'styles')],
+        includePaths: [path.join('styles')],
       },
       // 跨域处理
       // https://juejin.cn/post/7366177423775531008?share_token=fc72ebf6-93f2-43e6-9678-6b4fc608378d#heading-7
@@ -33,15 +35,39 @@ module.exports = (phase, { defaultConfig }) => {
           {
             source: '/api',
             destination: 'https://juejin.cn',
-          }
+          },
         ]
-      }
+      },
+      // https://juejin.cn/post/7338808893529276427?share_token=71e1c1b3-9327-476d-8667-dcdfdf7b0ba9#heading-2
+      async headers() {
+        return [
+          {
+            // 在这里，你可以使用正则表达式添加你的来源 URL。
+            source: '/api/:path*',
+            headers: [
+              { key: 'Access-Control-Allow-Credentials', value: 'true' },
+              // 在这里添加你的白名单来源
+              { key: 'Access-Control-Allow-Origin', value: '<your-origin>' },
+              { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT' },
+              {
+                key: 'Access-Control-Allow-Headers',
+                value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+              },
+            ],
+          },
+        ]
+      },
     }
+
+    return dev
   }
 
   // 生产阶段服务器配置 生产打包配置
   if (phase === PHASE_PRODUCTION_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    return {
+    /**
+     * @type {import('next').NextConfig}
+     */
+    const prod = {
       reactStrictMode: false, // 是否启动react严格模式<React.StrictMode>
       distDir: '.next', // 构建目录
       basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
@@ -53,7 +79,7 @@ module.exports = (phase, { defaultConfig }) => {
         domains: ['imgur.com'],
       },
       sassOptions: {
-        includePaths: [path.join(__dirname, 'styles')],
+        includePaths: [path.join('styles')],
       },
       // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       compress: true,
@@ -101,6 +127,8 @@ module.exports = (phase, { defaultConfig }) => {
         // autoPrerender: false,
       },
     }
+
+    return prod
   }
 
   return defaultConfig
