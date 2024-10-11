@@ -26,6 +26,16 @@ module.exports = (phase, { defaultConfig }) => {
       sassOptions: {
         includePaths: [path.join(__dirname, 'styles')],
       },
+      // 跨域处理
+      // https://juejin.cn/post/7366177423775531008?share_token=fc72ebf6-93f2-43e6-9678-6b4fc608378d#heading-7
+      async rewrites() {
+        return [
+          {
+            source: '/api',
+            destination: 'https://juejin.cn',
+          }
+        ]
+      }
     }
   }
 
