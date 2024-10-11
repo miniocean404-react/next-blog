@@ -4,7 +4,7 @@
   },
 
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true // 控制是否在保存时整理import
+    "source.organizeImports": "explicit"
   },
 
   "editor.formatOnSave": true, // 编辑自动保存
