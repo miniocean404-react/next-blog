@@ -8,11 +8,11 @@
   },
   "scripts": {
     "dev": "next dev",
-    "proxy-dev": "node script/cross-domain-proxy.js",
     "build": "next build",
     "build-static": "next build &&  next export",
     "start": "next start",
     "lint": "next lint",
+    "proxy-dev": "tsup script/cross-domain-proxy.ts --watch --onSuccess 'node dist/cross-domain-proxy.js' ",
     "commit": "cz",
     "clean": "rimraf node_modules &&  yarn cache clean",
     "windows-clean": "del node_modules",
@@ -22,37 +22,34 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
+    "@types/qs": "^6.9.7",
     "antd": "^4.23.2",
-    "axios": "^0.27.2",
-    "next": "12.3.0",
+    "axios": "1.7.7",
+    "next": "14.2.15",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-query": "^3.39.2",
     "react-redux": "^8.0.2",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
-    "sass": "^1.54.9",
-    "@types/qs": "^6.9.7"
+    "sass": "^1.79.5"
   },
   "devDependencies": {
-    "@types/node": "18.7.18",
+    "@types/express": "^5.0.0",
+    "@types/node": "22.7.5",
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
     "chalk": "^4.1.2",
     "commitizen": "^4.2.5",
     "cz-customizable": "^7.0.0",
-    "express": "^4.18.1",
-    "http-proxy-middleware": "^2.0.6",
-    "husky": "^8.0.1",
-    "jest": "^29.0.3",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "rimraf": "^3.0.2",
-    "typescript": "4.8.3"
-  },
-  "volta": {
-    "node": "16.17.0",
-    "yarn": "1.22.18"
+    "express": "5.0.1",
+    "http-proxy-middleware": "3.0.3",
+    "husky": "9.1.6",
+    "lint-staged": "15.2.10",
+    "prettier": "3.3.3",
+    "rimraf": "6.0.1",
+    "tsup": "^8.3.0",
+    "typescript": "5.6.3"
   },
   "lint-staged": {
     "*.{css,scss}": [

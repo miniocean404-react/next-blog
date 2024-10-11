@@ -27,8 +27,8 @@
     "**/*.tsx",
     "**/*.d.ts",
     "next.config.js",
-    "script/cross-domain-proxy.js",
-    "script/cross-domain-proxy.js"
+    "script/cross-domain-proxy.ts",
+    "script/cross-domain-proxy.ts"
   ],
   "exclude": ["node_modules", ".next", "script"]
 }
