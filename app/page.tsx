@@ -1,10 +1,10 @@
 // 10分钟上手next.js https://juejin.cn/post/7017303191687528485
 
-import styles from "@/css/index.module.scss"
 import type { Metadata } from "next"
 import getConfig from "next/config"
 import Link from "next/link"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import styles from "./index.module.scss"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
