@@ -19,6 +19,8 @@ export default async function Home() {
   const router = useRouter()
   // 路由参数
   const searchParams = useSearchParams()
+  // 永久重定向
+  // permanentRedirect(`/profile/${username}`)
 
   return (
     <div className={styles.container}>
