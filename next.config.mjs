@@ -1,7 +1,10 @@
+import createNextIntlPlugin from "next-intl/plugin"
 import { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_PRODUCTION_SERVER } from "next/constants.js"
 import path from "path"
 
 const isProd = process.env.NODE_ENV === "production"
+
+const withNextIntl = createNextIntlPlugin()
 
 export default (phase, { defaultConfig }) => {
   /**
@@ -143,5 +146,5 @@ export default (phase, { defaultConfig }) => {
     }
   }
 
-  return config || defaultConfig
+  return withNextIntl(config || defaultConfig)
 }

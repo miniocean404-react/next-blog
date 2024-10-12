@@ -9,6 +9,7 @@
 7. 国际化 Page Router i18next: https://juejin.cn/post/7317201268191428643?searchId=202410122117469648FD949604B0CFEBF9
 8. 国际化 App Router 原生实现：https://juejin.cn/post/7380694342744735782
 9. 2024 Nextjs 开发资源最佳组合 :https://juejin.cn/post/7393185863654260777?share_token=0ad84dd7-a257-4fae-818f-919b8460c6de
+10. 国际化 App Router next-intl：https://juejin.cn/post/7353280369360896051?searchId=20241013010453F251E19508D59DD47884
 
 # cli
 

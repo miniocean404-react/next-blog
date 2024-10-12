@@ -1,4 +1,5 @@
 import type { Metadata, ResolvingMetadata } from "next"
+import { useTranslations } from "next-intl"
 
 type Props = {
   params: { locale: string }
@@ -11,6 +12,13 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
   }
 }
 
-export default async function Home({ params }: Props) {
-  return <div>111</div>
+export default function Home({ params }: Props) {
+  const t = useTranslations("home")
+
+  return (
+    <div>
+      <h1>{t("cart")}</h1>
+      111
+    </div>
+  )
 }
