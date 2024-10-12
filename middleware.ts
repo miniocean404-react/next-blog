@@ -1,16 +1,38 @@
-import { NextResponse, type NextRequest } from "next/server"
+import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server"
 
 // 处理 api 中的接口使得第三方可以跨域的源
 // 所有允许的来源列表
 const allowedOrigins = ["http://localhost:3000"]
 
+// 中间件只会应用于以下路由。
+export const config = {
+  // api/:path*
+  matcher: ["/"],
+  // 您还可以使用missing或has数组，或者两者结合来绕过某些请求的中间件：
+  // has: [
+  //   { type: "header", key: "next-router-prefetch" },
+  //   { type: "header", key: "purpose", value: "prefetch" },
+  // ],
+  // missing: [
+  //   { type: "header", key: "next-router-prefetch" },
+  //   { type: "header", key: "purpose", value: "prefetch" },
+  // ],
+}
+
 // 处理跨域
-export function middleware(request: NextRequest) {
+export function middleware(request: NextRequest, event: NextFetchEvent) {
   // request.nextUrl.pathname
   // NextResponse.rewrite(new URL('https://juejin.cn'))
   // request.method
   // request.headers.get
   // NextResponse.json({}, { headers: preflightHeaders })
+  // request.cookies.getAll()
+  // response.cookies.set({
+  //   name: 'vercel',
+  //   value: 'fast',
+  //   path: '/',
+  // })
+  // event.waitUntil() // 等待函数执行完毕
 
   // 检索当前响应
   const resp = NextResponse.next()
@@ -33,10 +55,4 @@ export function middleware(request: NextRequest) {
   )
 
   return resp
-}
-
-// 中间件只会应用于以下路由。
-export const config = {
-  // api/:path*
-  matcher: "/",
 }
