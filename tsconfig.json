@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       // 如果设置根目录为@ 就要为./ 并且如果没有正确提示路径就代表设置错误
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     },
     "target": "es5", // 指定ECMAScript目标版本
     "module": "esnext", // 指定生成哪个模块系统代码
@@ -26,6 +26,16 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.d.ts", "next.config.mjs", "script/cross-domain-proxy.ts", "script/cross-domain-proxy.ts", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.d.ts",
+    "next.config.mjs",
+    "script/cross-domain-proxy.ts",
+    "script/cross-domain-proxy.ts",
+    ".next/types/**/*.ts",
+    "i18n.config.ts"
+  ],
   "exclude": ["node_modules", ".next", "script"]
 }

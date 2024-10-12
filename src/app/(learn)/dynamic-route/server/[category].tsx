@@ -1,6 +1,6 @@
-import { getProductsByCategory } from "@/app/api/products/[category]"
 import styles from "@/css/index.module.scss"
-import type { Prop } from "@/typings/learn/server-side-rendering"
+import { getProductsByCategory } from "@/src/app/api/products/[category]"
+import type { Prop } from "@/src/typings/learn/server-side-rendering"
 import type { GetServerSidePropsContext, NextPage } from "next"
 import getConfig from "next/config"
 import Head from "next/head"

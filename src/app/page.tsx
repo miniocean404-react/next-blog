@@ -3,7 +3,6 @@
 import type { Metadata } from "next"
 import getConfig from "next/config"
 import Link from "next/link"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import styles from "./index.module.scss"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
@@ -14,11 +13,11 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   // 获取路由地址
-  const pathname = usePathname()
+  // const pathname = usePathname()
   // Api 文档: https://nextjs.org/docs/app/api-reference/functions/use-router
-  const router = useRouter()
+  // const router = useRouter()
   // 路由参数
-  const searchParams = useSearchParams()
+  // const searchParams = useSearchParams()
   // 永久重定向
   // permanentRedirect(`/profile/${username}`)
 
@@ -28,7 +27,7 @@ export default async function Home() {
         Dashboard
       </Link>
 
-      <div onClick={() => router.push("/dashboard")}>跳转</div>
+      {/* <div onClick={() => router.push("/dashboard")}>跳转</div> */}
     </div>
   )
 }

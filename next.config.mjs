@@ -4,12 +4,17 @@ import path from "path"
 const isProd = process.env.NODE_ENV === "production"
 
 export default (phase, { defaultConfig }) => {
+  /**
+   * @type {import('next').NextConfig}
+   */
+  let config
+
   // 开发阶段阶段服务器配置
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     /**
      * @type {import('next').NextConfig}
      */
-    const dev = {
+    config = {
       reactStrictMode: false, // 可防止多渲染一次 DOM
       basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
       env: {
@@ -28,8 +33,9 @@ export default (phase, { defaultConfig }) => {
       sassOptions: {
         // 添加全局 scss 文件
         // additionalData: '@import "@/styles/index.scss";',
-        includePaths: [path.join("css")],
+        includePaths: [path.join("./src/css")],
       },
+      // i18n: {},
 
       // Next.js 其实提供了 rewrites 配置项用于重写请求。这算是解决跨域问题常用的一种方式
       // 重写会将传入的请求路径映射到其他目标路径。你可以把它理解为代理，并且它会屏蔽目标路径，使得用户看起来并没有改变其在网站上的位置
@@ -62,8 +68,6 @@ export default (phase, { defaultConfig }) => {
         ]
       },
     }
-
-    return dev
   }
 
   // 生产阶段服务器配置 生产打包配置
@@ -71,7 +75,7 @@ export default (phase, { defaultConfig }) => {
     /**
      * @type {import('next').NextConfig}
      */
-    const prod = {
+    config = {
       reactStrictMode: false, // 是否启动react严格模式<React.StrictMode>
       distDir: ".next", // 构建目录
       basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
@@ -89,7 +93,7 @@ export default (phase, { defaultConfig }) => {
         ],
       },
       sassOptions: {
-        includePaths: [path.join("css")],
+        includePaths: [path.join("./src/css")],
       },
       // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       compress: true,
@@ -137,9 +141,7 @@ export default (phase, { defaultConfig }) => {
         // autoPrerender: false,
       },
     }
-
-    return prod
   }
 
-  return defaultConfig
+  return config || defaultConfig
 }

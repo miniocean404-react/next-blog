@@ -1,11 +1,11 @@
-import styles from '@/css/index.module.scss'
-import { Prop } from '@/typings/learn/static-generation'
-import { Button } from 'antd'
-import { NextPage } from 'next'
-import Link from 'next/link'
+import styles from "@/css/index.module.scss"
+import { Prop } from "@/src/typings/learn/static-generation"
+import { Button } from "antd"
+import { NextPage } from "next"
+import Link from "next/link"
 
 const LearnHome: NextPage<Prop> = ({ className }) => {
-  const containerClass = `${styles['learn-home']} ${className || ''}`
+  const containerClass = `${styles["learn-home"]} ${className || ""}`
   return (
     <div className={containerClass}>
       {/* 路由使用 */}
@@ -41,7 +41,7 @@ const LearnHome: NextPage<Prop> = ({ className }) => {
 }
 
 LearnHome.defaultProps = {
-  className: '',
+  className: "",
 }
 
 export default LearnHome

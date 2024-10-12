@@ -1,6 +1,6 @@
 // https://nextjs.org/docs/basic-features/layouts
-import type { AppPropsWithLayout } from '@/typings/layout'
-import type { ReactElement } from 'react'
+import type { AppPropsWithLayout } from "@/src/typings/layout"
+import type { ReactElement } from "react"
 
 // 要绘画的页面
 export default function Page() {

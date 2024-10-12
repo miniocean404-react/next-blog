@@ -1,8 +1,8 @@
-import styles from '@/css/index.module.scss'
-import type { Prop } from '@/typings/learn/static-generation'
-import type { GetStaticPaths, GetStaticPropsContext, NextPage } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+import styles from "@/css/index.module.scss"
+import type { Prop } from "@/src/typings/learn/static-generation"
+import type { GetStaticPaths, GetStaticPropsContext, NextPage } from "next"
+import Head from "next/head"
+import { useRouter } from "next/router"
 
 const DynamicRoute: NextPage<Prop> = (props) => {
   const { staticParams } = props
@@ -43,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => ({
     // '/learn/dynamic-route/static/a',
 
     // 对象变量 针对哪些属性生成静态文档,true,false都是生成这些
-    { params: { staticParams: '1' } },
+    { params: { staticParams: "1" } },
   ],
   fallback: false,
 })
