@@ -26,6 +26,8 @@ export default (phase, { defaultConfig }) => {
       },
       compress: true, // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       sassOptions: {
+        // 添加全局 scss 文件
+        // additionalData: '@import "@/styles/index.scss";',
         includePaths: [path.join("css")],
       },
 
@@ -79,6 +81,12 @@ export default (phase, { defaultConfig }) => {
       images: {
         // 图片可用的域名
         domains: ["imgur.com"],
+        remotePatterns: [
+          {
+            protocol: "https", //图片资源的协议
+            hostname: "www.test.com", //图片资源的域名
+          },
+        ],
       },
       sassOptions: {
         includePaths: [path.join("css")],
