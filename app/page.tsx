@@ -1,25 +1,23 @@
 // 10分钟上手next.js https://juejin.cn/post/7017303191687528485
-'use client'
 
-import Page from '@/app/learn/api-use/layout'
-import styles from '@/css/index.module.scss'
-import type { NextPage } from 'next'
-import { useEffect } from 'react'
+import styles from "@/css/index.module.scss"
+import type { Metadata } from "next"
+import getConfig from "next/config"
 
-// const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
-const Home: NextPage = () => {
-  useEffect(() => {
-    init()
-  }, [])
+export const metadata: Metadata = {
+  title: "首页",
+}
+
+export default async function Home() {
+  // useEffect(() => {
+  //   init()
+  // }, [])
 
   const init = async () => {}
 
-  return (
-    <div className={styles.container}>
-      <Page />
-    </div>
-  )
+  return <div className={styles.container}></div>
 }
 
 // export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -32,5 +30,3 @@ const Home: NextPage = () => {
 //     },
 //   }
 // }
-
-export default Home

@@ -1,9 +1,9 @@
-import { getProductsByCategory } from '@/app/route/products/[category]'
-import styles from '@/css/index.module.scss'
-import type { Prop } from '@/typings/learn/server-side-rendering'
-import type { GetServerSidePropsContext, NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import { getProductsByCategory } from "@/app/api/products/[category]"
+import styles from "@/css/index.module.scss"
+import type { Prop } from "@/typings/learn/server-side-rendering"
+import type { GetServerSidePropsContext, NextPage } from "next"
+import Head from "next/head"
+import Image from "next/image"
 
 // 服务端渲染好的html返回,在请求时获取数据并预先渲染页面
 const ServerSideRendering: NextPage<Prop> = (props) => {
@@ -31,7 +31,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req, res, query } = context
 
   const { category } = query
-  const products = await getProductsByCategory(category || '')
+  const products = await getProductsByCategory(category || "")
 
   return { props: { products } }
 }

@@ -1,7 +1,7 @@
-import { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_PRODUCTION_SERVER } from 'next/constants.js'
-import path from 'path'
+import { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_PRODUCTION_SERVER } from "next/constants.js"
+import path from "path"
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === "production"
 
 export default (phase, { defaultConfig }) => {
   // 开发阶段阶段服务器配置
@@ -14,7 +14,7 @@ export default (phase, { defaultConfig }) => {
       basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
       env: {
         // process.env.customKey
-        customKey: 'value',
+        customKey: "value",
       },
       publicRuntimeConfig: {
         // 服务器，客户端可用
@@ -22,19 +22,21 @@ export default (phase, { defaultConfig }) => {
       },
       images: {
         // 图片可用的域名
-        domains: ['gimg2.baidu.com'],
+        domains: ["gimg2.baidu.com"],
       },
       compress: true, // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       sassOptions: {
-        includePaths: [path.join('css')],
+        includePaths: [path.join("css")],
       },
-      // 跨域处理
-      // https://juejin.cn/post/7366177423775531008?share_token=fc72ebf6-93f2-43e6-9678-6b4fc608378d#heading-7
+
+      // Next.js 其实提供了 rewrites 配置项用于重写请求。这算是解决跨域问题常用的一种方式
+      // 重写会将传入的请求路径映射到其他目标路径。你可以把它理解为代理，并且它会屏蔽目标路径，使得用户看起来并没有改变其在网站上的位置
+      // 跨域处理: https://juejin.cn/post/7366177423775531008?share_token=fc72ebf6-93f2-43e6-9678-6b4fc608378d#heading-7
       async rewrites() {
         return [
           {
-            source: '/api',
-            destination: 'https://juejin.cn',
+            source: "/api/xxx:path*",
+            destination: "https://juejin.cn",
           },
         ]
       },
@@ -43,15 +45,15 @@ export default (phase, { defaultConfig }) => {
         return [
           {
             // 在这里，你可以使用正则表达式添加你的来源 URL。
-            source: '/api/:path*',
+            source: "/api/:path*",
             headers: [
-              { key: 'Access-Control-Allow-Credentials', value: 'true' },
+              { key: "Access-Control-Allow-Credentials", value: "true" },
               // 在这里添加你的白名单来源
-              { key: 'Access-Control-Allow-Origin', value: '*' },
-              { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT' },
+              { key: "Access-Control-Allow-Origin", value: "*" },
+              { key: "Access-Control-Allow-Methods", value: "GET,DELETE,PATCH,POST,PUT" },
               {
-                key: 'Access-Control-Allow-Headers',
-                value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+                key: "Access-Control-Allow-Headers",
+                value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
               },
             ],
           },
@@ -69,17 +71,17 @@ export default (phase, { defaultConfig }) => {
      */
     const prod = {
       reactStrictMode: false, // 是否启动react严格模式<React.StrictMode>
-      distDir: '.next', // 构建目录
+      distDir: ".next", // 构建目录
       basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
       env: {
-        customKey: 'value',
+        customKey: "value",
       },
       images: {
         // 图片可用的域名
-        domains: ['imgur.com'],
+        domains: ["imgur.com"],
       },
       sassOptions: {
-        includePaths: [path.join('css')],
+        includePaths: [path.join("css")],
       },
       // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       compress: true,
@@ -90,7 +92,7 @@ export default (phase, { defaultConfig }) => {
       // https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
       serverRuntimeConfig: {
         // 只运行在服务器
-        mySecret: 'secret',
+        mySecret: "secret",
         secondSecret: process.env.SECOND_SECRET,
       },
       publicRuntimeConfig: {
