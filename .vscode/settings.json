@@ -1,24 +1,14 @@
 {
   //其他配置
-  "i18n-ally.localesPaths": ["./locales"], // 翻译文件夹路径 (相对于项目根目录)，你也可以使用Glob匹配模式。
-  "i18n-ally.enabledFrameworks": ["next-intl"],
+  "i18n-ally.localesPaths": ["./locales"], // 翻译文件夹路径 (相对于项目根目录)，你也可以使用 Glob 匹配模式。
+  "i18n-ally.enabledFrameworks": ["custom"],
   "i18n-ally.keystyle": "nested", // 翻译路径格式
   "i18n-ally.enabledParsers": ["ts", "json"], // 指定启用文件格式
   "i18n-ally.namespace": true,
   "i18n-ally.extract.autoDetect": true,
+  "i18n-ally.sourceLanguage": "zh-CN",
 
-  "yaml.schemas": {
-    "https://json.schemastore.org/github-workflow.json": "file:///d%3A/soft-dev/code/web/frame/Next/forum/.github/workflows/deploy.yml"
-  },
-
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit"
-  },
-
-  "editor.formatOnSave": true, // 编辑自动保存
-  "npm.packageManager": "yarn", // npm包管理器
   "cSpell.words": ["Element Plus", "element-plus"], // code spell checker总是认为是对的单词列表
-  "typescript.tsdk": "node_modules/typescript/lib", // 指定typescript使用本地版本还是 工作区版本
   "vite.devCommand": "yarn run dev -- --", // 运行命令
 
   "unocss.root": "./",
@@ -26,7 +16,6 @@
 
   // 规定 ESlint 插件需要校验的语言类型
   "eslint.probe": ["javascript", "javascriptreact", "typescript", "typescriptreact", "html", "vue", "markdown", "json", "jsonc"],
-
   // 老版本 ESlint 插件需要校验的语言类型
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "html", "vue", "markdown"]
 }

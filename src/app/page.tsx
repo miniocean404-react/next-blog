@@ -7,12 +7,25 @@ import Mac from "~/public/image/Mac.png"
 import styles from "./index.module.scss"
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
-// 数据请求：每小时会重新验证一次数据的一致性
-export const revalidate = 3600
-// 不缓存，每次都会新的
-export const dynamic = "force-dynamic"
+// SSG 缓存生效时间
+// 可以在浏览器观察到, 每10s 刷新后，时间才会发生变化，这是因为给整个页面设置了 revalidate 为 10s
+// 设置布局或页面的默认重新验证时间。此选项不会覆盖单个 fetch 请求设置的revalidate，如果设置了，页面中的每个fetch都将拥有设置的生效时间
+export const revalidate = 10
 
-export default async function Home() {
+// SSR 在页面文件顶部加入一行，保证每次访问都是最新的
+// export const dynamic = "force-dynamic"
+
+// SSG 预渲染动态参数的页面
+export function generateStaticParams() {
+  // return { [propertyName]: value };
+  return [1, 2, 3].map((id) => {
+    id
+  })
+}
+
+export default async function Home(props: { params: { id: string } }) {
+  console.log(props.params.id)
+
   // 获取路由地址
   // const pathname = usePathname()
   // Api 文档: https://nextjs.org/docs/app/api-reference/functions/use-router

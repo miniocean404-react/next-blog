@@ -1,7 +1,10 @@
+import createNextIntlPlugin from "next-intl/plugin"
 import { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_PRODUCTION_SERVER } from "next/constants.js"
 import path from "path"
 
 const isProd = process.env.NODE_ENV === "production"
+
+const withNextIntl = createNextIntlPlugin()
 
 export default (phase, { defaultConfig }) => {
   /**
@@ -85,6 +88,7 @@ export default (phase, { defaultConfig }) => {
       images: {
         // 图片可用的域名
         domains: ["imgur.com"],
+        // 请求外部限制访问的图片
         remotePatterns: [
           {
             protocol: "https", //图片资源的协议
@@ -143,5 +147,5 @@ export default (phase, { defaultConfig }) => {
     }
   }
 
-  return config || defaultConfig
+  return withNextIntl(config || defaultConfig)
 }

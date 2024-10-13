@@ -17,6 +17,7 @@ const miSansFont = localFont({
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
+// 在页面中也可以设置专属页面 metadata，并与顶级 metadata 进行merge
 export const metadata: Metadata = {
   keywords: "博客，我是小海洋呀，Isaac Wang, Javascript, Vue, Css, Nextjs, React, TypeScript, NextJs, NestJs, Nodejs, Docker, web3，区块链",
   applicationName: APP_NAME,
