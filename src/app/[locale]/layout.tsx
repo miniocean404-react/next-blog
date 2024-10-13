@@ -6,9 +6,5 @@ export default async function RootLayout({ children, params: { locale } }: { chi
   // Providing all messages to the client
   // side is the easiest way to get started
 
-  return (
-    <html lang={locale}>
-      <body>{children}</body>
-    </html>
-  )
+  return children
 }
