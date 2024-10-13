@@ -1,10 +1,10 @@
 // 10分钟上手next.js https://juejin.cn/post/7017303191687528485
 
-import styles from '@/css/index.module.scss'
-import Mac from '@/public/image/Mac壁纸.jpg'
-import type { NextPage } from 'next'
-import getConfig from 'next/config'
-import Image from 'next/image'
+import styles from "@/css/index.module.scss"
+import Mac from "@/public/image/Mac壁纸.jpg"
+import type { NextPage } from "next"
+import getConfig from "next/config"
+import Image from "next/image"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -18,7 +18,7 @@ const ImageUse: NextPage = () => (
     {/* 文档： https://nextjs.org/docs/api-reference/next/image#layout https://nextjs.org/docs/basic-features/image-optimization */}
     <Image src={Mac} alt="Mac壁纸" width={200} height={200} priority />
 
-    <Image src={`${publicRuntimeConfig.staticFolder}/image/Mac壁纸.jpg`} alt="" width={50} height={50} />
+    <Image src={`${publicRuntimeConfig.staticFolder}/image/Mac.jpg`} alt="" width={50} height={50} />
   </div>
 )
 

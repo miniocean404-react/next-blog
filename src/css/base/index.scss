@@ -1,6 +1,6 @@
 //https://juejin.cn/post/7055845836298649636#heading-7
-@import './normalize';
-@import './tool';
+@import "./normalize";
+@import "./tool";
 
 /* 初始化 */
 a,
@@ -151,7 +151,7 @@ xmp {
 @font-face {
   font-family: Emoji;
   // Apple Color Emojiji（苹果 Emoji）Segoe UI Symbol（win8.1/10）Segoe UI Symbol（win7/8）Noto Color Emoji（安卓）
-  src: local('Apple Color Emojiji'), local('Segoe UI Emoji'), local('Segoe UI Symbol'), local('Noto Color Emoji');
+  src: local("Apple Color Emojiji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"), local("Noto Color Emoji");
   // 限制Emoji字体作用的字符范围，不限制的话,兜底字符的Unicode范围覆盖了emoji字体
   //   unicode-range限制了Emoji字体的作用范围，符合该范围则使用Emoji这个font-family
   unicode-range: U+1F000-1F644, U+203C-3299;
@@ -177,12 +177,12 @@ xmp {
 
 // 适合标题的衬线字体
 .font-serif {
-  font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 // 适合代码的等宽字体：
 .font-mono {
-  font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 @page {
@@ -191,15 +191,15 @@ xmp {
 }
 
 // 解决微信及 webview 动态底部导航栏导致 100vh 抽搐的问题
-html {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-}
+// html {
+//   position: fixed;
+//   inset: 0;
+//   overflow: hidden;
+// }
 
-body {
-  overflow: auto;
-}
+// body {
+//   overflow: auto;
+// }
 
 html,
 body {
@@ -209,8 +209,9 @@ body {
   -webkit-app-region: drag;
   user-select: none;
 
-  // 设置 BFC
-  overflow: auto;
+  // 设置 BFC 会影响 lenis 滚动使用
+  // overflow: auto;
+
   // font-style 是否斜体, font-variant 和 font-weight 必须在 font-size 之前
   // line-height 必须跟在 font-size 后面，由 "/" 分隔，例如 "16px/3"
   // font-family 必须最后指定
@@ -242,19 +243,22 @@ body {
   -webkit-font-smoothing: antialiased; // 取消字体抗锯齿
   -moz-osx-font-smoothing: grayscale;
 
-  // 设置默认 锚点滚动 及 scrollIntoView({ behavior: 'smooth' }) 的效果
-  scroll-behavior: smooth;
-
-  // windows 防止界面加载因为滚动条而导致界面晃动，Mac 浏览器滚动条不会占据位置
-  // stable 右边会预留位置
-  // stable both-edges 两边会预留位置
-  // scrollbar-gutter: stable;
-
   // 兼容 IE 和 Firefox
   // 100vw相对于浏览器的window.innerWidth，是浏览器的内部宽度，注意，滚动条宽度也计算在内！
   // 而100%是可用宽度，是不含滚动条的宽度。
   // !仅PC端
   // margin-right: calc(100vw - 100%);
+}
+
+// 滚动设置
+html {
+  // 设置默认 锚点滚动 及 scrollIntoView({ behavior: 'smooth' }) 的效果 会影响 lenis 滚动使用
+  // scroll-behavior: smooth;
+
+  // windows 防止界面加载因为滚动条而导致界面晃动，Mac 浏览器滚动条不会占据位置
+  // stable 右边会预留位置
+  // stable both-edges 两边会预留位置
+  // scrollbar-gutter: stable;
 }
 
 img {
@@ -342,11 +346,11 @@ html {
   // 默认 auto 在Windows系统下是17px;
   // thin 在Windows系统下是8px;
   // none 宽度为0,但是内容依然可以滚动。
-  scrollbar-width: auto;
+  // scrollbar-width: auto;
 
   // 默认 auto
   // 两个值为 滑竿颜色 轨道颜色(鼠标悬浮才显示)
-  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0);
+  // scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0);
 }
 
 // View Transition API产生过渡时，会生成一组伪元素，分别代表着状态变换前的图像和状态变换后的图像，并且默认就带有过滤渐隐渐现的过渡效果，

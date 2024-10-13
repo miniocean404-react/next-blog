@@ -1,15 +1,16 @@
 // 10分钟上手next.js https://juejin.cn/post/7017303191687528485
 
-import type { Metadata } from "next"
 import getConfig from "next/config"
+import Image from "next/image"
 import Link from "next/link"
+import Mac from "~/public/image/Mac.jpg"
 import styles from "./index.module.scss"
-
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
-export const metadata: Metadata = {
-  title: "首页",
-}
+// 数据请求：每小时会重新验证一次数据的一致性
+export const revalidate = 3600
+// 不缓存，每次都会新的
+export const dynamic = "force-dynamic"
 
 export default async function Home() {
   // 获取路由地址
@@ -27,6 +28,7 @@ export default async function Home() {
         Dashboard
       </Link>
 
+      <Image src={Mac} alt={""}></Image>
       {/* <div onClick={() => router.push("/dashboard")}>跳转</div> */}
     </div>
   )
