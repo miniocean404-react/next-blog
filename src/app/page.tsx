@@ -3,7 +3,7 @@
 import getConfig from "next/config"
 import Image from "next/image"
 import Link from "next/link"
-import Mac from "~/public/image/Mac.jpg"
+import Mac from "~/public/image/Mac.png"
 import styles from "./index.module.scss"
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 

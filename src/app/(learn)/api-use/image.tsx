@@ -18,7 +18,7 @@ const ImageUse: NextPage = () => (
     {/* 文档： https://nextjs.org/docs/api-reference/next/image#layout https://nextjs.org/docs/basic-features/image-optimization */}
     <Image src={Mac} alt="Mac壁纸" width={200} height={200} priority />
 
-    <Image src={`${publicRuntimeConfig.staticFolder}/image/Mac.jpg`} alt="" width={50} height={50} />
+    <Image src={`${publicRuntimeConfig.staticFolder}/image/Mac.png`} alt="" width={50} height={50} />
   </div>
 )
 
