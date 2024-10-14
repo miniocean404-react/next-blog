@@ -36,7 +36,6 @@ export function generateStaticParams() {
 }
 
 export default async function Home(props: { params: { id: string } }) {
-  console.log(props.params.id)
   const t = await getTranslations("home")
 
   // 获取路由地址
