@@ -15,8 +15,8 @@ export async function GET(
   // 动态路由参数
   { params }: { params: { slug: string } },
 ) {
-  // const res = await fetch("https://www.juejin.cn")
-  // const data = await res.text()
+  const res = await fetch("https://www.juejin.cn")
+  const data = await res.text()
   // // 获取 cookie
   // // request.cookies.get
   // const cookieStore = cookies()
@@ -40,7 +40,7 @@ export async function GET(
   // const name = formData.get("name")
   // const email = formData.get("email")
 
-  return Response.json({ data: {}, msg: "接口测试" }, { status: 200 })
+  return Response.json({ data, msg: "接口测试" }, { status: 200 })
 }
 
 export async function POST(request: NextRequest) {
