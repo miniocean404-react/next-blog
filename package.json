@@ -13,11 +13,11 @@
     "start": "next start",
     "lint": "next lint",
     "commit": "cz",
-    "clean": "rimraf node_modules &&  yarn cache clean",
+    "clean": "rimraf node_modules &&  pnpm cache clean",
     "windows-clean": "del node_modules",
     "prettier-format": "prettier --write  **/*.{scss,css} **/*.{jsx,tsx,js,ts}",
     "eslint-fix": "eslint --ext .tsx --ext .ts  pages/*/** --fix",
-    "prepare-husky": "yarn husky install"
+    "prepare-husky": "pnpm husky install"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.5",
