@@ -15,32 +15,32 @@ export async function GET(
   // 动态路由参数
   { params }: { params: { slug: string } },
 ) {
-  const res = await fetch("https://www.juejin.cn")
-  const data = await res.text()
-  // 获取 cookie
-  // request.cookies.get
-  const cookieStore = cookies()
-  const token = cookieStore.get("token")
+  // const res = await fetch("https://www.juejin.cn")
+  // const data = await res.text()
+  // // 获取 cookie
+  // // request.cookies.get
+  // const cookieStore = cookies()
+  // const token = cookieStore.get("token")
 
-  // 获取 header
-  // request.headers
-  const headersList = headers()
-  const referer = headersList.get("referer")
+  // // 获取 header
+  // // request.headers
+  // const headersList = headers()
+  // const referer = headersList.get("referer")
 
-  // 重定向
-  // redirect('https://nextjs.org/')
+  // // 重定向
+  // // redirect('https://nextjs.org/')
 
-  // Get 查询参数
-  const searchParams = request.nextUrl.searchParams
-  const query = searchParams.get("query")
+  // // Get 查询参数
+  // const searchParams = request.nextUrl.searchParams
+  // const query = searchParams.get("query")
 
-  // 请求体
-  const body = await request.json()
-  const formData = await request.formData()
-  const name = formData.get("name")
-  const email = formData.get("email")
+  // // 请求体
+  // const body = await request.json()
+  // const formData = await request.formData()
+  // const name = formData.get("name")
+  // const email = formData.get("email")
 
-  return Response.json({ data, msg: "接口测试" }, { status: 200 })
+  return Response.json({ data: {}, msg: "接口测试" }, { status: 200 })
 }
 
 export async function POST(request: NextRequest) {
