@@ -18,6 +18,7 @@ export default async function Home({ params }: Props) {
   return (
     <div>
       <div>{t("cart")}</div>
+      <div style={{ color: "red" }}>111</div>
     </div>
   )
 }

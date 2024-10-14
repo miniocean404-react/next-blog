@@ -20,6 +20,7 @@ export default async function LocaleLayout({ children, params: { locale } }: { c
   const messages = await getMessages({ locale })
 
   return (
+    // suppressHydrationWarning：关闭水合不匹配报错
     <html lang={locale} suppressHydrationWarning>
       <body className={miSansFont.className}>
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>

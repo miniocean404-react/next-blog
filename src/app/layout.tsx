@@ -51,13 +51,15 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
   return (
-    <>
-      {/* 切换：const { theme, setTheme } = useTheme(); */}
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-        <ReactLenis root options={{ gestureOrientation: "both" }}>
-          {children}
-        </ReactLenis>
-      </ThemeProvider>
-    </>
+    <html>
+      <body>
+        {/* 切换：const { theme, setTheme } = useTheme(); */}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <ReactLenis root options={{ gestureOrientation: "both" }}>
+            {children}
+          </ReactLenis>
+        </ThemeProvider>
+      </body>
+    </html>
   )
 }
