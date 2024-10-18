@@ -1,7 +1,7 @@
 import { APP_DEFAULT_TITLE, APP_DESCRIPTION, APP_NAME, APP_TITLE_TEMPLATE } from "@/constant/app"
 import ReactLenis from "lenis/react"
 import type { Metadata } from "next"
-import { useLocale } from "next-intl"
+import { getLocale } from "next-intl/server"
 import { ThemeProvider } from "next-themes"
 import localFont from "next/font/local"
 
@@ -62,7 +62,7 @@ const miSansFont = localFont({
 })
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const locale = useLocale()
+  const locale = await getLocale()
 
   return (
     // suppressHydrationWarning：关闭水合不匹配报错
