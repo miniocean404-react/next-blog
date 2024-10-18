@@ -53,7 +53,7 @@ export default async function Home(props: { params: { id: string } }) {
         Dashboard
       </Link>
 
-      <Image src={Mac} alt={""}></Image>
+      <Image src={Mac} alt={""} priority></Image>
       {/* <div onClick={() => router.push("/dashboard")}>跳转</div> */}
 
       <div>{t("cart")}</div>

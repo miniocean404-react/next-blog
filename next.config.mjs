@@ -29,8 +29,12 @@ export default (phase, { defaultConfig }) => {
         staticFolder: process.env.NEXT_PUBLIC_WEB_PREFIX,
       },
       images: {
-        // 图片可用的域名
-        domains: ["gimg2.baidu.com"],
+        remotePatterns: [
+          {
+            protocol: "https", //图片资源的协议
+            hostname: "www.test.com", //图片资源的域名
+          },
+        ],
       },
       compress: true, // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       sassOptions: {
@@ -86,8 +90,6 @@ export default (phase, { defaultConfig }) => {
         customKey: "value",
       },
       images: {
-        // 图片可用的域名
-        domains: ["imgur.com"],
         // 请求外部限制访问的图片
         remotePatterns: [
           {
