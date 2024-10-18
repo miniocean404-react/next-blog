@@ -5,7 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import Mac from "~/public/image/Mac.png"
 import styles from "./index.module.scss"
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
 type Props = {
   params: { locale: string }
@@ -18,6 +17,8 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
   }
 }
 
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+
 // SSG 缓存生效时间
 // 可以在浏览器观察到, 每10s 刷新后，时间才会发生变化，这是因为给整个页面设置了 revalidate 为 10s
 // 设置布局或页面的默认重新验证时间。此选项不会覆盖单个 fetch 请求设置的revalidate，如果设置了，页面中的每个fetch都将拥有设置的生效时间
@@ -28,13 +29,12 @@ export const revalidate = 10
 
 // SSG 预渲染动态参数的页面, next-intl 需要特殊配置
 // export function generateStaticParams() {
-// return { [propertyName]: value };
-// return [1, 2, 3].map((id) => {
-//   id
-// })
+//   return routing.locales.map((locale) => {
+//     locale
+//   })
 // }
 
-export default async function Home(props: { params: { id: string } }) {
+export default async function Home(props: { params: { locale: string } }) {
   // 获取路由地址
   // const pathname = usePathname()
   // Api 文档: https://nextjs.org/docs/app/api-reference/functions/use-router
@@ -52,6 +52,7 @@ export default async function Home(props: { params: { id: string } }) {
 
       <Image src={Mac} alt={""} priority width={1200}></Image>
       {/* <div onClick={() => router.push("/dashboard")}>跳转</div> */}
+      {props.params.locale}
     </div>
   )
 }

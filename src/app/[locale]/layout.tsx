@@ -1,15 +1,14 @@
 import "@/css/base/index.scss"
-import getConfig from "next/config"
-
-import { getMessages, unstable_setRequestLocale } from "next-intl/server"
-import { NextIntlClientProvider } from "next-intl"
-import localFont from "next/font/local"
-import { ThemeProvider } from "next-themes"
+import { routing } from "@/i18n/routing"
 import ReactLenis from "lenis/react"
+import { NextIntlClientProvider } from "next-intl"
+import { getMessages, unstable_setRequestLocale } from "next-intl/server"
+import { ThemeProvider } from "next-themes"
+import getConfig from "next/config"
+import localFont from "next/font/local"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
-// 使用next/font来加载谷歌字体，而不是在css到声明字体，因为它帮我们优化了字体的加载，很方便使用各种各样的字体
 const miSansFont = localFont({
   src: "../../../public/font/MiSans VF.ttf",
   // 就是 css font-display
@@ -18,13 +17,16 @@ const miSansFont = localFont({
   variable: "--MiSans",
 })
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
+
 export default async function LocaleLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
   unstable_setRequestLocale(locale)
-  const messages = await getMessages({ locale })
+  const messages = await getMessages()
 
   return (
-    // suppressHydrationWarning：关闭水合不匹配报错
-    <html suppressHydrationWarning lang={locale}>
+    <html lang={locale}>
       <body className={miSansFont.className}>
         {/* 切换：const { theme, setTheme } = useTheme(); */}
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

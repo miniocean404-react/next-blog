@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   keywords: "博客，我是小海洋呀，Isaac Wang, Javascript, Vue, Css, Nextjs, React, TypeScript, NextJs, NestJs, Nodejs, Docker, web3，区块链",
   applicationName: APP_NAME,
   description: APP_DESCRIPTION,
-  manifest: "/manifest.json",
+  manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -48,11 +48,6 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    // 处理与 [locale] 中水合不匹配的报错
-    <html suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
-    </html>
-  )
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  return children
 }
