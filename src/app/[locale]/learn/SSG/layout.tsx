@@ -8,6 +8,6 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   }
 }
 
-export default async function RootLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
+export default async function SSGLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
   return children
 }

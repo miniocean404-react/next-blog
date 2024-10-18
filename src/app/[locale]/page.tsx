@@ -1,5 +1,4 @@
 import type { Metadata, ResolvingMetadata } from "next"
-import { getTranslations } from "next-intl/server"
 
 import getConfig from "next/config"
 import Image from "next/image"
@@ -36,8 +35,6 @@ export const revalidate = 10
 // }
 
 export default async function Home(props: { params: { id: string } }) {
-  const t = await getTranslations("home")
-
   // 获取路由地址
   // const pathname = usePathname()
   // Api 文档: https://nextjs.org/docs/app/api-reference/functions/use-router
@@ -53,10 +50,8 @@ export default async function Home(props: { params: { id: string } }) {
         Dashboard
       </Link>
 
-      <Image src={Mac} alt={""} priority></Image>
+      <Image src={Mac} alt={""} priority width={1200}></Image>
       {/* <div onClick={() => router.push("/dashboard")}>跳转</div> */}
-
-      <div>{t("cart")}</div>
     </div>
   )
 }

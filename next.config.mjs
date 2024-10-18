@@ -37,7 +37,7 @@ export default (phase, { defaultConfig }) => {
         secondSecret: process.env.SECOND_SECRET,
       },
       images: {
-        // 图像优化：https://nextjs.org/docs/app/building-your-application/deploying/static-exports#image-optimization
+        // 图像优化(自定义图片链接前缀地址)：https://nextjs.org/docs/app/building-your-application/deploying/static-exports#image-optimization
         remotePatterns: [
           {
             protocol: "https", //图片资源的协议
