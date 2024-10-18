@@ -27,13 +27,13 @@ export const revalidate = 10
 // SSR 在页面文件顶部加入一行，保证每次访问都是最新的
 // export const dynamic = "force-dynamic"
 
-// SSG 预渲染动态参数的页面
-export function generateStaticParams() {
-  // return { [propertyName]: value };
-  return [1, 2, 3].map((id) => {
-    id
-  })
-}
+// SSG 预渲染动态参数的页面, next-intl 需要特殊配置
+// export function generateStaticParams() {
+// return { [propertyName]: value };
+// return [1, 2, 3].map((id) => {
+//   id
+// })
+// }
 
 export default async function Home(props: { params: { id: string } }) {
   const t = await getTranslations("home")

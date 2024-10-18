@@ -18,6 +18,7 @@ export default (phase, { defaultConfig }) => {
      * @type {import('next').NextConfig}
      */
     config = {
+      output: "standalone", // SSG 设置为 export
       distDir: ".next",
       reactStrictMode: false, // 可防止多渲染一次 DOM
       basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
@@ -36,6 +37,7 @@ export default (phase, { defaultConfig }) => {
         secondSecret: process.env.SECOND_SECRET,
       },
       images: {
+        // 图像优化：https://nextjs.org/docs/app/building-your-application/deploying/static-exports#image-optimization
         remotePatterns: [
           {
             protocol: "https", //图片资源的协议
@@ -86,7 +88,7 @@ export default (phase, { defaultConfig }) => {
         ]
       },
       // 默认 false，是否在构建时忽略 eslint
-      // ignoreDuringBuilds: false,
+      // ignoreDuringBuilds: true,
       // 默认false，是否在构建时忽略 typescript 错误
       typescript: {
         ignoreBuildErrors: false,
