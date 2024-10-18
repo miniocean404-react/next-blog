@@ -49,7 +49,7 @@ export default (phase, { defaultConfig }) => {
         // additionalData: '@import "@/styles/index.scss";',
         includePaths: [path.join("./src/css")],
       },
-      i18n: {},
+      // i18n: {},
       // CDN 前缀
       // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
       // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
