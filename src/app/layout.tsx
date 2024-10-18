@@ -1,9 +1,5 @@
 import { APP_DEFAULT_TITLE, APP_DESCRIPTION, APP_NAME, APP_TITLE_TEMPLATE } from "@/constant/app"
-import ReactLenis from "lenis/react"
 import type { Metadata } from "next"
-import { getLocale } from "next-intl/server"
-import { ThemeProvider } from "next-themes"
-import localFont from "next/font/local"
 
 // 在页面中也可以设置专属页面 metadata，并与顶级 metadata 进行merge
 export const metadata: Metadata = {
@@ -52,29 +48,11 @@ export const metadata: Metadata = {
   },
 }
 
-// 使用next/font来加载谷歌字体，而不是在css到声明字体，因为它帮我们优化了字体的加载，很方便使用各种各样的字体
-const miSansFont = localFont({
-  src: "../../public/font/MiSans VF.ttf",
-  // 就是 css font-display
-  display: "swap",
-  weight: "400",
-  variable: "--MiSans",
-})
-
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const locale = await getLocale()
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    // suppressHydrationWarning：关闭水合不匹配报错
-    <html suppressHydrationWarning lang={locale}>
-      <body className={miSansFont.className}>
-        {/* 切换：const { theme, setTheme } = useTheme(); */}
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <ReactLenis root options={{ gestureOrientation: "both" }}>
-            {children}
-          </ReactLenis>
-        </ThemeProvider>
-      </body>
+    // 处理与 [locale] 中水合不匹配的报错
+    <html suppressHydrationWarning>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   )
 }

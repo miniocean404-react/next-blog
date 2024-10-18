@@ -124,7 +124,6 @@ export default (phase, { defaultConfig }) => {
     /**
      * @type {import('next').NextConfig}
      */
-    config = {}
   }
 
   return withNextIntl(config || defaultConfig)
