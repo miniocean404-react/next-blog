@@ -57,7 +57,6 @@ export default async function Home(props: { params: { id: string } }) {
       {/* <div onClick={() => router.push("/dashboard")}>跳转</div> */}
 
       <div>{t("cart")}</div>
-      <div style={{ color: "red" }}>111</div>
     </div>
   )
 }
