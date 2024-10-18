@@ -18,6 +18,7 @@ export default (phase, { defaultConfig }) => {
      * @type {import('next').NextConfig}
      */
     config = {
+      distDir: ".next",
       reactStrictMode: false, // 可防止多渲染一次 DOM
       basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
       env: {
@@ -27,6 +28,12 @@ export default (phase, { defaultConfig }) => {
       publicRuntimeConfig: {
         // 服务器，客户端可用
         staticFolder: process.env.NEXT_PUBLIC_WEB_PREFIX,
+      },
+      // https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
+      serverRuntimeConfig: {
+        // 只运行在服务器
+        mySecret: "secret",
+        secondSecret: process.env.SECOND_SECRET,
       },
       images: {
         remotePatterns: [
@@ -42,7 +49,11 @@ export default (phase, { defaultConfig }) => {
         // additionalData: '@import "@/styles/index.scss";',
         includePaths: [path.join("./src/css")],
       },
-      // i18n: {},
+      i18n: {},
+      // CDN 前缀
+      // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
+      // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
+      webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => config,
 
       // Next.js 其实提供了 rewrites 配置项用于重写请求。这算是解决跨域问题常用的一种方式
       // 重写会将传入的请求路径映射到其他目标路径。你可以把它理解为代理，并且它会屏蔽目标路径，使得用户看起来并没有改变其在网站上的位置
@@ -74,56 +85,19 @@ export default (phase, { defaultConfig }) => {
           },
         ]
       },
-    }
-  }
-
-  // 生产阶段服务器配置 生产打包配置
-  if (phase === PHASE_PRODUCTION_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    /**
-     * @type {import('next').NextConfig}
-     */
-    config = {
-      reactStrictMode: false, // 是否启动react严格模式<React.StrictMode>
-      distDir: ".next", // 构建目录
-      basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
-      env: {
-        customKey: "value",
+      // 默认 false，是否在构建时忽略 eslint
+      // ignoreDuringBuilds: false,
+      // 默认false，是否在构建时忽略 typescript 错误
+      typescript: {
+        ignoreBuildErrors: false,
       },
-      images: {
-        // 请求外部限制访问的图片
-        remotePatterns: [
-          {
-            protocol: "https", //图片资源的协议
-            hostname: "www.test.com", //图片资源的域名
-          },
-        ],
-      },
-      sassOptions: {
-        includePaths: [path.join("./src/css")],
-      },
-      // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
-      compress: true,
-      // CDN前缀
-      // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
-      // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
-      webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => config,
-      // https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
-      serverRuntimeConfig: {
-        // 只运行在服务器
-        mySecret: "secret",
-        secondSecret: process.env.SECOND_SECRET,
-      },
-      publicRuntimeConfig: {
-        // 服务器，客户端可用
-        staticFolder: process.env.NEXT_PUBLIC_WEB_PREFIX,
-      },
-      // 默认为true, 默认情况下 Next.js 将添加x-powered-by标题
-      poweredByHeader: true,
-      // 默认为true, Next.js 默认会为每个页面生成etags 。
-      generateEtags: true,
-      // 默认为true, 是否禁用HTTP Keep-Alive
-      httpAgentOptions: {
-        keepAlive: false,
+      // 默认为false,将带有斜杠的 URL 重定向到不带斜杠的对应 URL 类似的网址/about/将重定向到/about
+      trailingSlash: false,
+      // 默认为true 是否优化字体
+      optimizeFonts: true,
+      // 默认为 true 是否开启可以优化为静态html的提示
+      devIndicators: {
+        // autoPrerender: false,
       },
       // 可以控制服务器在开发过程中如何处理或保留内存中的构建页面
       onDemandEntries: {
@@ -132,21 +106,23 @@ export default (phase, { defaultConfig }) => {
         // 应同时保留而不被销毁的页数
         pagesBufferLength: 2,
       },
-      // 默认false，是否在构建时忽略eslint
-      // ignoreDuringBuilds: false,
-      // 默认false，是否在构建时忽略typescript错误
-      typescript: {
-        ignoreBuildErrors: false,
+      // 默认为true, 是否禁用 HTTP Keep-Alive
+      httpAgentOptions: {
+        keepAlive: false,
       },
-      // 默认为false,将带有斜杠的 URL 重定向到不带斜杠的对应 URL 类似的网址/about/将重定向到/about
-      trailingSlash: false,
-      // 默认为true 是否优化字体
-      optimizeFonts: true,
-      // 默认为true 是否开启可以优化为静态html的提示
-      devIndicators: {
-        // autoPrerender: false,
-      },
+      // 默认为true, 默认情况下 Next.js 将添加 x-powered-by 标题
+      poweredByHeader: true,
+      // 默认为true, Next.js 默认会为每个页面生成etags 。
+      generateEtags: true,
     }
+  }
+
+  // 生产阶段服务器配置 生产打包配置
+  if (phase === PHASE_PRODUCTION_SERVER || phase === PHASE_PRODUCTION_BUILD) {
+    /**
+     * @type {import('next').NextConfig}
+     */
+    config = {}
   }
 
   return withNextIntl(config || defaultConfig)
