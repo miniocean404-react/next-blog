@@ -14,7 +14,7 @@ const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
 // 使用next/font来加载谷歌字体，而不是在css到声明字体，因为它帮我们优化了字体的加载，很方便使用各种各样的字体
 const miSansFont = localFont({
-  src: "../../assets/font/MiSans VF.ttf",
+  src: "../../../public/font/MiSans VF.ttf",
   // 就是 css font-display
   display: "swap",
   weight: "400",
