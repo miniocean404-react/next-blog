@@ -6,6 +6,7 @@ import { getMessages, unstable_setRequestLocale } from "next-intl/server"
 import { ThemeProvider } from "next-themes"
 import getConfig from "next/config"
 import localFont from "next/font/local"
+import Header from "@/components/header"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
@@ -26,12 +27,15 @@ export default async function LocaleLayout({ children, params: { locale } }: { c
   const messages = await getMessages()
 
   return (
-    <html lang={locale}>
+    <html suppressHydrationWarning lang={locale}>
       <body className={miSansFont.className}>
         {/* 切换：const { theme, setTheme } = useTheme(); */}
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <ReactLenis root options={{ gestureOrientation: "both" }}>
-            <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+            <NextIntlClientProvider messages={messages}>
+              <Header></Header>
+              {children}
+            </NextIntlClientProvider>
           </ReactLenis>
         </ThemeProvider>
       </body>
