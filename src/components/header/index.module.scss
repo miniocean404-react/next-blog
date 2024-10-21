@@ -1,84 +1,88 @@
 .container {
-  position: fixed;
+  position: sticky;
   top: 0;
   height: 64px;
   width: 100%;
   padding: 0 32px;
 
   backdrop-filter: blur(10px);
-  background: --header-card-bg !important;
+  background: --header-card-bg;
   border-bottom: 1px solid var(--line-border-card);
 
   display: flex;
   align-items: center;
 
-  // margin: auto;
-  // max-width: calc(1440px - 64px);
-
-  .title {
-    font-size: 16px;
-    font-weight: 600px;
+  .center {
     display: flex;
-    align-items: center;
+    width: 100%;
+    max-width: calc(var(--vp-layout-max-width) - 64px);
+    margin: 0 auto;
 
-    .logo {
-      margin-right: 8px;
-    }
-  }
-
-  .content {
-    display: flex;
-    flex-grow: 1;
-
-    .searchBox {
+    .title {
+      font-size: 16px;
+      font-weight: 600;
       display: flex;
-      padding-left: 24px;
-      flex-grow: 1;
+      align-items: center;
 
-      .search {
-        display: flex;
-        align-items: center;
-        height: 40px;
-        padding: 0 12px;
-        border-radius: 8px;
-        background-color: #f6f6f7;
-        cursor: pointer;
-        border: 1px solid transparent;
-        transition: all 0.5s;
-
-        .searchIcon {
-          margin-right: 8px;
-        }
-
-        .searchText {
-          color: #3c3c43c7;
-          line-height: 24px;
-          font-size: 13px;
-          font-weight: 500px;
-          padding-right: 16px;
-        }
-
-        .shortcut {
-          padding: 0 6px;
-          color: #3c3c43c7;
-          font-size: 12px;
-          font-weight: 500;
-          border: 1px solid #e2e2e3;
-          border-radius: 4px;
-
-          .mainShortcut {
-            margin-right: 2px;
-          }
-        }
-
-        &:hover {
-          border: 1px solid #646cff;
-        }
+      .logo {
+        margin-right: 8px;
       }
     }
 
-    .nav {
-      flex: 1;
+    .content {
+      display: flex;
+      flex-grow: 1;
+
+      .searchBox {
+        display: flex;
+        padding-left: 24px;
+        flex-grow: 1;
+
+        .search {
+          display: flex;
+          align-items: center;
+          height: 40px;
+          padding: 0 12px;
+          border-radius: 8px;
+          background-color: #f6f6f7;
+          cursor: pointer;
+          border: 1px solid transparent;
+          transition: all 0.5s;
+
+          .searchIcon {
+            margin-right: 8px;
+          }
+
+          .searchText {
+            color: #3c3c43c7;
+            line-height: 24px;
+            font-size: 13px;
+            font-weight: 500px;
+            padding-right: 16px;
+          }
+
+          .shortcut {
+            padding: 0 6px;
+            color: #3c3c43c7;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid #e2e2e3;
+            border-radius: 4px;
+
+            .mainShortcut {
+              margin-right: 2px;
+            }
+          }
+
+          &:hover {
+            border: 1px solid #646cff;
+          }
+        }
+      }
+
+      .nav {
+        flex: 1;
+      }
     }
   }
 

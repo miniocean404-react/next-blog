@@ -50,7 +50,7 @@ export default (phase, { defaultConfig }) => {
       compress: true, // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       sassOptions: {
         // 添加全局 scss 文件
-        additionalData: '@import "@/css/var/index.var.scss"; @import "@/css/mixins/index.mixins.scss";',
+        // additionalData: '@use "@/css/var/index.var.scss" as var; @use "@/css/mixins/index.mixins.scss" as mixins;',
         includePaths: [path.join(__dirname, "./src/css")],
       },
       // i18n: {},

@@ -6,9 +6,16 @@ import { useTheme } from "next-themes"
 import type { MouseEvent } from "react"
 import Image from "next/image"
 import { APP_DEFAULT_TITLE } from "@/constant/app"
+import classnames from "classnames"
+import { useHotkeys } from "react-hotkeys-hook"
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
+  useHotkeys("ctrl+k", openSearch, [], { preventDefault: true })
+
+  function openSearch() {
+    console.log("打开搜索")
+  }
 
   const toggle = async (e: MouseEvent<HTMLDivElement>) => {
     const isDark = theme === "dark"
@@ -53,7 +60,7 @@ export default function Header() {
               <span className={styles.searchText}>搜索</span>
 
               <span className={styles.shortcut}>
-                <kbd className={styles.mainShortcut}>⌘</kbd>
+                <kbd className={styles.mainShortcut}>⌘{/* Ctrl */}</kbd>
                 <kbd>K</kbd>
               </span>
             </div>
