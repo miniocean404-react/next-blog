@@ -1,3 +1,4 @@
+import "./index.module.scss"
 import "@/css/base/index.scss"
 import { routing } from "@/i18n/routing"
 import ReactLenis from "lenis/react"

@@ -1,0 +1,79 @@
+// 写法等价于 js 中
+// deviceType = {
+// key:[0px,0px]
+// }
+$device: (
+  "phone": (
+    0px,
+    767px,
+  ),
+  "ipad": (
+    768px,
+    1023px,
+  ),
+  // 1024*768 （比例4：3  | 10.4寸、12.1寸、14.1寸、15寸; ）
+  "pc-small":
+    (
+      1024px,
+      1439px,
+    ),
+  // 1440*1050（比例：5：4  | 14.1寸、15.0寸）
+  "pc-middle":
+    (
+      1440px,
+      1679px,
+    ),
+  // 1680*1050（16：10 | 15.4寸、20.0寸）
+  "pc": 1680px,
+);
+
+// 添加不同设备下的
+@mixin media-device($deviceType) {
+  // 根据设备类型 deviceType 获取 device 的变量值
+  $size: map-get(
+    $map: $device,
+    $key: $deviceType,
+  );
+
+  // 判断是否为数组类型 sass 中 list 是 js 中数组
+  @if type-of($value: $size) == "list" {
+    // 获取数组中第一项
+    $min: nth(
+      $list: $size,
+      $n: 1,
+    );
+
+    $max: nth(
+      $list: $size,
+      $n: 2,
+    );
+
+    @media screen and (min-width: $min) and (max-width: $max) {
+      // 占位符
+      @content;
+    }
+  } @else {
+    // 适配不是数组类型而是字符串类型的数据
+    @media screen and (min-width: $size) {
+      @content;
+    }
+  }
+
+  // @if ($device == 'phone') { }
+}
+
+// 使用方式
+
+.header {
+  display: flex;
+
+  @include media-device("phone") {
+    // 这个花括号内会替换 @content 的内用
+    height: 80px;
+  }
+
+  @include media-device("pad") {
+    // 这个花括号内会替换 @content 的内用
+    height: 60px;
+  }
+}

@@ -1,10 +1,12 @@
 import createNextIntlPlugin from "next-intl/plugin"
 import { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_PRODUCTION_SERVER } from "next/constants.js"
 import path from "path"
+import { fileURLToPath } from "url"
 
 const isProd = process.env.NODE_ENV === "production"
 
 const withNextIntl = createNextIntlPlugin()
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default (phase, { defaultConfig }) => {
   /**
@@ -48,8 +50,8 @@ export default (phase, { defaultConfig }) => {
       compress: true, // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
       sassOptions: {
         // 添加全局 scss 文件
-        // additionalData: '@import "@/styles/index.scss";',
-        includePaths: [path.join("./src/css")],
+        additionalData: '@import "@/css/var/index.var.scss"; @import "@/css/mixins/index.mixins.scss";',
+        includePaths: [path.join(__dirname, "./src/css")],
       },
       // i18n: {},
       // CDN 前缀
