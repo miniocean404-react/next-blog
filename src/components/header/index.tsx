@@ -8,9 +8,12 @@ import Image from "next/image"
 import { APP_DEFAULT_TITLE } from "@/constant/app"
 import classnames from "classnames"
 import { useHotkeys } from "react-hotkeys-hook"
+import { useTranslations } from "next-intl"
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
+  const t = useTranslations("home")
+
   useHotkeys("ctrl+k", openSearch, [], { preventDefault: true })
 
   function openSearch() {
@@ -57,7 +60,7 @@ export default function Header() {
           <div className={styles.searchBox}>
             <div className={styles.search}>
               <Image className={styles.searchIcon} src={"/svg/search.svg"} alt={"搜索"} width={14} height={14}></Image>
-              <span className={styles.searchText}>搜索</span>
+              <span className={styles.searchText}>{t("search")}</span>
 
               <span className={styles.shortcut}>
                 <kbd className={styles.mainShortcut}>⌘{/* Ctrl */}</kbd>
