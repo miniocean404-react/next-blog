@@ -40,12 +40,30 @@ export default function Header() {
 
   return (
     <header className={styles.container}>
-      <div className={styles.title}>
-        <Image className={styles.logo} src={"/svg/love.svg"} alt={""} width={24} height={24}></Image>
-        <span>{APP_DEFAULT_TITLE}</span>
-      </div>
+      <div className={styles.center}>
+        <div className={styles.title}>
+          <Image className={styles.logo} src={"/svg/love.svg"} alt={"logo"} width={24} height={24}></Image>
+          <span>{APP_DEFAULT_TITLE}</span>
+        </div>
 
-      <div onClick={toggle}>主题切换</div>
+        <div className={styles.content}>
+          <div className={styles.searchBox}>
+            <div className={styles.search}>
+              <Image className={styles.searchIcon} src={"/svg/search.svg"} alt={"搜索"} width={14} height={14}></Image>
+              <span className={styles.searchText}>搜索</span>
+
+              <span className={styles.shortcut}>
+                <kbd className={styles.mainShortcut}>⌘</kbd>
+                <kbd>K</kbd>
+              </span>
+            </div>
+          </div>
+
+          <div className={styles.nav}>
+            <div onClick={toggle}>主题切换</div>
+          </div>
+        </div>
+      </div>
     </header>
   )
 }
