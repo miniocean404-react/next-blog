@@ -6,9 +6,10 @@ import { useTheme } from "next-themes"
 import type { MouseEvent } from "react"
 import Image from "next/image"
 import { APP_DEFAULT_TITLE } from "@/constant/app"
-import classnames from "classnames"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslations } from "next-intl"
+import SearchIcon from "~/public/svg/search.svg"
+import classnames from "classnames"
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
@@ -58,9 +59,9 @@ export default function Header() {
 
         <div className={styles.content}>
           <div className={styles.searchBox}>
-            <div className={styles.search}>
-              <Image className={styles.searchIcon} src={"/svg/search.svg"} alt={"搜索"} width={14} height={14}></Image>
-              <span className={styles.searchText}>{t("search")}</span>
+            <div className={classnames(styles.search, "transition")}>
+              <SearchIcon className={classnames(styles.searchIcon, "transition")}></SearchIcon>
+              <span className={classnames(styles.searchText, "transition")}>{t("search")}</span>
 
               <span className={styles.shortcut}>
                 <kbd className={styles.mainShortcut}>⌘{/* Ctrl */}</kbd>
@@ -70,7 +71,11 @@ export default function Header() {
           </div>
 
           <div className={styles.nav}>
-            <div onClick={toggle}>主题切换</div>
+            <div className={styles.sub}>指引</div>
+            <div className={styles.sub}>配置</div>
+            <div className={styles.sub} onClick={toggle}>
+              主题切换
+            </div>
           </div>
         </div>
       </div>

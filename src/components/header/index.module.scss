@@ -44,17 +44,20 @@
           height: 40px;
           padding: 0 12px;
           border-radius: 8px;
-          background-color: #f6f6f7;
+          background-color: var(--search-bg-card);
           cursor: pointer;
           border: 1px solid transparent;
-          transition: all 0.5s;
 
           .searchIcon {
+            width: 14px;
+            height: 14px;
+            color: var(--vp-c-text-2);
             margin-right: 8px;
+            fill: currentColor;
           }
 
           .searchText {
-            color: #3c3c43c7;
+            color: var(--vp-c-text-2);
             line-height: 24px;
             font-size: 13px;
             font-weight: 500px;
@@ -63,10 +66,11 @@
 
           .shortcut {
             padding: 0 6px;
-            color: #3c3c43c7;
+            color: var(--vp-c-text-2);
+
             font-size: 12px;
             font-weight: 500;
-            border: 1px solid #e2e2e3;
+            box-sizing: border-box;
             border-radius: 4px;
 
             .mainShortcut {
@@ -76,17 +80,29 @@
 
           &:hover {
             border: 1px solid #646cff;
+
+            .searchIcon {
+              color: var(--vp-c-text-1);
+            }
+
+            .searchText {
+              color: var(--vp-c-text-1);
+            }
           }
         }
       }
 
       .nav {
-        flex: 1;
+        display: flex;
+        align-items: center;
+
+        .sub {
+          font-size: 14px;
+          font-weight: 500;
+          cursor: pointer;
+          padding: 0 12px;
+        }
       }
     }
-  }
-
-  .sub {
-    padding: 0 12px;
   }
 }

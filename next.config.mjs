@@ -57,7 +57,14 @@ export default (phase, { defaultConfig }) => {
       // CDN 前缀
       // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
       // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
-      webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => config,
+      webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+        config.module.rules.push({
+          test: /\.svg$/,
+          use: ["@svgr/webpack"],
+        })
+
+        return config
+      },
 
       // Next.js 其实提供了 rewrites 配置项用于重写请求。这算是解决跨域问题常用的一种方式
       // 重写会将传入的请求路径映射到其他目标路径。你可以把它理解为代理，并且它会屏蔽目标路径，使得用户看起来并没有改变其在网站上的位置
