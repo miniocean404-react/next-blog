@@ -6,8 +6,8 @@
   padding: 0 32px;
 
   backdrop-filter: blur(10px);
-  background: --header-card-bg;
-  border-bottom: 1px solid var(--line-border-card);
+  background: var(--vp-nav-bg-color);
+  border-bottom: 1px solid var(--vp-c-divider);
 
   display: flex;
   align-items: center;
@@ -44,7 +44,7 @@
           height: 40px;
           padding: 0 12px;
           border-radius: 8px;
-          background-color: var(--search-bg-card);
+          background-color: var(--vp-c-bg-alt);
           cursor: pointer;
           border: 1px solid transparent;
 
@@ -101,6 +101,7 @@
           font-weight: 500;
           cursor: pointer;
           padding: 0 12px;
+          color: var(--vp-c-text-1);
         }
       }
     }

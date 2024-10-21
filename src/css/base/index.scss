@@ -1,151 +1,39 @@
 //https://juejin.cn/post/7055845836298649636#heading-7
-@import "./normalize";
 @import "./tool";
+@import "./icons.scss";
+@import "./var.scss";
+
 @import "../mixins/index.mixins.scss";
-@import "../var/index.var.scss";
 
-/* 初始化 */
-a,
-abbr,
-acronym,
-address,
-applet,
-area,
-article,
-aside,
-audio,
-b,
-base,
-basefont,
-bdi,
-bdo,
-big,
-blockquote,
-body,
-br,
-button,
-canvas,
-caption,
-center,
-cite,
-code,
-col,
-colgroup,
-datalist,
-dd,
-del,
-details,
-dir,
-div,
-dfn,
-dialog,
-dl,
-dt,
-em,
-embed,
-fieldset,
-figcaption,
-figure,
-font,
-footer,
-form,
-frame,
-frameset,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-head,
-header,
-hr,
-html,
-i,
-iframe,
-img,
-input,
-ins,
-isindex,
-kbd,
-keygen,
-label,
-legend,
-li,
-link,
-map,
-mark,
-menu,
-menuitem,
-meta,
-meter,
-nav,
-noscript,
-object,
-ol,
-optgroup,
-option,
-output,
-p,
-param,
-pre,
-progress,
-q,
-rp,
-rt,
-ruby,
-s,
-samp,
-script,
-section,
-select,
-small,
-source,
-span,
-strike,
-strong,
-style,
-sub,
-summary,
-sup,
-table,
-tbody,
-td,
-textarea,
-tfoot,
-th,
-thead,
-time,
-title,
-tr,
-track,
-tt,
-u,
-ul,
-var,
-video,
-wbr,
-xmp {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-
-  // 解决手机浏览器点击有选择框的问题
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-  // Chrome、Safari 等 webkit 浏览器内核
-  // 默认情况下，元素的背景色不会被打印，可通过设置属性来支持
-  -webkit-print-color-adjust: exact;
-  // 火狐
-  print-color-adjust: exact;
-  color-adjust: exact;
+@page {
+  size: auto A4 landscape; // 打印A4大小
+  margin: 0cm 2cm; // 可以控制打印布局（四周边距）,设置为 0 隐藏打印模式中的页眉页脚信息
 }
 
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+// 对于一些对动态效果敏感或容易产生眩晕感的用户，该设置可以减少网页中的动画和过渡效果，提供更加舒适的浏览体验
+// 在一些性能较低的设备上，减少动画可以降低系统资源的消耗，提高网页的加载速度和响应性能。这对于移动设备或老旧电脑尤其重要，可以使网页在不同的设备上都能保持良好的运行状态。
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}
+
+// 适合标题的衬线字体
+.font-serif {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+// 适合代码的等宽字体：
+.font-mono {
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 // 张旭鑫推荐 https://www.bilibili.com/video/BV1b54y1Z7pu
@@ -171,27 +59,6 @@ xmp {
 //   font-variation-settings: normal;
 // }
 
-// 没有字体文件暂时注释
-// @font-face {
-//  font-family: Ping fang SC Medium;
-//  src: url('../../../assets/font/pingfangsc-medium.otf');
-// }
-
-// 适合标题的衬线字体
-.font-serif {
-  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
-}
-
-// 适合代码的等宽字体：
-.font-mono {
-  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
-@page {
-  size: auto A4 landscape; // 打印A4大小
-  margin: 0cm 2cm; // 可以控制打印布局（四周边距）,设置为 0 隐藏打印模式中的页眉页脚信息
-}
-
 // 解决微信及 webview 动态底部导航栏导致 100vh 抽搐的问题
 // html {
 //   position: fixed;
@@ -203,19 +70,47 @@ xmp {
 //   overflow: auto;
 // }
 
-html,
+*,
+::before,
+::after {
+  box-sizing: border-box;
+
+  // 解决手机浏览器点击有选择框的问题
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  // Chrome、Safari 等 webkit 浏览器内核
+  // 默认情况下，元素的背景色不会被打印，可通过设置属性来支持
+  -webkit-print-color-adjust: exact;
+  // 火狐
+  print-color-adjust: exact;
+  color-adjust: exact;
+
+  // margin: 0;
+  // padding: 0;
+}
+
+html {
+  line-height: 1.4;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
 body {
+  margin: 0;
   width: 100%;
-  height: 100%;
-
-  background-color: var(--bg-color-primary);
-
-  // electron 无边框窗口拖拽
-  -webkit-app-region: drag;
-  user-select: none;
-
-  // 设置 BFC 会影响 lenis 滚动使用
-  // overflow: auto;
+  min-width: 320px;
+  min-height: 100vh;
+  line-height: 24px;
+  font-size: inherit;
+  font-weight: 400;
+  color: var(--vp-c-text-1);
+  background-color: var(--vp-c-bg);
+  font-synthesis: style;
+  text-rendering: optimizeLegibility;
 
   // font-style 是否斜体, font-variant 和 font-weight 必须在 font-size 之前
   // line-height 必须跟在 font-size 后面，由 "/" 分隔，例如 "16px/3"
@@ -245,78 +140,39 @@ body {
     sans-serif,
     MiSans VF;
 
-  -webkit-font-smoothing: antialiased; // 取消字体抗锯齿
+  // 取消字体抗锯齿
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  // electron 无边框窗口拖拽
+  -webkit-app-region: drag;
+  user-select: none;
+
+  // 设置 BFC 会影响 lenis 滚动使用
+  // overflow: auto;
+
   // 兼容 IE 和 Firefox
-  // 100vw相对于浏览器的window.innerWidth，是浏览器的内部宽度，注意，滚动条宽度也计算在内！
-  // 而100%是可用宽度，是不含滚动条的宽度。
+  // 100vw 相对于浏览器的 window.innerWidth，是浏览器的内部宽度，注意，滚动条宽度也计算在内！
+  // 而 100% 是可用宽度，是不含滚动条的宽度。
   // !仅PC端
   // margin-right: calc(100vw - 100%);
-}
 
-// 滚动设置
-html {
-  // 设置默认 锚点滚动 及 scrollIntoView({ behavior: 'smooth' }) 的效果 会影响 lenis 滚动使用
+  // 滚动设置
+  //    设置默认 锚点滚动 及 scrollIntoView({ behavior: 'smooth' }) 的效果 会影响 lenis 滚动使用
   // scroll-behavior: smooth;
-
-  // windows 防止界面加载因为滚动条而导致界面晃动，Mac 浏览器滚动条不会占据位置
-  // stable 右边会预留位置
-  // stable both-edges 两边会预留位置
+  //    windows 防止界面加载因为滚动条而导致界面晃动，Mac 浏览器滚动条不会占据位置
+  //    stable 右边会预留位置
+  //    stable both-edges 两边会预留位置
   // scrollbar-gutter: stable;
-}
 
-img {
-  border: none;
-}
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-dl,
-li,
-menu,
-ol,
-ul {
-  list-style: none;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit; // 在默认情况下，按钮和输入框不会从它们的父项继承排版样式。相反，他们有自己怪异的风格。
-  outline: none;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word; // 如果没有足够的空间容纳一行中的所有字符，文本将自动换行。
-  // word-break: break-all; // !英文单词自动换行
-}
-
-a,
-a:link,
-a:visited,
-a:hover,
-a:active {
-  text-decoration: none; // 设置a标签的下划线
-  hyphens: auto; // 连字符
-}
-
-#root,
-#__next {
-  isolation: isolate;
+  // 火狐滚动条设置
+  //    默认 auto 在 Windows 系统下是 17px;
+  //    thin 在 Windows 系统下是 8px;
+  //    none 宽度为 0, 但是内容依然可以滚动。
+  // scrollbar-width: auto;
+  //    默认 auto
+  //    两个值为 滑竿颜色 轨道颜色 (鼠标悬浮才显示)
+  // scrollbar-color: rgba (0, 0, 0, 0.3) rgba (0, 0, 0, 0);
 }
 
 /* Chrome Safari 滚动条样式*/
@@ -346,16 +202,207 @@ a:active {
 // 定义右下角拖动块的样式
 //*::-webkit-resizer {}
 
-// 火狐滚动条
-html {
-  // 默认 auto 在Windows系统下是17px;
-  // thin 在Windows系统下是8px;
-  // none 宽度为0,但是内容依然可以滚动。
-  // scrollbar-width: auto;
+#root,
+#__next {
+  isolation: isolate;
+}
 
-  // 默认 auto
-  // 两个值为 滑竿颜色 轨道颜色(鼠标悬浮才显示)
-  // scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0);
+main {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  line-height: 24px;
+  font-size: 16px;
+  font-weight: 400;
+
+  overflow-wrap: break-word; // 如果没有足够的空间容纳一行中的所有字符，文本将自动换行。
+  // word-break: break-all; // !英文单词自动换行
+}
+
+p {
+  margin: 0;
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+/**
+ * Avoid 300ms click delay on touch devices that support the `touch-action`
+ * CSS property.
+ *
+ * In particular, unlike most other browsers, IE11+Edge on Windows 10 on
+ * touch devices and IE Mobile 10-11 DON'T remove the click delay when
+ * `<meta name="viewport" content="width=device-width">` is present.
+ * However, they DO support removing the click delay via
+ * `touch-action: manipulation`.
+ *
+ * See:
+ * - http://v4-alpha.getbootstrap.com/content/reboot/#click-delay-optimization-for-touch
+ * - http://caniuse.com/#feat=css-touch-action
+ * - http://patrickhlauke.github.io/touch/tests/results/#suppressing-300ms-delay
+ */
+a,
+area,
+button,
+[role="button"],
+input,
+label,
+select,
+summary,
+textarea {
+  font: inherit; // 在默认情况下，按钮和输入框不会从它们的父项继承排版样式。相反，他们有自己怪异的风格。
+  outline: none;
+  touch-action: manipulation;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+  hyphens: auto; // 连字符
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+blockquote {
+  margin: 0;
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--vp-font-family-mono);
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+}
+
+figure {
+  margin: 0;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  border: 0;
+  padding: 0;
+  line-height: inherit;
+  color: inherit;
+}
+
+button {
+  padding: 0;
+  font-family: inherit;
+  background-color: transparent;
+  background-image: none;
+}
+
+button:enabled,
+[role="button"]:enabled {
+  cursor: pointer;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 1px dotted;
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+button:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+input {
+  background-color: transparent;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: var(--vp-c-text-3);
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  color: var(--vp-c-text-3);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--vp-c-text-3);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+textarea {
+  resize: vertical;
+}
+
+select {
+  -webkit-appearance: none;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+p {
+  overflow-wrap: break-word;
 }
 
 // View Transition API产生过渡时，会生成一组伪元素，分别代表着状态变换前的图像和状态变换后的图像，并且默认就带有过滤渐隐渐现的过渡效果，
