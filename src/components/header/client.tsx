@@ -40,19 +40,15 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
   })
 
   const draw = (link: HTMLLinkElement, canvas: HTMLCanvasElement, text: number) => {
-    if (text > 99) {
-      return clearInterval(interval.current)
-    }
+    if (text > 99) return clearInterval(interval.current)
 
     const ctx = canvas.getContext("2d")!
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     ctx.fillStyle = "red"
     ctx.beginPath()
-    ctx.arc(canvas.width / 2, canvas.height / 2, 10, 0, 2 * Math.PI)
+    ctx.arc(canvas.width / 2, canvas.height / 2, 12, 0, 2 * Math.PI)
     ctx.fill()
-
-    const fix = ctx.measureText(text.toString()).actualBoundingBoxDescent / 2
 
     // canvas 文字居中：https://juejin.cn/post/6948779766384164901
     ctx.font = "16px Arial"
@@ -60,6 +56,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
 
+    const fix = ctx.measureText(text.toString()).actualBoundingBoxDescent / 2
     ctx.fillText(text.toString(), canvas.width / 2, canvas.height / 2 + fix / 2)
 
     // 将 canvas 转换为数据 canvas.height / 2
