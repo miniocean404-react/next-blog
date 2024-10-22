@@ -1,7 +1,8 @@
 "use client"
-import { Application, Assets, Sprite, Graphics, Rectangle, BlurFilter, Text, TextStyle, Container, type FillInput } from "pixi.js"
+import { Application, Assets, Sprite, Graphics, Rectangle, BlurFilter, Text, TextStyle, Container, type FillInput, RenderTexture } from "pixi.js"
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
+import { tree } from "next/dist/build/templates/app-page"
 
 export default function PixiScreen() {
   const canvas = useRef(null)
@@ -11,7 +12,6 @@ export default function PixiScreen() {
   }, [])
 
   const init = async () => {
-    // Inner radius of the circle
     const radius = 100
 
     const app = new Application()
@@ -24,7 +24,7 @@ export default function PixiScreen() {
       autoDensity: true, // 以 CSS 像素调整渲染器视图的大小以允许 1 以外的分辨率。
       antialias: true, // 消除锯齿
       preserveDrawingBuffer: false, // 启用绘图缓冲区保留，如果您需要在 WebGL 上下文中调用 toDataUrl，请启用此功能。
-      resolution: window.devicePixelRatio, // settings.RESOLUTION, // 渲染器的分辨率/设备像素比。(视网膜)
+      resolution: window.devicePixelRatio * 2, // settings.RESOLUTION, // 渲染器的分辨率/设备像素比。(视网膜)
       backgroundColor: 0xf6f6f6, // 渲染区域的背景颜色
       backgroundAlpha: 0, // 值从 0（完全透明）到 1（完全不透明）。
       clearBeforeRender: true, // 置渲染器是否在新的渲染通道之前清除画布。
@@ -38,14 +38,13 @@ export default function PixiScreen() {
 
     const chinese = createText({ text: "我的博客", width: app.screen.width, height: app.screen.height, background: { alpha: 1, color: 0xffffff } })
     const en = createText({ text: "MY BLOG", width: app.screen.width, height: app.screen.height, background: { alpha: 1, color: 0xf6f6f6 } })
-    en.zIndex = 1
-    chinese.zIndex = 0
 
     const circle = new Graphics().circle(radius, radius, radius).fill({ color: 0xff0000 })
     const bounds = new Rectangle(0, 0, radius * 2, radius * 2)
     const texture = app.renderer.generateTexture({
+      antialias: true,
       target: circle,
-      resolution: 1,
+      resolution: window.devicePixelRatio * 2,
       frame: bounds,
     })
     const focus = new Sprite(texture)
@@ -54,6 +53,8 @@ export default function PixiScreen() {
     app.stage.addChild(chinese)
     app.stage.addChild(en)
     en.mask = focus
+
+    focus.width = radius * 2
 
     app.stage.on("pointermove", (event) => {
       focus.position.x = event.global.x - focus.width / 2
@@ -79,25 +80,25 @@ export default function PixiScreen() {
     })
 
     app.stage.on("pointertap", (event) => {
-      // gsap.to(focus, {
-      //   width: focus.width * 10,
-      //   height: focus.height * 10,
-      //   duration: 1,
-      //   ease: "power1.inOut",
-      //   onComplete() {
-      //     // if (en.zIndex === 1) {
-      //     //   en.zIndex = 0
-      //     //   chinese.zIndex = 1
-      //     //   en.mask = null
-      //     //   chinese.mask = focus
-      //     // } else {
-      //     //   en.zIndex = 1
-      //     //   chinese.zIndex = 0
-      //     //   en.mask = focus
-      //     //   chinese.mask = null
-      //     // }
-      //   },
-      // })
+      gsap.to(focus, {
+        width: app.screen.width,
+        height: app.screen.width,
+        duration: 1,
+        ease: "power1.inOut",
+        onComplete() {
+          // if (en.zIndex === 1) {
+          //   en.zIndex = 0
+          //   chinese.zIndex = 1
+          //   en.mask = null
+          //   chinese.mask = focus
+          // } else {
+          //   en.zIndex = 1
+          //   chinese.zIndex = 0
+          //   en.mask = focus
+          //   chinese.mask = null
+          // }
+        },
+      })
     })
   }
 
@@ -128,5 +129,29 @@ export default function PixiScreen() {
     return container
   }
 
-  return <canvas width={800} height={300} ref={canvas} style={{ borderRadius: 8 }}></canvas>
+  // const test = () => {
+  // const renderTexture = RenderTexture.create({ width: app.screen.width, height: app.screen.height })
+  // const renderTextureSprite = new Sprite(renderTexture)
+
+  // en.mask = renderTextureSprite
+
+  // app.stage.addChild(chinese)
+  // app.stage.addChild(en)
+
+  // app.stage.addChild(renderTextureSprite)
+
+  // const brush = new Graphics().circle(0, 0, 50).fill({ color: 0xffffff })
+
+  // app.stage.on("pointermove", (event) => {
+  //   brush.position.set(event.global.x, event.global.y)
+  //   app.renderer.render({
+  //     container: brush,
+  //     target: renderTexture,
+  //     clear: false,
+  //   })
+  // })
+
+  // }
+
+  return <canvas ref={canvas} style={{ borderRadius: 8, margin: "200px auto" }}></canvas>
 }

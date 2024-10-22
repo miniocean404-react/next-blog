@@ -1,6 +1,7 @@
-# 学习视频
+# 学习视频、文档
 
 next14: https://www.bilibili.com/video/BV157pRe8EyD/?spm_id_from=333.337.search-card.all.click
+中文文档：https://next.nodejs.cn/docs
 
 # 文章
 
