@@ -11,6 +11,9 @@ import { useTranslations } from "next-intl"
 import SearchIcon from "~/public/svg/search.svg"
 import classnames from "classnames"
 import Link from "next/link"
+import { UAParser } from "ua-parser-js"
+
+const parser = new UAParser(navigator.userAgent)
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
@@ -65,7 +68,10 @@ export default function Header() {
               <span className={classnames(styles.searchText, "transition")}>{t("search")}</span>
 
               <span className={styles.shortcut}>
-                <kbd className={styles.mainShortcut}>⌘{/* Ctrl */}</kbd>
+                <kbd className={styles.mainShortcut}>
+                  {parser.getOS().name === "Mac OS" && "⌘"}
+                  {parser.getOS().name !== "Mac OS" && "Ctrl"}
+                </kbd>
                 <kbd>K</kbd>
               </span>
             </div>
