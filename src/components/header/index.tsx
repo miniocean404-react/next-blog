@@ -13,11 +13,10 @@ import classnames from "classnames"
 import Link from "next/link"
 import { UAParser } from "ua-parser-js"
 
-const parser = new UAParser(navigator.userAgent)
-
 export default function Header() {
   const { theme, setTheme } = useTheme()
   const t = useTranslations("home")
+  const parser = new UAParser(navigator.userAgent)
 
   useHotkeys("ctrl+k", openSearch, [], { preventDefault: true })
 
