@@ -1,2 +1,18 @@
 .container {
+  .main {
+    height: calc(100vh - 64px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: auto;
+    font-size: 60px;
+    line-height: 1;
+
+    h1 {
+      font-size: inherit;
+      line-height: inherit;
+    }
+  }
 }

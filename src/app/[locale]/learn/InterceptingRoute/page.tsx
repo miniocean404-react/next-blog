@@ -13,7 +13,7 @@ export default function Home(props: { locale: string }) {
     <div className={styles.container}>
       {/* 软导航直接导航到 demo/1*/}
       {/* 硬导航会被 (.)demo 拦截 */}
-      <Link href={"/zh-CN/learn/InterceptingRoute/demo/1"}>软导航</Link>
+      <Link href={"/zh/learn/InterceptingRoute/demo/1"}>软导航</Link>
     </div>
   )
 }

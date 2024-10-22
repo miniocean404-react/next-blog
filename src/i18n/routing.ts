@@ -2,8 +2,8 @@ import { createSharedPathnamesNavigation } from "next-intl/navigation"
 import { defineRouting } from "next-intl/routing"
 
 export const routing = defineRouting({
-  locales: ["zh-CN", "en"],
-  defaultLocale: "zh-CN",
+  locales: ["zh", "en"],
+  defaultLocale: "zh",
 })
 
 // Lightweight wrappers around Next.js' navigation APIs

@@ -7,8 +7,8 @@ export default function TemplateLayout({ children, params: { locale } }: { child
 
   return (
     <div>
-      <Link href={"/zh-CN/learn/template/demo1"}>demo1</Link>
-      <Link href={"/zh-CN/learn/template/demo2"}>demo2</Link>
+      <Link href={"/zh/learn/template/demo1"}>demo1</Link>
+      <Link href={"/zh/learn/template/demo2"}>demo2</Link>
       <div onClick={() => setState(state + 1)}>数量{state}</div>
       {children}
     </div>

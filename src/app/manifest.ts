@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "My Awesome Blog",
     short_name: "Blog",
     description: "Next.js App",
-    start_url: "/zh-CN",
+    start_url: "/zh",
     display: "standalone",
     background_color: "#fff",
     theme_color: "#fff",

@@ -1,5 +1,5 @@
 "use client"
-import { Application, Assets, Sprite, Graphics, Rectangle, BlurFilter, Text, TextStyle, Container } from "pixi.js"
+import { Application, Assets, Sprite, Graphics, Rectangle, BlurFilter, Text, TextStyle, Container, type FillInput } from "pixi.js"
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 
@@ -26,7 +26,7 @@ export default function PixiScreen() {
       preserveDrawingBuffer: false, // 启用绘图缓冲区保留，如果您需要在 WebGL 上下文中调用 toDataUrl，请启用此功能。
       resolution: window.devicePixelRatio, // settings.RESOLUTION, // 渲染器的分辨率/设备像素比。(视网膜)
       backgroundColor: 0xf6f6f6, // 渲染区域的背景颜色
-      backgroundAlpha: 1, // 值从 0（完全透明）到 1（完全不透明）。
+      backgroundAlpha: 0, // 值从 0（完全透明）到 1（完全不透明）。
       clearBeforeRender: true, // 置渲染器是否在新的渲染通道之前清除画布。
       powerPreference: "high-performance", // 传递给 webgl 上下文的参数，对于具有双显卡的设备，设置为“高性能”。（仅限 WebGL）。
       sharedTicker: false, // true使用 PIXI.Ticker.shared，false创建新的Ticker代码。如果设置为 false，则您不能注册一个处理程序以在共享代码上运行的任何内容之前发生。系统代码将始终在共享代码和应用代码之前运行。
@@ -36,8 +36,8 @@ export default function PixiScreen() {
 
     document.body.appendChild(app.canvas)
 
-    const chinese = createText({ text: "我的博客", width: app.screen.width, height: app.screen.height, background: 0xf6f6f6 })
-    const en = createText({ text: "MY BLOG", width: app.screen.width, height: app.screen.height, background: 0xffffff })
+    const chinese = createText({ text: "我的博客", width: app.screen.width, height: app.screen.height, background: { alpha: 1, color: 0xffffff } })
+    const en = createText({ text: "MY BLOG", width: app.screen.width, height: app.screen.height, background: { alpha: 1, color: 0xf6f6f6 } })
     en.zIndex = 1
     chinese.zIndex = 0
 
@@ -50,7 +50,7 @@ export default function PixiScreen() {
     })
     const focus = new Sprite(texture)
 
-    app.stage.addChild(circle)
+    app.stage.addChild(focus)
     app.stage.addChild(chinese)
     app.stage.addChild(en)
     en.mask = focus
@@ -61,29 +61,29 @@ export default function PixiScreen() {
     })
 
     app.stage.on("pointertap", (event) => {
-      gsap.to(focus, {
-        width: focus.width * 10,
-        height: focus.height * 10,
-        duration: 1,
-        ease: "power1.inOut",
-        onComplete() {
-          // if (en.zIndex === 1) {
-          //   en.zIndex = 0
-          //   chinese.zIndex = 1
-          //   en.mask = null
-          //   chinese.mask = focus
-          // } else {
-          //   en.zIndex = 1
-          //   chinese.zIndex = 0
-          //   en.mask = focus
-          //   chinese.mask = null
-          // }
-        },
-      })
+      // gsap.to(focus, {
+      //   width: focus.width * 10,
+      //   height: focus.height * 10,
+      //   duration: 1,
+      //   ease: "power1.inOut",
+      //   onComplete() {
+      //     // if (en.zIndex === 1) {
+      //     //   en.zIndex = 0
+      //     //   chinese.zIndex = 1
+      //     //   en.mask = null
+      //     //   chinese.mask = focus
+      //     // } else {
+      //     //   en.zIndex = 1
+      //     //   chinese.zIndex = 0
+      //     //   en.mask = focus
+      //     //   chinese.mask = null
+      //     // }
+      //   },
+      // })
     })
   }
 
-  const createText = ({ text, width, height, background }: { text: string; width: number; height: number; background: number }) => {
+  const createText = ({ text, width, height, background }: { text: string; width: number; height: number; background: FillInput }) => {
     const rect = new Graphics().rect(0, 0, width, height).fill(background)
     const textture = new Text({
       text,

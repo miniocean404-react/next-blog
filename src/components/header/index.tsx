@@ -65,7 +65,7 @@ export default function Header() {
     <>
       <header className={styles.container}>
         <div className={styles.center}>
-          <Link className={styles.title} href={"/zh-CN"}>
+          <Link className={styles.title} href={"/zh"}>
             <Image className={styles.logo} src={"/svg/love.svg"} alt={"logo"} width={24} height={24}></Image>
             <span>{APP_DEFAULT_TITLE}</span>
           </Link>
