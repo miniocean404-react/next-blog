@@ -54,38 +54,42 @@ export default function Header() {
   }
 
   return (
-    <header className={styles.container}>
-      <div className={styles.center}>
-        <Link className={styles.title} href={"/zh-CN"}>
-          <Image className={styles.logo} src={"/svg/love.svg"} alt={"logo"} width={24} height={24}></Image>
-          <span>{APP_DEFAULT_TITLE}</span>
-        </Link>
+    <>
+      <header className={styles.container}>
+        <div className={styles.center}>
+          <Link className={styles.title} href={"/zh-CN"}>
+            <Image className={styles.logo} src={"/svg/love.svg"} alt={"logo"} width={24} height={24}></Image>
+            <span>{APP_DEFAULT_TITLE}</span>
+          </Link>
 
-        <div className={styles.content}>
-          <div className={styles.searchBox}>
-            <div className={classnames(styles.search, "transition")}>
-              <SearchIcon className={classnames(styles.searchIcon, "transition")}></SearchIcon>
-              <span className={classnames(styles.searchText, "transition")}>{t("search")}</span>
+          <div className={styles.content}>
+            <div className={styles.searchBox}>
+              <div className={classnames(styles.search, "transition")}>
+                <SearchIcon className={classnames(styles.searchIcon, "transition")}></SearchIcon>
+                <span className={classnames(styles.searchText, "transition")}>{t("search")}</span>
 
-              <span className={styles.shortcut}>
-                <kbd className={styles.mainShortcut}>
-                  {parser.getOS().name === "Mac OS" && "⌘"}
-                  {parser.getOS().name !== "Mac OS" && "Ctrl"}
-                </kbd>
-                <kbd>K</kbd>
-              </span>
+                <span className={styles.shortcut}>
+                  <kbd className={styles.mainShortcut}>
+                    {parser.getOS().name === "Mac OS" && "⌘"}
+                    {parser.getOS().name !== "Mac OS" && "Ctrl"}
+                  </kbd>
+                  <kbd>K</kbd>
+                </span>
+              </div>
             </div>
-          </div>
 
-          <div className={styles.nav}>
-            <div className={classnames(styles.sub, "transition")}>指引</div>
-            <div className={classnames(styles.sub, "transition")}>配置</div>
-            <div className={classnames(styles.sub, "transition")} onClick={toggle}>
-              主题切换
+            <div className={styles.nav}>
+              <div className={classnames(styles.sub, "transition")}>指引</div>
+              <div className={classnames(styles.sub, "transition")}>配置</div>
+              <div className={classnames(styles.sub, "transition")} onClick={toggle}>
+                主题切换
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <div className={styles.rainbow}></div>
+    </>
   )
 }
