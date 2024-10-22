@@ -36,6 +36,10 @@ export default function Header() {
     const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
     const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
 
+    if (!document.startViewTransition) {
+      return setTheme(isDark ? "light" : "dark")
+    }
+
     const transition = document.startViewTransition(() => {
       setTheme(isDark ? "light" : "dark")
     })
