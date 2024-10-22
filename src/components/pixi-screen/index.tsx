@@ -1,6 +1,7 @@
 "use client"
 import { Application, Assets, Sprite, Graphics, Rectangle, BlurFilter, Text, TextStyle, Container } from "pixi.js"
 import { useEffect, useRef } from "react"
+import gsap from "gsap"
 
 export default function PixiScreen() {
   const canvas = useRef(null)
@@ -18,7 +19,7 @@ export default function PixiScreen() {
       resizeTo: canvas.current!, // 自动调整舞台大小的元素。
       canvas: canvas.current!, // 使用自己的 canvas 元素
       width: 800, // 渲染器视图的宽度。
-      height: 400, // 渲染器视图的高度。
+      height: 300, // 渲染器视图的高度。
       autoStart: true, // 构建完成后自动开始渲染。
       autoDensity: true, // 以 CSS 像素调整渲染器视图的大小以允许 1 以外的分辨率。
       antialias: true, // 消除锯齿
@@ -35,8 +36,10 @@ export default function PixiScreen() {
 
     document.body.appendChild(app.canvas)
 
-    const chinese = createText({ text: "博客", width: app.screen.width, height: app.screen.height, background: 0xf6f6f6 })
-    const en = createText({ text: "blog", width: app.screen.width, height: app.screen.height, background: 0xffffff })
+    const chinese = createText({ text: "我的博客", width: app.screen.width, height: app.screen.height, background: 0xf6f6f6 })
+    const en = createText({ text: "MY BLOG", width: app.screen.width, height: app.screen.height, background: 0xffffff })
+    en.zIndex = 1
+    chinese.zIndex = 0
 
     const circle = new Graphics().circle(radius, radius, radius).fill({ color: 0xff0000 })
     const bounds = new Rectangle(0, 0, radius * 2, radius * 2)
@@ -47,7 +50,7 @@ export default function PixiScreen() {
     })
     const focus = new Sprite(texture)
 
-    app.stage.addChild(focus)
+    app.stage.addChild(circle)
     app.stage.addChild(chinese)
     app.stage.addChild(en)
     en.mask = focus
@@ -58,8 +61,25 @@ export default function PixiScreen() {
     })
 
     app.stage.on("pointertap", (event) => {
-      en.mask = null
-      chinese.mask = focus
+      gsap.to(focus, {
+        width: focus.width * 10,
+        height: focus.height * 10,
+        duration: 1,
+        ease: "power1.inOut",
+        onComplete() {
+          // if (en.zIndex === 1) {
+          //   en.zIndex = 0
+          //   chinese.zIndex = 1
+          //   en.mask = null
+          //   chinese.mask = focus
+          // } else {
+          //   en.zIndex = 1
+          //   chinese.zIndex = 0
+          //   en.mask = focus
+          //   chinese.mask = null
+          // }
+        },
+      })
     })
   }
 
@@ -68,8 +88,8 @@ export default function PixiScreen() {
     const textture = new Text({
       text,
       style: new TextStyle({
-        fontSize: 64,
-        fontFamily: "PingFang SC",
+        fontSize: 128,
+        fontFamily: "MiSans VF",
         fill: "0x000000",
         fontWeight: "500",
         dropShadow: false,
@@ -80,11 +100,11 @@ export default function PixiScreen() {
     })
 
     textture.anchor.set(0.5)
-    textture.position.set(width / 2, width / 2)
+    textture.position.set(width / 2, height / 2)
     rect.addChild(textture)
 
     return rect
   }
 
-  return <canvas width={800} height={400} ref={canvas} style={{ borderRadius: 8 }}></canvas>
+  return <canvas width={800} height={300} ref={canvas} style={{ borderRadius: 8 }}></canvas>
 }

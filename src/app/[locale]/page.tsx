@@ -6,7 +6,7 @@ import { useEffect } from "react"
 
 export default function Home(props: { params: { locale: string } }) {
   useEffect(() => {
-    startConfetti()
+    // startConfetti()
   }, [])
 
   return (

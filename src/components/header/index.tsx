@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styles from "./index.module.scss"
 import { useTheme } from "next-themes"
 import type { MouseEvent } from "react"
@@ -12,13 +12,18 @@ import SearchIcon from "~/public/svg/search.svg"
 import classnames from "classnames"
 import Link from "next/link"
 import { UAParser } from "ua-parser-js"
+import { userAgent } from "next/server"
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
   const t = useTranslations("home")
-  const parser = new UAParser(navigator.userAgent)
+  const [parser, setParser] = useState<UAParser.UAParserInstance>()
 
   useHotkeys("ctrl+k", openSearch, [], { preventDefault: true })
+
+  useEffect(() => {
+    setParser(new UAParser(navigator.userAgent))
+  }, [])
 
   function openSearch() {
     console.log("打开搜索")
@@ -69,8 +74,8 @@ export default function Header() {
 
                 <span className={styles.shortcut}>
                   <kbd className={styles.mainShortcut}>
-                    {parser.getOS().name === "Mac OS" && "⌘"}
-                    {parser.getOS().name !== "Mac OS" && "Ctrl"}
+                    {parser?.getOS().name === "Mac OS" ? "⌘" : ""}
+                    {parser?.getOS().name !== "Mac OS" ? "Ctrl" : ""}
                   </kbd>
                   <kbd>K</kbd>
                 </span>

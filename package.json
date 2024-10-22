@@ -24,6 +24,7 @@
     "canvas-confetti": "^1.9.3",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.13",
+    "gsap": "^3.12.5",
     "lenis": "^1.1.14",
     "next": "14.2.15",
     "next-auth": "^4.24.8",
