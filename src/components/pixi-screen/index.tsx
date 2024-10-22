@@ -60,6 +60,24 @@ export default function PixiScreen() {
       focus.position.y = event.global.y - focus.height / 2
     })
 
+    app.stage.on("pointerleave", (event) => {
+      gsap.to(focus, {
+        duration: 1,
+        width: 0,
+        height: 0,
+        ease: "power1.inOut",
+      })
+    })
+
+    app.stage.on("pointerenter", (event) => {
+      gsap.to(focus, {
+        duration: 1,
+        width: radius * 2,
+        height: radius * 2,
+        ease: "power1.inOut",
+      })
+    })
+
     app.stage.on("pointertap", (event) => {
       // gsap.to(focus, {
       //   width: focus.width * 10,
@@ -84,6 +102,8 @@ export default function PixiScreen() {
   }
 
   const createText = ({ text, width, height, background }: { text: string; width: number; height: number; background: FillInput }) => {
+    const container = new Container()
+
     const rect = new Graphics().rect(0, 0, width, height).fill(background)
     const textture = new Text({
       text,
@@ -101,9 +121,11 @@ export default function PixiScreen() {
 
     textture.anchor.set(0.5)
     textture.position.set(width / 2, height / 2)
-    rect.addChild(textture)
 
-    return rect
+    container.addChild(rect)
+    container.addChild(textture)
+
+    return container
   }
 
   return <canvas width={800} height={300} ref={canvas} style={{ borderRadius: 8 }}></canvas>
