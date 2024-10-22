@@ -10,6 +10,7 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslations } from "next-intl"
 import SearchIcon from "~/public/svg/search.svg"
 import classnames from "classnames"
+import Link from "next/link"
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
@@ -52,10 +53,10 @@ export default function Header() {
   return (
     <header className={styles.container}>
       <div className={styles.center}>
-        <div className={styles.title}>
+        <Link className={styles.title} href={"/zh-CN"}>
           <Image className={styles.logo} src={"/svg/love.svg"} alt={"logo"} width={24} height={24}></Image>
           <span>{APP_DEFAULT_TITLE}</span>
-        </div>
+        </Link>
 
         <div className={styles.content}>
           <div className={styles.searchBox}>
@@ -71,9 +72,9 @@ export default function Header() {
           </div>
 
           <div className={styles.nav}>
-            <div className={styles.sub}>指引</div>
-            <div className={styles.sub}>配置</div>
-            <div className={styles.sub} onClick={toggle}>
+            <div className={classnames(styles.sub, "transition")}>指引</div>
+            <div className={classnames(styles.sub, "transition")}>配置</div>
+            <div className={classnames(styles.sub, "transition")} onClick={toggle}>
               主题切换
             </div>
           </div>

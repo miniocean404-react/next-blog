@@ -102,6 +102,10 @@
           cursor: pointer;
           padding: 0 12px;
           color: var(--vp-c-text-1);
+
+          &:hover {
+            color: var(--vp-c-text-2);
+          }
         }
       }
     }

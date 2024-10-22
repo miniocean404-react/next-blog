@@ -4,7 +4,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   const t = await getTranslations("home")
 
   return {
-    title: t("cart"),
+    title: t("search"),
   }
 }
 
