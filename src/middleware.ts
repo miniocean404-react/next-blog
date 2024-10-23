@@ -6,7 +6,6 @@ import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server
 // 中间件只会应用于以下路由。
 export const config = {
   // api/:path*
-
   matcher: ["/", "/(zh|en)/:path*"],
   // 您还可以使用missing或has数组，或者两者结合来绕过某些请求的中间件：
   // has: [
