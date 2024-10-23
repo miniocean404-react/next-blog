@@ -29,6 +29,7 @@ export default function Home(props: { params: { locale: string } }) {
         <h1 ref={el}></h1>
       </div>
 
+      <p>用艺术家的视角审视，以工匠精神创造开发</p>
       {/* <PixiScreen></PixiScreen> */}
 
       <Particles className={styles.particles} quantity={100} ease={80} color={"#000000"} refresh></Particles>
