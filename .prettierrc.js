@@ -22,8 +22,4 @@ module.exports = {
 
   rangeStart: 0, // 每个文件格式化的范围是文件的全部内容
   rangeEnd: Infinity,
-
-  eslintIntegration: false, // 不让 prettier 使用 eslint 的代码格式进行校验
-  stylelintIntegration: false, // 不让 prettier 使用 stylelint 的代码格式进行校验
-  tslintIntegration: false, // 不让 prettier 使用 tslint 的代码格式进行校验
 }

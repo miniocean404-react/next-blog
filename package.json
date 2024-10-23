@@ -13,9 +13,9 @@
     "start": "next start",
     "lint": "next lint",
     "commit": "cz",
-    "clean": "rimraf node_modules &&  pnpm cache clean",
+    "clean": "rimraf node_modules",
     "windows-clean": "del node_modules",
-    "prettier-format": "prettier --write  **/*.{scss,css} **/*.{jsx,tsx,js,ts}",
+    "format": "prettier --write  src/**/*.{scss,css,tsx,ts}",
     "prepare-husky": "pnpm husky install"
   },
   "dependencies": {
@@ -63,11 +63,11 @@
   },
   "lint-staged": {
     "*.{css,scss}": [
-      "pnpm prettier-format",
+      "pnpm format",
       "git add ."
     ],
     "*.ts?(x)": [
-      "pnpm prettier-format",
+      "pnpm format",
       "git add ."
     ]
   },

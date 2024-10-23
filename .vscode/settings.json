@@ -7,6 +7,7 @@
   "i18n-ally.namespace": true,
   "i18n-ally.extract.autoDetect": true,
   "i18n-ally.sourceLanguage": "zh-CN",
+  "npm.exclude": ["**/.next/**"],
 
   "cSpell.words": ["Element Plus", "element-plus"], // code spell checker总是认为是对的单词列表
   "vite.devCommand": "yarn run dev -- --", // 运行命令
