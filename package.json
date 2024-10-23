@@ -15,7 +15,7 @@
     "commit": "cz",
     "clean": "rimraf node_modules",
     "windows-clean": "del node_modules",
-    "format": "prettier --write  src/**/*.{scss,css,tsx,ts}",
+    "format": "prettier --write  src/**/*.{scss,tsx,ts}",
     "prepare": "pnpm husky install"
   },
   "dependencies": {
