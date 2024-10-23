@@ -16,7 +16,8 @@ import MoonIcon from "~/public/svg/moon.svg"
 import GithubIcon from "~/public/svg/github.svg"
 
 export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
-  const { theme, setTheme } = useTheme()
+  const { systemTheme, theme, setTheme } = useTheme()
+
   const t = useTranslations("home")
   const interval = useRef<NodeJS.Timeout>()
 
@@ -139,8 +140,8 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
 
               <div className={styles.iconBox}>
                 <button className={styles.icon} onClick={toggle}>
-                  {theme === "light" && <SunIcon></SunIcon>}
-                  {theme === "dark" && <MoonIcon></MoonIcon>}
+                  {theme === "light" && <SunIcon />}
+                  {theme === "light" && <MoonIcon />}
                 </button>
               </div>
             </div>

@@ -1,7 +1,6 @@
 import "./index.module.scss"
 import "@/css/base/index.scss"
 import { routing } from "@/i18n/routing"
-import ReactLenis from "lenis/react"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, unstable_setRequestLocale } from "next-intl/server"
 import { ThemeProvider } from "next-themes"
@@ -33,12 +32,10 @@ export default async function LocaleLayout({ children, params }: { children: Rea
       <body className={miSansFont.className}>
         {/* 切换：const { theme, setTheme } = useTheme(); */}
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <ReactLenis root options={{ gestureOrientation: "both" }}>
-            <NextIntlClientProvider messages={messages}>
-              <Header></Header>
-              {children}
-            </NextIntlClientProvider>
-          </ReactLenis>
+          <NextIntlClientProvider messages={messages}>
+            <Header></Header>
+            {children}
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>
