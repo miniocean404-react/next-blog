@@ -11,8 +11,10 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const { locale } = await params
+
   return {
-    title: params.locale,
+    title: locale,
   }
 }
 
@@ -33,7 +35,8 @@ export const revalidate = 10
 //   })
 // }
 
-export default async function Home(props: { params: { locale: string } }) {
+export default async function Home({ params }: { params: { locale: string } }) {
+  const { locale } = await params
   // 获取路由地址
   // const pathname = usePathname()
   // Api 文档: https://nextjs.org/docs/app/api-reference/functions/use-router
@@ -51,7 +54,7 @@ export default async function Home(props: { params: { locale: string } }) {
 
       <Image src={Mac} alt={""} priority width={1200}></Image>
       {/* <div onClick={() => router.push("/dashboard")}>跳转</div> */}
-      {props.params.locale}
+      {locale}
     </div>
   )
 }

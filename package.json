@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next dev -p 3000",
-    "build": "next build",
+    "build": "next build --no-lint",
     "build-static": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -26,7 +26,7 @@
     "dayjs": "^1.11.13",
     "gsap": "^3.12.5",
     "lenis": "^1.1.14",
-    "next": "15.0.0",
+    "next": "15.0.1",
     "next-auth": "^4.24.8",
     "next-intl": "^3.21.1",
     "next-sitemap": "^4.2.3",

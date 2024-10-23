@@ -27,6 +27,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.d.ts", "next.config.mjs", ".next/types/**/*.ts", "src/app/not-foundtsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.d.ts", "next.config.ts", ".next/types/**/*.ts", "src/app/not-foundtsx"],
   "exclude": ["node_modules", ".next", "script"]
 }
