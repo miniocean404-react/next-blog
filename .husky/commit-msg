@@ -1,4 +1,5 @@
-# .husky/commit-msg
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
 # 通过钩子函数,判断 commit 信息是否符合规范
 
