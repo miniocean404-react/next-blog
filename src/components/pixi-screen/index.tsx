@@ -2,7 +2,6 @@
 import { Application, Assets, Sprite, Graphics, Rectangle, BlurFilter, Text, TextStyle, Container, type FillInput, RenderTexture } from "pixi.js"
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
-import { tree } from "next/dist/build/templates/app-page"
 
 export default function PixiScreen() {
   const canvas = useRef(null)
