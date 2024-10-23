@@ -15,4 +15,10 @@
       line-height: inherit;
     }
   }
+
+  .particles {
+    position: fixed;
+    inset: 0;
+    z-index: var(--vp-z-index-bg);
+  }
 }

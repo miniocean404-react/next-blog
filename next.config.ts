@@ -41,6 +41,8 @@ const config: NextConfig = {
   },
   compress: true, // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
   sassOptions: {
+    // 去除 scss 警告：https://github.com/vercel/next.js/issues/71638
+    silenceDeprecations: ["legacy-js-api"],
     // 添加全局 scss 文件
     // additionalData: '@use "@/css/var/index.var.scss" as var; @use "@/css/mixins/index.mixins.scss" as mixins;',
     includePaths: [path.join(__dirname, "./src/css")],

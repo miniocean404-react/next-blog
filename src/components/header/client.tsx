@@ -8,9 +8,12 @@ import { APP_DEFAULT_TITLE } from "@/constant/app"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslations } from "next-intl"
 import SearchIcon from "~/public/svg/search.svg"
-import classnames from "classnames"
+import { clsx } from "clsx"
 import Link from "next/link"
-import { useBoolean, useEvent, useInterval } from "react-use"
+import { useEvent } from "react-use"
+import SunIcon from "~/public/svg/sun.svg"
+import MoonIcon from "~/public/svg/moon.svg"
+import GithubIcon from "~/public/svg/github.svg"
 
 export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
   const { theme, setTheme } = useTheme()
@@ -69,7 +72,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
     console.log("打开搜索")
   }
 
-  const toggle = async (e: MouseEvent<HTMLDivElement>) => {
+  const toggle = async (e: MouseEvent<HTMLButtonElement>) => {
     const isDark = theme === "dark"
     const x = e.clientX
     const y = e.clientY
@@ -110,9 +113,9 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
 
           <div className={styles.content}>
             <div className={styles.searchBox}>
-              <div className={classnames(styles.search)}>
-                <SearchIcon className={classnames(styles.searchIcon)}></SearchIcon>
-                <span className={classnames(styles.searchText)}>{t("search")}</span>
+              <div className={clsx(styles.search)}>
+                <SearchIcon className={clsx(styles.searchIcon)}></SearchIcon>
+                <span className={clsx(styles.searchText)}>{t("search")}</span>
 
                 <span className={styles.shortcut}>
                   <kbd className={styles.mainShortcut}>
@@ -127,8 +130,18 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
             <div className={styles.nav}>
               <div className={styles.sub}>指引</div>
               <div className={styles.sub}>配置</div>
-              <div className={styles.sub} onClick={toggle}>
-                主题切换
+
+              <div className={styles.iconBox}>
+                <button className={styles.icon}>
+                  <GithubIcon></GithubIcon>
+                </button>
+              </div>
+
+              <div className={styles.iconBox}>
+                <button className={styles.icon} onClick={toggle}>
+                  {theme === "light" && <SunIcon></SunIcon>}
+                  {theme === "dark" && <MoonIcon></MoonIcon>}
+                </button>
               </div>
             </div>
           </div>

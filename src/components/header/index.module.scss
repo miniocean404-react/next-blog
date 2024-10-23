@@ -104,11 +104,39 @@
           font-weight: 500;
           cursor: pointer;
           padding: 0 12px;
+
           color: var(--vp-c-text-1);
           transition: color 0.5s ease;
 
           &:hover {
             color: var(--vp-c-text-2);
+          }
+        }
+
+        .iconBox {
+          padding: 0 8px;
+
+          .icon {
+            height: 36px;
+            width: 36px;
+
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            border-radius: 12px;
+
+            transform: background-color 0.5s ease;
+
+            svg {
+              width: 20px;
+              height: 20px;
+            }
+
+            &:hover {
+              background-color: var(--vp-c-bg-alt);
+            }
           }
         }
       }

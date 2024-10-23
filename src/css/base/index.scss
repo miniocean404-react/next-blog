@@ -146,7 +146,7 @@ body {
 
   // electron 无边框窗口拖拽
   -webkit-app-region: drag;
-  user-select: none;
+  // user-select: none;
 
   // 设置 BFC 会影响 lenis 滚动使用
   // overflow: auto;
