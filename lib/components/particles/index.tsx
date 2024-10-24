@@ -1,11 +1,10 @@
 "use client"
 
+import clsx from "clsx"
 // https://magicui.design/docs/components/particles
 // 代码：https://github.com/magicuidesign/magicui/blob/main/registry/default/magicui/particles.tsx
 
 import React, { useEffect, useRef, useState } from "react"
-import styles from "./index.module.scss"
-import { clsx } from "clsx"
 
 interface MousePosition {
   x: number
@@ -256,8 +255,8 @@ const Particles: React.FC<ParticlesProps> = ({
   }
 
   return (
-    <div className={clsx(styles.container, className)} ref={canvasContainerRef} aria-hidden="true">
-      <canvas ref={canvasRef} className={styles.canvas} />
+    <div className={clsx("pointer-events-none", className)} ref={canvasContainerRef} aria-hidden="true">
+      <canvas ref={canvasRef} className="size-full" />
     </div>
   )
 }

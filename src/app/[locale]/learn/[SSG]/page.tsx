@@ -1,4 +1,3 @@
-import styles from "./index.module.scss"
 export const revalidate = 10
 
 export function generateStaticParams() {
@@ -9,7 +8,7 @@ export function generateStaticParams() {
 
 export default async function Home({ params }: { params: { SSG: string } }) {
   return (
-    <div className={styles.container}>
+    <div>
       <div style={{ color: "red" }}>{params.SSG}</div>
       <div>{Date.now()}</div>
     </div>

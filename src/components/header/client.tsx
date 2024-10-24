@@ -1,6 +1,5 @@
 "use client"
 
-import styles from "./index.module.scss"
 import { useTheme } from "next-themes"
 import { useRef, type MouseEvent, type PropsWithChildren } from "react"
 import Image from "next/image"
@@ -8,7 +7,6 @@ import { APP_DEFAULT_TITLE } from "@/constant/app"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslations } from "next-intl"
 import SearchIcon from "~/public/svg/search.svg"
-import { clsx } from "clsx"
 import Link from "next/link"
 import { useEvent } from "react-use"
 import SunIcon from "~/public/svg/sun.svg"
@@ -105,21 +103,29 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
 
   return (
     <>
-      <header className={styles.container}>
-        <div className={styles.center}>
-          <Link className={styles.title} href={"/zh"}>
-            <Image className={styles.logo} src={"/svg/love.svg"} alt={"logo"} width={24} height={24}></Image>
+      <header
+        className={
+          "fixed top-0 h-[64px] w-[100%] px-[32px] py-0 z-[var(--vp-z-index-header)] backdrop-blur-[10px] bg-[var(--vp-nav-bg-color)] border-b-[1px] border-b-solid border-b-[var(--vp-c-divider)] flex items-center"
+        }
+      >
+        <div className="flex w-[100%] max-w-[calc(var(--vp-layout-max-width)-64px)] mx-auto my-0">
+          <Link className="text-[16px] font-600 flex items-center" href={"/zh"}>
+            <Image className="mr-[8px]" src={"/svg/love.svg"} alt={"logo"} width={24} height={24}></Image>
             <span>{APP_DEFAULT_TITLE}</span>
           </Link>
 
-          <div className={styles.content}>
-            <div className={styles.searchBox}>
-              <div className={clsx(styles.search)}>
-                <SearchIcon className={clsx(styles.searchIcon)}></SearchIcon>
-                <span className={clsx(styles.searchText)}>{t("search")}</span>
+          <div className="flex flex-grow items-center">
+            <div className="flex pl-[24px] flex-grow">
+              <div className="group flex items-center h-[40px] px-[12px] py-0 rounded-[8px] bg-[var(--vp-c-bg-alt)] cursor-pointer border-[1px] border-solid border-transparent transition-border duration-500 ease hover:border hover:border-solid hover:border-[#646cff]">
+                {/* search-hover:text-[var(--vp-c-text-1)] */}
+                <SearchIcon className="w-[14px] h-[14px] text-[var(--vp-c-text-2)] mr-[8px] fill-currentColor transition-color duration-500 ease group-hover:text-[var(--vp-c-text-1)] "></SearchIcon>
+                {/* search-hover:text-[var(--vp-c-text-1)] */}
+                <span className="text-[var(--vp-c-text-2)] leading-[24px] text-[13px] font-500px pr-[16px] transition-color duration-500 ease group-hover:text-[var(--vp-c-text-1)]">
+                  {t("search")}
+                </span>
 
-                <span className={styles.shortcut}>
-                  <kbd className={styles.mainShortcut}>
+                <span className="px-[6px] py-0 text-[var(--vp-c-text-2)] text-[12px] font-500 box-border rounded-[4px]">
+                  <kbd className="mr-[2px]">
                     {os === "Mac OS" ? "⌘" : ""}
                     {os === "Windows" ? "Ctrl" : ""}
                   </kbd>
@@ -128,20 +134,30 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
               </div>
             </div>
 
-            <div className={styles.nav}>
-              <div className={styles.sub}>指引</div>
-              <div className={styles.sub}>配置</div>
+            <div className="flex items-center hover:text-[var(--vp-c-text-2)]">
+              <div className="text-[14px] font-500 cursor-pointer px-[12px] py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
+                指引
+              </div>
+              <div className="text-[14px] font-500 cursor-pointer px-[12px] py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
+                配置
+              </div>
 
-              <div className={styles.iconBox}>
-                <Link className={styles.icon} href={"https://github.com/MiniOcean404"}>
-                  <GithubIcon></GithubIcon>
+              <div className="px-[8px] py-0">
+                <Link
+                  className="h-[36px] w-[36px] inline-flex justify-center items-center cursor-pointer rounded-[12px] hover:bg-[var(--vp-c-bg-alt)]"
+                  href={"https://github.com/MiniOcean404"}
+                >
+                  <GithubIcon className="w-[20px] h-[20px]"></GithubIcon>
                 </Link>
               </div>
 
-              <div className={styles.iconBox}>
-                <button className={styles.icon} onClick={toggle}>
-                  {theme === "light" && <SunIcon />}
-                  {theme === "dark" && <MoonIcon />}
+              <div className="px-[8px] py-0">
+                <button
+                  className="h-[36px] w-[36px] inline-flex justify-center items-center cursor-pointer rounded-[12px] hover:bg-[var(--vp-c-bg-alt)]"
+                  onClick={toggle}
+                >
+                  {theme === "light" && <SunIcon className="w-[20px] h-[20px]" />}
+                  {theme === "dark" && <MoonIcon className="w-[20px] h-[20px]" />}
                 </button>
               </div>
             </div>
@@ -149,7 +165,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
         </div>
       </header>
 
-      <div className={styles.rainbow}></div>
+      <div className="w-full h-[96px] fixed top-[0] pointer-events-none before:content-[''] before:absolute before:w-full before:h-3/5 before:z-0 before:left-2/4 before:top-[0] before:-bottom-1/5 before:-translate-x-1/2 before:translate-y-[0] before:rotate-[0] before:skew-x-[0] before:skew-y-[0] before:scale-x-100 before:scale-y-100 before:filter blur-3xl before:opacity-20 before:[background-size:200%] before:bg-[linear-gradient(90deg,_#ff4242,_#a1ff42,_#42a1ff,_#42d0ff,_#a142ff)] before:animate-[rainbow_var(--speed,_2s)_infinite_linear] z-[var(--vp-z-index-header)]"></div>
     </>
   )
 }

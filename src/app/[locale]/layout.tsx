@@ -1,4 +1,3 @@
-import "./index.module.scss"
 import "@/css/base/index.scss"
 import "~/lib/components/index.css"
 

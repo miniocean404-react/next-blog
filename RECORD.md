@@ -40,3 +40,33 @@ next dev --experimental-https
 
 1. OpenGraph，又叫 OG 协议：https://segmentfault.com/a/1190000040863000
 2. Twitter 卡片标签看上去与开放图谱标签相似，基于与开放图谱协议相同的约定。当使用开放图谱协议描述页面上的数据时，很容易生成 Twitter 卡片，而无需复制标签和数据。当 Twitter 卡片处理器在页面上寻找标签时，它会首先检查 Twitter 特定的属性；如果不存在，则会返回受支持的开放图谱属性。它允许在页面上独立定义这两种属性，并最大程度减少描述内容和体验所需的标记复制量。
+
+# tailwindcss
+
+1. 快速掌握 Tailwind：最流行的原子化 CSS 框架（神说光）：https://juejin.cn/post/7231539903649398843?share_token=46882d88-1374-4aa4-84b7-4259040113b1
+
+## 自定义 tailwindcss 插件
+
+```ts
+const plugin = require("tailwindcss/plugin")
+
+module.exports = plugin(function ({ addUtilities }) {
+  addUtilities({
+    ".guang": {
+      background: "blue",
+      color: "yellow",
+    },
+    ".guangguang": {
+      "font-size": "70px",
+    },
+  })
+})
+
+// 在 tailwind.config.ts 中引入
+const config: Config = {
+  plugins: [require("./xx")],
+}
+
+// 就可以在 html 中使用 <div className="gunag gunagguang"></div>
+// 插件的方式或者 @layer 的方式都可以扩展。
+```

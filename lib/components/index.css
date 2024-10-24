@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+处理重复样式，将 html 中 py-2 h-screen 重复的部分改为 className="btn-primary"
+
+@layer components {
+  .btn-primary {
+    @apply py-2 h-screen;
+  }
+}
+*/
