@@ -7,9 +7,5 @@
   "framework": "nextjs",
   "regions": [
     "hkg1"
-  ],
-  "functionFailoverRegions": [
-    "hnd1",
-    "kix1"
   ]
 }
