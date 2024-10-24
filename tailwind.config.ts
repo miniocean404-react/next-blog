@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss"
 
 const config: Config = {
+  darkMode: "class",
   // 为所有的 tailwindcss 类名添加前缀
   // prefix: "mini",
   content: [
@@ -13,6 +14,7 @@ const config: Config = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {},
     extend: {
       padding: {
         // 修改 p-1 是 padding:0.25rem 改为 p-1 是 padding:30px
