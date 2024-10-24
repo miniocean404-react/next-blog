@@ -5,7 +5,7 @@ import { startConfetti } from "@/utils/confetti"
 import { useEffect, useRef } from "react"
 import styles from "./index.module.scss"
 import Typed from "typed.js"
-import Particles from "@/components/particles"
+import Particles from "~/lib/components/particles"
 
 export default function Home(props: { params: { locale: string } }) {
   const el = useRef(null)
