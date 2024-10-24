@@ -70,3 +70,7 @@ const config: Config = {
 // 就可以在 html 中使用 <div className="gunag gunagguang"></div>
 // 插件的方式或者 @layer 的方式都可以扩展。
 ```
+
+# vercel.json 文档
+
+- https://vercel.com/docs/projects/project-configuration

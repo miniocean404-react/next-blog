@@ -1,0 +1,15 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "buildCommand": "pnpm run build",
+  "devCommand": "pnpm run dev",
+  "installCommand": "pnpm i",
+  "framework": "nextjs",
+  "regions": [
+    "hkg1"
+  ],
+  "functionFailoverRegions": [
+    "hnd1",
+    "kix1"
+  ]
+}

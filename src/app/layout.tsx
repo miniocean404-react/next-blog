@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   // OpenGraph，又叫 OG 协议，可以简单的看一下介绍。https://segmentfault.com/a/1190000040863000
   // Twitter 卡片标签看上去与开放图谱标签相似，基于与开放图谱协议相同的约定。当使用开放图谱协议描述页面上的数据时，很容易生成 Twitter 卡片，而无需复制标签和数据。当 Twitter 卡片处理器在页面上寻找标签时，它会首先检查 Twitter 特定的属性；如果不存在，则会返回受支持的开放图谱属性。它允许在页面上独立定义这两种属性，并最大程度减少描述内容和体验所需的标记复制量。
   openGraph: {
+    // og:url
+    // url: "https://www.isaac-wang.com",
+    // og:image
+    // images: [],
     type: "website",
     siteName: APP_NAME,
     title: {

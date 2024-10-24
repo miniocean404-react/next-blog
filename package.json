@@ -17,7 +17,9 @@
     "windows-clean": "del node_modules",
     "format": "prettier --write  src/**/*.{scss,tsx,ts}",
     "prepare": "pnpm husky install",
-    "tailwindcss-init": "tailwindcss init -p"
+    "tailwindcss-init": "tailwindcss init -p",
+    "vercel-login": "vercel login",
+    "vercel-publish": "vercel --prod"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.5",
@@ -68,7 +70,8 @@
     "rimraf": "6.0.1",
     "sharp": "^0.33.5",
     "tsx": "^4.19.1",
-    "typescript": "5.6.3"
+    "typescript": "5.6.3",
+    "vercel": "^37.12.1"
   },
   "husky": {
     "hooks": {
