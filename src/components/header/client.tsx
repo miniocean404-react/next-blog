@@ -133,9 +133,9 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
               <div className={styles.sub}>配置</div>
 
               <div className={styles.iconBox}>
-                <button className={styles.icon}>
+                <Link className={styles.icon} href={"https://github.com/MiniOcean404"}>
                   <GithubIcon></GithubIcon>
-                </button>
+                </Link>
               </div>
 
               <div className={styles.iconBox}>
