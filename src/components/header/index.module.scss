@@ -1,9 +1,10 @@
 .container {
-  position: sticky;
+  position: fixed;
   top: 0;
   height: 64px;
   width: 100%;
   padding: 0 32px;
+  z-index: var(--vp-z-index-header);
 
   backdrop-filter: blur(10px);
   background: var(--vp-nav-bg-color);
