@@ -27,7 +27,7 @@ const mergeRe = /^(Merge pull request|Merge branch)/
 
 if (!commitRE.test(msg)) {
   if (!mergeRe.test(msg)) {
-    console.log(msg)
+    console.log("提交的消息: ", msg)
     console.error(
       `  ${chalk.bgRed.white(" 错误 ")} ${chalk.red(`错误的消息格式`)}\n\n${chalk.red(
         `  自动化校验-提交模板样例:\n\n`,

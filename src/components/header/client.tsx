@@ -141,7 +141,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
               <div className={styles.iconBox}>
                 <button className={styles.icon} onClick={toggle}>
                   {theme === "light" && <SunIcon />}
-                  {theme === "light" && <MoonIcon />}
+                  {theme === "dark" && <MoonIcon />}
                 </button>
               </div>
             </div>
