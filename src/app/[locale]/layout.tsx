@@ -1,5 +1,5 @@
-import "@/css/base/index.scss"
-import "~/lib/components/index.css"
+import "@/css/base/var.scss"
+import "@/css/base/index.css"
 
 import { routing } from "@/i18n/routing"
 import { NextIntlClientProvider } from "next-intl"
