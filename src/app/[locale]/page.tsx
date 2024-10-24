@@ -7,6 +7,7 @@ import styles from "./index.module.scss"
 import Typed from "typed.js"
 import Particles from "~/lib/components/particles"
 import Marquee from "~/lib/components/marquee"
+import HalfOverlay from "~/lib/components/half-overlay"
 
 const reviews = [
   {
@@ -70,22 +71,6 @@ export default function Home(props: { params: { locale: string } }) {
       {/* <p>用艺术家的视角审视，以工匠精神创造开发</p> */}
       {/* <PixiScreen></PixiScreen> */}
       <Particles className={styles.particles} quantity={100} ease={80} color={"#000000"} refresh></Particles>
-
-      <Marquee reverse pauseOnHover>
-        {Array(10)
-          .fill(0)
-          .map((item, index) => {
-            return index
-          })}
-      </Marquee>
-
-      <Marquee pauseOnHover>
-        {Array(10)
-          .fill(0)
-          .map((item, index) => {
-            return index
-          })}
-      </Marquee>
     </div>
   )
 }

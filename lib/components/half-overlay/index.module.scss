@@ -1,0 +1,31 @@
+.container {
+  position: relative;
+  width: max-content;
+
+  .halfOverlay {
+    --tw-gradient-from-position:  ;
+    --tw-gradient-from: #fff var(--tw-gradient-from-position,);
+    --tw-gradient-to: hsla(0, 0%, 100%, 0) var(--tw-gradient-to-position,);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+
+    width: 33.333333%;
+    position: absolute;
+
+    pointer-events: none;
+  }
+
+  .left {
+    left: 0;
+    bottom: 0;
+    top: 0;
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  }
+
+  .right {
+    right: 0;
+    bottom: 0;
+    top: 0;
+
+    background-image: linear-gradient(to left, var(--tw-gradient-stops));
+  }
+}
