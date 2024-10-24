@@ -1,5 +1,6 @@
 import "./index.module.scss"
 import "@/css/base/index.scss"
+import "~/lib/components/index.css"
 
 import { routing } from "@/i18n/routing"
 import { NextIntlClientProvider } from "next-intl"
