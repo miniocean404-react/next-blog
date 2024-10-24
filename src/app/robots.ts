@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
       disallow: "/private/",
     },
     // sitemap的地址
-    sitemap: "https://acme.com/sitemap.xml",
+    sitemap: "https://blog-miniocean404s.vercel.app/sitemap.xml",
   }
 }

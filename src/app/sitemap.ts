@@ -4,19 +4,19 @@ import { MetadataRoute } from "next"
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "blog-miniocean404s.vercel.app",
+      url: "https://blog-miniocean404s.vercel.app",
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 1,
     },
+    // {
+    //   url: "https://blog-miniocean404s.vercel.app/",
+    //   lastModified: new Date(),
+    //   changeFrequency: "monthly",
+    //   priority: 0.8,
+    // },
     {
-      url: "blog-miniocean404s.vercel.app/",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "blog-miniocean404s.vercel.app/zh",
+      url: "https://blog-miniocean404s.vercel.app/zh",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.5,

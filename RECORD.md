@@ -74,3 +74,9 @@ const config: Config = {
 # vercel.json 文档
 
 - https://vercel.com/docs/projects/project-configuration
+
+# SEO
+
+## Google 搜索引擎优化
+
+1. Google搜索成最大入口，简单谈下个人博客的SEO: https://juejin.cn/post/6844904050740166663?searchId=20241025005109B96F36B1CDFA183710E9
