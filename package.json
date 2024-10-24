@@ -21,6 +21,9 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.5",
+    "@trpc/client": "^10.45.2",
+    "@trpc/next": "^10.45.2",
+    "@trpc/server": "^10.45.2",
     "axios": "1.7.7",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.0",
