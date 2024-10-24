@@ -1,5 +1,6 @@
 import "./index.module.scss"
 import "@/css/base/index.scss"
+
 import { routing } from "@/i18n/routing"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, unstable_setRequestLocale } from "next-intl/server"

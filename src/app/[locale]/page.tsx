@@ -8,6 +8,7 @@ import Typed from "typed.js"
 import Particles from "~/lib/components/particles"
 import Marquee from "~/lib/components/marquee"
 import HalfOverlay from "~/lib/components/half-overlay"
+import HeroVideoDialog from "~/lib/components/hero-video-dialog"
 
 const reviews = [
   {
@@ -71,6 +72,14 @@ export default function Home(props: { params: { locale: string } }) {
       {/* <p>用艺术家的视角审视，以工匠精神创造开发</p> */}
       {/* <PixiScreen></PixiScreen> */}
       <Particles className={styles.particles} quantity={100} ease={80} color={"#000000"} refresh></Particles>
+
+      <HeroVideoDialog
+        className="dark:hidden block"
+        animationStyle="from-center"
+        videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
+        thumbnailSrc="https://startup-template-sage.vercel.app/hero-light.png"
+        thumbnailAlt="Hero Video"
+      />
     </div>
   )
 }

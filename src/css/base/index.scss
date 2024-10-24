@@ -2,8 +2,11 @@
 @import "./tool";
 @import "./icons.scss";
 @import "./var.scss";
-
 @import "../mixins/index.mixins.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @page {
   size: auto A4 landscape; // 打印A4大小
