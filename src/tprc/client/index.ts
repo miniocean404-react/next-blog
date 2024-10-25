@@ -8,7 +8,6 @@ export const trpcClient = createTRPCProxyClient<TRPCRouter>({
     // 设置 trpc 请求唯一地址，对应api路由
     httpBatchLink({
       url: `${getBaseUrl()}/api/trpc`,
-      // http://localhost:3000/api/trpc
     }),
   ],
 })
