@@ -29,7 +29,7 @@ next14: https://www.bilibili.com/video/BV157pRe8EyD/?spm_id_from=333.337.search-
 
 1. m3u8:https://juejin.cn/post/7382966707060703268?share_token=91713cfd-d861-496c-bdc0-db4ea0e75844
 
-# cli
+# cli 命令
 
 ```shell
 # 开启实验性 https
