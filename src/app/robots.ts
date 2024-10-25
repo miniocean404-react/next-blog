@@ -8,8 +8,9 @@ export default function robots(): MetadataRoute.Robots {
       // 允许抓取任何内容
       allow: "/",
       // /private 下的内容不允许
-      disallow: "/private/",
+      // disallow: "/private",
     },
+
     // sitemap的地址
     sitemap: "https://blog-miniocean404s.vercel.app/sitemap.xml",
   }

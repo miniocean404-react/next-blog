@@ -6,7 +6,7 @@
   "i18n-ally.enabledParsers": ["ts", "json"], // 指定启用文件格式
   "i18n-ally.namespace": true,
   "i18n-ally.extract.autoDetect": true,
-  "i18n-ally.sourceLanguage": "zh-CN",
+  "i18n-ally.sourceLanguage": "zh",
   "npm.exclude": ["**/.next/**"],
 
   "cSpell.words": ["Element Plus", "element-plus"], // code spell checker总是认为是对的单词列表
