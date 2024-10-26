@@ -13,7 +13,7 @@
     "start": "next start",
     "lint": "next lint",
     "commit": "cz",
-    "clean": "rimraf node_modules",
+    "clean": "rimraf ./node_modules",
     "format": "prettier --write  src/**/*.{css,tsx,ts}",
     "prepare": "pnpm husky install",
     "tailwindcss-init": "tailwindcss init -p",

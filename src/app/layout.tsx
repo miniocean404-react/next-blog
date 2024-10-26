@@ -1,5 +1,5 @@
-import { APP_DEFAULT_TITLE, APP_DESCRIPTION, APP_NAME, APP_TITLE_TEMPLATE } from "@/constant/app"
-import type { Metadata } from "next"
+import { APP_DEFAULT_TITLE, APP_DESCRIPTION, APP_NAME, APP_TITLE_TEMPLATE } from "@/constant/app";
+import type { Metadata } from "next";
 
 // 在页面中也可以设置专属页面 metadata，并与顶级 metadata 进行merge
 export const metadata: Metadata = {
@@ -7,7 +7,8 @@ export const metadata: Metadata = {
     default: APP_DEFAULT_TITLE,
     template: APP_TITLE_TEMPLATE,
   },
-  keywords: "博客，我是小海洋呀，Isaac Wang, Javascript, Vue, Css, Nextjs, React, TypeScript, NextJs, NestJs, Nodejs, Docker, web3，区块链",
+  keywords:
+    "博客，我是小海洋呀，Isaac Wang, Javascript, Vue, Css, Nextjs, React, TypeScript, NextJs, NestJs, Nodejs, Docker, web3，区块链",
   applicationName: APP_NAME,
   description: APP_DESCRIPTION,
   manifest: "/manifest.webmanifest",
@@ -63,8 +64,8 @@ export const metadata: Metadata = {
     },
     description: APP_DESCRIPTION,
   },
-}
+};
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  return children
+  return children;
 }

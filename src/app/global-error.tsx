@@ -1,6 +1,12 @@
-"use client"
+"use client";
 
-export default function GlobalError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+export default function GlobalError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
   return (
     <html>
       <body>
@@ -8,5 +14,5 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
         <button onClick={() => reset()}>Try again</button>
       </body>
     </html>
-  )
+  );
 }

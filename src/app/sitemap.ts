@@ -1,6 +1,6 @@
-import { MetadataRoute } from "next"
+import { MetadataRoute } from "next";
 
-const url = "https://blog-miniocean404s.vercel.app"
+const url = "https://blog-miniocean404s.vercel.app";
 
 // 站点地图 可帮助搜索引擎更有效地发现您的网页并为其建立索引，也分为动态和静态两种
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -29,5 +29,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-  ]
+  ];
 }

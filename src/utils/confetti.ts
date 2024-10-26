@@ -1,4 +1,4 @@
-import confetti from "canvas-confetti"
+import confetti from "canvas-confetti";
 
 const pc = {
   origin: {
@@ -15,7 +15,7 @@ const pc = {
   spread: 120,
   // 值越小粒子消失得越快，值越大粒子消失得越慢 默认 200
   ticks: 700,
-}
+};
 
 const phone = {
   origin: {
@@ -32,7 +32,7 @@ const phone = {
   spread: 70,
   // 值越小粒子消失得越快，值越大粒子消失得越慢 默认 200
   ticks: 500,
-}
+};
 
 const common = {
   // 发射的角度，0 表示水平向右；90 表示垂直向上；180 表示水平向左；270 表示垂直向下。
@@ -54,6 +54,6 @@ const common = {
   // 五彩纸屑的形状数组，可以为 square 和 circle。默认设置是均匀混合使用这两种形状。
   // ['circle', 'circle', 'square'] 表示使用三分之二的圆圈和三分之一的正方形
   // shapes: ["circle", "circle", "square"],
-}
+};
 
-export const startConfetti = () => confetti({ ...common, ...pc })
+export const startConfetti = () => confetti({ ...common, ...pc });

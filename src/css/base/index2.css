@@ -41,7 +41,8 @@
 @font-face {
   font-family: Emoji;
   /* Apple Color Emojiji（苹果 Emoji）Segoe UI Symbol（win8.1/10）Segoe UI Symbol（win7/8）Noto Color Emoji（安卓） */
-  src: local("Apple Color Emojiji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"), local("Noto Color Emoji");
+  src: local("Apple Color Emojiji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"),
+    local("Noto Color Emoji");
   /* 限制Emoji字体作用的字符范围，不限制的话,兜底字符的Unicode范围覆盖了emoji字体
   unicode-range限制了Emoji字体的作用范围，符合该范围则使用Emoji这个font-family */
   unicode-range: U+1F000-1F644, U+203C-3299;

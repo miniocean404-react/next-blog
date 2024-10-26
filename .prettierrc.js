@@ -1,8 +1,8 @@
 module.exports = {
   useTabs: false, // 使用 tab 缩进，默认 false
   tabWidth: 2, //tab 缩进大小，默认为 2
-  semi: false, // 使用分号，默认 true
-  printWidth: 160, // 超过最大值换行
+  semi: true, // 使用分号，默认 true
+  printWidth: 100, // 超过最大值换行
   singleQuote: false, // 是否强制单引号
   jsxSingleQuote: false, // 在 jsx 中使用单引号代替双引号，
   bracketSpacing: true, // 对象大括号内的首尾需要空格 默认 true
