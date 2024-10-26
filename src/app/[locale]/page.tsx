@@ -1,24 +1,24 @@
-"use client";
+"use client"
 
-import { startConfetti } from "@/utils/confetti";
-import { useEffect, useRef } from "react";
-import Typed from "typed.js";
-import Particles from "~/lib/components/magicui/particles";
+import { startConfetti } from "@/utils/confetti"
+import { useEffect, useRef } from "react"
+import Typed from "typed.js"
+import Particles from "~/lib/components/magicui/particles"
 
 export default function Home(props: { params: { locale: string } }) {
-  const el = useRef(null);
+  const el = useRef(null)
 
   useEffect(() => {
     const typed = new Typed(el.current, {
       strings: ["<span>用艺术家的视角审视</span>", "以工匠精神创造开发"],
       typeSpeed: 50,
       loop: true,
-    });
+    })
 
     return () => {
-      typed.destroy();
-    };
-  }, []);
+      typed.destroy()
+    }
+  }, [])
 
   return (
     <div>
@@ -34,5 +34,5 @@ export default function Home(props: { params: { locale: string } }) {
         refresh
       ></Particles>
     </div>
-  );
+  )
 }

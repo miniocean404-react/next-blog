@@ -1,15 +1,15 @@
-"use client";
-import Link from "next/link";
-import { useState } from "react";
+"use client"
+import Link from "next/link"
+import { useState } from "react"
 
 export default function TemplateLayout({
   children,
   params: { locale },
 }: {
-  children: React.ReactNode;
-  params: { locale: string };
+  children: React.ReactNode
+  params: { locale: string }
 }) {
-  const [state, setState] = useState(0);
+  const [state, setState] = useState(0)
 
   return (
     <div>
@@ -18,5 +18,5 @@ export default function TemplateLayout({
       <div onClick={() => setState(state + 1)}>数量{state}</div>
       {children}
     </div>
-  );
+  )
 }

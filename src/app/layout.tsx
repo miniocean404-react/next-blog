@@ -1,5 +1,5 @@
-import { APP_DEFAULT_TITLE, APP_DESCRIPTION, APP_NAME, APP_TITLE_TEMPLATE } from "@/constant/app";
-import type { Metadata } from "next";
+import { APP_DEFAULT_TITLE, APP_DESCRIPTION, APP_NAME, APP_TITLE_TEMPLATE } from "@/constant/app"
+import type { Metadata } from "next"
 
 // 在页面中也可以设置专属页面 metadata，并与顶级 metadata 进行merge
 export const metadata: Metadata = {
@@ -64,8 +64,8 @@ export const metadata: Metadata = {
     },
     description: APP_DESCRIPTION,
   },
-};
+}
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return children
 }

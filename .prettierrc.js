@@ -1,7 +1,7 @@
 module.exports = {
   useTabs: false, // 使用 tab 缩进，默认 false
   tabWidth: 2, //tab 缩进大小，默认为 2
-  semi: true, // 使用分号，默认 true
+  semi: false, // 使用分号，默认 true
   printWidth: 100, // 超过最大值换行
   singleQuote: false, // 是否强制单引号
   jsxSingleQuote: false, // 在 jsx 中使用单引号代替双引号，
@@ -22,4 +22,4 @@ module.exports = {
 
   rangeStart: 0, // 每个文件格式化的范围是文件的全部内容
   rangeEnd: Infinity,
-}
+};

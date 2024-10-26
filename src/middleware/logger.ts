@@ -1,13 +1,13 @@
-import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server";
+import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server"
 
 // mock api
 const analyze = (data: { pathname: string; searchParams: Record<string, string> }) =>
   new Promise<void>((resolve) => {
     setTimeout(() => {
-      console.log("---- Record log ----");
-      resolve();
-    }, 2000);
-  });
+      console.log("---- Record log ----")
+      resolve()
+    }, 2000)
+  })
 
 // 日志中间件
 export default function loggerMiddleware(
@@ -17,12 +17,12 @@ export default function loggerMiddleware(
 ) {
   const {
     nextUrl: { pathname, searchParams },
-  } = req;
+  } = req
   event.waitUntil(
     analyze({
       pathname,
       searchParams: Object.fromEntries(searchParams),
     }),
-  );
-  return resp;
+  )
+  return resp
 }

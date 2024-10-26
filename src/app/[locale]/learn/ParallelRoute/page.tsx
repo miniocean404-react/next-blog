@@ -1,9 +1,9 @@
-import Link from "next/link";
-import type { Metadata } from "next";
+import Link from "next/link"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "平行路由",
-};
+}
 
 export default async function Home(props: { locale: string }) {
   return (
@@ -14,5 +14,5 @@ export default async function Home(props: { locale: string }) {
       {/* 解决：1. 在上述页面中都添加 demo3，但是有很多重复  2.在上述中除了 demo1 之外的目录中添加 default.ts,设置默认文件*/}
       <Link href={"/zh/learn/ParallelRoute/demo3"}>demo3</Link>
     </div>
-  );
+  )
 }
