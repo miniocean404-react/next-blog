@@ -105,16 +105,16 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
     <>
       <header
         className={cn(
-          "fixed top-0 z-[var(--vp-z-index-header)] backdrop-blur-[10px] bg-[var(--vp-nav-bg-color)]",
-          "border-b-[1px] border-b-solid border-b-[var(--vp-c-divider)]",
+          "fixed top-0 z-[var(--vp-z-index-header)] backdrop-blur-md bg-[var(--vp-nav-bg-color)]",
+          "border-b border-b-solid border-b-[var(--vp-c-divider)]",
           "flex items-center  h-16 w-full",
           "pl-6 pr-2 md:px-8",
         )}
       >
-        <div className="flex w-full max-w-[calc(var(--vp-layout-max-width)-64px)] mx-auto justify-between">
-          <Link className="text-[16px] font-600 flex items-center" href={"/zh"}>
+        <div className="flex w-full max-w-[calc(var(--vp-layout-max-width)-4rem)] mx-auto justify-between">
+          <Link className="text-base font-600 flex items-center" href={"/zh"}>
             <Image
-              className="mr-[8px]"
+              className="mr-2"
               src={"/svg/love.svg"}
               alt={"logo"}
               width={24}
@@ -127,7 +127,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
             <div className="md:pl-6 md:flex md:flex-grow">
               <div
                 className={cn(
-                  "group flex items-center h-10 px-3 rounded-lg cursor-pointer border-[1px] border-solid border-transparent transition-border duration-500",
+                  "group flex items-center h-10 px-3 rounded-lg cursor-pointer border border-solid border-transparent transition-border duration-500",
                   "md:bg-[var(--vp-c-bg-alt)] md:hover:border md:hover:border-solid md:hover:border-[#646cff]",
                 )}
               >
@@ -148,7 +148,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
                 </span>
 
                 <span className="hidden px-1.5 text-[var(--vp-c-text-2)] text-xs font-medium rounded-ss md:flex">
-                  <kbd className="mr-[2px]">
+                  <kbd className="mr-0.5">
                     {os === "Mac OS" ? "⌘" : ""}
                     {os === "Windows" ? "Ctrl" : ""}
                   </kbd>
@@ -158,29 +158,29 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
             </div>
 
             <div className="hidden items-center md:flex">
-              <div className="text-[14px] font-500 cursor-pointer px-[12px] py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
+              <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
                 指引
               </div>
-              <div className="text-[14px] font-500 cursor-pointer px-[12px] py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
+              <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
                 配置
               </div>
 
-              <div className="px-[8px] py-0">
+              <div className="px-2 py-0">
                 <Link
-                  className="h-[36px] w-[36px] inline-flex justify-center items-center cursor-pointer rounded-[12px] hover:bg-[var(--vp-c-bg-alt)]"
+                  className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
                   href={"https://github.com/MiniOcean404"}
                 >
-                  <SiGithub className="w-[20px] h-[20px]"></SiGithub>
+                  <SiGithub className="size-5"></SiGithub>
                 </Link>
               </div>
 
-              <div className="px-[8px] py-0">
+              <div className="px-2">
                 <button
-                  className="h-[36px] w-[36px] inline-flex justify-center items-center cursor-pointer rounded-[12px] hover:bg-[var(--vp-c-bg-alt)]"
+                  className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
                   onClick={toggle}
                 >
-                  {theme === "light" && <Sun className="w-[20px] h-[20px]" />}
-                  {theme === "dark" && <Moon className="w-[20px] h-[20px]" />}
+                  {theme === "light" && <Sun className="size-5" />}
+                  {theme === "dark" && <Moon className="size-5" />}
                 </button>
               </div>
             </div>
@@ -192,7 +192,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
         </div>
       </header>
 
-      <div className="w-full h-[96px] fixed top-[0] pointer-events-none before:content-[''] before:absolute before:w-full before:h-3/5 before:z-0 before:left-2/4 before:top-[0] before:-bottom-1/5 before:-translate-x-1/2 before:translate-y-[0] before:rotate-[0] before:skew-x-[0] before:skew-y-[0] before:scale-x-100 before:scale-y-100 before:filter blur-3xl before:opacity-20 before:[background-size:200%] before:bg-[linear-gradient(90deg,_#ff4242,_#a1ff42,_#42a1ff,_#42d0ff,_#a142ff)] before:animate-[rainbow_var(--speed,_2s)_infinite_linear] z-[var(--vp-z-index-header)]"></div>
+      <div className="w-full h-24 fixed top-[0] pointer-events-none before:content-[''] before:absolute before:w-full before:h-3/5 before:z-0 before:left-2/4 before:top-[0] before:-bottom-1/5 before:-translate-x-1/2 before:translate-y-[0] before:rotate-[0] before:skew-x-[0] before:skew-y-[0] before:scale-x-100 before:scale-y-100 before:filter blur-3xl before:opacity-20 before:[background-size:200%] before:bg-[linear-gradient(90deg,_#ff4242,_#a1ff42,_#42a1ff,_#42d0ff,_#a142ff)] before:animate-[rainbow_var(--speed,_2s)_infinite_linear] z-[var(--vp-z-index-header)]"></div>
     </>
   )
 }
