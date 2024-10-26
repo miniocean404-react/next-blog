@@ -1,4 +1,4 @@
-type Messages = typeof import("./locales/en.json")
+type Messages = typeof import("./locales/zh.json")
 declare interface IntlMessages extends Messages {}
 
 declare namespace NodeJS {
