@@ -11,6 +11,9 @@ importers:
       '@formatjs/intl-localematcher':
         specifier: ^0.5.5
         version: 0.5.5
+      '@icons-pack/react-simple-icons':
+        specifier: ^10.1.0
+        version: 10.1.0(react@18.3.1)
       '@radix-ui/react-hover-card':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -936,6 +939,11 @@ packages:
 
   '@formatjs/intl-localematcher@0.5.5':
     resolution: {integrity: sha512-t5tOGMgZ/i5+ALl2/offNqAQq/lfUnKLEw0mXQI4N4bqpedhrSE+fyKLpwnd22sK0dif6AV+ufQcTsKShB9J1g==}
+
+  '@icons-pack/react-simple-icons@10.1.0':
+    resolution: {integrity: sha512-sZ2oDkYaVAci7GuNL8okERJn4Ej0INbeCwtIDVuwWfO5zILW7j5frvKQbozTB+fLtZqEwAP9KkNp7oR8WeHaIg==}
+    peerDependencies:
+      react: ^16.13 || ^17 || ^18
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -5028,6 +5036,10 @@ snapshots:
   '@formatjs/intl-localematcher@0.5.5':
     dependencies:
       tslib: 2.7.0
+
+  '@icons-pack/react-simple-icons@10.1.0(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:

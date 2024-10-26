@@ -25,11 +25,14 @@ const config: Config = {
         // base: ["30px", "2rem"],
       },
     },
-    screens: {
-      // 修改媒体查询 768px 尺寸为 300px
-      // md: "300px",
+    // screens: {
+    // 修改媒体查询 768px 尺寸为 300px
+    // md: "300px",
+    // },
+    animation: {
+      marquee: "marquee var(--duration) infinite linear",
+      "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
     },
-    animation: { marquee: "marquee var(--duration) infinite linear", "marquee-vertical": "marquee-vertical var(--duration) linear infinite" },
     keyframes: {
       rainbow: {
         "0%": { "background-position": "0%" },

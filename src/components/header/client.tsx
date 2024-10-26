@@ -6,12 +6,12 @@ import Image from "next/image"
 import { APP_DEFAULT_TITLE } from "@/constant/app"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslations } from "next-intl"
-import SearchIcon from "~/public/svg/search.svg"
 import Link from "next/link"
 import { useEvent } from "react-use"
-import SunIcon from "~/public/svg/sun.svg"
-import MoonIcon from "~/public/svg/moon.svg"
 import GithubIcon from "~/public/svg/github.svg"
+import { Moon, Sun, Search, AlignRight } from "lucide-react"
+import { SiGithub } from "@icons-pack/react-simple-icons"
+import { cn } from "@/utils/tw"
 
 export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
   const { systemTheme, theme, setTheme } = useTheme()
@@ -104,11 +104,14 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
   return (
     <>
       <header
-        className={
-          "fixed top-0 h-[64px] w-[100%] px-[32px] py-0 z-[var(--vp-z-index-header)] backdrop-blur-[10px] bg-[var(--vp-nav-bg-color)] border-b-[1px] border-b-solid border-b-[var(--vp-c-divider)] flex items-center"
-        }
+        className={cn(
+          "fixed top-0 z-[var(--vp-z-index-header)] backdrop-blur-[10px] bg-[var(--vp-nav-bg-color)]",
+          "border-b-[1px] border-b-solid border-b-[var(--vp-c-divider)]",
+          "flex items-center  h-16 w-full",
+          "pl-6 pr-2 md:px-8",
+        )}
       >
-        <div className="flex w-[100%] max-w-[calc(var(--vp-layout-max-width)-64px)] mx-auto my-0">
+        <div className="flex w-full max-w-[calc(var(--vp-layout-max-width)-64px)] mx-auto justify-between">
           <Link className="text-[16px] font-600 flex items-center" href={"/zh"}>
             <Image
               className="mr-[8px]"
@@ -120,15 +123,31 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
             <span>{APP_DEFAULT_TITLE}</span>
           </Link>
 
-          <div className="flex flex-grow items-center">
-            <div className="flex pl-[24px] flex-grow">
-              <div className="group flex items-center h-[40px] px-[12px] py-0 rounded-[8px] bg-[var(--vp-c-bg-alt)] cursor-pointer border-[1px] border-solid border-transparent transition-border duration-500 ease hover:border hover:border-solid hover:border-[#646cff]">
-                <SearchIcon className="size-[14px] text-[var(--vp-c-text-2)] mr-[8px] transition-colors duration-500 ease-in-out group-hover:text-[var(--vp-c-text-1)] "></SearchIcon>
-                <span className="text-[var(--vp-c-text-2)] leading-[24px] text-[13px] font-500px pr-[16px] transition-color duration-500 ease group-hover:text-[var(--vp-c-text-1)]">
+          <div className="flex items-center md:flex-grow">
+            <div className="md:pl-6 md:flex md:flex-grow">
+              <div
+                className={cn(
+                  "group flex items-center h-10 px-3 rounded-lg cursor-pointer border-[1px] border-solid border-transparent transition-border duration-500",
+                  "md:bg-[var(--vp-c-bg-alt)] md:hover:border md:hover:border-solid md:hover:border-[#646cff]",
+                )}
+              >
+                <Search
+                  className={cn(
+                    "size-3.5 text-[var(--vp-c-text-2)]",
+                    "md:m-2 md:transition-colors md:duration-500 md:group-hover:text-[var(--vp-c-text-1)]",
+                  )}
+                ></Search>
+
+                <span
+                  className={cn(
+                    "hidden text-xs/6 font-medium pr-4 transition-color duration-500 text-[var(--vp-c-text-2)] ",
+                    "md:group-hover:text-[var(--vp-c-text-1)] md:flex",
+                  )}
+                >
                   {t("search")}
                 </span>
 
-                <span className="px-[6px] py-0 text-[var(--vp-c-text-2)] text-[12px] font-500 box-border rounded-[4px]">
+                <span className="hidden px-1.5 text-[var(--vp-c-text-2)] text-xs font-medium rounded-ss md:flex">
                   <kbd className="mr-[2px]">
                     {os === "Mac OS" ? "⌘" : ""}
                     {os === "Windows" ? "Ctrl" : ""}
@@ -138,7 +157,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
               </div>
             </div>
 
-            <div className="flex items-center">
+            <div className="hidden items-center md:flex">
               <div className="text-[14px] font-500 cursor-pointer px-[12px] py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
                 指引
               </div>
@@ -151,7 +170,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
                   className="h-[36px] w-[36px] inline-flex justify-center items-center cursor-pointer rounded-[12px] hover:bg-[var(--vp-c-bg-alt)]"
                   href={"https://github.com/MiniOcean404"}
                 >
-                  <GithubIcon className="w-[20px] h-[20px]"></GithubIcon>
+                  <SiGithub className="w-[20px] h-[20px]"></SiGithub>
                 </Link>
               </div>
 
@@ -160,11 +179,15 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
                   className="h-[36px] w-[36px] inline-flex justify-center items-center cursor-pointer rounded-[12px] hover:bg-[var(--vp-c-bg-alt)]"
                   onClick={toggle}
                 >
-                  {theme === "light" && <SunIcon className="w-[20px] h-[20px]" />}
-                  {theme === "dark" && <MoonIcon className="w-[20px] h-[20px]" />}
+                  {theme === "light" && <Sun className="w-[20px] h-[20px]" />}
+                  {theme === "dark" && <Moon className="w-[20px] h-[20px]" />}
                 </button>
               </div>
             </div>
+
+            <button className="h-10 flex items-center px-3 md:hidden" onClick={toggle}>
+              <AlignRight className="size-3.5 text-[var(--vp-c-text-2)]"></AlignRight>
+            </button>
           </div>
         </div>
       </header>
