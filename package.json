@@ -14,7 +14,6 @@
     "lint": "next lint",
     "commit": "cz",
     "clean": "rimraf node_modules",
-    "windows-clean": "del node_modules",
     "format": "prettier --write  src/**/*.{css,tsx,ts}",
     "prepare": "pnpm husky install",
     "tailwindcss-init": "tailwindcss init -p",

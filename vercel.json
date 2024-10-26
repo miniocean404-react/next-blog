@@ -7,5 +7,16 @@
   "framework": "nextjs",
   "regions": [
     "hkg1"
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "all"
+        }
+      ]
+    }
   ]
 }
