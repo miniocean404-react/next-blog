@@ -10,8 +10,9 @@ import Link from "next/link"
 import { useEvent } from "react-use"
 import GithubIcon from "~/public/svg/github.svg"
 import { Moon, Sun, Search, AlignRight } from "lucide-react"
-import { SiGithub } from "@icons-pack/react-simple-icons"
+import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
 import { cn } from "@/utils/tw"
+import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
 
 export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
   const { systemTheme, theme, setTheme } = useTheme()
@@ -168,9 +169,18 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
               <div className="px-2 py-0">
                 <Link
                   className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
-                  href={"https://github.com/MiniOcean404"}
+                  href={GITHUB_LINK}
                 >
                   <SiGithub className="size-5"></SiGithub>
+                </Link>
+              </div>
+
+              <div className="px-2 py-0">
+                <Link
+                  className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
+                  href={NOTION_LINK}
+                >
+                  <SiNotion className="size-5"></SiNotion>
                 </Link>
               </div>
 
