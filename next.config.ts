@@ -1,6 +1,10 @@
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
-import { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_PRODUCTION_SERVER } from "next/constants.js"
+import {
+  PHASE_DEVELOPMENT_SERVER,
+  PHASE_PRODUCTION_BUILD,
+  PHASE_PRODUCTION_SERVER,
+} from "next/constants.js"
 import path from "path"
 import { fileURLToPath } from "url"
 
@@ -52,6 +56,10 @@ const config: NextConfig = {
   // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
   // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    if (isDev) {
+      config.devtool = "source-map"
+    }
+
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],
@@ -92,7 +100,8 @@ const config: NextConfig = {
           { key: "Access-Control-Allow-Methods", value: "GET,DELETE,PATCH,POST,PUT" },
           {
             key: "Access-Control-Allow-Headers",
-            value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+            value:
+              "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
           },
         ],
       },
@@ -125,6 +134,8 @@ const config: NextConfig = {
   poweredByHeader: true,
   // 默认为true, Next.js 默认会为每个页面生成etags 。
   generateEtags: true,
+  // 生产模式是否开启 sourceMap
+  productionBrowserSourceMaps: false,
 }
 
 export default withNextIntl(config)

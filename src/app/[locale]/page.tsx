@@ -26,8 +26,10 @@ export default function Home(props: { params: { locale: string } }) {
 
   return (
     <>
-      <div className={"flex justify-center items-center mr-auto text-6xl h-dvh"}>
-        <h2 ref={el} className="text-3xl md:text-6xl"></h2>
+      <div className="flex justify-center items-center h-dvh">
+        <div className={"text-3xl md:text-6xl"}>
+          <span ref={el}></span>
+        </div>
       </div>
 
       <Particles
@@ -44,11 +46,11 @@ export default function Home(props: { params: { locale: string } }) {
         distance={100}
       >
         <DockIcon className="rounded-full bg-black/10 dark:bg-white/10 p-2">
-          <SiGithub width={""} height={""} />
+          <SiGithub size={"100%"} />
         </DockIcon>
 
         <DockIcon className="rounded-full bg-black/10 dark:bg-white/10 p-2">
-          <SiNotion width={""} height={""} />
+          <SiNotion size={"100%"} />
         </DockIcon>
       </Dock>
     </>
