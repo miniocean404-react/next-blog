@@ -5,5 +5,9 @@ declare namespace NodeJS {
   interface ProcessEnv {
     // 基础路径
     NEXT_PUBLIC_BASEURL: string
+    AUTH_GITHUB_ID: string
+    AUTH_GITHUB_SECRET: string
+    AUTH_GOOGLE_ID: string
+    AUTH_GOOGLE_SECRET: string
   }
 }

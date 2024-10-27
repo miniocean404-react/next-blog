@@ -56,9 +56,7 @@ const config: NextConfig = {
   // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
   // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    if (isDev) {
-      config.devtool = "source-map"
-    }
+    // if (isDev) config.devtool = "source-map"
 
     config.module.rules.push({
       test: /\.svg$/,

@@ -3,11 +3,12 @@ import "@/css/base/index.css"
 
 import { routing } from "@/i18n/routing"
 import { NextIntlClientProvider } from "next-intl"
-import { getMessages, unstable_setRequestLocale } from "next-intl/server"
+import { getMessages, setRequestLocale } from "next-intl/server"
 import { ThemeProvider } from "next-themes"
 import getConfig from "next/config"
 import localFont from "next/font/local"
 import Header from "@/components/header"
+import { notFound } from "next/navigation"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
@@ -31,7 +32,13 @@ export default async function LocaleLayout({
   params: { locale: string }
 }) {
   const { locale } = await params
-  unstable_setRequestLocale(locale)
+
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as any)) {
+    notFound()
+  }
+
+  setRequestLocale(locale)
   const messages = await getMessages()
 
   return (
