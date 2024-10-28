@@ -25,4 +25,4 @@ export const middleware = t.middleware
 // 服务端内部调用
 // createCaller 在 trpc v11 中已经废弃
 // @see https://trpc.io/docs/server/server-side-calls#create-caller
-export const createCallerFactory = t.createCallerFactory
+export const createCaller = t.createCallerFactory
