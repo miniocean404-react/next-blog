@@ -47,10 +47,4 @@ export const User = router({
         })
       }
     }),
-
-  updateUser: authedProcedure
-    .input((val) => val)
-    .mutation(async (opt) => {
-      console.log(opt.input)
-    }),
 })

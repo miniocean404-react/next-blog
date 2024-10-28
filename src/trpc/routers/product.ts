@@ -18,14 +18,6 @@ const mid1 = middleware(async (opts) => {
 const mid1And2 = mid1.unstable_pipe(mid2)
 
 export const Prodcut = router({
-  getAllProducts: publicProcedure.query(async (opts) => {
-    return {
-      status: 200,
-      data: [],
-      message: "success",
-    }
-  }),
-
   getProductById: publicProcedure
     .use(mid1And2)
     // 选用 zod 对 input 进行校验
