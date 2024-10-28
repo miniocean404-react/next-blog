@@ -1,3 +1,4 @@
+import { prisma } from "./src/db/index"
 type Messages = typeof import("./locales/zh.json")
 declare interface IntlMessages extends Messages {}
 
@@ -10,4 +11,8 @@ declare namespace NodeJS {
     AUTH_GOOGLE_ID: string
     AUTH_GOOGLE_SECRET: string
   }
+}
+
+declare global {
+  var DB: undefined | typeof prisma
 }
