@@ -1,13 +1,13 @@
 // app/_trpc/routers/user.ts
 import { TRPCError } from "@trpc/server"
-import { publicProcedure, adminProcedure, authedProcedure } from "../procedure"
-import { router } from "../index"
+import { publicProcedure, adminProcedure, authedProcedure } from "../server/procedure"
+import { router } from "../server/index"
 
 export const User = router({
   getUserList: publicProcedure.query(async (opts) => {
     console.log(opts.ctx.session, (opts as any).meta)
     // { user: { id: 1, name: 'xfz', role: 'admin' } }
-    // { authRequired: false, role: 'tourist' }
+    // { authRequired: false, role: 'normal' }
 
     // Get data from Database
     const users: UserType[] = [

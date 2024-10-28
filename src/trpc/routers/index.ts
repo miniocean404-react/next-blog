@@ -1,7 +1,7 @@
 // app/_trcp/index.ts
 import { User } from "./user"
 import { Prodcut } from "./product"
-import { router } from "../index"
+import { router } from "../server/index"
 
 /**
  * 每个 router 有自己的 namespace，下面的 User 和 Product 就是 namespace

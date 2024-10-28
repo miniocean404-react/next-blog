@@ -1,14 +1,12 @@
 "use client"
 
-import { startConfetti } from "@/utils/confetti"
+import { trpcClient } from "@/trpc/client"
 import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
 import { useTheme } from "next-themes"
 import { useEffect, useRef } from "react"
 import Typed from "typed.js"
 import { Dock, DockIcon } from "~/lib/components/magicui/dock"
-import HyperText from "~/lib/components/magicui/hyper-text"
 import Particles from "~/lib/components/magicui/particles"
-import TextReveal from "~/lib/components/magicui/text-reveal"
 
 export default function Home(props: { params: { locale: string } }) {
   const el = useRef(null)
@@ -21,10 +19,16 @@ export default function Home(props: { params: { locale: string } }) {
       loop: true,
     })
 
+    init()
+
     return () => {
       typed.destroy()
     }
   }, [])
+
+  const init = async () => {
+    // const res = await trpcClient.User.getUserList.query()
+  }
 
   return (
     <>

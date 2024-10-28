@@ -2,7 +2,7 @@ import { TRPCError } from "@trpc/server"
 import { t } from "./index"
 
 export const publicProcedure = t.procedure
-// Meta: { authRequired: false, role: 'tourist' }
+// Meta: { authRequired: false, role: 'normal' }
 
 // 需要身份验证的 procedure，其实就是一个 middleware
 export const authedProcedure = t.procedure

@@ -1,6 +1,6 @@
 // app/_trpc/routers/product.ts
-import { publicProcedure } from "../procedure"
-import { middleware, router } from "../index"
+import { publicProcedure } from "../server/procedure"
+import { middleware, router } from "../server/index"
 import { z } from "zod"
 
 const mid2 = middleware(async (opts) => {

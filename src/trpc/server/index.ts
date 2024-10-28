@@ -6,7 +6,7 @@ import type { Context } from "./context"
 // 一般用于，身份校验，角色区分等
 interface Meta {
   authRequired?: boolean // 是否需要身份验证
-  role?: "tourist" | "user" | "admin" // 用户角色区分
+  role?: "normal" | "user" | "admin" // 用户角色区分
 }
 
 export const t = initTRPC
@@ -15,7 +15,7 @@ export const t = initTRPC
   .create({
     defaultMeta: {
       authRequired: false,
-      role: "tourist",
+      role: "normal",
     },
   })
 
