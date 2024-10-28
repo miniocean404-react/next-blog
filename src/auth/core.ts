@@ -10,9 +10,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn: "/",
     error: "/zh/login",
   },
+  debug: process.env.NODE_ENV !== "production",
+  secret: process.env.AUTH_SECRET,
   session: {
     strategy: "jwt",
   },
+  // 在开发过程中添加此行以信任 localhost
+  trustHost: process.env.NODE_ENV !== "production",
   providers: [
     Credentials({
       authorize: async (credentials) => {
@@ -23,10 +27,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
 
         return {
-          id: "1",
+          id: "222222222",
           name: "admin",
-          email: "",
+          email: "22",
           image: "",
+          role: "normal",
         }
       },
     }),
@@ -41,15 +46,24 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    jwt({ token }) {
+    // async signIn({ user, account, profile, email, credentials }) {
+    //   return true
+    // },
+    jwt({ token, account, user }) {
+      // 用户在登录期间可用
+      if (user) {
+        token.role = user.role
+      }
+
       return token
     },
     session(params) {
       const { session, token } = params
       if (session.user && token.sub) {
-        // @ts-ignore
         session.user.id = token.sub
+        session.user.role = token.role as string
       }
+
       return session
     },
   },

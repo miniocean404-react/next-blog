@@ -5,17 +5,13 @@ import { router } from "../server/index"
 
 export const User = router({
   getUserList: publicProcedure.query(async (opts) => {
-    console.log(opts.ctx.session, (opts as any).meta)
-    // { user: { id: 1, name: 'xfz', role: 'admin' } }
-    // { authRequired: false, role: 'normal' }
-
-    // Get data from Database
     const users: UserType[] = [
       { id: 1, name: "xfz", age: 20, role: "admin" },
       { id: 2, name: "xwb", age: 18, role: "user" },
       { id: 3, name: "zc", age: 22, role: "user" },
       { id: 4, name: "ssb", age: 25, role: "user" },
     ]
+
     return {
       status: 200,
       data: users,
@@ -27,11 +23,6 @@ export const User = router({
   createUser: adminProcedure
     .input((val) => val)
     .mutation(async (opt) => {
-      console.log(opt.input, opt.ctx.session, (opt as any).meta)
-      // { id: 5, name: 'tmd', age: 100, role: 'user' }
-      // { user: { id: 1, name: 'xfz', role: 'admin' } }
-      // { authRequired: true, role: 'admin' }
-
       try {
         // Insert data into Database
         return {

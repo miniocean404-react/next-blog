@@ -29,7 +29,7 @@ export const authedProcedure = t.procedure
 export const adminProcedure = authedProcedure
   .use((opts) => {
     const { meta, next, ctx } = opts
-    if (ctx.session.user.role !== meta?.role) {
+    if (ctx.session.user?.role !== meta?.role) {
       throw new TRPCError({ code: "FORBIDDEN" }) // 403
     }
     return next()

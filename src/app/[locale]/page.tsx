@@ -19,16 +19,10 @@ export default function Home(props: { params: { locale: string } }) {
       loop: true,
     })
 
-    init()
-
     return () => {
       typed.destroy()
     }
   }, [])
-
-  const init = async () => {
-    // const res = await trpcClient.User.getUserList.query()
-  }
 
   return (
     <>
