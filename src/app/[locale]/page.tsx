@@ -1,6 +1,5 @@
 "use client"
 
-import { trpcClient } from "@/trpc/client"
 import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
 import { useTheme } from "next-themes"
 import { useEffect, useRef } from "react"

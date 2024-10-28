@@ -34,6 +34,9 @@ const config: NextConfig = {
     mySecret: "secret",
     secondSecret: process.env.SECOND_SECRET,
   },
+  // CDN 前缀
+  // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
+  compress: true, // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
   images: {
     // 图像优化(自定义图片链接前缀地址)：https://nextjs.org/docs/app/building-your-application/deploying/static-exports#image-optimization
     remotePatterns: [
@@ -43,7 +46,6 @@ const config: NextConfig = {
       },
     ],
   },
-  compress: true, // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
   sassOptions: {
     // 去除 scss 警告：https://github.com/vercel/next.js/issues/71638
     // silenceDeprecations: ["legacy-js-api"],
@@ -52,28 +54,6 @@ const config: NextConfig = {
     // includePaths: [path.join(__dirname, "./src/css")],
   },
   // i18n: {},
-  // CDN 前缀
-  // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
-  // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // if (isDev) config.devtool = "source-map"
-
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"],
-    })
-
-    return config
-  },
-  // turbo: {
-  //   rules: {
-  //     "*.svg": {
-  //       loaders: ["@svgr/webpack"],
-  //       as: "*.js",
-  //     },
-  //   },
-  // },
-
   // Next.js 其实提供了 rewrites 配置项用于重写请求。这算是解决跨域问题常用的一种方式
   // 重写会将传入的请求路径映射到其他目标路径。你可以把它理解为代理，并且它会屏蔽目标路径，使得用户看起来并没有改变其在网站上的位置
   // 跨域处理: https://juejin.cn/post/7366177423775531008?share_token=fc72ebf6-93f2-43e6-9678-6b4fc608378d#heading-7
@@ -113,7 +93,7 @@ const config: NextConfig = {
   },
   // 默认为false,将带有斜杠的 URL 重定向到不带斜杠的对应 URL 类似的网址/about/将重定向到/about
   trailingSlash: false,
-  // 默认为 true 是否开启可以优化为静态html的提示
+  // 默认为 true 是否开启可以优化为静态 html 的提示
   devIndicators: {
     // autoPrerender: false,
   },
@@ -128,12 +108,35 @@ const config: NextConfig = {
   httpAgentOptions: {
     keepAlive: false,
   },
-  // 默认为true, 默认情况下 Next.js 将添加 x-powered-by 标题
+  // 默认为 true, 默认情况下 Next.js 将添加 x-powered-by 标题
   poweredByHeader: true,
-  // 默认为true, Next.js 默认会为每个页面生成etags 。
+  // 默认为true, Next.js 默认会为每个页面生成 etags 。
   generateEtags: true,
   // 生产模式是否开启 sourceMap
   productionBrowserSourceMaps: false,
+
+  // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // if (isDev) config.devtool = "source-map"
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    })
+
+    return config
+  },
+
+  experimental: {
+    turbo: {
+      rules: {
+        "*.svg": {
+          loaders: ["@svgr/webpack"],
+          as: "*.js",
+        },
+      },
+    },
+  },
 }
 
 export default withNextIntl(config)
