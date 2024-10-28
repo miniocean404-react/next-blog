@@ -26,10 +26,7 @@ export default function NumberTicker({
   const isInView = useInView(ref, { once: true, margin: "0px" })
 
   useEffect(() => {
-    isInView &&
-      setTimeout(() => {
-        motionValue.set(direction === "down" ? 0 : value)
-      }, delay * 1000)
+    isInView && setTimeout(() => motionValue.set(direction === "down" ? 0 : value), delay * 1000)
   }, [motionValue, isInView, delay, value, direction])
 
   useEffect(
@@ -45,5 +42,13 @@ export default function NumberTicker({
     [springValue, decimalPlaces],
   )
 
-  return <span className={clsx("inline-block tabular-nums text-black dark:text-white tracking-wider", className)} ref={ref} />
+  return (
+    <span
+      className={clsx(
+        "inline-block tabular-nums text-black dark:text-white tracking-wider",
+        className,
+      )}
+      ref={ref}
+    />
+  )
 }
