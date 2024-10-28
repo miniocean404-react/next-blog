@@ -45,8 +45,17 @@ export default function HyperText({
           isFirstRender.current = false
           return
         }
+
         if (interations.current < text.length) {
-          setDisplayText((t) => t.map((l, i) => (l === " " ? l : i <= interations.current ? text[i] : alphabets[getRandomInt(26)])))
+          setDisplayText((t) =>
+            t.map((l, i) => {
+              return l === " "
+                ? l
+                : i <= interations.current
+                  ? text[i]
+                  : alphabets[getRandomInt(26)]
+            }),
+          )
           interations.current = interations.current + 0.1
         } else {
           setTrigger(false)
@@ -60,10 +69,17 @@ export default function HyperText({
   }, [text, duration, trigger, animateOnLoad])
 
   return (
-    <div className="overflow-hidden py-2 flex cursor-default scale-100" onMouseEnter={triggerAnimation}>
-      <AnimatePresence mode="wait">
+    <div
+      className="overflow-hidden py-2 flex cursor-default scale-100"
+      onMouseEnter={triggerAnimation}
+    >
+      <AnimatePresence>
         {displayText.map((letter, i) => (
-          <motion.h1 key={i} className={clsx("font-mono", letter === " " ? "w-3" : "", className)} {...framerProps}>
+          <motion.h1
+            key={i}
+            className={clsx("font-mono", letter === " " ? "w-3" : "", className)}
+            {...framerProps}
+          >
             {letter.toUpperCase()}
           </motion.h1>
         ))}

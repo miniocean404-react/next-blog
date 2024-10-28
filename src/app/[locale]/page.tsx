@@ -6,6 +6,7 @@ import { useTheme } from "next-themes"
 import { useEffect, useRef } from "react"
 import Typed from "typed.js"
 import { Dock, DockIcon } from "~/lib/components/magicui/dock"
+import HyperText from "~/lib/components/magicui/hyper-text"
 import Particles from "~/lib/components/magicui/particles"
 import TextReveal from "~/lib/components/magicui/text-reveal"
 

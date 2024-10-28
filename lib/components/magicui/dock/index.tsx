@@ -21,7 +21,17 @@ const dockVariants = cva(
 )
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
-  ({ className, children, magnification = DEFAULT_MAGNIFICATION, distance = DEFAULT_DISTANCE, direction = "bottom", ...props }, ref) => {
+  (
+    {
+      className,
+      children,
+      magnification = DEFAULT_MAGNIFICATION,
+      distance = DEFAULT_DISTANCE,
+      direction = "bottom",
+      ...props
+    },
+    ref,
+  ) => {
     const mouseX = useMotionValue(Infinity)
 
     const renderChildren = () => {
@@ -34,6 +44,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
             distance: distance,
           })
         }
+
         return child
       })
     }
@@ -68,12 +79,20 @@ export interface DockIconProps {
   props?: PropsWithChildren
 }
 
-const DockIcon = ({ size, magnification = DEFAULT_MAGNIFICATION, distance = DEFAULT_DISTANCE, mouseX, className, children, ...props }: DockIconProps) => {
+const DockIcon = ({
+  size,
+  magnification = DEFAULT_MAGNIFICATION,
+  distance = DEFAULT_DISTANCE,
+  mouseX,
+  className,
+  children,
+  ...props
+}: DockIconProps) => {
   const ref = useRef<HTMLDivElement>(null)
 
+  // 当前鼠标位置 - Icon 元素 X 位置 - Icon 元素宽度一半
   const distanceCalc = useTransform(mouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
-
     return val - bounds.x - bounds.width / 2
   })
 
@@ -89,7 +108,10 @@ const DockIcon = ({ size, magnification = DEFAULT_MAGNIFICATION, distance = DEFA
     <motion.div
       ref={ref}
       style={{ width }}
-      className={clsx("flex aspect-square cursor-pointer items-center justify-center rounded-full", className)}
+      className={clsx(
+        "flex aspect-square cursor-pointer items-center justify-center rounded-full",
+        className,
+      )}
       {...props}
     >
       {children}
