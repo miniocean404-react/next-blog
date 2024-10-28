@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react"
 import Typed from "typed.js"
 import { Dock, DockIcon } from "~/lib/components/magicui/dock"
 import Particles from "~/lib/components/magicui/particles"
+import TextReveal from "~/lib/components/magicui/text-reveal"
 
 export default function Home(props: { params: { locale: string } }) {
   const el = useRef(null)
