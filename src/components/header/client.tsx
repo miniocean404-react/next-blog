@@ -8,7 +8,6 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { useEvent } from "react-use"
-import GithubIcon from "~/public/svg/github.svg"
 import { Moon, Sun, Search, AlignRight } from "lucide-react"
 import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
 import { cn } from "@/utils/tw"
@@ -134,8 +133,8 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
               >
                 <Search
                   className={cn(
-                    "size-3.5 text-[var(--vp-c-text-2)]",
-                    "md:m-2 md:transition-colors md:duration-500 md:group-hover:text-[var(--vp-c-text-1)]",
+                    "size-4 text-[var(--vp-c-text-2)]",
+                    "md:mr-2 md:transition-colors md:duration-500 md:group-hover:text-[var(--vp-c-text-1)]",
                   )}
                 ></Search>
 
@@ -196,7 +195,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
             </div>
 
             <button className="h-10 flex items-center px-3 md:hidden" onClick={toggle}>
-              <AlignRight className="size-3.5 text-[var(--vp-c-text-2)]"></AlignRight>
+              <AlignRight className="size-4 text-[var(--vp-c-text-2)]"></AlignRight>
             </button>
           </div>
         </div>
