@@ -1,6 +1,7 @@
 // app/_trpc/routers/user.ts
 import { TRPCError } from "@trpc/server"
-import { publicProcedure, adminProcedure, router, authedProcedure } from "../index"
+import { publicProcedure, adminProcedure, authedProcedure } from "../procedure"
+import { router } from "../index"
 
 export const User = router({
   getUserList: publicProcedure.query(async (opts) => {
@@ -21,6 +22,7 @@ export const User = router({
       message: "success",
     }
   }),
+
   // 这里使用 adminProcedure，表示只只有 admin 才能创建用户
   createUser: adminProcedure
     .input((val) => val)
@@ -45,6 +47,7 @@ export const User = router({
         })
       }
     }),
+
   updateUser: authedProcedure
     .input((val) => val)
     .mutation(async (opt) => {

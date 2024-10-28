@@ -1,5 +1,6 @@
 // app/_trpc/routers/product.ts
-import { publicProcedure, router } from "../index"
+import { publicProcedure } from "../procedure"
+import { router } from "../index"
 
 export const Prodcut = router({
   getAllProducts: publicProcedure.query(async (opts) => {

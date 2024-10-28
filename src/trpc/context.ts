@@ -1,10 +1,9 @@
 // app/lib/trpc/context.ts
 import { CreateNextContextOptions } from "@trpc/server/adapters/next"
+import { getSession } from "next-auth/react"
 
 export async function createTRPCContext(opts?: CreateNextContextOptions) {
-  // const session = await getServerSession();
-  // 模拟 session
-  const session = { user: { id: 1, name: "xfz", role: "admin" } }
+  const session = await getSession()
   return { ...(opts || {}), session }
 }
 
