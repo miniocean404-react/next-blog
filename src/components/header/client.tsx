@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes"
 import { useRef, type MouseEvent, type PropsWithChildren } from "react"
 import Image from "next/image"
-import { APP_DEFAULT_TITLE } from "@/constant/app"
+import { APP_DEFAULT_TITLE, APP_URL } from "@/constant/app"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslations } from "next-intl"
 import Link from "next/link"
@@ -112,7 +112,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
         )}
       >
         <div className="flex w-full max-w-[calc(var(--vp-layout-max-width)-4rem)] mx-auto justify-between">
-          <Link className="text-base font-600 flex items-center" href={"/zh"}>
+          <Link className="text-base font-600 flex items-center" href={"/zh"} title="中文首页">
             <Image
               className="mr-2"
               src={"/svg/love.svg"}
@@ -120,7 +120,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
               width={24}
               height={24}
             ></Image>
-            <span>{APP_DEFAULT_TITLE}</span>
+            <span>Miniocean404 博客</span>
           </Link>
 
           <div className="flex items-center md:flex-grow">
@@ -169,6 +169,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
                 <Link
                   className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
                   href={GITHUB_LINK}
+                  title="GitHub"
                 >
                   <SiGithub className="size-5"></SiGithub>
                 </Link>
@@ -178,6 +179,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
                 <Link
                   className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
                   href={NOTION_LINK}
+                  title="Notion"
                 >
                   <SiNotion className="size-5"></SiNotion>
                 </Link>

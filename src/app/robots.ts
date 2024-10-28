@@ -1,3 +1,4 @@
+import { APP_URL } from "@/constant/app"
 import type { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
@@ -12,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
     },
 
     // sitemap的地址
-    sitemap: "https://blog-miniocean404s.vercel.app/sitemap.xml",
+    sitemap: `${APP_URL}/sitemap.xml`,
   }
 }
