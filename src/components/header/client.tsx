@@ -87,7 +87,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
         <div className="flex w-full max-w-[calc(var(--vp-layout-max-width)-4rem)] mx-auto justify-between">
           <Link className="text-base font-600 flex items-center" href={"/zh"} title="中文首页">
             <Image
-              className="mr-2"
+              className="mr-2 h-6"
               src={"/svg/love.svg"}
               alt={"logo"}
               width={24}
