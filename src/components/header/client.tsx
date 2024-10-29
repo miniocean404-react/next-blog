@@ -92,6 +92,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
               alt={"logo"}
               width={24}
               height={24}
+              priority
             ></Image>
             <span>{BLOG_NAME}</span>
           </Link>

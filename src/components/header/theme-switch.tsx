@@ -5,11 +5,11 @@
 import { Moon, Sun } from "lucide-react"
 import { type MouseEvent } from "react"
 import { useTheme } from "next-themes"
-import { useMountedState } from "react-use"
+import { useMounted } from "@/hook/mounted"
 
 export default function ThemeSwitch() {
   const { systemTheme, theme, setTheme } = useTheme()
-  const isMounted = useMountedState()
+  const mounted = useMounted()
 
   const toggle = async (e: MouseEvent<HTMLButtonElement>) => {
     const isDark = theme === "dark"
@@ -41,17 +41,15 @@ export default function ThemeSwitch() {
     setTheme(isDark ? "light" : "dark")
   }
 
-  if (!isMounted()) return null
+  if (!mounted) return <button className="size-9"></button>
 
   return (
-    <>
-      <button
-        className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
-        onClick={toggle}
-      >
-        {theme === "light" && <Sun className="size-5" />}
-        {theme === "dark" && <Moon className="size-5" />}
-      </button>
-    </>
+    <button
+      className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
+      onClick={toggle}
+    >
+      {theme === "light" && <Sun className="size-5" />}
+      {theme === "dark" && <Moon className="size-5" />}
+    </button>
   )
 }
