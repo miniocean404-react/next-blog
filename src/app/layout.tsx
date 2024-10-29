@@ -37,6 +37,7 @@ export const metadata: Metadata = {
   ],
   creator: "@我是小海洋呀（Miniocean404）",
   authors: [{ url: APP_URL, name: "我是小海洋呀（Miniocean404）" }],
+  // 如果 app 下放了文件就无需设置
   icons: {
     // icon: "/favicon.ico",
     // shortcut: "/favicon.ico",
