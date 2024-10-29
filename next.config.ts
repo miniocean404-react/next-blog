@@ -114,6 +114,8 @@ const config: NextConfig = {
   generateEtags: true,
   // 生产模式是否开启 sourceMap
   productionBrowserSourceMaps: false,
+  // 用于控制是否将外部依赖项（externals）捆绑到页面的 JavaScript 包中
+  bundlePagesRouterDependencies: true,
 
   // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
@@ -136,10 +138,11 @@ const config: NextConfig = {
         },
       },
     },
-    // 局部渲染（Partial Prerendering，PPR）
+    // 局部渲染（Partial Prerendering，PPR）-- 暂时无法使用，需要 next15 测试版本
     // 如果使用了动态函数（如 cookies()、 headers()和未缓存的数据请求），将动态 UI 包装在 Suspense 中，Next.js 会先返回静态 HTML，
     // 然后在同一 HTTP 请求中流式传输动态内容，并对之前的静态 HTML 进行替换
-    ppr: true,
+    // export const experimental_ppr = true 路由配置项用于将特定的布局和页面选择到 PPR 中(页面中配置)
+    // ppr: true,
     // unstable_after: 它会在响应完成流式处理后安排要处理的工作，从而在不阻塞主要响应的情况下运行辅助任务
     // 在服务端组件、Server Actions、路由处理程序、中间件中都可以使用 after API
     after: true,
