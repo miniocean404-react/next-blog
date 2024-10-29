@@ -1,10 +1,9 @@
-import CryptoJS from "crypto-js"
+import { hashSync, compareSync } from "bcryptjs"
 
-export function hashPassword(password: string, salt: string) {
-  const passwordSalt = password + salt
-  return CryptoJS.SHA256(passwordSalt).toString()
+export function hashPassword(password: string | number, salt: number) {
+  return hashSync(password.toString(), salt)
 }
 
-export function generateSalt() {
-  return CryptoJS.lib.WordArray.random(16).toString()
+export function isEqualHashPassword(password: string, hash: string) {
+  return compareSync(password, hash)
 }

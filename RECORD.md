@@ -20,6 +20,7 @@ next14: https://www.bilibili.com/video/BV157pRe8EyD/?spm_id_from=333.337.search-
 # next-auth 认证登录
 
 1. https://juejin.cn/post/7329736763060518931?share_token=015dde7b-6e65-43b8-acb6-84629bf3194b
+2. 飞书授权登录：https://juejin.cn/post/7357261180493135898
 
 ## 入门
 

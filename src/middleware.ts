@@ -3,10 +3,15 @@ import intlWapperMiddleware from "@/middleware/intl"
 import loggerMiddleware from "@/middleware/logger"
 import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server"
 
-// 中间件只会应用于以下路由。
+// 中间件匹配原则，不在这个范围内则不会执行 middleware 逻辑
 export const config = {
-  // api/:path*
-  matcher: ["/", "/(zh|en)/:path*"],
+  // "/api/:path*"
+  matcher: [
+    // "/(zh|cn)/:path*",
+    // "/(api|trpc)(.*)",
+    // 排除静态资源
+    "/((?!.*\\..*|_next).*)",
+  ],
   // 您还可以使用missing或has数组，或者两者结合来绕过某些请求的中间件：
   // has: [
   //   { type: "header", key: "next-router-prefetch" },
