@@ -63,6 +63,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
 
     // 将 canvas 转换为数据 canvas.height / 2
     const dataURL = canvas.toDataURL()
+
     // 设置为 favicon
     link.href = dataURL
   }
