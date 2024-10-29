@@ -2,6 +2,7 @@
 
 import Script from "next/script"
 
+// 错误：(failed)net::ERR_CONNECTION_CLOSED，试试关闭代理
 const BaiDuAnalytics = () => {
   return (
     <Script
