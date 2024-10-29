@@ -12,10 +12,9 @@ import { Moon, Sun, Search, AlignRight } from "lucide-react"
 import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
 import { cn } from "@/utils/tw"
 import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
+import ThemeSwitch from "@/components/header/theme-switch"
 
 export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
-  const { systemTheme, theme, setTheme } = useTheme()
-
   const t = useTranslations("home")
   const interval = useRef<NodeJS.Timeout>()
 
@@ -73,36 +72,6 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
 
   function openSearch() {
     console.log("打开搜索")
-  }
-
-  const toggle = async (e: MouseEvent<HTMLButtonElement>) => {
-    const isDark = theme === "dark"
-    const x = e.clientX
-    const y = e.clientY
-    const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
-    const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
-
-    if (!document.startViewTransition) return setThemeMode(isDark)
-
-    const transition = document.startViewTransition(setThemeMode.bind(null, isDark))
-    await transition.ready
-    document.documentElement.animate(
-      {
-        clipPath: isDark ? [...clipPath].reverse() : clipPath,
-      },
-      {
-        delay: 0,
-        endDelay: 0,
-        duration: 500,
-        easing: "ease-in-out",
-        // pseudoElement 将动画效果定在伪元素上
-        pseudoElement: isDark ? "::view-transition-old(root)" : "::view-transition-new(root)",
-      },
-    )
-  }
-
-  const setThemeMode = (isDark: boolean) => {
-    setTheme(isDark ? "light" : "dark")
   }
 
   return (
@@ -169,7 +138,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
                 配置
               </div>
 
-              <div className="px-2 py-0">
+              <div className="px-2">
                 <Link
                   className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
                   href={GITHUB_LINK}
@@ -179,7 +148,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
                 </Link>
               </div>
 
-              <div className="px-2 py-0">
+              <div className="px-2">
                 <Link
                   className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
                   href={NOTION_LINK}
@@ -190,17 +159,11 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
               </div>
 
               <div className="px-2">
-                <button
-                  className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
-                  onClick={toggle}
-                >
-                  {theme === "light" && <Sun className="size-5" />}
-                  {theme === "dark" && <Moon className="size-5" />}
-                </button>
+                <ThemeSwitch></ThemeSwitch>
               </div>
             </div>
 
-            <button className="h-10 flex items-center px-3 md:hidden" onClick={toggle}>
+            <button className="h-10 flex items-center px-3 md:hidden">
               <AlignRight className="size-4 text-[var(--vp-c-text-2)]"></AlignRight>
             </button>
           </div>
