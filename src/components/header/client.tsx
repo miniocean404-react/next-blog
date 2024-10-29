@@ -3,7 +3,7 @@
 import { useRef, type PropsWithChildren } from "react"
 import Image from "next/image"
 import { useHotkeys } from "react-hotkeys-hook"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import Link from "next/link"
 import { useEvent } from "react-use"
 import { Search, AlignRight } from "lucide-react"
@@ -15,6 +15,7 @@ import ThemeSwitch from "@/components/header/theme-switch"
 export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
   const t = useTranslations("")
   const interval = useRef<NodeJS.Timeout>()
+  const locale = useLocale()
 
   useHotkeys("ctrl+k", openSearch, [], { preventDefault: true })
 
@@ -83,7 +84,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
         )}
       >
         <div className="flex w-full max-w-[calc(var(--vp-layout-max-width)-4rem)] mx-auto justify-between">
-          <Link className="text-base font-600 flex items-center" href={"/zh"} title="中文首页">
+          <Link className="text-base font-600 flex items-center" href={`/${locale}`} title={locale}>
             <Image
               className="mr-2 h-6"
               src={"/svg/love.svg"}
