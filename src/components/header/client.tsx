@@ -1,21 +1,19 @@
 "use client"
 
-import { useTheme } from "next-themes"
-import { useRef, type MouseEvent, type PropsWithChildren } from "react"
+import { useRef, type PropsWithChildren } from "react"
 import Image from "next/image"
-import { BLOG_NAME } from "@/constant/app"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { useEvent } from "react-use"
-import { Moon, Sun, Search, AlignRight } from "lucide-react"
+import { Search, AlignRight } from "lucide-react"
 import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
 import { cn } from "@/utils/tw"
 import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
 import ThemeSwitch from "@/components/header/theme-switch"
 
 export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
-  const t = useTranslations("home")
+  const t = useTranslations("")
   const interval = useRef<NodeJS.Timeout>()
 
   useHotkeys("ctrl+k", openSearch, [], { preventDefault: true })
@@ -28,7 +26,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
     let start = 0
 
     if (document.visibilityState === "visible") {
-      document.title = BLOG_NAME
+      document.title = t("app.blogName")
       faviconLink.href = "/favicon.ico"
       clearInterval(interval.current)
     } else if (document.visibilityState === "hidden") {
@@ -94,7 +92,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
               height={24}
               priority
             ></Image>
-            <span>{BLOG_NAME}</span>
+            <span>{t("app.blogName")}</span>
           </Link>
 
           <div className="flex items-center md:flex-grow">
@@ -118,7 +116,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
                     "md:group-hover:text-[var(--vp-c-text-1)] md:flex",
                   )}
                 >
-                  {t("search")}
+                  {t("home.search")}
                 </span>
 
                 <span className="hidden px-1.5 text-[var(--vp-c-text-2)] text-xs font-medium rounded-ss md:flex">
@@ -133,10 +131,10 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
 
             <div className="hidden items-center md:flex">
               <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
-                指引
+                {t("navigation.guide")}
               </div>
               <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
-                配置
+                {t("navigation.config")}
               </div>
 
               <div className="px-2">

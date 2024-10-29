@@ -1,4 +1,4 @@
-import { APP_URL } from "@/constant/app"
+import { APP_URL } from "@/constant/link"
 import { MetadataRoute } from "next"
 
 // 站点地图 可帮助搜索引擎更有效地发现您的网页并为其建立索引，也分为动态和静态两种

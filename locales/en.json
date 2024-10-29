@@ -1,5 +1,20 @@
 {
+  "app": {
+    "appDefaultTitle": "Miniocean404 Blog | Some records about technology and life",
+    "appDescription": "Welcome to the blog of \"I am Miniocean404\"! \nJavascript, Vue, Css, Nextjs, React, TypeScript, NextJs, NestJs, Nodejs, Docker, and more. \nWhether you are a technology enthusiast or a friend who pursues the fun of life, you are welcome to visit and explore the mysteries of technology together.",
+    "appName": "Blog",
+    "appTitleTemplate": "blog",
+    "blogName": "Miniocean404 Blog"
+  },
+  "navigation": {
+    "config": "Configuration",
+    "guide": "Guide"
+  },
   "home": {
-    "search": "Search"
+    "search": "Search",
+    "slog": {
+      "first": "Examine from an artist’s perspective",
+      "second": "Create and develop with craftsman spirit"
+    }
   }
 }

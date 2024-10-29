@@ -1,6 +1,7 @@
 "use client"
 
 import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
+import { useTranslations } from "next-intl"
 import { useTheme } from "next-themes"
 import { useEffect, useRef } from "react"
 import Typed from "typed.js"
@@ -10,10 +11,11 @@ import Particles from "~/lib/components/magicui/particles"
 export default function Home(props: { params: { locale: string } }) {
   const el = useRef(null)
   const { theme } = useTheme()
+  const t = useTranslations("home")
 
   useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: ["<span>用艺术家的视角审视</span>", "以工匠精神创造开发"],
+      strings: [`<span>${t("slog.first")}</span>`, t("slog.second")],
       typeSpeed: 50,
       loop: true,
     })

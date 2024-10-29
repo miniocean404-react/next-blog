@@ -1,4 +1,4 @@
-import { APP_URL } from "@/constant/app"
+import { APP_URL } from "@/constant/link"
 import type { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
