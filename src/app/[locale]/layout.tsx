@@ -9,8 +9,8 @@ import getConfig from "next/config"
 import localFont from "next/font/local"
 import Header from "@/components/header"
 import { notFound } from "next/navigation"
-import GoogleAnalytics from "~/lib/components/google-analytics"
-import BaiDuAnalytics from "~/lib/components/baidu-analytics"
+import GoogleAnalytics from "~/lib/components/analytics/google"
+import BaiDuAnalytics from "~/lib/components/analytics/baidu"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
