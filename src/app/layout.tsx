@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   creator: "@我是小海洋呀（Miniocean404）",
   authors: [{ url: APP_URL, name: "我是小海洋呀（Miniocean404）" }],
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    // icon: "/favicon.ico",
+    // shortcut: "/favicon.ico",
+    // apple: "/favicon.ico",
   },
 
   manifest: "/manifest.webmanifest",

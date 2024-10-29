@@ -22,7 +22,10 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
   useHotkeys("ctrl+k", openSearch, [], { preventDefault: true })
 
   useEvent("visibilitychange", () => {
-    const faviconLink = document.querySelector<HTMLLinkElement>('link[rel="icon"]')!
+    const faviconLink = document.querySelector<HTMLLinkElement>(
+      'link[rel="icon"][type="image/x-icon"]',
+    )!
+
     let start = 0
 
     if (document.visibilityState === "visible") {
