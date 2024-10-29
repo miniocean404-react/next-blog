@@ -50,8 +50,12 @@ export const metadata: Metadata = {
     title: APP_DEFAULT_TITLE,
     // startUpImage: [],
   },
+  // IOS 的网页会尝试检测文本内容中的电话号码、邮箱等数据，将它们转为链接，方便用户交互，这也会导致水合错误
   formatDetection: {
     telephone: false,
+    date: false,
+    email: false,
+    address: false,
   },
   category: "分类",
   abstract: "摘要",
