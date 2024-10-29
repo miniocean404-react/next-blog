@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes"
 import { useRef, type MouseEvent, type PropsWithChildren } from "react"
 import Image from "next/image"
-import { APP_DEFAULT_TITLE, APP_URL } from "@/constant/app"
+import { BLOG_NAME } from "@/constant/app"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslations } from "next-intl"
 import Link from "next/link"
@@ -29,7 +29,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
     let start = 0
 
     if (document.visibilityState === "visible") {
-      document.title = APP_DEFAULT_TITLE
+      document.title = BLOG_NAME
       faviconLink.href = "/favicon.ico"
       clearInterval(interval.current)
     } else if (document.visibilityState === "hidden") {
@@ -124,7 +124,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
               width={24}
               height={24}
             ></Image>
-            <span>Miniocean404 博客</span>
+            <span>{BLOG_NAME}</span>
           </Link>
 
           <div className="flex items-center md:flex-grow">
