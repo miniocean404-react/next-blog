@@ -46,7 +46,7 @@ const enTranslations: DocSearchTranslations = {
 
 export const zhTranslations: DocSearchTranslations = {
   button: {
-    buttonText: "搜索文档",
+    buttonText: "搜索",
     buttonAriaLabel: "搜索文档",
   },
   modal: {
