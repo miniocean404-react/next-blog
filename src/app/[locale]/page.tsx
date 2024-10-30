@@ -11,11 +11,11 @@ import Particles from "~/lib/components/magicui/particles"
 export default function Home(props: { params: { locale: string } }) {
   const el = useRef(null)
   const { theme } = useTheme()
-  const t = useTranslations("home")
+  const t = useTranslations("")
 
   useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: [`<span>${t("slog.first")}</span>`, t("slog.second")],
+      strings: [`<span>${t("home.slogan.first")}</span>`, t("home.slogan.second")],
       typeSpeed: 50,
       loop: true,
     })
@@ -27,6 +27,7 @@ export default function Home(props: { params: { locale: string } }) {
 
   return (
     <>
+      <h1 className="hidden">{t("app.appDefaultTitle")}</h1>
       <div className="flex justify-center items-center h-dvh">
         <div className={"text-3xl md:text-6xl px-6"}>
           <span ref={el}></span>
