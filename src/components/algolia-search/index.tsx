@@ -3,7 +3,6 @@ import { Search as SearchIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import { useEffect, type PropsWithChildren } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
-import { enTranslations, zhTranslations } from "@/constant/docsearch"
 import "@docsearch/css"
 import "./index.css"
 import docsearch from "@docsearch/js"
@@ -13,6 +12,8 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
   const t = useTranslations("")
   const locale = useLocale()
   const isMonted = useMounted()
+
+  const translations = t.raw("search")
 
   // useHotkeys(["meta+k", "ctrl+k"], openSearch, [], { preventDefault: true })
 
@@ -27,7 +28,7 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
       },
       insights: true,
       initialQuery: "第一次查询参数",
-      translations: locale === "zh" ? zhTranslations : enTranslations,
+      translations,
     })
   }, [])
 
@@ -37,7 +38,7 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
         <button
           type="button"
           className="DocSearch DocSearch-Button"
-          aria-label={zhTranslations.button?.buttonAriaLabel}
+          aria-label={translations.button?.buttonAriaLabel}
         >
           <span className="DocSearch-Button-Container">
             <SearchIcon className={"DocSearch-Search-Icon"}></SearchIcon>
