@@ -5,12 +5,14 @@ import { useEffect, type PropsWithChildren } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { zhTranslations } from "@/constant/docsearch"
 import "@docsearch/css"
-import "./index.css"
+import "@/css/base/doc-search.css"
 import docsearch from "@docsearch/js"
+import { useMounted } from "@/hook/mounted"
 
 export default function Search({ children }: PropsWithChildren<any>) {
   const t = useTranslations("")
   const locale = useLocale()
+  const isMonted = useMounted()
 
   // useHotkeys(["meta+k", "ctrl+k"], openSearch, [], { preventDefault: true })
 
@@ -33,7 +35,7 @@ export default function Search({ children }: PropsWithChildren<any>) {
 
   return (
     <>
-      <div id="docsearch">
+      <div id="docsearch" className={cn({ hidden: !isMonted })}>
         <button
           type="button"
           className="DocSearch DocSearch-Button"
