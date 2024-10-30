@@ -1,10 +1,7 @@
 import auth from "next-auth"
-import intl from "next-intl"
 
-declare module "next-intl" {
-  type Messages = typeof import("./locales/zh.json")
-  declare interface IntlMessages extends Messages {}
-}
+type Messages = typeof import("./locales/zh.json")
+declare interface IntlMessages extends Messages {}
 
 declare namespace NodeJS {
   interface ProcessEnv {
