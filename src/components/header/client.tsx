@@ -9,7 +9,7 @@ import { AlignRight } from "lucide-react"
 import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
 import { cn } from "@/utils/tw"
 import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
-import Search from "../search"
+import AlgoliaSearch from "../algolia-search"
 import ThemeSwitch from "./theme-switch"
 
 export default function HeaderClient() {
@@ -92,7 +92,7 @@ export default function HeaderClient() {
 
           <div className="flex items-center md:flex-grow">
             <div className="md:pl-6 md:flex md:flex-grow">
-              <Search></Search>
+              <AlgoliaSearch></AlgoliaSearch>
             </div>
 
             <div className="hidden items-center md:flex">

@@ -9,7 +9,7 @@ import "./index.css"
 import docsearch from "@docsearch/js"
 import { useMounted } from "@/hook/mounted"
 
-export default function Search({ children }: PropsWithChildren<any>) {
+export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
   const t = useTranslations("")
   const locale = useLocale()
   const isMonted = useMounted()
