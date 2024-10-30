@@ -116,7 +116,7 @@ export async function generateMetadata(
       images: [],
     },
     alternates: {
-      canonical: APP_URL,
+      canonical: `${APP_URL}/zh`,
       languages: { zh: `${APP_URL}/zh`, "zh-CN": `${APP_URL}/zh`, en: `${APP_URL}/en` },
     },
   }
