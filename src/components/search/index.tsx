@@ -5,7 +5,7 @@ import { useEffect, type PropsWithChildren } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { zhTranslations } from "@/constant/docsearch"
 import "@docsearch/css"
-import "@/css/base/doc-search.css"
+import "./index.css"
 import docsearch from "@docsearch/js"
 import { useMounted } from "@/hook/mounted"
 

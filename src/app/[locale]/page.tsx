@@ -28,7 +28,7 @@ export default function Home(props: { params: { locale: string } }) {
   return (
     <>
       <div className="flex justify-center items-center h-dvh">
-        <div className={"text-3xl md:text-6xl"}>
+        <div className={"text-3xl md:text-6xl px-6"}>
           <span ref={el}></span>
         </div>
       </div>

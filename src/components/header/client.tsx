@@ -9,10 +9,10 @@ import { AlignRight } from "lucide-react"
 import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
 import { cn } from "@/utils/tw"
 import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
-import Search from "./search"
+import Search from "../search"
 import ThemeSwitch from "./theme-switch"
 
-export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
+export default function HeaderClient() {
   const t = useTranslations("")
   const interval = useRef<NodeJS.Timeout>()
   const locale = useLocale()
@@ -92,7 +92,7 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
 
           <div className="flex items-center md:flex-grow">
             <div className="md:pl-6 md:flex md:flex-grow">
-              <Search os={os}></Search>
+              <Search></Search>
             </div>
 
             <div className="hidden items-center md:flex">
