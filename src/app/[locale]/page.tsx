@@ -54,6 +54,9 @@ export default function Home(props: { params: { locale: string } }) {
           <SiNotion size={"100%"} />
         </DockIcon>
       </Dock>
+
+      <div className="mini-i-chevron-up"></div>
+      <div className="mini-i-arrow-up"></div>
     </>
   )
 }
