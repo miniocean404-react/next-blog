@@ -31,15 +31,12 @@ export default function Search({ children }: PropsWithChildren<any>) {
     })
   }, [])
 
-  function openSearch() {}
-
   return (
     <>
       <div id="docsearch" className={cn({ hidden: !isMonted })}>
         <button
           type="button"
           className="DocSearch DocSearch-Button"
-          onClick={openSearch}
           aria-label={zhTranslations.button?.buttonAriaLabel}
         >
           <span className="DocSearch-Button-Container">
