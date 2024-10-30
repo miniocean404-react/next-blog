@@ -7,13 +7,12 @@ export default function useLocalStorage(key: string, defaultValue: string) {
 
   useEffect(() => {
     try {
-      const item = window.localStorage.getItem(key)
-      if (item) {
-        setValue(JSON.parse(item))
-      }
+      const item = localStorage.getItem(key)
+      item && setValue(JSON.parse(item))
     } catch (e) {
       console.log(e)
     }
+
     return () => {
       isMounted.current = false
     }
@@ -21,7 +20,7 @@ export default function useLocalStorage(key: string, defaultValue: string) {
 
   useEffect(() => {
     if (isMounted.current) {
-      window.localStorage.setItem(key, JSON.stringify(value))
+      localStorage.setItem(key, JSON.stringify(value))
     } else {
       isMounted.current = true
     }
