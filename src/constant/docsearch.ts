@@ -1,6 +1,6 @@
 import type { DocSearchTranslations } from "@docsearch/react"
 
-const enTranslations: DocSearchTranslations = {
+export const enTranslations: DocSearchTranslations = {
   button: {
     buttonText: "Search",
     buttonAriaLabel: "Search",

@@ -3,7 +3,7 @@ import { Search as SearchIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import { useEffect, type PropsWithChildren } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
-import { zhTranslations } from "@/constant/docsearch"
+import { enTranslations, zhTranslations } from "@/constant/docsearch"
 import "@docsearch/css"
 import "./index.css"
 import docsearch from "@docsearch/js"
@@ -27,7 +27,7 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
       },
       insights: true,
       initialQuery: "第一次查询参数",
-      translations: zhTranslations,
+      translations: locale === "zh" ? zhTranslations : enTranslations,
     })
   }, [])
 
