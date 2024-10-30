@@ -1,4 +1,3 @@
-import "@/css/base/var.css"
 import "@/css/base/index.css"
 
 import { routing } from "@/i18n/routing"
