@@ -1,4 +1,4 @@
-import "@/css/base/index.css"
+import "@/css/index.css"
 
 import { routing } from "@/i18n/routing"
 import { NextIntlClientProvider } from "next-intl"
