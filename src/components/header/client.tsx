@@ -132,10 +132,10 @@ export default function HeaderClient({ children, os }: PropsWithChildren<any>) {
 
             <div className="hidden items-center md:flex">
               <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
-                {t("navigation.guide")}
+                {t("navigation.article")}
               </div>
               <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
-                {t("navigation.config")}
+                {t("navigation.demo")}
               </div>
 
               <div className="px-2">

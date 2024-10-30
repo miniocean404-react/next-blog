@@ -7,8 +7,8 @@
     "appDescription": "欢迎来到 “我是小海洋呀（Miniocean404）” 的博客！ Javascript、Vue、Css、Nextjs、React、TypeScript、NextJs、NestJs、Nodejs、Docker 等。无论你是技术爱好者还是追求生活趣味的朋友，都欢迎前来访问，一同探索技术的奥秘。"
   },
   "navigation": {
-    "guide": "指引",
-    "config": "配置"
+    "article": "文章",
+    "demo": "演示"
   },
   "home": {
     "search": "搜索",

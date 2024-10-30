@@ -7,8 +7,8 @@
     "blogName": "Miniocean404 Blog"
   },
   "navigation": {
-    "config": "Configuration",
-    "guide": "Guide"
+    "article": "Article",
+    "demo": "Demo"
   },
   "home": {
     "search": "Search",
