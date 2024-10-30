@@ -8,10 +8,8 @@ export const viewport: Viewport = {
 
 // https://weijunext.com/article/seo-key-options
 // 在页面中也可以设置专属页面 metadata，并与顶级 metadata 进行merge
-export async function generateMetadata(
-  { params: { locale } }: { params: { locale: string } },
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(_: any, parent: ResolvingMetadata): Promise<Metadata> {
+  const locale = await getLocale()
   const t = await getTranslations("app")
   const author = "我是小海洋呀（Miniocean404）"
 
@@ -116,7 +114,7 @@ export async function generateMetadata(
       images: [],
     },
     alternates: {
-      canonical: `${APP_URL}/zh`,
+      canonical: `${APP_URL}/${locale}`,
       languages: { zh: `${APP_URL}/zh`, "zh-CN": `${APP_URL}/zh`, en: `${APP_URL}/en` },
     },
   }
