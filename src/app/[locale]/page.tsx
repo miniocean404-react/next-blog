@@ -34,7 +34,7 @@ export default function Home(props: { params: { locale: string } }) {
       </div>
 
       <Particles
-        className={"fixed inset-0 [z-index:var(--vp-z-index-bg)]"}
+        className={"fixed inset-0 [z-index:var(--mini-z-index-bg)]"}
         quantity={100}
         ease={80}
         color={theme === "light" ? "#000000" : "#ffffff"}

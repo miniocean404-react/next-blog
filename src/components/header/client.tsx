@@ -71,13 +71,13 @@ export default function HeaderClient() {
     <>
       <header
         className={cn(
-          "fixed top-0 z-[var(--vp-z-index-header)] backdrop-blur-md bg-[var(--vp-nav-bg-color)]",
-          "border-b border-b-solid border-b-[var(--vp-c-divider)]",
+          "fixed top-0 z-[var(--mini-z-index-header)] backdrop-blur-md bg-[var(--mini-nav-bg-color)]",
+          "border-b border-b-solid border-b-[var(--mini-c-divider)]",
           "flex items-center  h-16 w-full",
           "pl-6 pr-2 md:px-8",
         )}
       >
-        <div className="flex w-full max-w-[calc(var(--vp-layout-max-width)-4rem)] mx-auto justify-between">
+        <div className="flex w-full max-w-[calc(var(--mini-layout-max-width)-4rem)] mx-auto justify-between">
           <Link className="text-base font-600 flex items-center" href={`/${locale}`} title={locale}>
             <Image
               className="mr-2 h-6"
@@ -96,16 +96,16 @@ export default function HeaderClient() {
             </div>
 
             <div className="hidden items-center md:flex">
-              <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
+              <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]">
                 {t("navigation.article")}
               </div>
-              <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--vp-c-text-1)] transition-color duration-500 ease hover:text-[var(--vp-c-text-2)]">
+              <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]">
                 {t("navigation.demo")}
               </div>
 
               <div className="px-2">
                 <Link
-                  className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
+                  className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
                   href={GITHUB_LINK}
                   title="GitHub"
                 >
@@ -115,7 +115,7 @@ export default function HeaderClient() {
 
               <div className="px-2">
                 <Link
-                  className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
+                  className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
                   href={NOTION_LINK}
                   title="Notion"
                 >
@@ -129,14 +129,14 @@ export default function HeaderClient() {
             </div>
 
             <button className="h-10 flex items-center px-3 md:hidden">
-              <AlignRight className="size-4 text-[var(--vp-c-text-2)]"></AlignRight>
+              <AlignRight className="size-4 text-[var(--mini-c-text-2)]"></AlignRight>
             </button>
           </div>
         </div>
       </header>
 
       {/* 彩虹 */}
-      <div className="w-full h-24 fixed top-[0] pointer-events-none before:content-[''] before:absolute before:w-full before:h-3/5 before:z-0 before:left-2/4 before:top-[0] before:-bottom-1/5 before:-translate-x-1/2 before:translate-y-[0] before:rotate-[0] before:skew-x-[0] before:skew-y-[0] before:scale-x-100 before:scale-y-100 before:filter blur-3xl before:opacity-20 before:[background-size:200%] before:bg-[linear-gradient(90deg,_#ff4242,_#a1ff42,_#42a1ff,_#42d0ff,_#a142ff)] before:animate-[rainbow_var(--speed,_2s)_infinite_linear] z-[var(--vp-z-index-header)]"></div>
+      <div className="w-full h-24 fixed top-[0] pointer-events-none before:content-[''] before:absolute before:w-full before:h-3/5 before:z-0 before:left-2/4 before:top-[0] before:-bottom-1/5 before:-translate-x-1/2 before:translate-y-[0] before:rotate-[0] before:skew-x-[0] before:skew-y-[0] before:scale-x-100 before:scale-y-100 before:filter blur-3xl before:opacity-20 before:[background-size:200%] before:bg-[linear-gradient(90deg,_#ff4242,_#a1ff42,_#42a1ff,_#42d0ff,_#a142ff)] before:animate-[rainbow_var(--speed,_2s)_infinite_linear] z-[var(--mini-z-index-header)]"></div>
     </>
   )
 }

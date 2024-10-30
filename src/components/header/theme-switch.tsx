@@ -45,7 +45,7 @@ export default function ThemeSwitch() {
 
   return (
     <button
-      className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--vp-c-bg-alt)]"
+      className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
       onClick={toggle}
     >
       {theme === "light" && <Sun className="size-5" />}
