@@ -32,6 +32,7 @@ next14: https://www.bilibili.com/video/BV157pRe8EyD/?spm_id_from=333.337.search-
 # prisma
 
 1. 快速入门 ORM 框架 Prisma: https://juejin.cn/post/7374308419073327113?searchId=202410281535241DB0D6F12C004DED873E
+2. Prisma数据库ORM框架学习: https://juejin.cn/post/7378459137417461760
 
 ### 命令
 
