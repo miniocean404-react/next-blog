@@ -7,7 +7,7 @@ import { DB } from "../index"
 import { User } from "@prisma/client"
 
 const GetUserByIdSchema = z.object({
-  id: z.number(),
+  id: z.string(),
 })
 
 export async function getUserById({ id }: typeof GetUserByIdSchema._type) {
@@ -24,8 +24,15 @@ export async function getUserById({ id }: typeof GetUserByIdSchema._type) {
 }
 
 const UserSchema: z.ZodType<Omit<User, "id">> = z.object({
+  name: z.string().nullable(),
   email: z.string().nullable(),
-  username: z.string(),
+  emailVerified: z.date().nullable(),
+  image: z.string().nullable(),
+  isMachine: z.boolean(),
+  createdAt: z.date(),
+  subscribed: z.boolean(),
+  source: z.string().nullable(),
+  defaultWorkspace: z.string().nullable(),
 })
 
 export async function createUser(body: typeof UserSchema._type) {
@@ -42,7 +49,7 @@ export async function createUser(body: typeof UserSchema._type) {
 }
 
 const UpdateUserByIdSchema = z.object({
-  id: z.number(),
+  id: z.string(),
 })
 
 export async function updateUser(body: typeof UpdateUserByIdSchema._type) {
@@ -62,7 +69,7 @@ export async function updateUser(body: typeof UpdateUserByIdSchema._type) {
 }
 
 const DeleteUserByIdSchema = z.object({
-  id: z.number(),
+  id: z.string(),
 })
 
 export async function deleteUser(body: typeof DeleteUserByIdSchema._type) {
