@@ -1,3 +1,4 @@
+import { auth } from "@/auth/core"
 import { routing } from "@/i18n/routing"
 import createMiddleware from "next-intl/middleware"
 import type { NextFetchEvent, NextRequest, NextResponse } from "next/server"
