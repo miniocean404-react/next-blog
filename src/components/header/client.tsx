@@ -18,9 +18,7 @@ export default function HeaderClient() {
   const locale = useLocale()
 
   useEvent("visibilitychange", () => {
-    const faviconLink = document.querySelector<HTMLLinkElement>(
-      'link[rel="icon"][type="image/x-icon"]',
-    )!
+    const faviconLink = document.querySelector<HTMLLinkElement>('link[rel="shortcut icon"]')!
 
     let start = 0
 
@@ -81,7 +79,7 @@ export default function HeaderClient() {
           <Link className="text-base font-600 flex items-center" href={`/${locale}`} title={locale}>
             <Image
               className="mr-2 h-6"
-              src={"/svg/love.svg"}
+              src={"/favicon.svg"}
               alt={"logo"}
               width={24}
               height={24}

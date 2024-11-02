@@ -37,11 +37,29 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
     ],
     creator: `@${author}`,
     authors: [{ url: GITHUB_LINK, name: author }],
-    // 如果 app 下放了文件就无需设置
+    // 如果 app 下放了文件就无需设置，生成网站：https://realfavicongenerator.net/
     icons: {
-      // icon: "/favicon.ico",
-      // shortcut: "/favicon.ico",
-      // apple: "/favicon.ico",
+      shortcut: "/favicon.ico",
+      icon: [
+        {
+          url: "/favicon-96x96.png",
+          sizes: "96x96",
+          type: "image/png",
+        },
+        {
+          url: "/favicon.svg",
+          type: "image/svg+xml",
+        },
+      ],
+      apple: {
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+      },
+      other: [
+        {
+          url: "/favicon-16x16.png",
+        },
+      ],
     },
 
     manifest: "/manifest.webmanifest",
