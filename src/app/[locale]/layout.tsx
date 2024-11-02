@@ -10,7 +10,6 @@ import Header from "@/components/header"
 import { notFound } from "next/navigation"
 import GoogleAnalytics from "~/lib/components/analytics/google"
 import BaiDuAnalytics from "~/lib/components/analytics/baidu"
-import { Suspense } from "react"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
