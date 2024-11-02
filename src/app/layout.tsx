@@ -103,8 +103,6 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
     openGraph: {
       // og:url
       // url: "https://www.isaac-wang.com",
-      // og:image
-      // images: [],
       type: "website",
       locale,
       url: "/",
@@ -114,6 +112,10 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
         template: t("appTitleTemplate"),
       },
       description: t("appDescription"),
+      images: {
+        url: "/favicon-96x96.png",
+        alt: t("appDefaultTitle"),
+      },
     },
     // 这部分配置是为了定义网页在被分享到Twitter时的展现方式：
     // card: 定义了 Twitter 卡片的类型。"summary_large_image"意味着卡片将展示一个大图片以及摘要信息。其他类型还包括"summary"、"app"等。
@@ -123,13 +125,17 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
     // creator: Twitter 卡片的创建者的 Twitter 用户名。这有助于引导关注并增加互动。
     twitter: {
       card: "summary_large_image",
+      site: `@${author}`,
       title: {
         default: t("appDefaultTitle"),
         template: t("appTitleTemplate"),
       },
       description: t("appDescription"),
       creator: `@${author}`,
-      images: [],
+      images: {
+        url: "/favicon-96x96.png",
+        alt: t("appDefaultTitle"),
+      },
     },
     alternates: {
       // 因为有 metadataBase 默认 URL 的存在，所以直接写 /

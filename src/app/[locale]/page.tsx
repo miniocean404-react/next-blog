@@ -3,6 +3,7 @@
 import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
 import { useTranslations } from "next-intl"
 import { useTheme } from "next-themes"
+import Head from "next/head"
 import { useEffect, useRef } from "react"
 import Typed from "typed.js"
 import { Dock, DockIcon } from "~/lib/components/magicui/dock"
@@ -26,7 +27,7 @@ export default function Home(props: { params: { locale: string } }) {
   }, [])
 
   return (
-    <>
+    <div>
       <h1 className="hidden">{t("app.appDefaultTitle")}</h1>
       <div className="flex justify-center items-center h-dvh">
         <div className={"text-3xl md:text-6xl px-6"}>
@@ -58,6 +59,6 @@ export default function Home(props: { params: { locale: string } }) {
 
       <div className="mini-i-chevron-up"></div>
       <div className="mini-i-arrow-up"></div>
-    </>
+    </div>
   )
 }
