@@ -15,13 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${APP_URL}/zh`,
       lastModified: new Date().toISOString(),
       changeFrequency: "daily",
-      priority: 0.9,
+      priority: 1,
     },
     {
       url: `${APP_URL}/en`,
       lastModified: new Date().toISOString(),
       changeFrequency: "daily",
-      priority: 0.9,
+      priority: 1,
     },
     {
       url: `${APP_URL}/manifest.webmanifest`,
@@ -33,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${APP_URL}/robots.txt`,
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.9,
     },
   ]
 }
