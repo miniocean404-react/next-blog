@@ -12,13 +12,17 @@ export default function Error({
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error)
+    // console.error("普通 error\n", error)
   }, [error])
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
-      <button onClick={() => reset()}>Try again</button>
-    </div>
+    <html>
+      <body>
+        <h2>出错啦!</h2>
+        <p>错误名称：{error.name}</p>
+        <p>错误消息：{error.message}</p>
+        <button onClick={() => reset()}>Try again</button>
+      </body>
+    </html>
   )
 }
