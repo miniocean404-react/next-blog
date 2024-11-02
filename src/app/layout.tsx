@@ -1,4 +1,4 @@
-import { APP_URL } from "@/constant/link"
+import { GITHUB_LINK } from "@/constant/link"
 import type { Metadata, ResolvingMetadata, Viewport } from "next"
 import { getLocale, getTranslations } from "next-intl/server"
 
@@ -36,7 +36,7 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
       "Docker",
     ],
     creator: `@${author}`,
-    authors: [{ url: APP_URL, name: author }],
+    authors: [{ url: GITHUB_LINK, name: author }],
     // 如果 app 下放了文件就无需设置
     icons: {
       // icon: "/favicon.ico",
@@ -88,8 +88,8 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
       // og:image
       // images: [],
       type: "website",
-      locale: "zh_CN",
-      url: APP_URL,
+      locale,
+      url: "/",
       siteName: t("appName"),
       title: {
         default: t("appDefaultTitle"),
@@ -114,8 +114,9 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
       images: [],
     },
     alternates: {
-      canonical: `${APP_URL}/${locale}`,
-      languages: { zh: `${APP_URL}/zh`, "zh-CN": `${APP_URL}/zh`, en: `${APP_URL}/en` },
+      // 因为有 metadataBase 默认 URL 的存在，所以直接写 /
+      canonical: "/",
+      languages: { zh: "/", "zh-CN": `/zh`, en: `/en` },
     },
   }
 }

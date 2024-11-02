@@ -23,9 +23,11 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
       appId: "R2IYF7ETH7",
       apiKey: "599cec31baffa4868cae4e79f180729b",
       indexName: "docsearch",
-      searchParameters: {
-        facetFilters: [`language:${locale}`, "version:1.0.0"],
-      },
+      // todo 未知类型问题
+      // searchParameters: {
+      // facetFilters: [`language:${locale}`, "version:1.0.0"],
+      // facetFilters: [""],
+      // },
       insights: true,
       initialQuery: "第一次查询参数",
       translations,
