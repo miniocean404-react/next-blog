@@ -10,7 +10,7 @@ export const config = {
     // "/(zh|cn)/:path*",
     // "/(api|trpc)(.*)",
     // 排除静态资源
-    "/((?!.*\\..*|_next).*)",
+    "/((?!api|_next|_vercel|.*\\..*).*)",
   ],
   // 您还可以使用missing或has数组，或者两者结合来绕过某些请求的中间件：
   // has: [
