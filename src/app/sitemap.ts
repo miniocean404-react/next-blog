@@ -8,13 +8,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: APP_URL,
       lastModified: new Date().toISOString(),
-      changeFrequency: "yearly",
+      changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: `${APP_URL}/zh`,
+      url: `${APP_URL}/en`,
       lastModified: new Date().toISOString(),
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
       priority: 1,
     },
     {
