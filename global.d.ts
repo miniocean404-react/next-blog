@@ -15,6 +15,8 @@ declare namespace NodeJS {
 
     AUTH_GOOGLE_ID: string
     AUTH_GOOGLE_SECRET: string
+
+    DOUBAO_API_KEY: string
   }
 }
 

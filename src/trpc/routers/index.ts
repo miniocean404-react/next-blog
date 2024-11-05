@@ -2,6 +2,7 @@
 import { User } from "./user"
 import { Prodcut } from "./product"
 import { router } from "../server/index"
+import { Ai } from "./ai"
 
 /**
  * 每个 router 有自己的 namespace，下面的 User 和 Product 就是 namespace
@@ -11,6 +12,7 @@ import { router } from "../server/index"
 export const trpcRouter = router({
   User,
   Prodcut,
+  Ai,
 })
 
 /**

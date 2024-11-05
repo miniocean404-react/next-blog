@@ -1,11 +1,31 @@
-import { createTRPCProxyClient, httpBatchLink } from "@trpc/client"
+import {
+  createTRPCClient,
+  unstable_httpBatchStreamLink,
+  loggerLink,
+  splitLink,
+  unstable_httpSubscriptionLink,
+} from "@trpc/client"
 import { type TRPCRouter } from "./routers/index"
 
-export const trpcClient = createTRPCProxyClient<TRPCRouter>({
+export const trpcClient = createTRPCClient<TRPCRouter>({
   links: [
-    // 设置 trpc 请求唯一地址，对应api路由
-    httpBatchLink({
-      url: `${getBaseUrl()}/api/trpc`,
+    loggerLink({
+      enabled: (opts) => {
+        return (
+          (process.env.NODE_ENV === "development" && typeof window !== "undefined") ||
+          (opts.direction === "down" && opts.result instanceof Error)
+        )
+      },
+    }),
+    splitLink({
+      condition: (op) => op.type === "subscription",
+      true: unstable_httpSubscriptionLink({
+        url: `${getBaseUrl()}/api/trpc`,
+      }),
+      // 普通 HTTP 请求：httpBatchLink
+      false: unstable_httpBatchStreamLink({
+        url: `${getBaseUrl()}/api/trpc`,
+      }),
     }),
   ],
 })

@@ -11,6 +11,9 @@ export const t = initTRPC
       authRequired: false,
       role: "normal",
     },
+    experimental: {
+      iterablesAndDeferreds: true,
+    },
   })
 
 export const router = t.router
