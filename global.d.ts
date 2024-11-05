@@ -1,19 +1,21 @@
 import auth from "next-auth"
 
-declare namespace NodeJS {
-  interface ProcessEnv {
-    // 基础路径
-    NEXT_PUBLIC_BASEURL: string
+declare global {
+  declare namespace NodeJS {
+    declare interface ProcessEnv {
+      // 基础路径
+      NEXT_PUBLIC_BASEURL: string
 
-    AUTH_SECRET: string
+      AUTH_SECRET: string
 
-    AUTH_GITHUB_ID: string
-    AUTH_GITHUB_SECRET: string
+      AUTH_GITHUB_ID: string
+      AUTH_GITHUB_SECRET: string
 
-    AUTH_GOOGLE_ID: string
-    AUTH_GOOGLE_SECRET: string
+      AUTH_GOOGLE_ID: string
+      AUTH_GOOGLE_SECRET: string
 
-    DOUBAO_API_KEY: string
+      DOUBAO_API_KEY: string
+    }
   }
 }
 
