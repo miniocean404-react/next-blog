@@ -17,7 +17,7 @@ export function Chat(props: PropsWithChildren<ChatProps>) {
     <div className={clsx(styles.chat, className)}>
       <div className={styles.reverse}>
         {/* <div className={styles["place-holder"]}></div> */}
-        <div className={styles.messages}>{props.children}</div>
+        <div>{props.children}</div>
       </div>
     </div>
   )

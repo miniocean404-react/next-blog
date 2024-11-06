@@ -7,7 +7,80 @@ import { Chat, Message } from "~/lib/components/mini/chat"
 
 export default function Ai() {
   const problemRef = useRef<HTMLInputElement>(null)
-  const [messages, setMessages] = useState<MessageBody[]>([])
+  const [messages, setMessages] = useState<MessageBody[]>([
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+    {
+      content: "123",
+      type: "receive",
+    },
+  ])
   const answerRef = useRef<Unsubscribable>()
 
   const getAnswer = async (content: string) => {

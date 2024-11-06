@@ -15,7 +15,34 @@
 
     padding: 16px;
 
-    .messages {
+    // &::-webkit-scrollbar-thumb {
+    //   background: transparent;
+    //   background-clip: padding-box;
+    //   border-radius: 9px 14px 14px 9px;
+    //   border-right: 3px solid transparent;
+    // }
+
+    // &::-webkit-scrollbar-thumb:hover {
+    //   --scrollThumbColor: var(--scrollbar-hover-color, #999);
+    //   background-clip: padding-box;
+    // }
+
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
+
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-thumb {
+      background: var(--scrollThumbColor, #c4c4c4);
+      background-clip: padding-box;
+      border-radius: 9px 14px 14px 9px;
+      border-right: 3px solid transparent;
+    }
+
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar {
+      display: block;
+      width: var(--custom-scrollbar-width, 9px);
     }
 
     // flex 内容底部填充这个可以在初始时候将对话内容撑起来，这是一种方法
