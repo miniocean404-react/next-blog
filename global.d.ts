@@ -1,4 +1,5 @@
 import auth from "next-auth"
+import moduleName from "next-intl"
 
 declare global {
   declare namespace NodeJS {
@@ -17,10 +18,10 @@ declare global {
       DOUBAO_API_KEY: string
     }
   }
-}
 
-type Messages = typeof import("./locales/zh.json")
-declare interface IntlMessages extends Messages {}
+  type Messages = typeof import("./locales/zh.json")
+  declare interface IntlMessages extends Messages {}
+}
 
 declare module "next-auth" {
   interface User {

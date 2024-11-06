@@ -13,7 +13,7 @@ import AlgoliaSearch from "../algolia-search"
 import ThemeSwitch from "./theme-switch"
 
 export default function HeaderClient() {
-  const t = useTranslations("")
+  const t = useTranslations()
   const interval = useRef<NodeJS.Timeout>()
   const locale = useLocale()
 

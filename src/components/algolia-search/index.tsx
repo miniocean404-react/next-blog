@@ -9,11 +9,11 @@ import docsearch from "@docsearch/js"
 import { useMounted } from "@/hook/mounted"
 
 export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
-  const t = useTranslations("")
+  const t = useTranslations()
   const locale = useLocale()
   const isMonted = useMounted()
 
-  const translations = t.raw("search")
+  const translations = t.raw<any>("search")
 
   // useHotkeys(["meta+k", "ctrl+k"], openSearch, [], { preventDefault: true })
 
