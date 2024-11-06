@@ -7,7 +7,7 @@ import { Chat, Message } from "~/lib/components/mini/chat"
 export default function Ai() {
   const [answer, setAnswer] = useState<string>("")
   const problemRef = useRef<HTMLInputElement>(null)
-  const [message, setMessage] = useState(Array.from({ length: 20 }))
+  const [message, setMessage] = useState(Array.from({ length: 2 }))
 
   const getAnswer = async (content: string) => {
     const unsubscribable = trpcClient.Ai.aiExchange.subscribe(

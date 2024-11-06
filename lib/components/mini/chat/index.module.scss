@@ -1,9 +1,13 @@
 .chat {
   overflow: hidden;
 
+  // 设置消息少的时候消息在顶部
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
   .reverse {
     overflow: auto;
-    height: inherit;
 
     display: flex;
     flex-direction: column-reverse;
