@@ -20,12 +20,18 @@ export const Ai = router({
         if (done) break
 
         const txt = textDecoder.decode(value)
-        const data = JSON.parse(txt.split("data: ")[1])
+        const regexp = /data: (?<data>.*)\n/gim
 
-        yield data
+        for (const match of txt.matchAll(regexp)) {
+          const data = match.groups?.data || "[DONE]"
+
+          if (data === "[DONE]") {
+            yield "done"
+          } else {
+            yield JSON.parse(data)
+          }
+        }
       }
-
-      yield "done"
     }),
 })
 
