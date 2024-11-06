@@ -38,10 +38,14 @@
       color: var(--mini-c-text-1);
       padding: 8px;
       width: fit-content;
+
+      // 移动端 300 px
+      max-width: 450px;
     }
 
     .receiveCard {
       background-color: unset;
+      max-width: 100%;
     }
   }
 
