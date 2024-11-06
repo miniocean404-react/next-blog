@@ -17,6 +17,7 @@ export default function Ai() {
           if (value === "done") {
             return unsubscribable.unsubscribe()
           }
+
           setAnswer((prev) => prev + value.choices[0].delta.content)
         },
       },
@@ -37,7 +38,7 @@ export default function Ai() {
       <Chat className="h-[calc(100vh-64px-100px)]">
         {message.map((_, index) => (
           <Message type={index % 2 === 1 ? "receive" : "sned"} key={index}>
-            1{index.toString().repeat(5)}
+            {index.toString().repeat(5)}
           </Message>
         ))}
       </Chat>
