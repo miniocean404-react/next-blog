@@ -1,0 +1,40 @@
+.chat {
+  overflow: hidden;
+
+  .reverse {
+    overflow: auto;
+    height: inherit;
+
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+
+    padding: 16px;
+
+    .messages {
+    }
+
+    // flex 内容底部填充这个可以在初始时候将对话内容撑起来，这是一种方法
+    // .place-holder {
+    //   background: black;
+    //   flex-grow: 1;
+    //   flex-shrink: 1;
+    // }
+  }
+}
+
+.message {
+  width: 100%;
+  display: flex;
+
+  .beautiful {
+    border-radius: 4px;
+    background-color: #ddd;
+    padding: 8px;
+    width: fit-content;
+  }
+}
+
+.receive {
+  flex-direction: row-reverse;
+}
