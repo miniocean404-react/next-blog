@@ -1,4 +1,3 @@
-import auth from "next-auth"
 import moduleName from "next-intl"
 
 declare global {
