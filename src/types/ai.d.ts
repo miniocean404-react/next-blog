@@ -16,3 +16,8 @@ interface Delta {
   content: string
   role: string
 }
+
+interface MessageBody {
+  type: "send" | "receive"
+  context: string
+}
