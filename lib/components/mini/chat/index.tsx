@@ -25,12 +25,12 @@ export function Chat(props: PropsWithChildren<ChatProps>) {
 
 interface MessageProps {
   className?: string
-  type: "sned" | "receive"
+  type: "send" | "receive"
 }
 
 export function Message(props: PropsWithChildren<MessageProps>) {
   return (
-    <div className={clsx(styles.message, { [styles.receive]: props.type === "sned" })}>
+    <div className={clsx(styles.message, { [styles.receive]: props.type === "send" })}>
       <div className={styles.beautiful}>{props.children}</div>
     </div>
   )

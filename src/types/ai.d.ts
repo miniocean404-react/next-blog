@@ -18,6 +18,7 @@ interface Delta {
 }
 
 interface MessageBody {
+  id?: string | number
   type: "send" | "receive"
-  context: string
+  content: string
 }

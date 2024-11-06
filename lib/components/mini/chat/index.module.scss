@@ -33,7 +33,8 @@
 
   .beautiful {
     border-radius: 4px;
-    background-color: #ddd;
+    background-color: var(--mini-c-bg-soft);
+    color: var(--mini-c-text-1);
     padding: 8px;
     width: fit-content;
   }
