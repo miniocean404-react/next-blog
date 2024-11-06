@@ -39,7 +39,6 @@ export default function Ai() {
 
             return newMessage
           })
-          // setAnswer((prev) => prev + value.choices[0].delta.content)
         },
       },
     )

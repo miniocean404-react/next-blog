@@ -11,7 +11,6 @@ export const Ai = router({
     )
     .subscription(async function* ({ input }) {
       const content = input.content
-
       const reader = await getSSEReader({ content })
 
       while (true) {

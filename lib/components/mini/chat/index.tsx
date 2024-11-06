@@ -30,8 +30,14 @@ interface MessageProps {
 
 export function Message(props: PropsWithChildren<MessageProps>) {
   return (
-    <div className={clsx(styles.message, { [styles.receive]: props.type === "send" })}>
-      <div className={styles.beautiful}>{props.children}</div>
+    <div className={styles.message}>
+      <div className={clsx(styles.box, { [styles.send]: props.type === "send" })}>
+        <div className={clsx(styles.beautiful, { [styles.receiveCard]: props.type === "receive" })}>
+          {props.children}
+        </div>
+      </div>
+
+      <div className={styles.operate}></div>
     </div>
   )
 }

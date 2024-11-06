@@ -28,18 +28,28 @@
 }
 
 .message {
-  width: 100%;
-  display: flex;
+  .box {
+    width: 100%;
+    display: flex;
 
-  .beautiful {
-    border-radius: 4px;
-    background-color: var(--mini-c-bg-soft);
-    color: var(--mini-c-text-1);
-    padding: 8px;
-    width: fit-content;
+    .beautiful {
+      border-radius: 4px;
+      background-color: var(--mini-c-bg-soft);
+      color: var(--mini-c-text-1);
+      padding: 8px;
+      width: fit-content;
+    }
+
+    .receiveCard {
+      background-color: unset;
+    }
+  }
+
+  .operate {
+    height: 40px;
   }
 }
 
-.receive {
+.send {
   flex-direction: row-reverse;
 }
