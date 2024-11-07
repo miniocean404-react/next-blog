@@ -6,21 +6,30 @@ import styles from "./index.module.scss"
 
 import { useEffect, useRef, type PropsWithChildren, type KeyboardEvent, useState } from "react"
 import { ArrowUp } from "lucide-react"
-import { isHotkeyPressed, useHotkeys } from "react-hotkeys-hook"
+import { useHotkeys } from "react-hotkeys-hook"
 import { Key } from "@/constant/hotkey"
 
-interface ChatProps {
+interface ChatLayoutProps {
   className?: string
 }
 
-export function Chat(props: PropsWithChildren<ChatProps>) {
+export function ChatLayout(props: PropsWithChildren<ChatLayoutProps>) {
+  const { className } = props
+  return <div className={clsx(styles.chatLayout, className)}>{props.children}</div>
+}
+
+interface ChatWindowProps {
+  className?: string
+}
+
+export function ChatWindow(props: PropsWithChildren<ChatWindowProps>) {
   const { className } = props
 
   return (
-    <div className={clsx(styles.chat, className)}>
-      <div className={styles.reverse}>
+    <div className={clsx(styles.chatWindow, className)}>
+      <div className={clsx(styles.reverse, styles.scroll)}>
         {/* <div className={styles["place-holder"]}></div> */}
-        <div>{props.children}</div>
+        {props.children}
       </div>
     </div>
   )
@@ -69,11 +78,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
   useHotkeys<HTMLTextAreaElement>(
     Key.Enter,
     (e) => {
-      if (textareaRef.current && textareaRef.current?.value !== "") {
-        props.onSend && props.onSend(textareaRef.current.value)
-        textareaRef.current.value = ""
-        setmutiLine(false)
-      }
+      send()
     },
     {
       enabled: true,
@@ -102,48 +107,53 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
       const lineHeight = parseInt(getComputedStyle(calcRef.current).lineHeight)
       const row = total / lineHeight
 
-      if (!mutiLine && row > 1) {
-        setmutiLine(true)
-      }
+      if (!mutiLine && row > 1) setmutiLine(true)
+      if (mutiLine && row === 1) setmutiLine(false)
 
       textareaRef.current.style.height = `${row * lineHeight}px`
     }
   }
 
   const onSend = (e?: React.SyntheticEvent<HTMLButtonElement>) => {
+    send(e)
+  }
+
+  const send = (e?: React.SyntheticEvent<HTMLButtonElement>) => {
     if (textareaRef.current && textareaRef.current?.value !== "") {
       props.onSend && props.onSend(textareaRef.current.value, e)
       textareaRef.current.value = ""
       setmutiLine(false)
+      resizeTextarea()
     }
   }
 
   return (
-    <div className={clsx(styles.chatInput, { [styles.chatInputLayout]: mutiLine })}>
-      <div className={styles.textareaBox}>
-        <textarea
-          // value={props.value}
-          className={styles.textarea}
-          ref={textareaRef}
-          rows={props.rows}
-          cols={props.cols}
-          autoComplete="off"
-          placeholder={props.placeholder}
-          onInput={onInput}
-          onFocus={onFocus}
-          onBlur={props.onBlur}
-          onKeyDown={props.onKeyDown}
-        />
+    <div className={clsx(styles.chatInput, props.className)}>
+      <div className={clsx(styles.chatInputCard, { [styles.mutiLine]: mutiLine })}>
+        <div className={styles.textareaBox}>
+          <textarea
+            className={clsx(styles.textarea, styles.scroll)}
+            ref={textareaRef}
+            rows={props.rows}
+            cols={props.cols}
+            autoComplete="off"
+            placeholder={props.placeholder}
+            onInput={onInput}
+            onFocus={onFocus}
+            onBlur={props.onBlur}
+            onKeyDown={props.onKeyDown}
+          />
 
-        <textarea className={styles.calc} ref={calcRef} />
-      </div>
+          <textarea className={styles.calc} ref={calcRef} />
+        </div>
 
-      <div className={styles.tool}>
-        <div className={styles.divider}></div>
+        <div className={styles.tool}>
+          <div className={styles.divider}></div>
 
-        <button className={styles.sendButton} onClick={onSend}>
-          <ArrowUp size={24}></ArrowUp>
-        </button>
+          <button className={styles.sendButton} onClick={onSend}>
+            <ArrowUp size={24}></ArrowUp>
+          </button>
+        </div>
       </div>
     </div>
   )

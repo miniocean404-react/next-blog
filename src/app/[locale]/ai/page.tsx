@@ -3,7 +3,7 @@
 import { trpcClient } from "@/trpc/client"
 import type { Unsubscribable } from "@trpc/server/observable"
 import { useRef, useState, type SyntheticEvent } from "react"
-import { Chat, ChatInput, ChatMessage } from "~/lib/components/mini/chat"
+import { ChatWindow, ChatInput, ChatMessage, ChatLayout } from "~/lib/components/mini/chat"
 
 export default function Ai() {
   const problemRef = useRef<HTMLInputElement>(null)
@@ -44,8 +44,6 @@ export default function Ai() {
     )
   }
 
-  const onInput = async (e: SyntheticEvent<HTMLInputElement>) => {}
-
   const send = (value: string) => {
     // getAnswer(value)
     setMessages((prev) => {
@@ -57,18 +55,22 @@ export default function Ai() {
 
   return (
     <div className="mt-16">
-      <Chat className="h-[calc(100vh-64px-100px)]">
-        {messages.map((message, index) => (
-          <ChatMessage type={message.type} key={index}>
-            {message.content}
-          </ChatMessage>
-        ))}
-      </Chat>
+      <ChatLayout className="h-[calc(100vh-64px)]  ">
+        <ChatWindow>
+          <div className="mx-auto md:max-w-[var(--mini-layout-max-width)]">
+            {messages.map((message, index) => (
+              <ChatMessage type={message.type} key={index}>
+                {message.content}
+              </ChatMessage>
+            ))}
+          </div>
+        </ChatWindow>
 
-      <ChatInput onSend={send}></ChatInput>
-
-      {/* <input ref={problemRef} type="text" onInput={onInput} />
-      <button onClick={send}>发送</button> */}
+        <ChatInput
+          className="p-3.5 md:max-w-[var(--mini-layout-max-width)]"
+          onSend={send}
+        ></ChatInput>
+      </ChatLayout>
     </div>
   )
 }

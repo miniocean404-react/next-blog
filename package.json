@@ -60,7 +60,6 @@
     "tailwindcss": "^3.4.14",
     "typed.js": "^2.1.0",
     "ua-parser-js": "^1.0.39",
-    "use-debounce": "^10.0.4",
     "zod": "^3.23.8",
     "zustand": "5.0.1"
   },

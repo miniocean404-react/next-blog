@@ -93,12 +93,24 @@ export default function HeaderClient() {
           </div>
 
           <div className="hidden items-center md:flex">
-            <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]">
+            <Link
+              className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
+              href={"/ai"}
+            >
+              {t("navigation.ai")}
+            </Link>
+            <Link
+              className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
+              href={"/"}
+            >
               {t("navigation.article")}
-            </div>
-            <div className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]">
+            </Link>
+            <Link
+              className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
+              href={"/"}
+            >
               {t("navigation.demo")}
-            </div>
+            </Link>
 
             <div className="px-2">
               <Link
