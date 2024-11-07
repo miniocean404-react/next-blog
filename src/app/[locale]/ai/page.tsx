@@ -57,7 +57,7 @@ export default function Ai() {
     <div className="mt-16">
       <ChatLayout className="h-[calc(100vh-64px)]  ">
         <ChatWindow>
-          <div className="mx-auto md:max-w-[var(--mini-layout-max-width)]">
+          <div className="w-full mx-auto md:max-w-[var(--mini-layout-max-width)]">
             {messages.map((message, index) => (
               <ChatMessage type={message.type} key={index}>
                 {message.content}
