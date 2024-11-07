@@ -1,0 +1,20 @@
+:root {
+  /* 消息卡片 */
+  --mini-c-chat-message-card-bg: var(--mini-c-bg-soft);
+  --mini-c-chat-message-text: var(--mini-c-text-1);
+
+  /* 聊天输入框 */
+  --mini-c-chat-input-card-bg: var(--mini-c-bg);
+  --mini-c-chat-input-card-shadow: var(--mini-shadow-3);
+  --mini-c-chat-input-card-border: var(--mini-c-gutter);
+  --mini-c-chat-input-card-caret: #0057ff;
+
+  /* 聊天输入框工具 */
+  --mini-c-chat-input-tool-divider: var(--mini-c-divider);
+
+  /* 发送按钮 */
+  --mini-c-chat-i-send-bg: #06f;
+  --mini-c-chat-i-send-inner: #fff;
+  --mini-c-chat-i-send-bg-soft: #004ad9;
+  --mini-c-chat-i-send-inner-soft: #f5f5f5;
+}

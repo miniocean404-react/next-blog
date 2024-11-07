@@ -45,7 +45,7 @@ export default function Ai() {
   }
 
   const send = (value: string) => {
-    getAnswer(value)
+    // getAnswer(value)
     setMessages((prev) => {
       const newMessage = [...prev]
       newMessage.push({ type: "send", content: value })
@@ -67,7 +67,7 @@ export default function Ai() {
         </ChatWindow>
 
         <ChatInput
-          className="p-3.5 md:px-0 md:max-w-[var(--mini-layout-max-width)]"
+          className="p-3.5 2xl:px-0 md:max-w-[var(--mini-layout-max-width)]"
           onSend={send}
         ></ChatInput>
       </ChatLayout>

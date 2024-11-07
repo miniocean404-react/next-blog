@@ -1,4 +1,5 @@
 @import "./var/index.css";
+@import "./components/index.css";
 
 @tailwind base;
 @tailwind components;
