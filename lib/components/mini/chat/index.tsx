@@ -4,8 +4,10 @@ import clsx from "clsx"
 
 import styles from "./index.module.scss"
 
-import { useEffect, useRef, type PropsWithChildren } from "react"
+import { useEffect, useRef, type PropsWithChildren, type KeyboardEvent } from "react"
 import { ArrowUp } from "lucide-react"
+import { isHotkeyPressed, useHotkeys } from "react-hotkeys-hook"
+import { Key } from "@/constant/hotkey"
 
 interface ChatProps {
   className?: string
@@ -51,11 +53,18 @@ interface ChatInputProps {
   rows?: number
   cols?: number
   onInput?: (e: React.SyntheticEvent<HTMLTextAreaElement>) => void
+  onFocus?: (e: React.SyntheticEvent<HTMLTextAreaElement>) => void
   onBlur?: (e: React.SyntheticEvent<HTMLTextAreaElement>) => void
+  onSend?: (e: React.SyntheticEvent<HTMLButtonElement>) => void
+  onKeyDown?: (e: KeyboardEvent<HTMLTextAreaElement>) => void
 }
 
 export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
   props = { ...{ placeholder: "发消息", rows: 1, cols: 20 }, ...props }
+
+  useHotkeys<HTMLTextAreaElement>(Key.Enter, () => {}, {
+    preventDefault: true,
+  })
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const calcRef = useRef<HTMLTextAreaElement>(null)
@@ -63,6 +72,10 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
   useEffect(() => {
     resizeTextarea()
   }, [])
+
+  const onFocus = (e: React.SyntheticEvent<HTMLTextAreaElement>) => {
+    if (props.onFocus) props.onFocus(e)
+  }
 
   const onInput = (e: React.SyntheticEvent<HTMLTextAreaElement>) => {
     resizeTextarea()
@@ -80,6 +93,11 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
     }
   }
 
+  const onKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter") e.preventDefault()
+    if (props.onKeyDown) props.onKeyDown(e)
+  }
+
   return (
     <div className={styles.chatInput}>
       <div className={styles.textareaBox}>
@@ -91,7 +109,9 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
           autoComplete="off"
           placeholder={props.placeholder}
           onInput={onInput}
+          onFocus={onFocus}
           onBlur={props.onBlur}
+          onKeyDown={onKeyDown}
         />
 
         <textarea className={styles.calc} ref={calcRef} />
@@ -100,7 +120,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
       <div className={styles.tool}>
         <div className={styles.divider}></div>
 
-        <button className={styles.sendButton}>
+        <button className={styles.sendButton} onClick={props.onSend}>
           <ArrowUp size={24}></ArrowUp>
         </button>
       </div>

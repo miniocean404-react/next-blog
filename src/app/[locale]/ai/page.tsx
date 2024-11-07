@@ -72,8 +72,8 @@ export default function Ai() {
 
       <ChatInput></ChatInput>
 
-      <input ref={problemRef} type="text" onInput={onInput} />
-      <button onClick={send}>发送</button>
+      {/* <input ref={problemRef} type="text" onInput={onInput} />
+      <button onClick={send}>发送</button> */}
     </div>
   )
 }
