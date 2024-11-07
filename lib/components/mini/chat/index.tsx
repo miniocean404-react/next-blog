@@ -4,7 +4,7 @@ import clsx from "clsx"
 
 import styles from "./index.module.scss"
 
-import { useEffect, useRef, type PropsWithChildren, type KeyboardEvent } from "react"
+import { useEffect, useRef, type PropsWithChildren, type KeyboardEvent, useState } from "react"
 import { ArrowUp } from "lucide-react"
 import { isHotkeyPressed, useHotkeys } from "react-hotkeys-hook"
 import { Key } from "@/constant/hotkey"
@@ -64,6 +64,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const calcRef = useRef<HTMLTextAreaElement>(null)
+  const [mutiLine, setmutiLine] = useState(false)
 
   useHotkeys<HTMLTextAreaElement>(
     Key.Enter,
@@ -71,6 +72,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
       if (textareaRef.current && textareaRef.current?.value !== "") {
         props.onSend && props.onSend(textareaRef.current.value)
         textareaRef.current.value = ""
+        setmutiLine(false)
       }
     },
     {
@@ -100,6 +102,10 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
       const lineHeight = parseInt(getComputedStyle(calcRef.current).lineHeight)
       const row = total / lineHeight
 
+      if (!mutiLine && row > 1) {
+        setmutiLine(true)
+      }
+
       textareaRef.current.style.height = `${row * lineHeight}px`
     }
   }
@@ -108,11 +114,12 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
     if (textareaRef.current && textareaRef.current?.value !== "") {
       props.onSend && props.onSend(textareaRef.current.value, e)
       textareaRef.current.value = ""
+      setmutiLine(false)
     }
   }
 
   return (
-    <div className={clsx(styles.chatInput, styles.chatInputLayout)}>
+    <div className={clsx(styles.chatInput, { [styles.chatInputLayout]: mutiLine })}>
       <div className={styles.textareaBox}>
         <textarea
           // value={props.value}
