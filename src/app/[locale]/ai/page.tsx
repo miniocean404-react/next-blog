@@ -3,7 +3,7 @@
 import { trpcClient } from "@/trpc/client"
 import type { Unsubscribable } from "@trpc/server/observable"
 import { useRef, useState, type SyntheticEvent } from "react"
-import { Chat, Message } from "~/lib/components/mini/chat"
+import { Chat, ChatInput, ChatMessage } from "~/lib/components/mini/chat"
 
 export default function Ai() {
   const problemRef = useRef<HTMLInputElement>(null)
@@ -64,11 +64,13 @@ export default function Ai() {
     <div className="mt-16">
       <Chat className="h-[calc(100vh-64px-100px)]">
         {messages.map((message, index) => (
-          <Message type={message.type} key={index}>
+          <ChatMessage type={message.type} key={index}>
             {message.content}
-          </Message>
+          </ChatMessage>
         ))}
       </Chat>
+
+      <ChatInput></ChatInput>
 
       <input ref={problemRef} type="text" onInput={onInput} />
       <button onClick={send}>发送</button>
