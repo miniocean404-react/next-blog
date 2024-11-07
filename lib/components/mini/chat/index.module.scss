@@ -180,3 +180,9 @@
     }
   }
 }
+
+.chatInputLayout {
+  grid-template-areas:
+    "input-area input-area input-area"
+    "left-tools . right-tools";
+}

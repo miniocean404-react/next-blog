@@ -112,7 +112,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
   }
 
   return (
-    <div className={styles.chatInput}>
+    <div className={clsx(styles.chatInput, styles.chatInputLayout)}>
       <div className={styles.textareaBox}>
         <textarea
           // value={props.value}
