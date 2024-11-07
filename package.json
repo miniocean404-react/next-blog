@@ -58,7 +58,6 @@
     "superjson": "^2.2.1",
     "tailwind-merge": "^2.5.4",
     "tailwindcss": "^3.4.14",
-    "ts-key-enum": "^3.0.13",
     "typed.js": "^2.1.0",
     "ua-parser-js": "^1.0.39",
     "use-debounce": "^10.0.4",
