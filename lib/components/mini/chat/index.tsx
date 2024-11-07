@@ -67,7 +67,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
 
   useHotkeys<HTMLTextAreaElement>(
     Key.Enter,
-    () => {
+    (e) => {
       if (textareaRef.current && textareaRef.current?.value !== "") {
         props.onSend && props.onSend(textareaRef.current.value)
         textareaRef.current.value = ""
