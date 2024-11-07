@@ -55,19 +55,30 @@ interface ChatInputProps {
   onInput?: (e: React.SyntheticEvent<HTMLTextAreaElement>) => void
   onFocus?: (e: React.SyntheticEvent<HTMLTextAreaElement>) => void
   onBlur?: (e: React.SyntheticEvent<HTMLTextAreaElement>) => void
-  onSend?: (e: React.SyntheticEvent<HTMLButtonElement>) => void
+  onSend?: (value: string, e?: React.SyntheticEvent<HTMLButtonElement>) => void
   onKeyDown?: (e: KeyboardEvent<HTMLTextAreaElement>) => void
 }
 
 export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
   props = { ...{ placeholder: "发消息", rows: 1, cols: 20 }, ...props }
 
-  useHotkeys<HTMLTextAreaElement>(Key.Enter, () => {}, {
-    preventDefault: true,
-  })
-
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const calcRef = useRef<HTMLTextAreaElement>(null)
+
+  useHotkeys<HTMLTextAreaElement>(
+    Key.Enter,
+    () => {
+      if (textareaRef.current && textareaRef.current?.value !== "") {
+        props.onSend && props.onSend(textareaRef.current.value)
+        textareaRef.current.value = ""
+      }
+    },
+    {
+      enabled: true,
+      preventDefault: true,
+      enableOnFormTags: ["textarea"],
+    },
+  )
 
   useEffect(() => {
     resizeTextarea()
@@ -93,15 +104,18 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
     }
   }
 
-  const onKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter") e.preventDefault()
-    if (props.onKeyDown) props.onKeyDown(e)
+  const onSend = (e?: React.SyntheticEvent<HTMLButtonElement>) => {
+    if (textareaRef.current && textareaRef.current?.value !== "") {
+      props.onSend && props.onSend(textareaRef.current.value, e)
+      textareaRef.current.value = ""
+    }
   }
 
   return (
     <div className={styles.chatInput}>
       <div className={styles.textareaBox}>
         <textarea
+          // value={props.value}
           className={styles.textarea}
           ref={textareaRef}
           rows={props.rows}
@@ -111,7 +125,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
           onInput={onInput}
           onFocus={onFocus}
           onBlur={props.onBlur}
-          onKeyDown={onKeyDown}
+          onKeyDown={props.onKeyDown}
         />
 
         <textarea className={styles.calc} ref={calcRef} />
@@ -120,7 +134,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
       <div className={styles.tool}>
         <div className={styles.divider}></div>
 
-        <button className={styles.sendButton} onClick={props.onSend}>
+        <button className={styles.sendButton} onClick={onSend}>
           <ArrowUp size={24}></ArrowUp>
         </button>
       </div>

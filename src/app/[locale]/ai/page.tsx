@@ -46,18 +46,13 @@ export default function Ai() {
 
   const onInput = async (e: SyntheticEvent<HTMLInputElement>) => {}
 
-  const send = () => {
-    if (problemRef.current) {
-      const content = problemRef.current.value
-
-      getAnswer(problemRef.current.value)
-      setMessages((prev) => {
-        const newMessage = [...prev]
-        newMessage.push({ type: "send", content })
-        return newMessage
-      })
-      problemRef.current.value = ""
-    }
+  const send = (value: string) => {
+    // getAnswer(value)
+    setMessages((prev) => {
+      const newMessage = [...prev]
+      newMessage.push({ type: "send", content: value })
+      return newMessage
+    })
   }
 
   return (
@@ -70,7 +65,7 @@ export default function Ai() {
         ))}
       </Chat>
 
-      <ChatInput></ChatInput>
+      <ChatInput onSend={send}></ChatInput>
 
       {/* <input ref={problemRef} type="text" onInput={onInput} />
       <button onClick={send}>发送</button> */}
