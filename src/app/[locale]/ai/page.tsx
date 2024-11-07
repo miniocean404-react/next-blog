@@ -45,7 +45,7 @@ export default function Ai() {
   }
 
   const send = (value: string) => {
-    // getAnswer(value)
+    getAnswer(value)
     setMessages((prev) => {
       const newMessage = [...prev]
       newMessage.push({ type: "send", content: value })
