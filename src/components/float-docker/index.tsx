@@ -1,6 +1,8 @@
 "use client"
 import { Dock, DockIcon } from "~/lib/components/magicui/dock"
 import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
+import Ai from "~/public/svg/ai.svg"
+import { Link } from "lucide-react"
 
 export default function FloatDock() {
   return (
@@ -9,6 +11,10 @@ export default function FloatDock() {
       magnification={60}
       distance={100}
     >
+      <DockIcon className="rounded-full bg-black/10 dark:bg-white/10 p-2">
+        <Ai size={"100%"} />
+      </DockIcon>
+
       <DockIcon className="rounded-full bg-black/10 dark:bg-white/10 p-2">
         <SiGithub size={"100%"} />
       </DockIcon>
