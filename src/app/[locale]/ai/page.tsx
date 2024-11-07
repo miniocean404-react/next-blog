@@ -55,7 +55,7 @@ export default function Ai() {
 
   return (
     <div className="mt-16">
-      <ChatLayout className="h-[calc(100vh-64px)]  ">
+      <ChatLayout className="h-[calc(100dvh-64px)]  ">
         <ChatWindow>
           <div className="w-full mx-auto md:max-w-[var(--mini-layout-max-width)]">
             {messages.map((message, index) => (
