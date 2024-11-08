@@ -15,6 +15,7 @@
     "commit": "cz",
     "clean": "rimraf ./node_modules",
     "format": "prettier --write  src/**/*.{css,tsx,ts}",
+    "bing-index-now": "tsx ./script/bing-index-now.ts",
     "prepare": "pnpm husky install",
     "tailwindcss-init": "tailwindcss init -p",
     "vercel-login": "vercel login",
