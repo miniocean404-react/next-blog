@@ -1,4 +1,4 @@
-import { GITHUB_LINK } from "@/constant/link"
+import { APP_URL, GITHUB_LINK } from "@/constant/link"
 import type { Metadata, ResolvingMetadata, Viewport } from "next"
 import { getLocale, getTranslations } from "next-intl/server"
 
@@ -14,6 +14,7 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
   const author = "我是小海洋呀（Miniocean404）"
 
   return {
+    metadataBase: new URL(APP_URL),
     applicationName: t("appName"),
     title: {
       default: t("appDefaultTitle"),
