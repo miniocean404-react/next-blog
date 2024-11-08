@@ -12,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: `${APP_URL}/ai`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
       url: `${APP_URL}/zh`,
       lastModified: new Date().toISOString(),
       changeFrequency: "daily",
@@ -19,6 +25,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${APP_URL}/en`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
+      priority: 1,
+    },
+    {
+      url: `${APP_URL}/en/ai`,
       lastModified: new Date().toISOString(),
       changeFrequency: "daily",
       priority: 1,
