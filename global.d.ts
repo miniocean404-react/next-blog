@@ -1,4 +1,4 @@
-import moduleName from "next-intl"
+import { prisma } from "./src/db/index"
 
 declare global {
   declare namespace NodeJS {
@@ -26,4 +26,8 @@ declare module "next-auth" {
   interface User {
     role?: string
   }
+}
+
+declare global {
+  var DB: undefined | typeof prisma
 }

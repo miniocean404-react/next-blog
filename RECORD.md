@@ -5,6 +5,16 @@ next14: https://www.bilibili.com/video/BV157pRe8EyD/?spm_id_from=333.337.search-
 
 # 文章
 
+## 入门
+
+1. NextJs 14 从入门到精通：https://juejin.cn/post/7386873708601032754?share_token=1281ba4a-2fa2-49ad-8d36-e14e39bf77c7
+2. NextJs 15 更细内容：https://juejin.cn/post/7375858343179255862
+3. Next.js 常见错误 Hydration Failed 该如何解决：https://juejin.cn/post/7365793739892228096
+4. 给上市公司从 0 到 1 搭建 Next.js14 项目: https://juejin.cn/post/7344571324305981503?searchId=20241012163249920A7C5DFBA494AB538D#heading-28
+5. NextJs 14 从入门到精通: https://juejin.cn/post/7386873708601032754?searchId=202410121658107D42828C6191F9A45AFC
+6. 2024 Nextjs 开发资源最佳组合 :https://juejin.cn/post/7393185863654260777?share_token=0ad84dd7-a257-4fae-818f-919b8460c6de
+7. NextJs 从 0-1 实现一个博客系统，万字长文: https://juejin.cn/post/7398350653355950119?searchId=2024101316595559FB7FCA51677527D51A
+
 ## 跨域
 
 1. 跨域: https://juejin.cn/post/7366177423775531008?share_token=fc72ebf6-93f2-43e6-9678-6b4fc608378d
@@ -22,15 +32,24 @@ next14: https://www.bilibili.com/video/BV157pRe8EyD/?spm_id_from=333.337.search-
 1. https://juejin.cn/post/7329736763060518931?share_token=015dde7b-6e65-43b8-acb6-84629bf3194b
 2. 飞书授权登录：https://juejin.cn/post/7357261180493135898
 
-## 入门
+# prisma
 
-1. NextJs 14 从入门到精通：https://juejin.cn/post/7386873708601032754?share_token=1281ba4a-2fa2-49ad-8d36-e14e39bf77c7
-2. NextJs 15 更细内容：https://juejin.cn/post/7375858343179255862
-3. Next.js 常见错误 Hydration Failed 该如何解决：https://juejin.cn/post/7365793739892228096
-4. 给上市公司从 0 到 1 搭建 Next.js14 项目: https://juejin.cn/post/7344571324305981503?searchId=20241012163249920A7C5DFBA494AB538D#heading-28
-5. NextJs 14 从入门到精通: https://juejin.cn/post/7386873708601032754?searchId=202410121658107D42828C6191F9A45AFC
-6. 2024 Nextjs 开发资源最佳组合 :https://juejin.cn/post/7393185863654260777?share_token=0ad84dd7-a257-4fae-818f-919b8460c6de
-7. NextJs 从 0-1 实现一个博客系统，万字长文: https://juejin.cn/post/7398350653355950119?searchId=2024101316595559FB7FCA51677527D51A
+1. 快速入门 ORM 框架 Prisma: https://juejin.cn/post/7374308419073327113?searchId=202410281535241DB0D6F12C004DED873E
+2. Prisma数据库ORM框架学习: https://juejin.cn/post/7378459137417461760
+
+### 命令
+
+初始化
+
+```shell
+pnpx prisma init --datasource-provider mysql
+```
+
+迁移
+
+```shell
+pnpx prisma migrate dev
+```
 
 ## 功能
 
