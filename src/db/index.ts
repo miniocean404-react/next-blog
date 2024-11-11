@@ -8,6 +8,6 @@ export const prisma = new PrismaClient({
       : ["error"],
 })
 
-const DB = globalThis.DB ?? prisma
+const DB = prisma
 
 export { DB }

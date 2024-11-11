@@ -27,7 +27,3 @@ declare module "next-auth" {
     role?: string
   }
 }
-
-declare global {
-  var DB: undefined | typeof prisma
-}
