@@ -1,7 +1,5 @@
 "use client"
 
-"use client"
-
 import { Moon, Sun } from "lucide-react"
 import { type MouseEvent } from "react"
 import { useTheme } from "next-themes"

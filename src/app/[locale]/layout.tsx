@@ -10,6 +10,7 @@ import Header from "@/components/header"
 import { notFound } from "next/navigation"
 import GoogleAnalytics from "~/lib/components/mini/analytics/google"
 import BaiDuAnalytics from "~/lib/components/mini/analytics/baidu"
+import Toast from "@/components/toast"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
@@ -49,7 +50,9 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages}>
             <GoogleAnalytics></GoogleAnalytics>
             <BaiDuAnalytics></BaiDuAnalytics>
+            <Toast></Toast>
             <Header></Header>
+
             {children}
           </NextIntlClientProvider>
         </ThemeProvider>

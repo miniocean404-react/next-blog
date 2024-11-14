@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import z from "zod"
 import { loginCredentials, loginGithub, loginGoogle } from "@/auth/login"
 import Link from "next/link"
+import { toast } from "react-hot-toast"
 
 const loginFormSchema = z.object({
   email: z.string().email("无效的邮箱格式"),
@@ -31,7 +32,7 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
     const result = await loginCredentials(values)
 
     if (result?.error) {
-      console.log(result.error)
+      toast.error(result.error)
     }
   }
 
