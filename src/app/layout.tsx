@@ -58,7 +58,7 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
       },
       other: [
         {
-          url: "/favicon-16x16.png",
+          url: "/favicon-96x96.png",
         },
       ],
     },
