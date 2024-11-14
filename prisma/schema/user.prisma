@@ -6,9 +6,6 @@ model User {
   emailVerified DateTime?
   password      String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
   isMachine        Boolean @default(false)
   subscribed       Boolean @default(true)
   source           String?
@@ -19,6 +16,9 @@ model User {
   // projects         ProjectUsers[]
   // links            Link[]
   tokens   Token[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index(source)
   @@index(defaultWorkspace)
@@ -41,6 +41,9 @@ model Account {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@unique([provider, providerAccountId])
   @@index([userId])
 }
@@ -51,4 +54,7 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
