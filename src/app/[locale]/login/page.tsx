@@ -28,6 +28,15 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
     },
   })
 
+  async function onRegister(values: LoginFormSchema) {
+    // const result = await register(values)
+    // if (result?.error) {
+    // } else {
+    //   // 注册成功，跳到登录页面
+    //   router.push("/auth/login")
+    // }
+  }
+
   async function onSubmit(values: LoginFormSchema) {
     // const result = await register(values)
     // if (result?.error) {
@@ -43,11 +52,21 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
     <div className="mt-16">
       <div className="text-red-500">{error}</div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("username")} />
-        <input {...register("password")} />
-        <button type="submit">用户名密码 登录</button>
-      </form>
+      <div className="">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input {...register("username")} />
+          <input {...register("password")} />
+          <button type="submit">用户名密码 登录</button>
+        </form>
+      </div>
+
+      <div className="">
+        <form onSubmit={handleSubmit(onRegister)}>
+          <input {...register("username")} />
+          <input {...register("password")} />
+          <button type="submit">注册</button>
+        </form>
+      </div>
 
       <form action={loginGithub}>
         <button>github 登录</button>
