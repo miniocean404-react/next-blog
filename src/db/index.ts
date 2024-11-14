@@ -4,10 +4,9 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient({
   log:
     process.env.NODE_ENV === "development"
-      ? [{ emit: "stdout", level: "query" }, "error", "warn"]
+      ? [{ level: "query", emit: "stdout" }, "error", "warn"]
       : ["error"],
 })
 
-const DB = prisma
-
-export { DB }
+export const DB = globalThis.DB ?? prisma
+if (process.env.NODE_ENV !== "production") globalThis.DB = prisma

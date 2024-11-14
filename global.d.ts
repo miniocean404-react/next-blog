@@ -1,4 +1,4 @@
-import { prisma } from "./src/db/index"
+import { PrismaClient } from "@prisma/client"
 
 declare global {
   declare namespace NodeJS {
@@ -20,6 +20,8 @@ declare global {
 
   type Messages = typeof import("./locales/zh.json")
   declare interface IntlMessages extends Messages {}
+
+  var DB: undefined | PrismaClient
 }
 
 declare module "next-auth" {

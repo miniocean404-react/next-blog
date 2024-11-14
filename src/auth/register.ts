@@ -2,15 +2,16 @@
 
 import bcrypt from "bcryptjs"
 import { DB } from "@/db"
+import type { RegisterFormSchemaType } from "@/app/[locale]/register/page"
 
-export const register = async (data: any) => {
-  const existUser = await DB.user.findUnique({
+export const register = async (data: RegisterFormSchemaType) => {
+  const isExist = await DB.user.findUnique({
     where: {
       email: data.email,
     },
   })
 
-  if (existUser) {
+  if (isExist) {
     return {
       error: "当前邮箱已存在！",
     }

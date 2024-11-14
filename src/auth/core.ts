@@ -5,6 +5,8 @@ import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { DB } from "@/db"
+import type { loginFormSchemaType } from "@/app/[locale]/login/page"
+import bcrypt from "bcryptjs"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(DB),
@@ -21,21 +23,24 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   // 在开发过程中添加此行以信任 localhost
   trustHost: process.env.NODE_ENV !== "production",
   providers: [
+    // 登录
     Credentials({
       authorize: async (credentials) => {
-        const { username, password } = credentials
+        const { email, password } = credentials as loginFormSchemaType
+        if (!email || !password) return null
 
-        if (!username || !password) {
-          return null
-        }
+        const user = await DB.user.findFirst({
+          where: {
+            email,
+          },
+        })
 
-        return {
-          id: "222222222",
-          name: "admin",
-          email: "22",
-          image: "",
-          role: "normal",
-        }
+        if (!user) return null
+
+        const success = await bcrypt.compare(password, user.password || "")
+        if (!success) return null
+
+        return user
       },
     }),
     GitHub({
