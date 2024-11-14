@@ -1,9 +1,10 @@
 // Invoked on the commit-msg git hook by yorkie.
 
-const chalk = require("chalk")
+import chalk from "chalk"
+import fs from "fs"
 // Yorkie的gitHooks使用process.env.GIT_PARAMS
 const msgPath = process.argv[2]
-const msg = require("fs").readFileSync(msgPath, "utf-8").trim()
+const msg = fs.readFileSync(msgPath, "utf-8").trim()
 
 // revert:回滚到上一个版本
 
