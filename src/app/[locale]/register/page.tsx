@@ -28,15 +28,13 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
     },
   })
 
-  async function onSubmit(values: LoginFormSchema) {
+  async function onRegister(values: LoginFormSchema) {
     // const result = await register(values)
     // if (result?.error) {
     // } else {
     //   // 注册成功，跳到登录页面
     //   router.push("/auth/login")
     // }
-
-    loginCredentials(values)
   }
 
   return (
@@ -44,10 +42,10 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
       <div className="text-red-500">{error}</div>
 
       <div className="">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onRegister)}>
           <input {...register("username")} />
           <input {...register("password")} />
-          <button type="submit">用户名密码 登录</button>
+          <button type="submit">注册</button>
         </form>
       </div>
 
