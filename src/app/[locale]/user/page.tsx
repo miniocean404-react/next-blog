@@ -15,7 +15,7 @@ export default async function User() {
             action={async () => {
               "use server"
               // 退出登录后，重定向首页
-              await signOut({ redirectTo: `/${locale}` })
+              await signOut()
             }}
           >
             <button>退出登录</button>
