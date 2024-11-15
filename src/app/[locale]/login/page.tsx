@@ -17,9 +17,7 @@ const loginFormSchema = z.object({
 
 export type loginFormSchemaType = z.infer<typeof loginFormSchema>
 
-export default function Login({ searchParams }: { searchParams: Promise<{ error: string }> }) {
-  const { error } = use<{ error: string }>(searchParams)
-
+export default function Login() {
   const form = useForm<loginFormSchemaType>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -36,12 +34,8 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
     }
   }
 
-  const goRegister = () => {}
-
   return (
     <div className="mt-16">
-      <div className="text-red-500">{error}</div>
-
       <div className="">
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <input {...form.register("email")} />
