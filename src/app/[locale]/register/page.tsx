@@ -1,9 +1,8 @@
 "use client"
 
 import { use, useActionState } from "react"
-import z, { type ZodIssue } from "zod"
+import z from "zod"
 import { useRouter } from "next/navigation"
-import { useFormStatus } from "react-dom"
 import { register } from "@/auth/register"
 
 const registerFormSchema = z.object({
