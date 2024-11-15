@@ -41,8 +41,8 @@ const config: NextConfig = {
     // 图像优化(自定义图片链接前缀地址)：https://nextjs.org/docs/app/building-your-application/deploying/static-exports#image-optimization
     remotePatterns: [
       {
-        protocol: "https", //图片资源的协议
-        hostname: "www.test.com", //图片资源的域名
+        protocol: "https", // 图片资源的协议
+        hostname: "avatars.githubusercontent.com", // Github 资源的域名
       },
     ],
   },

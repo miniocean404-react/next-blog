@@ -13,6 +13,6 @@ export default function ThemeParticles() {
       ease={80}
       color={theme === "light" ? "#000000" : "#ffffff"}
       refresh
-    ></Particles>
+    />
   )
 }

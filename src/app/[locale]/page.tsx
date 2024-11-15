@@ -10,7 +10,8 @@ export default async function Home(props: { params: { locale: string } }) {
     <div>
       <h1 className="hidden">{t("app.appDefaultTitle")}</h1>
       <TypedJs texts={[`<span>${t("home.slogan.first")}</span>`, t("home.slogan.second")]} />
-      <ThemeParticles />
+      {/* 导致电脑太卡，生产再打开 */}
+      {process.env.NODE_ENV === "production" && <ThemeParticles />}
       <FloatDock></FloatDock>
     </div>
   )
