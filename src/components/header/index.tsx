@@ -100,7 +100,7 @@ export default async function Header() {
               </div>
 
               {session?.user && (
-                <div className="px-2 ">
+                <div className="px-2 cursor-pointer">
                   <Image
                     className="rounded-full"
                     src={session.user.image || ""}
