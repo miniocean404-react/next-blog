@@ -46,7 +46,7 @@ export default async function LocaleLayout({
   return (
     <html suppressHydrationWarning lang={locale}>
       <body className={miSansFont.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" enableSystem>
           <NextIntlClientProvider messages={messages}>
             <GoogleAnalytics></GoogleAnalytics>
             <BaiDuAnalytics></BaiDuAnalytics>
