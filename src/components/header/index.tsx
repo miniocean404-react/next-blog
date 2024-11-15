@@ -18,7 +18,6 @@ import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
 export default async function Header() {
   // const header = await headers()
   // const _ = header.get("user-agent")
-  const session = await auth()
   const t = await getTranslations()
   const locale = await getLocale()
 
@@ -55,64 +54,9 @@ export default async function Header() {
               <AlgoliaSearch />
             </div>
 
-            <div className="hidden items-center md:flex">
-              <Link
-                className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
-                href={"/ai"}
-              >
-                {t("navigation.ai")}
-              </Link>
-              <Link
-                className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
-                href={"/"}
-              >
-                {t("navigation.article")}
-              </Link>
-              <Link
-                className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
-                href={"/"}
-              >
-                {t("navigation.demo")}
-              </Link>
+            <Navigation />
 
-              <div className="px-2">
-                <Link
-                  className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
-                  href={GITHUB_LINK}
-                  title="GitHub"
-                >
-                  <SiGithub className="size-5"></SiGithub>
-                </Link>
-              </div>
-
-              <div className="px-2">
-                <Link
-                  className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
-                  href={NOTION_LINK}
-                  title="Notion"
-                >
-                  <SiNotion className="size-5"></SiNotion>
-                </Link>
-              </div>
-
-              <div className="px-2">
-                <ThemeSwitch />
-              </div>
-
-              {session?.user && (
-                <div className="px-2 cursor-pointer">
-                  <Image
-                    className="rounded-full"
-                    src={session.user.image || ""}
-                    alt=""
-                    width={30}
-                    height={30}
-                    priority
-                  />
-                </div>
-              )}
-            </div>
-
+            {/* 移动端菜单栏按钮 */}
             <button className="h-10 flex items-center px-3 md:hidden">
               <AlignRight className="size-4 text-[var(--mini-c-text-2)]"></AlignRight>
             </button>
@@ -120,5 +64,72 @@ export default async function Header() {
         </div>
       </header>
     </>
+  )
+}
+
+async function Navigation() {
+  const t = await getTranslations()
+  const session = await auth()
+
+  return (
+    <div className="hidden items-center md:flex">
+      <Link
+        className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
+        href={"/ai"}
+      >
+        {t("navigation.ai")}
+      </Link>
+
+      <Link
+        className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
+        href={"/"}
+      >
+        {t("navigation.article")}
+      </Link>
+
+      <Link
+        className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
+        href={"/"}
+      >
+        {t("navigation.demo")}
+      </Link>
+
+      <div className="px-2">
+        <Link
+          className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
+          href={GITHUB_LINK}
+          title="GitHub"
+        >
+          <SiGithub className="size-5"></SiGithub>
+        </Link>
+      </div>
+
+      <div className="px-2">
+        <Link
+          className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
+          href={NOTION_LINK}
+          title="Notion"
+        >
+          <SiNotion className="size-5"></SiNotion>
+        </Link>
+      </div>
+
+      <div className="px-2">
+        <ThemeSwitch />
+      </div>
+
+      {session?.user && (
+        <div className="px-2 cursor-pointer">
+          <Image
+            className="rounded-full"
+            src={session.user.image || ""}
+            alt=""
+            width={30}
+            height={30}
+            priority
+          />
+        </div>
+      )}
+    </div>
   )
 }
