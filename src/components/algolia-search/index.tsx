@@ -1,3 +1,5 @@
+"use client"
+
 import { cn } from "@/utils/tw"
 import { Search as SearchIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
