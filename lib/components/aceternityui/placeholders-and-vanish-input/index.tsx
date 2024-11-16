@@ -1,5 +1,3 @@
-"use client"
-
 import clsx from "clsx"
 import { AnimatePresence, motion } from "framer-motion"
 import { useCallback, useEffect, useRef, useState } from "react"
@@ -152,7 +150,10 @@ export function PlaceholdersAndVanishInput({
 
     const value = inputRef.current?.value || ""
     if (value && inputRef.current) {
-      const maxX = newDataRef.current.reduce((prev, current) => (current.x > prev ? current.x : prev), 0)
+      const maxX = newDataRef.current.reduce(
+        (prev, current) => (current.x > prev ? current.x : prev),
+        0,
+      )
       animate(maxX)
     }
   }

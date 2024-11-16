@@ -1,29 +1,28 @@
 // 需要配置：tailwind
 
-"use client"
-import React, { useEffect, useMemo, useRef, useState } from "react"
-import { MotionValue, motion, useScroll, useTransform } from "framer-motion"
+import React, { useEffect, useRef, useState } from "react"
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion"
 import {
   IconBrightnessDown,
   IconBrightnessUp,
+  IconCaretDownFilled,
+  IconCaretLeftFilled,
   IconCaretRightFilled,
   IconCaretUpFilled,
   IconChevronUp,
+  IconCommand,
   IconMicrophone,
   IconMoon,
   IconPlayerSkipForward,
   IconPlayerTrackNext,
   IconPlayerTrackPrev,
+  IconSearch,
   IconTable,
   IconVolume,
   IconVolume2,
   IconVolume3,
+  IconWorld,
 } from "@tabler/icons-react"
-import { IconSearch } from "@tabler/icons-react"
-import { IconWorld } from "@tabler/icons-react"
-import { IconCommand } from "@tabler/icons-react"
-import { IconCaretLeftFilled } from "@tabler/icons-react"
-import { IconCaretDownFilled } from "@tabler/icons-react"
 import Image from "next/image"
 import clsx from "clsx"
 
@@ -153,7 +152,12 @@ export const Lid = ({
         className="h-96 w-[32rem] absolute inset-0 bg-[#010101] rounded-2xl p-2"
       >
         <div className="absolute inset-0 bg-[#272729] rounded-lg" />
-        <Image src={src as string} alt="aceternity logo" fill className="object-cover object-left-top absolute rounded-lg inset-0 h-full w-full" />
+        <Image
+          src={src as string}
+          alt="aceternity logo"
+          fill
+          className="object-cover object-left-top absolute rounded-lg inset-0 h-full w-full"
+        />
       </motion.div>
     </div>
   )
@@ -175,7 +179,10 @@ export const Keypad = () => {
     <div className="h-full rounded-md bg-[#050505] mx-1 p-1">
       {/* First Row */}
       <Row>
-        <KBtn className="w-10 items-end justify-start pl-[4px] pb-[2px]" childrenClassName="items-start">
+        <KBtn
+          className="w-10 items-end justify-start pl-[4px] pb-[2px]"
+          childrenClassName="items-start"
+        >
           esc
         </KBtn>
         <KBtn>
@@ -289,14 +296,20 @@ export const Keypad = () => {
           <span className="block">+</span>
           <span className="block"> = </span>
         </KBtn>
-        <KBtn className="w-10 items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end">
+        <KBtn
+          className="w-10 items-end justify-end pr-[4px] pb-[2px]"
+          childrenClassName="items-end"
+        >
           delete
         </KBtn>
       </Row>
 
       {/* Third row */}
       <Row>
-        <KBtn className="w-10 items-end justify-start pl-[4px] pb-[2px]" childrenClassName="items-start">
+        <KBtn
+          className="w-10 items-end justify-start pl-[4px] pb-[2px]"
+          childrenClassName="items-start"
+        >
           tab
         </KBtn>
         <KBtn>
@@ -346,7 +359,10 @@ export const Keypad = () => {
 
       {/* Fourth Row */}
       <Row>
-        <KBtn className="w-[2.8rem] items-end justify-start pl-[4px] pb-[2px]" childrenClassName="items-start">
+        <KBtn
+          className="w-[2.8rem] items-end justify-start pl-[4px] pb-[2px]"
+          childrenClassName="items-start"
+        >
           caps lock
         </KBtn>
         <KBtn>
@@ -385,14 +401,20 @@ export const Keypad = () => {
           <span className="block">{`"`}</span>
           <span className="block">{`'`}</span>
         </KBtn>
-        <KBtn className="w-[2.85rem] items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end">
+        <KBtn
+          className="w-[2.85rem] items-end justify-end pr-[4px] pb-[2px]"
+          childrenClassName="items-end"
+        >
           return
         </KBtn>
       </Row>
 
       {/* Fifth Row */}
       <Row>
-        <KBtn className="w-[3.65rem] items-end justify-start pl-[4px] pb-[2px]" childrenClassName="items-start">
+        <KBtn
+          className="w-[3.65rem] items-end justify-start pl-[4px] pb-[2px]"
+          childrenClassName="items-start"
+        >
           shift
         </KBtn>
         <KBtn>
@@ -428,7 +450,10 @@ export const Keypad = () => {
           <span className="block">{`?`}</span>
           <span className="block">{`/`}</span>
         </KBtn>
-        <KBtn className="w-[3.65rem] items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end">
+        <KBtn
+          className="w-[3.65rem] items-end justify-end pr-[4px] pb-[2px]"
+          childrenClassName="items-end"
+        >
           shift
         </KBtn>
       </Row>
@@ -516,14 +541,28 @@ export const KBtn = ({
   backlit?: boolean
 }) => {
   return (
-    <div className={clsx("p-[0.5px] rounded-[4px]", backlit && "bg-white/[0.2] shadow-xl shadow-white")}>
+    <div
+      className={clsx(
+        "p-[0.5px] rounded-[4px]",
+        backlit && "bg-white/[0.2] shadow-xl shadow-white",
+      )}
+    >
       <div
-        className={clsx("h-6 w-6 bg-[#0A090D] rounded-[3.5px] flex items-center justify-center", className)}
+        className={clsx(
+          "h-6 w-6 bg-[#0A090D] rounded-[3.5px] flex items-center justify-center",
+          className,
+        )}
         style={{
           boxShadow: "0px -0.5px 2px 0 #0D0D0F inset, -0.5px 0px 2px 0 #0D0D0F inset",
         }}
       >
-        <div className={clsx("text-neutral-200 text-[5px] w-full flex justify-center items-center flex-col", childrenClassName, backlit && "text-white")}>
+        <div
+          className={clsx(
+            "text-neutral-200 text-[5px] w-full flex justify-center items-center flex-col",
+            childrenClassName,
+            backlit && "text-white",
+          )}
+        >
           {children}
         </div>
       </div>
@@ -549,9 +588,20 @@ export const SpeakerGrid = () => {
 
 export const OptionKey = ({ className }: { className: string }) => {
   return (
-    <svg fill="none" version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className={className}>
+    <svg
+      fill="none"
+      version="1.1"
+      id="icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      className={className}
+    >
       <rect stroke="currentColor" strokeWidth={2} x="18" y="5" width="10" height="2" />
-      <polygon stroke="currentColor" strokeWidth={2} points="10.6,5 4,5 4,7 9.4,7 18.4,27 28,27 28,25 19.6,25 " />
+      <polygon
+        stroke="currentColor"
+        strokeWidth={2}
+        points="10.6,5 4,5 4,7 9.4,7 18.4,27 28,27 28,25 19.6,25 "
+      />
       <rect id="_Transparent_Rectangle_" className="st0" width="32" height="32" stroke="none" />
     </svg>
   )
@@ -559,7 +609,14 @@ export const OptionKey = ({ className }: { className: string }) => {
 
 const AceternityLogo = () => {
   return (
-    <svg width="66" height="65" viewBox="0 0 66 65" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white">
+    <svg
+      width="66"
+      height="65"
+      viewBox="0 0 66 65"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-3 w-3 text-white"
+    >
       <path
         d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696"
         stroke="currentColor"
