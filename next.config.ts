@@ -99,10 +99,10 @@ const config: NextConfig = {
   },
   // 可以控制服务器在开发过程中如何处理或保留内存中的构建页面
   onDemandEntries: {
-    // 服务器将页面保存在缓冲区中的时间段(毫秒)
-    maxInactiveAge: 25 * 1000,
-    // 应同时保留而不被销毁的页数
-    pagesBufferLength: 2,
+    // 服务器将页面保存在缓冲区中的时间段(毫秒) 默认 25
+    maxInactiveAge: 5 * 1000,
+    // 应同时保留而不被销毁的页数 默认 2
+    pagesBufferLength: 1,
   },
   // 默认为true, 是否禁用 HTTP Keep-Alive
   httpAgentOptions: {
