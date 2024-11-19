@@ -17,7 +17,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     // 退出登录后，重定向到首页
     signOut: "/",
   },
-  debug: process.env.NODE_ENV !== "production",
+  // debug: process.env.NODE_ENV !== "production",
   secret: process.env.AUTH_SECRET,
   session: {
     strategy: "jwt",

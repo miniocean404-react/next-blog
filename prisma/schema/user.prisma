@@ -1,6 +1,6 @@
 model User {
   id            String    @id @default(cuid())
-  name          String?
+  name          String?   @db.VarChar(100)
   username      String?   @unique
   email         String?   @unique
   image         String?
@@ -19,6 +19,7 @@ model User {
   @@index(email)
 }
 
+// 一个用户可以有多个不同的账户绑定 Github、Google 等
 model Account {
   id                       String  @id @default(cuid())
   // numberId          Int  @id @default(autoincrement())
