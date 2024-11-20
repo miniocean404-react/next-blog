@@ -10,7 +10,9 @@ export default function Upload() {
     const form = new FormData()
 
     if (file) {
-      trpcClient.Upload.uploadImageKit.mutate(file)
+      form.set("file", file)
+      trpcClient.Prodcut.getProductById.query
+      // trpcClient.Upload.uploadImageKit.mutate(form)
     }
   }
 

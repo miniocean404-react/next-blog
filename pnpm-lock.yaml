@@ -62,9 +62,6 @@ importers:
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
-      devalue:
-        specifier: ^5.1.1
-        version: 5.1.1
       framer-motion:
         specifier: ^11.11.15
         version: 11.11.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -137,6 +134,9 @@ importers:
       zod:
         specifier: ^3.23.8
         version: 3.23.8
+      zod-form-data:
+        specifier: ^2.0.2
+        version: 2.0.2(zod@3.23.8)
       zustand:
         specifier: 5.0.1
         version: 5.0.1(@types/react@18.3.12)(react@18.3.1)
@@ -2515,9 +2515,6 @@ packages:
     resolution: {integrity: sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==}
     engines: {node: '>=8'}
 
-  devalue@5.1.1:
-    resolution: {integrity: sha512-maua5KUiapvEwiEAe+XnlZ3Rh0GD+qI1J/nb9vrJc3muPXvcF/8gXYTWF76+5DAqHyDUtOIImEuo0YKE9mshVw==}
-
   didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
 
@@ -4688,6 +4685,11 @@ packages:
   yn@3.1.1:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
+
+  zod-form-data@2.0.2:
+    resolution: {integrity: sha512-sKTi+k0fvkxdakD0V5rq+9WVJA3cuTQUfEmNqvHrTzPLvjfLmkkBLfR0ed3qOi9MScJXTHIDH/jUNnEJ3CBX4g==}
+    peerDependencies:
+      zod: '>= 3.11.0'
 
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
@@ -7210,8 +7212,6 @@ snapshots:
 
   detect-libc@2.0.3: {}
 
-  devalue@5.1.1: {}
-
   didyoumean@1.2.2: {}
 
   diff@4.0.2: {}
@@ -9473,6 +9473,10 @@ snapshots:
       fd-slicer: 1.1.0
 
   yn@3.1.1: {}
+
+  zod-form-data@2.0.2(zod@3.23.8):
+    dependencies:
+      zod: 3.23.8
 
   zod@3.23.8: {}
 

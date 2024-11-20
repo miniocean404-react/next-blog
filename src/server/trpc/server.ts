@@ -3,7 +3,6 @@ import { initTRPC } from "@trpc/server"
 import type { Context } from "./context"
 import { trpcRouter } from "@/server/routers"
 import { ZodError } from "zod"
-import { uneval } from "devalue"
 import superjson from "superjson"
 
 export const t = initTRPC
@@ -17,20 +16,16 @@ export const t = initTRPC
     experimental: {
       iterablesAndDeferreds: true,
     },
-    // transformer: superjson,
-    // transformer: {
-    //   input: superjson,
-    //   output: superjson,
-    // },
     // errorFormatter(opts) {
+    //   const { shape, error } = opts
     //   return {
-    //     ...opts.shape,
+    //     ...shape,
     //     data: {
+    //       ...shape.data,
     //       zodError:
-    //         opts.error.code === "BAD_REQUEST" && opts.error.cause instanceof ZodError
-    //           ? opts.error.cause.flatten()
+    //         error.code === "BAD_REQUEST" && error.cause instanceof ZodError
+    //           ? error.cause.flatten()
     //           : null,
-    //       ...opts.shape.data,
     //     },
     //   }
     // },

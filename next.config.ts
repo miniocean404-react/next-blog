@@ -44,6 +44,10 @@ const config: NextConfig = {
         protocol: "https", // 图片资源的协议
         hostname: "avatars.githubusercontent.com", // Github 资源的域名
       },
+      {
+        protocol: "https", // 图片资源的协议
+        hostname: "ik.imagekit.io", // Imagekit 资源的域名
+      },
     ],
   },
   sassOptions: {

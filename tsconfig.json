@@ -3,22 +3,14 @@
     "baseUrl": ".",
     "paths": {
       // 如果设置根目录为@ 就要为./ 并且如果没有正确提示路径就代表设置错误
-      "@/*": [
-        "./src/*"
-      ],
-      "~/*": [
-        "./*"
-      ]
+      "@/*": ["./src/*"],
+      "~/*": ["./*"]
     },
     "target": "ESNext", // 指定ECMAScript目标版本
     "module": "ESNext", // 指定生成哪个模块系统代码
     "jsx": "preserve",
     "moduleResolution": "Bundler",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true, // 忽略所有的声明文件（ *.d.ts）的类型检查。
     "removeComments": true,
@@ -43,10 +35,5 @@
     "postcss.config.js",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    ".next",
-    "script",
-    "bak"
-  ]
+  "exclude": ["node_modules", ".next", "script", "bak"]
 }
