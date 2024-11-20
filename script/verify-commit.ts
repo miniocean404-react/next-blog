@@ -1,10 +1,9 @@
 // Invoked on the commit-msg git hook by yorkie.
 
-import chalk from "chalk"
-import fs from "fs"
+const chalk = require("chalk")
 // Yorkie的gitHooks使用process.env.GIT_PARAMS
 const msgPath = process.argv[2]
-const msg = fs.readFileSync(msgPath, "utf-8").trim()
+const msg = require("fs").readFileSync(msgPath, "utf-8").trim()
 
 // revert:回滚到上一个版本
 
@@ -20,9 +19,10 @@ const msg = fs.readFileSync(msgPath, "utf-8").trim()
 // ci:持续集成修改
 // chore:其他修改, 比如改变构建流程、或者增加依赖库、工具等
 
-const emojiRE = "(\ud83c[\udf00-\udfff])|(\ud83d[\udc00-\ude4f\ude80-\udeff])|[\u2600-\u2B55]"
+const emojiRE =
+  "\u23EA|(\ud83c[\udf00-\udfff])|(\ud83d[\udc00-\ude4f\ude80-\udeff])|[\u2600-\u2B55]"
 const commitRE = new RegExp(
-  `^((${emojiRE})* )?(revert: )?(dev|feat|fix|docs|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip|release)(\(.+\))?(.{1,10})?: .{1,50}`,
+  `^((${emojiRE}).* )?(revert|dev|feat|fix|docs|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip|release)(\(.+\))?(.{1,10})?: .{1,50}`,
 )
 const mergeRe = /^(Merge pull request|Merge branch)/
 

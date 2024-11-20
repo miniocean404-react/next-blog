@@ -1,6 +1,6 @@
 // app/_trpc/routers/user.ts
 import { publicProcedure } from "../trpc/procedure"
-import { appRouter } from "../trpc/index"
+import { appRouter } from "../trpc/server"
 import { octetInputParser } from "@trpc/server/http"
 import { z } from "zod"
 

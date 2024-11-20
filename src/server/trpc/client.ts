@@ -7,7 +7,7 @@ import {
   httpLink,
 } from "@trpc/client"
 import { type TRPCRouter } from "../routers/index"
-import superjson from "superjson"
+import { getBaseUrl } from "./shared"
 
 export const trpcClient = createTRPCClient<TRPCRouter>({
   links: [
@@ -37,9 +37,3 @@ export const trpcClient = createTRPCClient<TRPCRouter>({
 // 服务侧调用自身 tprc
 // export const createCaller = createCallerFactory(trpcRouter)
 // const caller = createCaller({ session: await auth() })
-
-function getBaseUrl() {
-  if (typeof window !== "undefined") return ""
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`
-  return `http://localhost:${process.env.PORT ?? 3000}`
-}

@@ -1,7 +1,7 @@
 // app/_trpc/routers/user.ts
 import { TRPCError } from "@trpc/server"
 import { publicProcedure, adminProcedure, authedProcedure } from "../trpc/procedure"
-import { appRouter } from "../trpc/index"
+import { appRouter } from "../trpc/server"
 
 export const User = appRouter({
   getUserList: publicProcedure.query(async (opts) => {

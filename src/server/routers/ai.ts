@@ -1,4 +1,4 @@
-import { appRouter } from "../trpc/index"
+import { appRouter } from "../trpc/server"
 import { publicProcedure } from "../trpc/procedure"
 import { z } from "zod"
 

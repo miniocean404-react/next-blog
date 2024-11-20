@@ -4,7 +4,7 @@ import { Prodcut } from "./product"
 import { Ai } from "./ai"
 import { Upload } from "./upload"
 
-import { appRouter } from "../trpc/index"
+import { appRouter } from "../trpc/server"
 
 /**
  * 每个 router 有自己的 namespace，下面的 User 和 Product 就是 namespace

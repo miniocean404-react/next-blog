@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server"
-import { t } from "./index"
+import { t } from "./server"
 
 // 使用默认 meta
 export const publicProcedure = t.procedure
