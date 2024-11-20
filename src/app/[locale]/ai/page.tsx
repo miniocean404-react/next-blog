@@ -1,6 +1,6 @@
 "use client"
 
-import { trpcClient } from "@/trpc/client"
+import { trpcClient } from "@/server/trpc/client"
 import type { Unsubscribable } from "@trpc/server/observable"
 import { useRef, useState, type SyntheticEvent } from "react"
 import { ChatWindow, ChatInput, ChatMessage, ChatLayout } from "~/lib/components/mini/chat"

@@ -15,6 +15,10 @@ declare global {
       AUTH_GOOGLE_SECRET: string
 
       DOUBAO_API_KEY: string
+
+      IMAGE_KIT_PUBLIC_KEY: string
+      IMAGE_KIT_PRIVATE_KEY: string
+      IMAGE_KIT_URL_ENDPOINT: string
     }
   }
 

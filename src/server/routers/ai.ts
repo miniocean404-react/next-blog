@@ -1,8 +1,8 @@
-import { router } from "../server/index"
-import { publicProcedure } from "../server/procedure"
+import { appRouter } from "../trpc/index"
+import { publicProcedure } from "../trpc/procedure"
 import { z } from "zod"
 
-export const Ai = router({
+export const Ai = appRouter({
   aiExchange: publicProcedure
     .input(
       z.object({

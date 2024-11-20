@@ -36,14 +36,14 @@ importers:
         specifier: ^5.59.20
         version: 5.59.20(react@18.3.1)
       '@trpc/client':
-        specifier: 11.0.0-rc.633
-        version: 11.0.0-rc.633(@trpc/server@11.0.0-rc.633(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))
+        specifier: 11.0.0-rc.638
+        version: 11.0.0-rc.638(@trpc/server@11.0.0-rc.638(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))
       '@trpc/next':
-        specifier: 11.0.0-rc.633
-        version: 11.0.0-rc.633(@tanstack/react-query@5.59.20(react@18.3.1))(@trpc/client@11.0.0-rc.633(@trpc/server@11.0.0-rc.633(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)))(@trpc/server@11.0.0-rc.633(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))(next@15.0.3(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 11.0.0-rc.638
+        version: 11.0.0-rc.638(@tanstack/react-query@5.59.20(react@18.3.1))(@trpc/client@11.0.0-rc.638(@trpc/server@11.0.0-rc.638(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)))(@trpc/server@11.0.0-rc.638(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))(next@15.0.3(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@trpc/server':
-        specifier: 11.0.0-rc.633
-        version: 11.0.0-rc.633(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)
+        specifier: 11.0.0-rc.638
+        version: 11.0.0-rc.638(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)
       axios:
         specifier: 1.7.7
         version: 1.7.7
@@ -62,6 +62,9 @@ importers:
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
+      devalue:
+        specifier: ^5.1.1
+        version: 5.1.1
       framer-motion:
         specifier: ^11.11.15
         version: 11.11.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1770,18 +1773,18 @@ packages:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
 
-  '@trpc/client@11.0.0-rc.633':
-    resolution: {integrity: sha512-fha4Mix/birOFNMIutHXAhkJuZ8Zob0PGZ5s0NVyt4VbIGIpuvx2DYjFQG9lmyt+LEGZklsi1G0QfY+7rNaSmg==}
+  '@trpc/client@11.0.0-rc.638':
+    resolution: {integrity: sha512-zKOZZwUMcF4cvm04aawG7dP6M9dCs7FEWHuiBy7xmU+RIonsgpolLMRXm7bFie5EhQOGizhLRGnhneGwjNzWMA==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.633+55512768a
+      '@trpc/server': 11.0.0-rc.638+09a76869e
 
-  '@trpc/next@11.0.0-rc.633':
-    resolution: {integrity: sha512-/a8YkPbL0Uk6tQoWPx3EAvxCqBT1qvVPLJ2p+0q9ER3Qxz+GMXcoxX0bO+5g84J4+J9uxRKP0nE8Sh9pe61ZpQ==}
+  '@trpc/next@11.0.0-rc.638':
+    resolution: {integrity: sha512-f02/WcSzoW7/pP5fQr5k3q+4Q5iuQutC+NGJdYVH0W4RZjbSTfg0ME5M/AduZBS3OmxhXBmIIfJ5KKJ4DfdFVg==}
     peerDependencies:
       '@tanstack/react-query': ^5.59.15
-      '@trpc/client': 11.0.0-rc.633+55512768a
-      '@trpc/react-query': 11.0.0-rc.633+55512768a
-      '@trpc/server': 11.0.0-rc.633+55512768a
+      '@trpc/client': 11.0.0-rc.638+09a76869e
+      '@trpc/react-query': 11.0.0-rc.638+09a76869e
+      '@trpc/server': 11.0.0-rc.638+09a76869e
       next: 15.0.3
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -1791,8 +1794,8 @@ packages:
       '@trpc/react-query':
         optional: true
 
-  '@trpc/server@11.0.0-rc.633':
-    resolution: {integrity: sha512-R26i5aP7/DvgIp3YbU+0u0nbggqItMLYvPmVBOyTP8rD5+wrifZ9ZKp8p+KMzhQEGeBv5mJ48TjJ2URcKwxg6g==}
+  '@trpc/server@11.0.0-rc.638':
+    resolution: {integrity: sha512-ho3sRx66UuncKTtuy7UKbYP8IB4qaPj2gmdDIIdQOftta1oYzEsQuYiBozQAIAmX9TbV5FaqAdBUl2alFBSbdg==}
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -2511,6 +2514,9 @@ packages:
   detect-libc@2.0.3:
     resolution: {integrity: sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==}
     engines: {node: '>=8'}
+
+  devalue@5.1.1:
+    resolution: {integrity: sha512-maua5KUiapvEwiEAe+XnlZ3Rh0GD+qI1J/nb9vrJc3muPXvcF/8gXYTWF76+5DAqHyDUtOIImEuo0YKE9mshVw==}
 
   didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
@@ -6346,21 +6352,21 @@ snapshots:
 
   '@tootallnate/once@2.0.0': {}
 
-  '@trpc/client@11.0.0-rc.633(@trpc/server@11.0.0-rc.633(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))':
+  '@trpc/client@11.0.0-rc.638(@trpc/server@11.0.0-rc.638(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))':
     dependencies:
-      '@trpc/server': 11.0.0-rc.633(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)
+      '@trpc/server': 11.0.0-rc.638(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)
 
-  '@trpc/next@11.0.0-rc.633(@tanstack/react-query@5.59.20(react@18.3.1))(@trpc/client@11.0.0-rc.633(@trpc/server@11.0.0-rc.633(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)))(@trpc/server@11.0.0-rc.633(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))(next@15.0.3(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@trpc/next@11.0.0-rc.638(@tanstack/react-query@5.59.20(react@18.3.1))(@trpc/client@11.0.0-rc.638(@trpc/server@11.0.0-rc.638(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)))(@trpc/server@11.0.0-rc.638(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))(next@15.0.3(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@trpc/client': 11.0.0-rc.633(@trpc/server@11.0.0-rc.633(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))
-      '@trpc/server': 11.0.0-rc.633(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)
+      '@trpc/client': 11.0.0-rc.638(@trpc/server@11.0.0-rc.638(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7))
+      '@trpc/server': 11.0.0-rc.638(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)
       next: 15.0.3(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     optionalDependencies:
       '@tanstack/react-query': 5.59.20(react@18.3.1)
 
-  '@trpc/server@11.0.0-rc.633(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)':
+  '@trpc/server@11.0.0-rc.638(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.7)':
     optionalDependencies:
       '@types/aws-lambda': 8.10.145
       express: 4.21.1
@@ -7204,6 +7210,8 @@ snapshots:
 
   detect-libc@2.0.3: {}
 
+  devalue@5.1.1: {}
+
   didyoumean@1.2.2: {}
 
   diff@4.0.2: {}
@@ -7461,7 +7469,7 @@ snapshots:
       array-flatten: 1.1.1
       body-parser: 1.20.3
       content-disposition: 0.5.4
-      content-type: 1.0.4
+      content-type: 1.0.5
       cookie: 0.7.1
       cookie-signature: 1.0.6
       debug: 2.6.9

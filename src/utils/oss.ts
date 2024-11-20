@@ -4,9 +4,9 @@ import ImageKit from "imagekit"
 import crypto from "crypto"
 
 const imageKit = new ImageKit({
-  publicKey: "",
-  privateKey: "",
-  urlEndpoint: "",
+  publicKey: process.env.IMAGE_KIT_PUBLIC_KEY,
+  privateKey: process.env.IMAGE_KIT_PRIVATE_KEY,
+  urlEndpoint: process.env.IMAGE_KIT_URL_ENDPOINT,
 })
 
 // 服务端传递
@@ -30,7 +30,7 @@ async function upload(file: Buffer, fileName: string) {
     return response
   } catch (error: unknown) {
     if (error instanceof Error) {
-      throw new Error(`Image upload failed: ${error.message}`)
+      throw new Error(`图片上传失败: ${error.message}`)
     }
   }
 }
