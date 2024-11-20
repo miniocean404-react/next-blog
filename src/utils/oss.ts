@@ -26,6 +26,7 @@ export async function uploadImageKit(file: Buffer, fileName: string) {
       fileName, // 文件名
       tags: [hash], // 将哈希值作为标签存储，便于后续查找
     })
+
     return response
   } catch (error: unknown) {
     if (error instanceof Error) {

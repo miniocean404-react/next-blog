@@ -1,9 +1,10 @@
 // app/lib/trpc/index.ts
 import { initTRPC } from "@trpc/server"
 import type { Context } from "./context"
-import { trpcRouter } from "@/server/routers"
-import { ZodError } from "zod"
-import superjson from "superjson"
+import { z, ZodError } from "zod"
+import { errorMap, formatZodError } from "@/utils/zod-helper"
+
+z.setErrorMap(errorMap)
 
 export const t = initTRPC
   .context<Context>()
@@ -16,19 +17,15 @@ export const t = initTRPC
     experimental: {
       iterablesAndDeferreds: true,
     },
-    // errorFormatter(opts) {
-    //   const { shape, error } = opts
-    //   return {
-    //     ...shape,
-    //     data: {
-    //       ...shape.data,
-    //       zodError:
-    //         error.code === "BAD_REQUEST" && error.cause instanceof ZodError
-    //           ? error.cause.flatten()
-    //           : null,
-    //     },
-    //   }
-    // },
+    errorFormatter(opts) {
+      const { shape, error } = opts
+
+      if (error.cause instanceof ZodError) {
+        shape.message = formatZodError(error.cause).message
+      }
+
+      return shape
+    },
   })
 
 export const appRouter = t.router

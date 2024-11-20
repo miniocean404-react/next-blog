@@ -6,6 +6,7 @@ import {
   unstable_httpSubscriptionLink,
   isNonJsonSerializable,
   httpLink,
+  httpBatchLink,
 } from "@trpc/client"
 import { type TRPCRouter } from "../routers/index"
 import { getBaseUrl } from "./shared"
@@ -20,27 +21,31 @@ export const trpcClient = createTRPCClient<TRPCRouter>({
         )
       },
     }),
+
     splitLink({
-      condition: (op) => op.type === "subscription",
-      true: [
-        unstable_httpSubscriptionLink({
+      condition: (op) =>
+        !isNonJsonSerializable(op.input) && op.type !== "subscription" && !op.context["stream"],
+      // 可以被序列化, httpLink 都可以用于上传
+      true: httpBatchLink({
+        url: `${getBaseUrl()}/api/trpc`,
+      }),
+      false: splitLink({
+        condition: (op) =>
+          isNonJsonSerializable(op.input) && op.type !== "subscription" && !op.context["stream"],
+        // 不可以被序列化
+        true: httpLink({
           url: `${getBaseUrl()}/api/trpc`,
         }),
-      ],
-      // 普通 HTTP 请求：httpBatchLink
-      false: splitLink({
-        condition: (op) => isNonJsonSerializable(op.input),
-        true: [
-          // 上传可以使用
-          httpLink({
+        false: splitLink({
+          condition: (op) => op.type === "subscription" && !op.context["stream"],
+          // 可以被序列化
+          true: unstable_httpSubscriptionLink({
             url: `${getBaseUrl()}/api/trpc`,
           }),
-        ],
-        false: [
-          unstable_httpBatchStreamLink({
+          false: unstable_httpBatchStreamLink({
             url: `${getBaseUrl()}/api/trpc`,
           }),
-        ],
+        }),
       }),
     }),
   ],

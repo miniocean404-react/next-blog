@@ -1,7 +1,7 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 import { cookies, headers } from "next/headers"
 import type { NextRequest } from "next/server"
+
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 // 因为他们只在 server side 运行，不会在 client side 运行，应该使用 helper function 来获取数据。
 // API 代码将不会在 客户端 的 bundle 里。
@@ -10,10 +10,11 @@ import type { NextRequest } from "next/server"
 // 接口运行时，未理解
 export const runtime = "nodejs"
 
+// 可以使用 http://localhost:3000/forum/api/products 访问这个接口
 export async function GET(
   request: NextRequest,
   // 动态路由参数
-  { params }: { params: { slug: string } },
+  { params }: { params: { demo: string } },
 ) {
   const res = await fetch("https://www.juejin.cn")
   const data = await res.text()
@@ -40,7 +41,16 @@ export async function GET(
   // const name = formData.get("name")
   // const email = formData.get("email")
 
-  return Response.json({ data, msg: "接口测试" }, { status: 200 })
+  return Response.json(
+    {
+      data: {
+        dynParams: params.demo,
+        text: data,
+      },
+      msg: "接口测试",
+    },
+    { status: 200 },
+  )
 }
 
 export async function POST(request: NextRequest) {
