@@ -1,13 +1,9 @@
 import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server"
 
 // mock api
-const analyze = (data: { pathname: string; searchParams: Record<string, string> }) =>
-  new Promise<void>((resolve) => {
-    setTimeout(() => {
-      console.log("---- Record log ----")
-      resolve()
-    }, 2000)
-  })
+const analyze = async (): Promise<void> => {
+  // console.log(tty?.WriteStream?.prototype?.hasColors?.() ?? false)
+}
 
 // 日志中间件
 export default function loggerMiddleware(
@@ -18,11 +14,8 @@ export default function loggerMiddleware(
   const {
     nextUrl: { pathname, searchParams },
   } = req
-  event.waitUntil(
-    analyze({
-      pathname,
-      searchParams: Object.fromEntries(searchParams),
-    }),
-  )
+
+  // 可以处理异步任务，但是不阻塞中间件
+  event.waitUntil(analyze())
   return resp
 }
