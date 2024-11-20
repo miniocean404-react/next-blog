@@ -4,6 +4,7 @@ import {
   loggerLink,
   splitLink,
   unstable_httpSubscriptionLink,
+  isNonJsonSerializable,
 } from "@trpc/client"
 import { type TRPCRouter } from "../routers/index"
 import { getBaseUrl } from "./shared"
@@ -22,12 +23,10 @@ export const trpcClient = createTRPCClient<TRPCRouter>({
       condition: (op) => op.type === "subscription",
       true: unstable_httpSubscriptionLink({
         url: `${getBaseUrl()}/api/trpc`,
-        // transformer: superjson,
       }),
       // 普通 HTTP 请求：httpBatchLink
       false: unstable_httpBatchStreamLink({
         url: `${getBaseUrl()}/api/trpc`,
-        // transformer: superjson,
       }),
     }),
   ],
