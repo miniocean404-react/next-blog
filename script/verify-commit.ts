@@ -1,10 +1,12 @@
-import pc from "picocolors"
 import fs from "fs"
+import pc from "picocolors"
 import dedent from "dedent"
 
 // Yorkie 的 gitHooks 使用 process.env.GIT_PARAMS
 const msgPath = process.argv[2]
 const msg = fs.readFileSync(msgPath, "utf-8").trim()
+
+const c = pc.createColors(!!process.stdout.isTTY)
 
 // revert:回滚到上一个版本
 
@@ -29,16 +31,16 @@ const mergeRe = /^(Merge pull request|Merge branch)/
 
 if (!commitRE.test(msg)) {
   if (!mergeRe.test(msg)) {
-    console.log(`提交的消息: ${msg}`)
+    console.log(`提交的消息: ${msg}\n`)
 
     const template = `
-          ${pc.bgRed("错误:")}
-            ${pc.yellow(`自动化校验-提交模板样例:`)}
+          ${c.bgRed("错误:")}
+            ${c.yellow(`自动化校验-提交模板样例:`)}
 
-              ${pc.green(`feat(compiler): add 'comments' option（冒号后有空格）`)}
-              ${pc.green(`fix(v-model): handle events on blur (close #28)`)}
+              ${c.green(`feat(compiler): add 'comments' option（冒号后有空格）`)}
+              ${c.green(`fix(v-model): handle events on blur (close #28)`)}
 
-            ${pc.yellow(`查看文档详情：https://github.com/vuejs/vue-next/blob/master/.github/commit-convention.md for more details.`)}
+            ${c.yellow(`查看文档详情：https://github.com/vuejs/vue-next/blob/master/.github/commit-convention.md for more details.`)}
     `
 
     console.log(dedent(template))
