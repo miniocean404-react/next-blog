@@ -4,7 +4,6 @@ import {
   loggerLink,
   splitLink,
   unstable_httpSubscriptionLink,
-  httpLink,
 } from "@trpc/client"
 import { type TRPCRouter } from "../routers/index"
 import { getBaseUrl } from "./shared"
