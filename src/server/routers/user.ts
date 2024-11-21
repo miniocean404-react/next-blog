@@ -26,6 +26,7 @@ export const User = appRouter({
             select: {
               role: {
                 select: {
+                  name: true,
                   permissions: {
                     select: {
                       permission: {
@@ -35,7 +36,6 @@ export const User = appRouter({
                       },
                     },
                   },
-                  name: true,
                 },
               },
             },
