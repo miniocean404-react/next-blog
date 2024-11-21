@@ -1,7 +1,8 @@
 // app/_trcp/index.ts
-import { User } from "./user"
+import { Demo } from "./demo"
 import { Ai } from "./ai"
 import { Upload } from "./upload"
+import { User } from "./user"
 
 import { appRouter } from "../trpc/server"
 
@@ -11,9 +12,10 @@ import { appRouter } from "../trpc/server"
  * trpcClient.Prodcut.getAllProducts
  */
 export const trpcRouter = appRouter({
-  User,
+  Demo,
   Ai,
   Upload,
+  User,
 })
 
 /**
