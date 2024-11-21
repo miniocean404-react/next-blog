@@ -1,11 +1,17 @@
 model Permission {
   id          String           @id @default(cuid())
-  name        String           @unique
+  name        PermissionEnum   @default(READ)
   description String?
   roles       RolePermission[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum PermissionEnum {
+  ALL
+  READ
+  WRITE
 }
 
 model RolePermission {
