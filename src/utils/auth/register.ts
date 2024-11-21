@@ -26,6 +26,24 @@ export const register = async (data: RegisterFormSchemaType) => {
       email: data.email,
       password: hashedPassword,
       realPassword: data.password,
+      roles: {
+        create: {
+          role: {
+            create: {
+              name: "USER",
+              permissions: {
+                create: {
+                  permission: {
+                    create: {
+                      name: "READ",
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
   })
 }
