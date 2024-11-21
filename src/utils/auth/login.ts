@@ -1,7 +1,7 @@
 "use server"
 
 import type { loginFormSchemaType } from "@/app/[locale]/login/page"
-import { signIn } from "@/auth/core"
+import { signIn } from "@/utils/auth/core"
 import { AuthError } from "next-auth"
 
 export const loginCredentials = async (credentials: loginFormSchemaType) => {

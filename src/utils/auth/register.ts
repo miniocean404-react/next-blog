@@ -1,7 +1,7 @@
 "use server"
 
 import bcrypt from "bcryptjs"
-import { DB } from "@/db"
+import { DB } from "@/utils/db"
 import type { RegisterFormSchemaType } from "@/app/[locale]/register/page"
 
 export const register = async (data: RegisterFormSchemaType) => {

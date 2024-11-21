@@ -1,4 +1,4 @@
-import { auth, signOut } from "@/auth/core"
+import { auth, signOut } from "@/utils/auth/core"
 import { getLocale } from "next-intl/server"
 
 export default async function User() {

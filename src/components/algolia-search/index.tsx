@@ -8,7 +8,7 @@ import { useHotkeys } from "react-hotkeys-hook"
 import "@docsearch/css"
 import "./index.css"
 import docsearch from "@docsearch/js"
-import { useMounted } from "@/hook/mounted"
+import { useMounted } from "@/utils/hook/mounted"
 
 export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
   const t = useTranslations()

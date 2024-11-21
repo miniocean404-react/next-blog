@@ -3,7 +3,7 @@
 import { Moon, Sun } from "lucide-react"
 import { type MouseEvent } from "react"
 import { useTheme } from "next-themes"
-import { useMounted } from "@/hook/mounted"
+import { useMounted } from "@/utils/hook/mounted"
 
 export default function ThemeSwitch() {
   const { systemTheme, theme, setTheme } = useTheme()

@@ -10,7 +10,7 @@ import { AlignRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
-import { auth } from "@/auth/core"
+import { auth } from "@/utils/auth/core"
 import { cn } from "@/utils/tw"
 import { getLocale, getTranslations } from "next-intl/server"
 import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"

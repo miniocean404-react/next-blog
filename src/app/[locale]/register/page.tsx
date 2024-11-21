@@ -3,7 +3,7 @@
 import { use, useActionState } from "react"
 import z from "zod"
 import { useRouter } from "next/navigation"
-import { register } from "@/auth/register"
+import { register } from "@/utils/auth/register"
 
 const registerFormSchema = z.object({
   email: z.string().email({ message: "无效的邮箱格式" }),

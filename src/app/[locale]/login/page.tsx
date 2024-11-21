@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import z from "zod"
-import { loginCredentials, loginGithub, loginGoogle } from "@/auth/login"
+import { loginCredentials, loginGithub, loginGoogle } from "@/utils/auth/login"
 import Link from "next/link"
 import { toast } from "react-hot-toast"
 

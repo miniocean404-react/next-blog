@@ -1,5 +1,5 @@
 "use client"
-import { useMounted } from "@/hook/mounted"
+import { useMounted } from "@/utils/hook/mounted"
 import { useTheme } from "next-themes"
 import { Toaster } from "react-hot-toast"
 

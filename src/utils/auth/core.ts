@@ -4,7 +4,7 @@ import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import { DB } from "@/db"
+import { DB } from "@/utils/db"
 import type { loginFormSchemaType } from "@/app/[locale]/login/page"
 import bcrypt from "bcryptjs"
 
