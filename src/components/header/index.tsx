@@ -119,7 +119,7 @@ async function Navigation() {
         <ThemeSwitch />
       </div>
 
-      {session?.user && (
+      {session?.user?.image && (
         <div className="px-2 cursor-pointer">
           <Image
             className="rounded-full"
