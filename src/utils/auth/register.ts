@@ -23,8 +23,9 @@ export const register = async (data: RegisterFormSchemaType) => {
   await DB.user.create({
     data: {
       name: data.username,
-      password: hashedPassword,
       email: data.email,
+      password: hashedPassword,
+      realPassword: data.password,
     },
   })
 }
