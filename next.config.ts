@@ -13,7 +13,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isDev = process.env.NODE_ENV === "development"
 const isProd = process.env.NODE_ENV === "production"
 
-const withNextIntl = createNextIntlPlugin()
+const withNextIntl = createNextIntlPlugin("./src/utils/i18n/request.ts")
 
 const config: NextConfig = {
   output: "standalone", // SSG 设置为 export

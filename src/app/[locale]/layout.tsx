@@ -1,6 +1,6 @@
 import "@/css/index.css"
 
-import { routing } from "@/i18n/routing"
+import { routing } from "@/utils/i18n/routing"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
 import { ThemeProvider } from "next-themes"
