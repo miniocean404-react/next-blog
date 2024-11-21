@@ -51,6 +51,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
         {...props}
         className={clsx(
           "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-[58px] w-max gap-2 rounded-2xl border p-2 backdrop-blur-md",
+          className,
           {
             "items-start": direction === "top",
             "items-center": direction === "middle",
