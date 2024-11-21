@@ -4,7 +4,8 @@ import AlgoliaSearch from "../algolia-search"
 import ThemeSwitch from "./theme-switch"
 import IconSwitch from "./icon-switch"
 
-import { SiGithub, SiNotion } from "@icons-pack/react-simple-icons"
+import Github from "~/public/svg/github.svg"
+import Notion from "~/public/svg/notion.svg"
 import { AlignRight } from "lucide-react"
 
 import Link from "next/link"
@@ -100,7 +101,7 @@ async function Navigation() {
           href={GITHUB_LINK}
           title="GitHub"
         >
-          <SiGithub className="size-5"></SiGithub>
+          <Github className="size-5"></Github>
         </Link>
       </div>
 
@@ -110,7 +111,7 @@ async function Navigation() {
           href={NOTION_LINK}
           title="Notion"
         >
-          <SiNotion className="size-5"></SiNotion>
+          <Notion className="size-5"></Notion>
         </Link>
       </div>
 

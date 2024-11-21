@@ -1,10 +1,9 @@
 "use client"
 import React, { PropsWithChildren, useRef } from "react"
-import { cva, type VariantProps } from "class-variance-authority"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import clsx from "clsx"
 
-export interface DockProps extends VariantProps<typeof dockVariants> {
+export interface DockProps {
   className?: string
   magnification?: number
   distance?: number
@@ -14,10 +13,6 @@ export interface DockProps extends VariantProps<typeof dockVariants> {
 
 const DEFAULT_MAGNIFICATION = 60
 const DEFAULT_DISTANCE = 140
-
-const dockVariants = cva(
-  "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-[58px] w-max gap-2 rounded-2xl border p-2 backdrop-blur-md",
-)
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
   (
@@ -54,11 +49,14 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
         {...props}
-        className={clsx(dockVariants({ className }), {
-          "items-start": direction === "top",
-          "items-center": direction === "middle",
-          "items-end": direction === "bottom",
-        })}
+        className={clsx(
+          "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-[58px] w-max gap-2 rounded-2xl border p-2 backdrop-blur-md",
+          {
+            "items-start": direction === "top",
+            "items-center": direction === "middle",
+            "items-end": direction === "bottom",
+          },
+        )}
       >
         {renderChildren()}
       </motion.div>
@@ -120,4 +118,4 @@ const DockIcon = ({
 
 DockIcon.displayName = "DockIcon"
 
-export { Dock, DockIcon, dockVariants }
+export { Dock, DockIcon }

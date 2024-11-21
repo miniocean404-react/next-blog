@@ -1,7 +1,6 @@
 "use client"
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
 import Image from "next/image"
-import { encode } from "qss"
 import React from "react"
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion"
 import Link from "next/link"
@@ -30,18 +29,18 @@ export const LinkPreview = ({
 }: LinkPreviewProps) => {
   let src
   if (!isStatic) {
-    const params = encode({
-      url,
-      screenshot: true,
-      meta: false,
-      embed: "screenshot.url",
-      colorScheme: "dark",
-      "viewport.isMobile": true,
-      "viewport.deviceScaleFactor": 1,
-      "viewport.width": width * 3,
-      "viewport.height": height * 3,
-    })
-    src = `https://api.microlink.io/?${params}`
+    const link = new URL("https://api.microlink.io/")
+    link.searchParams.set("url", url)
+    link.searchParams.set("screenshot", "true")
+    link.searchParams.set("meta", "false")
+    link.searchParams.set("embed", "screenshot.url")
+    link.searchParams.set("colorScheme", "dark")
+    link.searchParams.set("viewport.isMobile", "true")
+    link.searchParams.set("viewport.deviceScaleFactor", "1")
+    link.searchParams.set("viewport.width", (width * 3).toString())
+    link.searchParams.set("viewport.height", (height * 3).toString())
+
+    src = link.href
   } else {
     src = imageSrc
   }
@@ -70,7 +69,15 @@ export const LinkPreview = ({
     <>
       {isMounted ? (
         <div className="hidden">
-          <Image src={src} width={width} height={height} quality={quality} layout={layout} priority={true} alt="hidden image" />
+          <Image
+            src={src}
+            width={width}
+            height={height}
+            quality={quality}
+            layout={layout}
+            priority={true}
+            alt="hidden image"
+          />
         </div>
       ) : null}
 
@@ -81,11 +88,20 @@ export const LinkPreview = ({
           setOpen(open)
         }}
       >
-        <HoverCardPrimitive.Trigger onMouseMove={handleMouseMove} className={clsx("text-black dark:text-white", className)} href={url}>
+        <HoverCardPrimitive.Trigger
+          onMouseMove={handleMouseMove}
+          className={clsx("text-black dark:text-white", className)}
+          href={url}
+        >
           {children}
         </HoverCardPrimitive.Trigger>
 
-        <HoverCardPrimitive.Content className="[transform-origin:var(--radix-hover-card-content-transform-origin)]" side="top" align="center" sideOffset={10}>
+        <HoverCardPrimitive.Content
+          className="[transform-origin:var(--radix-hover-card-content-transform-origin)]"
+          side="top"
+          align="center"
+          sideOffset={10}
+        >
           <AnimatePresence>
             {isOpen && (
               <motion.div
