@@ -50,13 +50,13 @@ const config: NextConfig = {
       },
     ],
   },
-  sassOptions: {
-    // 去除 scss 警告：https://github.com/vercel/next.js/issues/71638
-    silenceDeprecations: ["legacy-js-api"],
-    // 添加全局 scss 文件
-    // additionalData: '@use "@/css/var/index.var.scss" as var; @use "@/css/mixins/index.mixins.scss" as mixins;',
-    // includePaths: [path.join(__dirname, "./src/css")],
-  },
+  // sassOptions: {
+  // 去除 scss 警告：https://github.com/vercel/next.js/issues/71638
+  // silenceDeprecations: ["legacy-js-api"],
+  // 添加全局 scss 文件
+  // additionalData: '@use "@/css/var/index.var.scss" as var; @use "@/css/mixins/index.mixins.scss" as mixins;',
+  // includePaths: [path.join(__dirname, "./src/css")],
+  // },
   // i18n: {},
   // Next.js 其实提供了 rewrites 配置项用于重写请求。这算是解决跨域问题常用的一种方式
   // 重写会将传入的请求路径映射到其他目标路径。你可以把它理解为代理，并且它会屏蔽目标路径，使得用户看起来并没有改变其在网站上的位置

@@ -15,6 +15,7 @@ import { auth } from "@/utils/auth/core"
 import { cn } from "@/utils/tw"
 import { getLocale, getTranslations } from "next-intl/server"
 import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
+import { Avatar, AvatarFallback, AvatarImage } from "~/lib/components/shadcn/ui/avatar"
 
 export default async function Header() {
   // const header = await headers()
@@ -119,16 +120,12 @@ async function Navigation() {
         <ThemeSwitch />
       </div>
 
-      {session?.user?.image && (
+      {session?.user && (
         <div className="px-2 cursor-pointer">
-          <Image
-            className="rounded-full"
-            src={session.user.image || ""}
-            alt=""
-            width={30}
-            height={30}
-            priority
-          />
+          <Avatar>
+            <AvatarImage src={session.user?.image || undefined} alt="@shadcn" />
+            <AvatarFallback>{session.user.name}</AvatarFallback>
+          </Avatar>
         </div>
       )}
     </div>

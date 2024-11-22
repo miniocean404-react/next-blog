@@ -9,7 +9,7 @@ export default async function User() {
   return (
     <div className="mt-16">
       {session?.user ? (
-        <p>
+        <div>
           {JSON.stringify(session.user)}
           <form
             action={async () => {
@@ -20,7 +20,7 @@ export default async function User() {
           >
             <button>退出登录</button>
           </form>
-        </p>
+        </div>
       ) : (
         <p>未登录</p>
       )}

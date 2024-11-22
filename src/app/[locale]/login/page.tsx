@@ -26,6 +26,7 @@ import {
 } from "~/lib/components/shadcn/ui/card"
 import { Input } from "~/lib/components/shadcn/ui/input"
 import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
 
 const loginFormSchema = z.object({
   email: z.string().email("无效的邮箱格式"),
@@ -38,6 +39,7 @@ export type loginFormSchemaType = z.infer<typeof loginFormSchema>
 
 export default function Login() {
   const t = useTranslations("login")
+  const router = useRouter()
 
   const form = useForm<loginFormSchemaType>({
     resolver: zodResolver(loginFormSchema),
@@ -52,19 +54,22 @@ export default function Login() {
 
     if (result?.error) {
       toast.error(result.error)
+    } else {
+      // 登录成功，跳到首页
+      router.push("/")
     }
   }
 
   return (
-    <div className="mt-32 flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center">
       <Card className="w-[400px]">
         <CardHeader>
           <CardTitle>登录</CardTitle>
         </CardHeader>
 
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <CardContent className="space-y-4">
               <FormField
                 control={form.control}
                 name="email"
@@ -100,15 +105,15 @@ export default function Login() {
                   </FormItem>
                 )}
               />
-            </form>
-          </Form>
-        </CardContent>
+            </CardContent>
 
-        <CardFooter className="flex justify-center">
-          <Button className="w-full" type="submit">
-            {t("card.sure")}
-          </Button>
-        </CardFooter>
+            <CardFooter className="flex justify-center">
+              <Button className="w-full" type="submit">
+                {t("card.sure")}
+              </Button>
+            </CardFooter>
+          </form>
+        </Form>
       </Card>
 
       {/* <div className="">

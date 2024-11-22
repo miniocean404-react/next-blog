@@ -1,6 +1,7 @@
 # 问题
 
 1. trpc 客户端超时断开的属性
+2. next.js vscode debugger
 
 # 学习视频、文档
 
