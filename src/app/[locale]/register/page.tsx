@@ -25,6 +25,7 @@ import { Input } from "~/lib/components/shadcn/ui/input"
 import { use } from "react"
 import { useRouter } from "next/navigation"
 import { register } from "@/utils/auth/register"
+import { useTranslations } from "next-intl"
 
 const registerFormSchema = z.object({
   email: z.string().email({ message: "无效的邮箱格式" }),
@@ -37,6 +38,7 @@ export type RegisterFormSchemaType = z.infer<typeof registerFormSchema>
 export default function Login({ searchParams }: { searchParams: Promise<{ error: string }> }) {
   const { error } = use<{ error: string }>(searchParams)
   const router = useRouter()
+  const t = useTranslations("register")
 
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
@@ -47,11 +49,8 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
     },
   })
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof registerFormSchema>) {
     const result = await register(values)
-
-    console.log(values)
 
     if (result?.error) {
       return { errors: result.error }
@@ -66,7 +65,7 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
     <div className="mt-32 flex justify-center items-center">
       <Card className="w-[400px]">
         <CardHeader>
-          <CardTitle>注册</CardTitle>
+          <CardTitle>{t("card.title")}</CardTitle>
         </CardHeader>
 
         <CardContent>
@@ -77,9 +76,9 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel htmlFor="email">邮箱</FormLabel>
+                    <FormLabel htmlFor="email">{t("card.email")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="请输入邮箱" {...field} />
+                      <Input placeholder={t("card.emailPlaceholder")} {...field} />
                     </FormControl>
 
                     {/* <FormDescription>这是将显示在您的个人资料和电子邮件中的名称。</FormDescription> */}
@@ -93,9 +92,9 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>用户名</FormLabel>
+                    <FormLabel>{t("card.username")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="请输入用户名" {...field} />
+                      <Input placeholder={t("card.usernamePlaceholder")} {...field} />
                     </FormControl>
 
                     <FormMessage />
@@ -108,10 +107,10 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>密码</FormLabel>
+                    <FormLabel>{t("card.password")}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="请输入密码"
+                        placeholder={t("card.passwordPlaceholder")}
                         type="password"
                         aria-autocomplete="list"
                         {...field}
@@ -128,7 +127,7 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
 
         <CardFooter className="flex justify-center">
           <Button className="w-full" type="submit">
-            创建
+            {t("card.create")}
           </Button>
         </CardFooter>
       </Card>

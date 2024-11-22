@@ -60,5 +60,27 @@
       "first": "用艺术家的视角审视",
       "second": "以工匠精神创造开发"
     }
+  },
+  "register": {
+    "card": {
+      "title": "注册",
+      "email": "邮箱",
+      "emailPlaceholder": "请输入邮箱",
+      "username": "用户名",
+      "usernamePlaceholder": "请输入用户名",
+      "password": "密码",
+      "passwordPlaceholder": "请输入密码",
+      "create": "创建"
+    }
+  },
+  "login": {
+    "card": {
+      "title": "登录",
+      "email": "邮箱",
+      "emailPlaceholder": "请输入邮箱",
+      "password": "密码",
+      "passwordPlaceholder": "请输入密码",
+      "sure": "确定"
+    }
   }
 }

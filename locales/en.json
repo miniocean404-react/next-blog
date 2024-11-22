@@ -60,5 +60,27 @@
       "first": "Examine from an artist’s perspective",
       "second": "Create and develop with craftsman spirit"
     }
+  },
+  "register": {
+    "card": {
+      "create": "create",
+      "email": "email",
+      "emailPlaceholder": "Please enter your email",
+      "password": "password",
+      "passwordPlaceholder": "Please enter password",
+      "title": "Register",
+      "username": "username",
+      "usernamePlaceholder": "Please enter username"
+    }
+  },
+  "login": {
+    "card": {
+      "email": "email",
+      "emailPlaceholder": "Please enter your email",
+      "password": "password",
+      "passwordPlaceholder": "Please enter password",
+      "sure": "Sure",
+      "title": "Login"
+    }
   }
 }

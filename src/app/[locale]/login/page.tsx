@@ -25,6 +25,7 @@ import {
   CardTitle,
 } from "~/lib/components/shadcn/ui/card"
 import { Input } from "~/lib/components/shadcn/ui/input"
+import { useTranslations } from "next-intl"
 
 const loginFormSchema = z.object({
   email: z.string().email("无效的邮箱格式"),
@@ -36,6 +37,8 @@ const loginFormSchema = z.object({
 export type loginFormSchemaType = z.infer<typeof loginFormSchema>
 
 export default function Login() {
+  const t = useTranslations("login")
+
   const form = useForm<loginFormSchemaType>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -67,9 +70,9 @@ export default function Login() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel htmlFor="email">邮箱</FormLabel>
+                    <FormLabel htmlFor="email">{t("card.email")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="请输入邮箱" {...field} />
+                      <Input placeholder={t("card.emailPlaceholder")} {...field} />
                     </FormControl>
 
                     {/* <FormDescription>这是将显示在您的个人资料和电子邮件中的名称。</FormDescription> */}
@@ -83,10 +86,10 @@ export default function Login() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>密码</FormLabel>
+                    <FormLabel>{t("card.password")}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="请输入密码"
+                        placeholder={t("card.passwordPlaceholder")}
                         type="password"
                         aria-autocomplete="list"
                         {...field}
@@ -103,7 +106,7 @@ export default function Login() {
 
         <CardFooter className="flex justify-center">
           <Button className="w-full" type="submit">
-            确定
+            {t("card.sure")}
           </Button>
         </CardFooter>
       </Card>
