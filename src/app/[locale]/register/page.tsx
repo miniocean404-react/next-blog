@@ -7,12 +7,8 @@ import { register } from "@/utils/auth/register"
 
 const registerFormSchema = z.object({
   email: z.string().email({ message: "无效的邮箱格式" }),
-  username: z.string().min(1, {
-    message: "用户名不能为空",
-  }),
-  password: z.string().min(1, {
-    message: "密码不能为空",
-  }),
+  username: z.string().min(1, { message: "用户名不能为空" }),
+  password: z.string().min(1, { message: "密码不能为空" }),
 })
 
 export type RegisterFormSchemaType = z.infer<typeof registerFormSchema>
@@ -56,12 +52,21 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
   }
 
   return (
-    <div className="mt-16">
-      <div>
+    <div className="mt-16 flex justify-center items-center">
+      <div className="p-1.5">
+        <h1 className="text-lg">注册</h1>
+
         <form action={formAction} noValidate>
-          <input name="email" type="email" autoComplete="off" />
-          <input name="username" type="text" />
-          <input name="password" type="password" autoComplete="new-password" />
+          <div>
+            <label>邮箱</label>
+            <input name="email" type="email" autoComplete="off" />
+          </div>
+          <div>
+            <input name="username" type="text" />
+          </div>
+          <div>
+            <input name="password" type="password" autoComplete="new-password" />
+          </div>
 
           <button type="submit" disabled={isPending}>
             注册

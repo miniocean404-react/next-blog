@@ -9,8 +9,8 @@
   "scripts": {
     "dev": "next dev --turbo -p 3000",
     "build": "next build --no-lint",
-    "build-static": "next build",
     "start": "next start",
+    "start-standalone": "node .next/standalone/server.js",
     "lint": "next lint",
     "commit": "cz",
     "clean": "rimraf ./node_modules",
