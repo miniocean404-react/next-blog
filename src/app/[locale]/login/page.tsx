@@ -7,6 +7,25 @@ import { loginCredentials, loginGithub, loginGoogle } from "@/utils/auth/login"
 import Link from "next/link"
 import { toast } from "react-hot-toast"
 
+import { Button } from "~/lib/components/shadcn/ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "~/lib/components/shadcn/ui/form"
+
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "~/lib/components/shadcn/ui/card"
+import { Input } from "~/lib/components/shadcn/ui/input"
+
 const loginFormSchema = z.object({
   email: z.string().email("无效的邮箱格式"),
   password: z.string().min(1, {
@@ -34,8 +53,62 @@ export default function Login() {
   }
 
   return (
-    <div className="mt-16">
-      <div className="">
+    <div className="mt-32 flex justify-center items-center">
+      <Card className="w-[400px]">
+        <CardHeader>
+          <CardTitle>登录</CardTitle>
+        </CardHeader>
+
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel htmlFor="email">邮箱</FormLabel>
+                    <FormControl>
+                      <Input placeholder="请输入邮箱" {...field} />
+                    </FormControl>
+
+                    {/* <FormDescription>这是将显示在您的个人资料和电子邮件中的名称。</FormDescription> */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>密码</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="请输入密码"
+                        type="password"
+                        aria-autocomplete="list"
+                        {...field}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </form>
+          </Form>
+        </CardContent>
+
+        <CardFooter className="flex justify-center">
+          <Button className="w-full" type="submit">
+            确定
+          </Button>
+        </CardFooter>
+      </Card>
+
+      {/* <div className="">
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <input {...form.register("email")} />
           <input {...form.register("password")} />
@@ -49,9 +122,9 @@ export default function Login() {
 
       <form action={loginGoogle}>
         <button>google 登录</button>
-      </form>
+      </form> */}
 
-      <Link href={"/register"}>去注册</Link>
+      {/* <Link href={"/register"}>去注册</Link> */}
     </div>
   )
 }

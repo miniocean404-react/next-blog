@@ -7,7 +7,6 @@ import { Button } from "~/lib/components/shadcn/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,12 +16,10 @@ import {
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "~/lib/components/shadcn/ui/card"
-
 import { Input } from "~/lib/components/shadcn/ui/input"
 
 import { use } from "react"
@@ -74,7 +71,7 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
 
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
                 name="email"
@@ -129,8 +126,10 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
           </Form>
         </CardContent>
 
-        <CardFooter className="flex  justify-center">
-          <Button type="submit">创建</Button>
+        <CardFooter className="flex justify-center">
+          <Button className="w-full" type="submit">
+            创建
+          </Button>
         </CardFooter>
       </Card>
     </div>
