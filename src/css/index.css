@@ -14,31 +14,14 @@
 }
 */
 
-/**
- * View Transition API产生过渡时，会生成一组伪元素，分别代表着状态变换前的图像和状态变换后的图像，并且默认就带有过滤渐隐渐现的过渡效果，
- * 我们主题切换不需要这种效果，将其默认效果关闭，同时也关闭过渡自带的mix-blend-mode效果。
- */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-/* 进入dark模式和退出dark模式时，两个图像的位置顺序正好相反 */
-.dark::view-transition-old(root) {
-  z-index: 1;
-}
-.dark::view-transition-new(root) {
-  z-index: 999;
-}
-
-::view-transition-old(root) {
-  z-index: 999;
-}
-::view-transition-new(root) {
-  z-index: 1;
-}
 @layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
@@ -93,11 +76,44 @@
     --chart-5: 340 75% 55%;
   }
 }
-@layer base {
-  * {
-    @apply border-border;
+
+@layer utilities {
+  .scrollbar {
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--mini-c-scrollbar-thumb);
+      border-radius: var(--mini-c-scrollbar-thumb-radius);
+      background-clip: padding-box;
+      border-right: 3px solid transparent;
+    }
+
+    &::-webkit-scrollbar {
+      display: block;
+      width: var(--mini-scrollbar-width);
+    }
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+}
+
+/**
+ * View Transition API产生过渡时，会生成一组伪元素，分别代表着状态变换前的图像和状态变换后的图像，并且默认就带有过滤渐隐渐现的过渡效果，
+ * 我们主题切换不需要这种效果，将其默认效果关闭，同时也关闭过渡自带的mix-blend-mode效果。
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* 进入dark模式和退出dark模式时，两个图像的位置顺序正好相反 */
+.dark::view-transition-old(root) {
+  z-index: 1;
+}
+.dark::view-transition-new(root) {
+  z-index: 999;
+}
+
+::view-transition-old(root) {
+  z-index: 999;
+}
+::view-transition-new(root) {
+  z-index: 1;
 }

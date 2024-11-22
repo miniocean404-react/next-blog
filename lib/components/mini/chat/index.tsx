@@ -2,8 +2,6 @@
 import clsx from "clsx"
 // 聊天框原理：https://juejin.cn/post/7306693980959588379
 
-import styles from "./index.module.scss"
-
 import { useEffect, useRef, type PropsWithChildren, type KeyboardEvent, useState } from "react"
 import { ArrowUp } from "lucide-react"
 import { useHotkeys } from "react-hotkeys-hook"
@@ -15,7 +13,7 @@ interface ChatLayoutProps {
 
 export function ChatLayout(props: PropsWithChildren<ChatLayoutProps>) {
   const { className } = props
-  return <div className={clsx(styles.chatLayout, className)}>{props.children}</div>
+  return <div className={clsx("flex flex-col", className)}>{props.children}</div>
 }
 
 interface ChatWindowProps {
@@ -26,9 +24,23 @@ export function ChatWindow(props: PropsWithChildren<ChatWindowProps>) {
   const { className } = props
 
   return (
-    <div className={clsx(styles.chatWindow, className)}>
-      <div className={clsx(styles.reverse, styles.scroll)}>
-        {/* <div className={styles["place-holder"]}></div> */}
+    <div
+      className={clsx(
+        "flex-grow overflow-hidden",
+        // 设置消息少的时候消息在顶部
+        "flex flex-col justify-start",
+        className,
+      )}
+    >
+      <div
+        className={clsx(
+          "overflow-auto flex flex-col-reverse justify-start p-4",
+          // webkit 使用示例: "[&::-webkit-scrollbar]:block"
+          "scrollbar",
+        )}
+      >
+        {/* flex 内容底部填充这个可以在初始时候将对话内容撑起来，这是一种方法 */}
+        {/* <div className={"flex-grow flex-shrink"}></div> */}
         {props.children}
       </div>
     </div>
@@ -42,14 +54,21 @@ interface ChatMessageProps {
 
 export function ChatMessage(props: PropsWithChildren<ChatMessageProps>) {
   return (
-    <div className={styles.message}>
-      <div className={clsx(styles.box, { [styles.send]: props.type === "send" })}>
-        <div className={clsx(styles.beautiful, { [styles.receiveCard]: props.type === "receive" })}>
+    <div>
+      <div className={clsx("w-full flex", { ["flex-row-reverse"]: props.type === "send" })}>
+        <div
+          className={clsx(
+            "rounded bg-[var(--mini-c-chat-message-card-bg)] text-[var(--mini-c-chat-message-text)] p-2 w-fit max-w-[70%]",
+            {
+              "bg-transparent max-w-full": props.type === "receive",
+            },
+          )}
+        >
           {props.children}
         </div>
       </div>
 
-      <div className={styles.operate}></div>
+      <div className={"h-10"}></div>
     </div>
   )
 }
@@ -128,11 +147,27 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
   }
 
   return (
-    <div className={clsx(styles.chatInput, props.className)}>
-      <div className={clsx(styles.chatInputCard, { [styles.mutiLine]: mutiLine })}>
-        <div className={styles.textareaBox}>
+    <div className={clsx("w-full mx-auto", props.className)}>
+      <div
+        className={clsx(
+          "relative rounded-2xl bg-[var(--mini-c-chat-input-card-bg)] p-3 pl-3.5 shadow-[var(--mini-c-chat-input-card-shadow)] border border-solid border-[ var(--mini-c-chat-input-card-border)] grid gap-2.5  grid-cols-[auto_1fr_auto]",
+          "[grid-template-areas:'left-tools_input-area_right-tools']",
+          {
+            "[grid-template-areas:'input-area_input-area_input-area''left-tools_._right-tools']":
+              mutiLine,
+          },
+        )}
+      >
+        <div
+          className={
+            "relative text-base leading-6 self-center cursor-text w-full bg-inherit [grid-area:input-area]"
+          }
+        >
           <textarea
-            className={clsx(styles.textarea, styles.scroll)}
+            className={clsx(
+              "w-full bg-inherit caret-[var(--mini-c-chat-input-card-caret)] min-w-32 max-h-44 p-0 resize-none outline-none overflow-auto align-bottom",
+              "scrollbar",
+            )}
             ref={textareaRef}
             rows={props.rows}
             cols={props.cols}
@@ -144,13 +179,28 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
             onKeyDown={props.onKeyDown}
           />
 
-          <textarea className={styles.calc} ref={calcRef} />
+          <textarea
+            className={clsx(
+              "w-full border-0 box-border not-italic font-normal tracking-normal p-0 indent-0 normal-case !min-h-0 !max-h-none !h-0 !invisible !overflow-hidden !absolute !z-[1000] !top-0 !right-0",
+              "[tab-size:8] [text-rendering:auto]",
+            )}
+            ref={calcRef}
+          />
         </div>
 
-        <div className={styles.tool}>
-          <div className={styles.divider}></div>
+        <div className={"flex items-center [grid-area:right-tools]"}>
+          <div
+            className={"bg-[var(--mini-c-chat-input-tool-divider)] w-[1] h-5 my-0 ml-1 mr-3"}
+          ></div>
 
-          <button className={styles.sendButton} onClick={onSend}>
+          <button
+            className={clsx(
+              "w-8 h-8 rounded-[50%] bg-[var(--mini-c-chat-i-send-bg)] text-[var(--mini-c-chat-i-send-inner)]",
+              "flex justify-center items-center cursor-pointer",
+              "hover:bg-[var(--mini-c-chat-i-send-bg-soft)] hover:text-[var(--mini-c-chat-i-send-inner-soft)]",
+            )}
+            onClick={onSend}
+          >
             <ArrowUp size={24}></ArrowUp>
           </button>
         </div>
