@@ -62,7 +62,7 @@ export default function Login() {
 
   return (
     <div className="h-screen flex justify-center items-center">
-      <Card className="w-[400px]">
+      <Card className="w-[350px] md:w-[400px]">
         <CardHeader>
           <CardTitle>登录</CardTitle>
         </CardHeader>
