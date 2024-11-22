@@ -1,7 +1,31 @@
 "use client"
 
-import { use, useActionState } from "react"
-import z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "~/lib/components/shadcn/ui/button"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "~/lib/components/shadcn/ui/form"
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "~/lib/components/shadcn/ui/card"
+
+import { Input } from "~/lib/components/shadcn/ui/input"
+
+import { use } from "react"
 import { useRouter } from "next/navigation"
 import { register } from "@/utils/auth/register"
 
@@ -17,31 +41,21 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
   const { error } = use<{ error: string }>(searchParams)
   const router = useRouter()
 
-  type State = {
-    errors?: string
-    message?: string
-  }
-
-  // 初始化表单状态
-  const [state, formAction, isPending] = useActionState<State, FormData>(onRegister, {
-    errors: "",
-    message: "",
+  const form = useForm<z.infer<typeof registerFormSchema>>({
+    resolver: zodResolver(registerFormSchema),
+    defaultValues: {
+      email: "",
+      username: "",
+      password: "",
+    },
   })
 
-  // 调用后端接口返回数据
-  async function onRegister(cur: State, formData: FormData): Promise<State> {
-    const values = {
-      email: formData.get("email")?.toString() ?? "",
-      username: formData.get("username")?.toString() ?? "",
-      password: formData.get("password")?.toString() ?? "",
-    }
-
-    const valid = registerFormSchema.safeParse(values)
-    if (!valid.success) {
-      return { errors: valid.error.errors[0].message }
-    }
-
+  // 2. Define a submit handler.
+  async function onSubmit(values: z.infer<typeof registerFormSchema>) {
     const result = await register(values)
+
+    console.log(values)
+
     if (result?.error) {
       return { errors: result.error }
     } else {
@@ -52,48 +66,73 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
   }
 
   return (
-    <div className="mt-16 flex justify-center items-center">
-      <div className="p-1.5">
-        <h1 className="text-lg">注册</h1>
+    <div className="mt-32 flex justify-center items-center">
+      <Card className="w-[400px]">
+        <CardHeader>
+          <CardTitle>注册</CardTitle>
+        </CardHeader>
 
-        <form action={formAction} noValidate>
-          <div>
-            <label>邮箱</label>
-            <input name="email" type="email" autoComplete="off" />
-          </div>
-          <div>
-            <input name="username" type="text" />
-          </div>
-          <div>
-            <input name="password" type="password" autoComplete="new-password" />
-          </div>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel htmlFor="email">邮箱</FormLabel>
+                    <FormControl>
+                      <Input placeholder="请输入邮箱" {...field} />
+                    </FormControl>
 
-          <button type="submit" disabled={isPending}>
-            注册
-          </button>
-        </form>
+                    {/* <FormDescription>这是将显示在您的个人资料和电子邮件中的名称。</FormDescription> */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-        {/* 显示error */}
-        {state.errors && <p className="mt-2 text-sm text-red-500">{state.errors}</p>}
-      </div>
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>用户名</FormLabel>
+                    <FormControl>
+                      <Input placeholder="请输入用户名" {...field} />
+                    </FormControl>
 
-      <div className="text-red-500">{error}</div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>密码</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="请输入密码"
+                        type="password"
+                        aria-autocomplete="list"
+                        {...field}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </form>
+          </Form>
+        </CardContent>
+
+        <CardFooter className="flex  justify-center">
+          <Button type="submit">创建</Button>
+        </CardFooter>
+      </Card>
     </div>
   )
 }
-
-/**
- * 只能在 form 表达内嵌入下方内容时候才能使用 useFormStatus，也就是多层级
- * pending: 是否正在提交
- * data：formData
- * method：get | post
- * action：一个传递给父级 <form> 的 action 属性的函数引用。如果没有父级 <form>，则该属性为 null。如果在 action 属性上提供了 URI 值，或者未指定 action 属性，status.action 将为 null
- * ```js
- * function Submit() {
- *   const status = useFormStatus()
- *
- *   return <button disabled={status.pending}>提交</button>
- * }
- * ```
- * const status = useFormStatus()
- */
