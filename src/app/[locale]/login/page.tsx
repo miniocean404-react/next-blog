@@ -62,7 +62,7 @@ export default function Login() {
   }
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center mx-8 md:mx-0">
       <Card className="w-[350px] md:w-[400px]">
         <CardHeader>
           <CardTitle>{t("card.title")}</CardTitle>

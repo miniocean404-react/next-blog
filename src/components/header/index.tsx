@@ -32,14 +32,18 @@ export default async function Header() {
 
       <header
         className={cn(
-          "fixed top-0 z-[var(--mini-z-index-header)] backdrop-blur-md bg-[var(--mini-nav-bg-color)]",
-          "border-b border-b-solid border-b-[var(--mini-c-divider)]",
-          "flex items-center  h-16 w-full",
-          "pl-6 pr-2 md:px-8",
+          "fixed top-0 z-[var(--mini-z-index-header)] backdrop-blur-md",
+          "border-b border-b-[var(--mini-c-divider)]",
+          "flex items-center h-16 w-full",
+          "px-2 md:px-8",
         )}
       >
         <div className="flex w-full max-w-[calc(var(--mini-layout-max-width)-4rem)] mx-auto justify-between">
-          <Link className="text-base font-600 flex items-center" href={`/${locale}`} title={locale}>
+          <Link
+            className="pl-4 text-base font-600 flex items-center"
+            href={`/${locale}`}
+            title={locale}
+          >
             <Image
               className="mr-2 h-6"
               src={"/favicon.svg"}

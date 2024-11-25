@@ -65,7 +65,7 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
   }
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center mx-8 md:mx-0">
       <Card className="w-[350px] md:w-[400px]">
         <CardHeader>
           <CardTitle>{t("card.title")}</CardTitle>
