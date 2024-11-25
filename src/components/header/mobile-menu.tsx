@@ -1,6 +1,5 @@
 "use client"
 import { AlignRight } from "lucide-react"
-import { useState } from "react"
 import { Button } from "~/lib/components/shadcn/ui/button"
 import {
   Drawer,
@@ -14,21 +13,13 @@ import {
 } from "~/lib/components/shadcn/ui/drawer"
 
 export default function MobileMenu() {
-  const [goal, setGoal] = useState(350)
-
-  function onClick(adjustment: number) {
-    setGoal(Math.max(200, Math.min(400, goal + adjustment)))
-  }
-
   return (
     <>
-      <button className="h-10 flex items-center px-3 md:hidden">
-        <AlignRight className="size-4 text-[var(--mini-c-text-2)]"></AlignRight>
-      </button>
-
-      <Drawer setBackgroundColorOnScale={false}>
+      <Drawer direction="right">
         <DrawerTrigger asChild>
-          <Button variant="outline">Open Drawer</Button>
+          <button className="h-10 flex items-center px-3 md:hidden">
+            <AlignRight className="size-4 text-[var(--mini-c-text-2)]"></AlignRight>
+          </button>
         </DrawerTrigger>
 
         <DrawerContent>
@@ -42,6 +33,7 @@ export default function MobileMenu() {
 
             <DrawerFooter>
               <Button>Submit</Button>
+
               <DrawerClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DrawerClose>
