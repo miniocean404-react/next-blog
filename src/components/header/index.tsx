@@ -15,8 +15,7 @@ import { auth } from "@/utils/auth/core"
 import { cn } from "@/utils/tw"
 import { getLocale, getTranslations } from "next-intl/server"
 import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
-import { Avatar, AvatarFallback, AvatarImage } from "~/lib/components/shadcn/ui/avatar"
-import { Button } from "~/lib/components/shadcn/ui/button"
+import { Account } from "./account"
 
 export default async function Header() {
   // const header = await headers()
@@ -71,7 +70,7 @@ export default async function Header() {
 }
 
 async function Navigation() {
-  const t = await getTranslations()
+  const t = await getTranslations("header")
   const session = await auth()
 
   return (
@@ -121,18 +120,7 @@ async function Navigation() {
         <ThemeSwitch />
       </div>
 
-      {session?.user ? (
-        <div className="px-2 cursor-pointer">
-          <Avatar>
-            <AvatarImage src={session.user?.image || undefined} alt="@shadcn" />
-            <AvatarFallback>{session.user.name}</AvatarFallback>
-          </Avatar>
-        </div>
-      ) : (
-        <div className="px-2">
-          <Button>登录/注册</Button>
-        </div>
-      )}
+      <Account></Account>
     </div>
   )
 }
