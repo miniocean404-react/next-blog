@@ -39,7 +39,7 @@ export function Account(props: PropsWithChildren<AccountProps>) {
           </DropdownMenuTrigger>
         </div>
       ) : (
-        <div className="px-2">
+        <div className="px-0">
           <Button variant={"ghost"}>
             <Link href="/login">{t("navigation")}</Link>
           </Button>

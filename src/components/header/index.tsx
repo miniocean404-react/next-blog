@@ -22,6 +22,7 @@ export default async function Header() {
   // const _ = header.get("user-agent")
   const t = await getTranslations()
   const locale = await getLocale()
+  const session = await auth()
 
   return (
     <>
@@ -56,7 +57,13 @@ export default async function Header() {
               <AlgoliaSearch />
             </div>
 
-            <Navigation />
+            <div className="hidden items-center md:flex">
+              <Navigation />
+
+              <ThemeSwitch />
+
+              <Account session={session}></Account>
+            </div>
 
             {/* 移动端菜单栏按钮 */}
             <button className="h-10 flex items-center px-3 md:hidden">
@@ -71,10 +78,9 @@ export default async function Header() {
 
 async function Navigation() {
   const t = await getTranslations("header")
-  const session = await auth()
 
   return (
-    <div className="hidden items-center md:flex">
+    <>
       <Link
         className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
         href={"/ai"}
@@ -115,12 +121,6 @@ async function Navigation() {
           <Notion className="size-5"></Notion>
         </Link>
       </div>
-
-      <div className="px-2">
-        <ThemeSwitch />
-      </div>
-
-      <Account session={session}></Account>
-    </div>
+    </>
   )
 }

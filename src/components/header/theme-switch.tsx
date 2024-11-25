@@ -39,15 +39,17 @@ export default function ThemeSwitch() {
     setTheme(isDark ? "light" : "dark")
   }
 
-  if (!mounted) return <button className="size-9"></button>
+  if (!mounted) return <button className="size-9 px-2"></button>
 
   return (
-    <button
-      className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
-      onClick={toggle}
-    >
-      {theme === "light" && <Sun className="size-5" />}
-      {theme === "dark" && <Moon className="size-5" />}
-    </button>
+    <div className="px-2">
+      <button
+        className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
+        onClick={toggle}
+      >
+        {theme === "light" && <Sun className="size-5" />}
+        {theme === "dark" && <Moon className="size-5" />}
+      </button>
+    </div>
   )
 }
