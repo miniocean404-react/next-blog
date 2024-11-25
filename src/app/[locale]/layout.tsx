@@ -51,9 +51,12 @@ export default async function LocaleLayout({
             <GoogleAnalytics></GoogleAnalytics>
             <BaiDuAnalytics></BaiDuAnalytics>
             <Toast></Toast>
-            <Header></Header>
 
-            {children}
+            <div data-vaul-drawer-wrapper>
+              <Header></Header>
+
+              {children}
+            </div>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

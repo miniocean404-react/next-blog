@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import type { PropsWithChildren } from "react"
 import { Button } from "~/lib/components/shadcn/ui/button"
 
 export default function AccountPassport() {

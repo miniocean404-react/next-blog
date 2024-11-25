@@ -16,6 +16,7 @@ import { Account } from "./account"
 import AccountPassport from "@/components/header/account-passport"
 
 import { Navigation } from "@/components/header/navigation"
+import MobileMenu from "@/components/header/mobile-menu"
 export default async function Header() {
   // const header = await headers()
   // const _ = header.get("user-agent")
@@ -69,9 +70,7 @@ export default async function Header() {
             </div>
 
             {/* 移动端菜单栏按钮 */}
-            <button className="h-10 flex items-center px-3 md:hidden">
-              <AlignRight className="size-4 text-[var(--mini-c-text-2)]"></AlignRight>
-            </button>
+            <MobileMenu />
           </div>
         </div>
       </header>
