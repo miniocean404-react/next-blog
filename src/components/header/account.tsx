@@ -13,7 +13,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/lib/components/shadcn/ui/
 import { Button } from "~/lib/components/shadcn/ui/button"
 import Link from "next/link"
 
-import type { Session } from "next-auth"
 import { type PropsWithChildren } from "react"
 import { useTranslations } from "next-intl"
 import { signOut } from "@/utils/auth/core"
@@ -29,22 +28,14 @@ export function Account(props: PropsWithChildren<AccountProps>) {
 
   return (
     <DropdownMenu>
-      {session?.user ? (
-        <div className="px-2 cursor-pointer">
-          <DropdownMenuTrigger asChild>
-            <Avatar>
-              <AvatarImage src={session.user?.image || undefined} alt="@avatar" />
-              <AvatarFallback>{session.user.name}</AvatarFallback>
-            </Avatar>
-          </DropdownMenuTrigger>
-        </div>
-      ) : (
-        <div className="px-0">
-          <Button variant={"ghost"}>
-            <Link href="/login">{t("navigation")}</Link>
-          </Button>
-        </div>
-      )}
+      <div className="px-2 cursor-pointer">
+        <DropdownMenuTrigger asChild>
+          <Avatar>
+            <AvatarImage src={session.user?.image || undefined} alt="@avatar" />
+            <AvatarFallback>{session.user.name}</AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+      </div>
 
       <DropdownMenuContent className="w-56" align="end" sideOffset={20}>
         <DropdownMenuLabel>{t("menu.title")}</DropdownMenuLabel>

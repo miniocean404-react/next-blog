@@ -4,8 +4,6 @@ import AlgoliaSearch from "../algolia-search"
 import ThemeSwitch from "./theme-switch"
 import IconSwitch from "./icon-switch"
 
-import Github from "~/public/svg/github.svg"
-import Notion from "~/public/svg/notion.svg"
 import { AlignRight } from "lucide-react"
 
 import Link from "next/link"
@@ -14,9 +12,10 @@ import Image from "next/image"
 import { auth } from "@/utils/auth/core"
 import { cn } from "@/utils/tw"
 import { getLocale, getTranslations } from "next-intl/server"
-import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
 import { Account } from "./account"
+import AccountPassport from "@/components/header/account-passport"
 
+import { Navigation } from "@/components/header/navigation"
 export default async function Header() {
   // const header = await headers()
   // const _ = header.get("user-agent")
@@ -28,7 +27,7 @@ export default async function Header() {
     <>
       {/* 彩虹 */}
       <div className="w-full h-24 fixed top-[0] pointer-events-none before:content-[''] before:absolute before:w-full before:h-3/5 before:z-0 before:left-2/4 before:top-[0] before:-bottom-1/5 before:-translate-x-1/2 before:translate-y-[0] before:rotate-[0] before:skew-x-[0] before:skew-y-[0] before:scale-x-100 before:scale-y-100 before:filter blur-3xl before:opacity-20 before:[background-size:200%] before:bg-[linear-gradient(90deg,_#ff4242,_#a1ff42,_#42a1ff,_#42d0ff,_#a142ff)] before:animate-[rainbow_var(--speed,_2s)_infinite_linear] z-[var(--mini-z-index-header)]"></div>
-      {/* 网站图标切换 */}
+      {/* 网站标题图标切换 */}
       <IconSwitch title={t("app.blogName")}></IconSwitch>
 
       <header
@@ -59,10 +58,10 @@ export default async function Header() {
 
             <div className="hidden items-center md:flex">
               <Navigation />
-
               <ThemeSwitch />
 
-              <Account session={session}></Account>
+              {session?.user && <Account session={session}></Account>}
+              {!session?.user && <AccountPassport />}
             </div>
 
             {/* 移动端菜单栏按钮 */}
@@ -72,55 +71,6 @@ export default async function Header() {
           </div>
         </div>
       </header>
-    </>
-  )
-}
-
-async function Navigation() {
-  const t = await getTranslations("header")
-
-  return (
-    <>
-      <Link
-        className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
-        href={"/ai"}
-      >
-        {t("navigation.ai")}
-      </Link>
-
-      <Link
-        className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
-        href={"/"}
-      >
-        {t("navigation.article")}
-      </Link>
-
-      <Link
-        className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
-        href={"/"}
-      >
-        {t("navigation.demo")}
-      </Link>
-
-      <div className="px-2">
-        <Link
-          className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
-          href={GITHUB_LINK}
-          title="GitHub"
-        >
-          <Github className="size-5"></Github>
-        </Link>
-      </div>
-
-      <div className="px-2">
-        <Link
-          className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
-          href={NOTION_LINK}
-          title="Notion"
-        >
-          <Notion className="size-5"></Notion>
-        </Link>
-      </div>
     </>
   )
 }
