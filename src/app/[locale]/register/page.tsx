@@ -27,6 +27,8 @@ import { useRouter } from "next/navigation"
 import { register } from "@/utils/auth/register"
 import { useTranslations } from "next-intl"
 import toast from "react-hot-toast"
+import { Separator } from "~/lib/components/shadcn/ui/separator"
+import Link from "next/link"
 
 const registerFormSchema = z.object({
   email: z.string().email({ message: "无效的邮箱格式" }),
@@ -124,10 +126,24 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
               />
             </CardContent>
 
-            <CardFooter className="flex justify-center">
-              <Button className="w-full" type="submit">
-                {t("card.create")}
-              </Button>
+            <CardFooter className="w-full">
+              <div className="w-full">
+                <Button className="w-full" type="submit">
+                  {t("card.create")}
+                </Button>
+
+                <div className="relative my-4">
+                  <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
+
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
+                  </div>
+                </div>
+
+                <Button className="flex mx-auto" variant="link">
+                  <Link href={"/login"}>{t("card.login")}</Link>
+                </Button>
+              </div>
             </CardFooter>
           </form>
         </Form>

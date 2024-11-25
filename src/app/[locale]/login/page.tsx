@@ -25,6 +25,7 @@ import {
   CardTitle,
 } from "~/lib/components/shadcn/ui/card"
 import { Input } from "~/lib/components/shadcn/ui/input"
+import { Separator } from "~/lib/components/shadcn/ui/separator"
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
 
@@ -107,10 +108,24 @@ export default function Login() {
               />
             </CardContent>
 
-            <CardFooter className="flex justify-center">
-              <Button className="w-full" type="submit">
-                {t("card.sure")}
-              </Button>
+            <CardFooter className="">
+              <div className="w-full">
+                <Button className="w-full" type="submit">
+                  {t("card.sure")}
+                </Button>
+
+                <div className="relative my-4">
+                  <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
+
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
+                  </div>
+                </div>
+
+                <Button className="flex mx-auto" variant="link">
+                  <Link href={"/register"}>{t("card.register")}</Link>
+                </Button>
+              </div>
             </CardFooter>
           </form>
         </Form>

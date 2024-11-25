@@ -91,7 +91,9 @@
       "password": "password",
       "passwordPlaceholder": "Please enter password",
       "sure": "Sure",
-      "title": "Login"
+      "title": "Login",
+      "continue": "Or continue with",
+      "register": "Quick Register"
     }
   }
 }

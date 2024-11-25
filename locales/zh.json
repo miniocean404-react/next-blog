@@ -82,7 +82,9 @@
       "usernamePlaceholder": "请输入用户名",
       "password": "密码",
       "passwordPlaceholder": "请输入密码",
-      "create": "创建"
+      "create": "创建",
+      "continue": "或继续",
+      "login": "快速登录"
     }
   },
   "login": {
@@ -92,7 +94,9 @@
       "emailPlaceholder": "请输入邮箱",
       "password": "密码",
       "passwordPlaceholder": "请输入密码",
-      "sure": "确定"
+      "sure": "确定",
+      "continue": "或继续",
+      "register": "快速注册"
     }
   }
 }
