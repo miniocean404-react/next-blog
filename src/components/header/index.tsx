@@ -120,7 +120,7 @@ async function Navigation() {
         <ThemeSwitch />
       </div>
 
-      <Account></Account>
+      <Account session={session}></Account>
     </div>
   )
 }

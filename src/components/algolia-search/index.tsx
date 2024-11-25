@@ -14,7 +14,7 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
   const locale = useLocale()
   const isMonted = useMounted()
 
-  const translations = t.raw<any>("search")
+  const translations = t.raw<any>("header.search")
 
   // useHotkeys(["meta+k", "ctrl+k"], openSearch, [], { preventDefault: true })
 

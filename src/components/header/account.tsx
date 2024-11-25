@@ -4,12 +4,8 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "~/lib/components/shadcn/ui/dropdown-menu"
 
@@ -17,12 +13,19 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/lib/components/shadcn/ui/
 import { Button } from "~/lib/components/shadcn/ui/button"
 import Link from "next/link"
 
-import { auth } from "@/utils/auth/core"
-import { getTranslations } from "next-intl/server"
+import type { Session } from "next-auth"
+import { type PropsWithChildren } from "react"
+import { useTranslations } from "next-intl"
+import { signOut } from "@/utils/auth/core"
 
-export async function Account() {
-  const session = await auth()
-  const t = await getTranslations("header.account")
+export function Account(props: PropsWithChildren<AccountProps>) {
+  const t = useTranslations("header.account")
+  const { session } = props
+
+  const logout = async () => {
+    "use server"
+    await signOut()
+  }
 
   return (
     <DropdownMenu>
@@ -43,7 +46,7 @@ export async function Account() {
         </div>
       )}
 
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56" align="end" sideOffset={20}>
         <DropdownMenuLabel>{t("menu.title")}</DropdownMenuLabel>
 
         <DropdownMenuSeparator />
@@ -62,7 +65,7 @@ export async function Account() {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={logout}>
           {t("menu.exit")}
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
