@@ -2,7 +2,7 @@
 import { useRef } from "react"
 import { useEvent } from "react-use"
 
-export default function IconSwitch(props: { title: string }) {
+export default function DynWebTitle(props: { title: string }) {
   const interval = useRef<NodeJS.Timeout>()
 
   useEvent("visibilitychange", () => {

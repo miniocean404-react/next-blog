@@ -2,7 +2,7 @@
 
 import AlgoliaSearch from "../algolia-search"
 import ThemeSwitch from "./theme-switch"
-import IconSwitch from "./icon-switch"
+import DynWebTitle from "./dyn-web-title"
 
 import { AlignRight } from "lucide-react"
 
@@ -12,9 +12,7 @@ import Image from "next/image"
 import { auth } from "@/utils/auth/core"
 import { cn } from "@/utils/tw"
 import { getLocale, getTranslations } from "next-intl/server"
-import { Account } from "./account"
-import AccountPassport from "@/components/header/account-passport"
-
+import { Account } from "./sign-up"
 import { Navigation } from "@/components/header/navigation"
 import MobileMenu from "@/components/header/mobile-menu"
 export default async function Header() {
@@ -29,7 +27,7 @@ export default async function Header() {
       {/* 彩虹 */}
       <div className="w-full h-24 fixed top-[0] pointer-events-none before:content-[''] before:absolute before:w-full before:h-3/5 before:z-0 before:left-2/4 before:top-[0] before:-bottom-1/5 before:-translate-x-1/2 before:translate-y-[0] before:rotate-[0] before:skew-x-[0] before:skew-y-[0] before:scale-x-100 before:scale-y-100 before:filter blur-3xl before:opacity-20 before:[background-size:200%] before:bg-[linear-gradient(90deg,_#ff4242,_#a1ff42,_#42a1ff,_#42d0ff,_#a142ff)] before:animate-[rainbow_var(--speed,_2s)_infinite_linear] z-[var(--mini-z-index-header)]"></div>
       {/* 网站标题图标切换 */}
-      <IconSwitch title={t("app.blogName")}></IconSwitch>
+      <DynWebTitle title={t("app.blogName")}></DynWebTitle>
 
       <header
         className={cn(
@@ -64,9 +62,7 @@ export default async function Header() {
             <div className="hidden items-center md:flex">
               <Navigation />
               <ThemeSwitch />
-
-              {session?.user && <Account session={session}></Account>}
-              {!session?.user && <AccountPassport />}
+              <Account session={session}></Account>
             </div>
 
             {/* 移动端菜单栏按钮 */}
