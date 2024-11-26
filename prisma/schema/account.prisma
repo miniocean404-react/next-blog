@@ -1,28 +1,26 @@
 // 一个用户可以有多个不同的账户绑定 Github、Google 等
 model Account {
-  id                       String  @id @default(cuid())
+  id                       BigInt  @id @default(autoincrement())
   // numberId          Int  @id @default(autoincrement())
-  userId                   String
+  userId                   String  @db.VarChar(64)
   // 登录认证的类型 oauth、jwt
-  type                     String
+  type                     String  @db.VarChar(32)
   // 是来自哪里提供的登录 github、google 等
-  provider                 String
-  providerAccountId        String
+  provider                 String  @db.VarChar(32)
+  providerAccountId        String  @db.VarChar(32)
   refresh_token            String? @db.Text
   access_token             String? @db.Text
   expires_at               Int?
   // token 类型 bearer
-  token_type               String?
+  token_type               String? @db.VarChar(32)
   // 功能范围
-  scope                    String?
+  scope                    String? @db.VarChar(32)
   id_token                 String? @db.Text
-  session_state            String?
+  session_state            String? @db.VarChar(32)
   refresh_token_expires_in Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
