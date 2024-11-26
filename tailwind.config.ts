@@ -13,16 +13,9 @@ const config: Config = {
   ],
   theme: {
     container: {},
-
     extend: {
-      padding: {
-        // 修改 p-1 是 padding:0.25rem 改为 p-1 是 padding:30px
-        // "1": "30px",
-      },
-      fontSize: {
-        // 修改 text-base 改为 font-size: 30px; line-height: 2rem;
-        // base: ["30px", "2rem"],
-      },
+      padding: {},
+      fontSize: {},
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -69,12 +62,18 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
       },
     },
-    // screens: {
-    // 修改媒体查询 768px 尺寸为 300px
-    // md: "300px",
-    // },
     animation: {
       marquee: "marquee var(--duration) infinite linear",
       "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
