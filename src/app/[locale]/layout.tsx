@@ -11,6 +11,8 @@ import { notFound } from "next/navigation"
 import GoogleAnalytics from "~/lib/components/mini/analytics/google"
 import BaiDuAnalytics from "~/lib/components/mini/analytics/baidu"
 import Toast from "@/components/toast"
+import { SidebarInset, SidebarProvider } from "~/lib/components/shadcn/ui/sidebar"
+import Siderbar from "@/components/siderbar"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
@@ -53,9 +55,15 @@ export default async function LocaleLayout({
             <Toast></Toast>
 
             {/* 为 vaul 抽屉组件包裹一层 */}
-            <div className="bg-background" data-vaul-drawer-wrapper>
-              <Header></Header>
-              {children}
+            <div data-vaul-drawer-wrapper>
+              <SidebarProvider defaultOpen={false}>
+                <SidebarInset>
+                  <Header></Header>
+                  {children}
+                </SidebarInset>
+
+                <Siderbar></Siderbar>
+              </SidebarProvider>
             </div>
           </NextIntlClientProvider>
         </ThemeProvider>

@@ -20,6 +20,7 @@ import {
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -63,9 +64,10 @@ export default function Login() {
 
   return (
     <div className="h-screen flex justify-center items-center mx-8 md:mx-0">
-      <Card className="w-[350px] md:w-[400px]">
+      <Card className="mx-auto w-96">
         <CardHeader>
-          <CardTitle>{t("card.title")}</CardTitle>
+          <CardTitle className="text-2xl">{t("card.title")}</CardTitle>
+          <CardDescription>{t("card.desc")}</CardDescription>
         </CardHeader>
 
         <Form {...form}>
@@ -78,9 +80,13 @@ export default function Login() {
                   <FormItem>
                     <FormLabel htmlFor="email">{t("card.email")}</FormLabel>
                     <FormControl>
-                      <Input placeholder={t("card.emailPlaceholder")} {...field} />
+                      <Input
+                        id="email"
+                        placeholder={t("card.emailPlaceholder")}
+                        required
+                        {...field}
+                      />
                     </FormControl>
-
                     {/* <FormDescription>这是将显示在您的个人资料和电子邮件中的名称。</FormDescription> */}
                     <FormMessage />
                   </FormItem>
@@ -106,27 +112,26 @@ export default function Login() {
                   </FormItem>
                 )}
               />
-            </CardContent>
 
-            <CardFooter className="">
-              <div className="w-full">
-                <Button className="w-full" type="submit">
-                  {t("card.sure")}
-                </Button>
+              <Button className="w-full" type="submit">
+                {t("card.sure")}
+              </Button>
 
-                <div className="relative my-4">
-                  <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
+              <div className="relative my-4">
+                <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
 
-                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
-                  </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
                 </div>
-
-                <Button className="flex mx-auto" variant="link">
-                  <Link href={"/register"}>{t("card.register")}</Link>
-                </Button>
               </div>
-            </CardFooter>
+
+              <div className="mt-4 text-center text-sm">
+                {t("card.registerTip")}
+                <Link className="underline" href={"/register"}>
+                  {t("card.register")}
+                </Link>
+              </div>
+            </CardContent>
           </form>
         </Form>
       </Card>

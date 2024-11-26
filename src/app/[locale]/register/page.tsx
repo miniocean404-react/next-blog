@@ -66,7 +66,7 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
 
   return (
     <div className="h-screen flex justify-center items-center mx-8 md:mx-0">
-      <Card className="w-[350px] md:w-[400px]">
+      <Card className="mx-auto w-96">
         <CardHeader>
           <CardTitle>{t("card.title")}</CardTitle>
         </CardHeader>
@@ -124,27 +124,25 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
                   </FormItem>
                 )}
               />
-            </CardContent>
 
-            <CardFooter className="w-full">
-              <div className="w-full">
-                <Button className="w-full" type="submit">
-                  {t("card.create")}
-                </Button>
+              <Button className="w-full" type="submit">
+                {t("card.create")}
+              </Button>
 
-                <div className="relative my-4">
-                  <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
+              <div className="relative my-4">
+                <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
 
-                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
-                  </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
                 </div>
-
-                <Button className="flex mx-auto" variant="link">
-                  <Link href={"/login"}>{t("card.login")}</Link>
-                </Button>
               </div>
-            </CardFooter>
+
+              <div className="mt-4 text-center text-sm">
+                <Link className="underline" href={"/login"}>
+                  {t("card.login")}
+                </Link>
+              </div>
+            </CardContent>
           </form>
         </Form>
       </Card>

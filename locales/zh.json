@@ -65,7 +65,6 @@
       }
     }
   },
-
   "home": {
     "search": "搜索",
     "slogan": {
@@ -90,12 +89,14 @@
   "login": {
     "card": {
       "title": "登录",
+      "desc": "在下面输入您的邮箱以登录您的帐户",
       "email": "邮箱",
       "emailPlaceholder": "请输入邮箱",
       "password": "密码",
       "passwordPlaceholder": "请输入密码",
       "sure": "确定",
       "continue": "或继续",
+      "registerTip": "还没有账号？",
       "register": "快速注册"
     }
   }

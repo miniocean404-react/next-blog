@@ -33,7 +33,7 @@ export default async function Header() {
 
       <header
         className={cn(
-          "fixed top-0 z-[var(--mini-z-index-header)] backdrop-blur-md",
+          "absolute top-0 z-[var(--mini-z-index-header)] backdrop-blur-md",
           "border-b border-b-[var(--mini-c-divider)]",
           "flex items-center h-16 w-full",
           "px-2 md:px-8",

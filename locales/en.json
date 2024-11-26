@@ -87,12 +87,14 @@
   "login": {
     "card": {
       "email": "email",
+      "desc": "Enter your email below to login to your account",
       "emailPlaceholder": "Please enter your email",
       "password": "password",
       "passwordPlaceholder": "Please enter password",
       "sure": "Sure",
       "title": "Login",
       "continue": "Or continue with",
+      "registerTip": "No account yet?",
       "register": "Quick Register"
     }
   }
