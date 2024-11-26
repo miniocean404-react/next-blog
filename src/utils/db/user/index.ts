@@ -34,18 +34,6 @@ const UserSchema = z.object({
   defaultWorkspace: z.string().nullable(),
 })
 
-export async function createUser(body: typeof UserSchema._type) {
-  try {
-    UserSchema.parse(body)
-
-    return await DB.user.create({ data: body })
-  } catch (e: unknown) {
-    if (e instanceof Error) {
-      console.log(e.message)
-    }
-  }
-}
-
 const UpdateUserByIdSchema = z.object({
   id: z.string(),
 })

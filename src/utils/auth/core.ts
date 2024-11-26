@@ -31,44 +31,50 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const { email, password } = credentials as loginFormSchemaType
         if (!email || !password) return null
 
-        const user = await DB.user.findFirst({
-          where: {
-            email,
-          },
-        })
+        try {
+          const user = await DB.user.findFirst({
+            where: {
+              email,
+            },
+            select: {
+              id: true,
+              nickname: true,
+              email: true,
+              avatar: true,
+              password: true,
+            },
+          })
 
-        if (!user) return null
+          const userRole = await DB.userRole.findUnique({
+            where: {
+              user_id: user?.id,
+            },
+            select: {
+              role_id: true,
+            },
+          })
 
-        const userRole = await DB.userRole.findUnique({
-          where: {
-            user_id: user.id,
-          },
-          select: {
-            role_id: true,
-          },
-        })
+          const role = await DB.role.findUnique({
+            where: {
+              id: userRole?.role_id,
+            },
+            select: {
+              role_key: true,
+            },
+          })
 
-        if (!userRole) return null
+          const success = await bcrypt.compare(password, user?.password || "")
+          if (!success) return null
 
-        const role = await DB.role.findUnique({
-          where: {
-            id: userRole?.role_id,
-          },
-        })
-
-        if (!role) return null
-
-        console.log(password, user.password)
-
-        const success = await bcrypt.compare(password, user.password || "")
-        if (!success) return null
-
-        return {
-          id: user.id.toString(),
-          name: user.nickname,
-          email: user.email,
-          image: user.avatar,
-          role: role.role_key,
+          return {
+            id: user?.id.toString(),
+            name: user?.nickname,
+            email: user?.email,
+            image: user?.avatar,
+            role: role?.role_key,
+          }
+        } catch (error) {
+          return null
         }
       },
     }),
