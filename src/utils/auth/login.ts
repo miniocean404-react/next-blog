@@ -8,7 +8,7 @@ export const loginCredentials = async (credentials: loginFormSchemaType) => {
   try {
     await signIn("credentials", {
       ...credentials,
-      redirectTo: `/user`,
+      redirectTo: `/`,
     })
   } catch (error) {
     if (error instanceof AuthError) {
