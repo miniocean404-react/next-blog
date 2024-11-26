@@ -20,30 +20,27 @@ export const register = async (data: RegisterFormSchemaType) => {
   // 给密码加盐，密码明文存数据库不安全
   const hashedPassword = await bcrypt.hash(data.password, 10)
 
-  await DB.user.create({
+  const user = await DB.user.create({
     data: {
-      name: data.username,
+      nickname: data.username,
       email: data.email,
       password: hashedPassword,
-      realPassword: data.password,
-      roles: {
-        create: {
-          role: {
-            create: {
-              name: "USER",
-              permissions: {
-                create: {
-                  permission: {
-                    create: {
-                      name: "READ",
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
+      real_assword: data.password,
     },
   })
+
+  const role = await DB.role.findUnique({
+    where: {
+      role_key: "USER",
+    },
+  })
+
+  if (user && role) {
+    await DB.userRole.create({
+      data: {
+        user_id: user.id,
+        role_id: role.id,
+      },
+    })
+  }
 }

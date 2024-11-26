@@ -30,6 +30,6 @@ declare global {
 
 declare module "next-auth" {
   interface User {
-    role?: string
+    role?: string | null
   }
 }

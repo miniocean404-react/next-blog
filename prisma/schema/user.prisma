@@ -1,31 +1,36 @@
 model User {
   id            BigInt    @id @default(autoincrement())
-  cuid          String    @default(cuid())
+  cuid          String?   @default(cuid())
   account       String?   @db.VarChar(32)
   nickname      String?   @db.VarChar(32)
-  real_name     String?   @db.VarChar(32)
-  gender        String?   @default("2") @db.Char(1)
-  email         String?   @db.VarChar(64)
+  email         String?   @unique @db.VarChar(64)
   // 邮箱确认时间
   emailVerified DateTime? @db.DateTime(0)
-  mobile        String?   @db.VarChar(32)
   password      String?   @db.VarChar(255)
   real_assword  String?   @db.VarChar(32)
+
+  mobile    String? @db.VarChar(32)
+  real_name String? @db.VarChar(32)
+  gender    String? @default("2") @db.Char(1)
+
   // '0'禁用，'1' 启用, '2' 密码过期或初次未修改
-  status        Int?      @default(1) @db.TinyInt
+  status Int?    @default(1) @db.TinyInt
   // 头像
-  avatar        String?   @db.VarChar(255)
-  country       String?   @db.VarChar(32)
-  province      String?   @db.VarChar(32)
-  city          String?   @db.VarChar(32)
-  area          String?   @db.VarChar(32)
-  street        String?   @db.VarChar(255)
+  avatar String? @db.VarChar(255)
+
+  country  String? @db.VarChar(32)
+  province String? @db.VarChar(32)
+  city     String? @db.VarChar(32)
+  area     String? @db.VarChar(32)
+  street   String? @db.VarChar(255)
+
   // 备注
-  comments      String?   @db.VarChar(255)
-  creator       BigInt?
-  operator      BigInt?
+  comments String? @db.VarChar(255)
+
+  creator  BigInt?
+  operator BigInt?
   // 1:删除 0:不删除
-  del_flag      Int?      @default(0) @db.TinyInt
+  del_flag Int?    @default(0) @db.TinyInt
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -36,35 +41,35 @@ model User {
 }
 
 model Role {
-  id                   BigInt  @id @default(autoincrement())
+  id          BigInt  @id @default(autoincrement())
   // 父id
-  parent_id            BigInt? @default(0)
+  parent_id   BigInt? @default(0)
   // 角色名称
-  role_name            String? @db.VarChar(40)
+  role_name   String? @db.VarChar(40)
   // 角色标识
-  role_key             String? @db.VarChar(32)
-  role_level           Int?
+  role_key    String? @db.VarChar(32)
+  role_level  Int?
   // 1有效，0禁用
-  role_status          Int?    @default(1) @db.TinyInt
-  data_permission_type String  @default("DATA_PERMISSION_SELF") @db.VarChar(32)
+  role_status Int?    @default(1) @db.TinyInt
   // 描述
-  comments             String? @db.VarChar(255)
+  comments    String? @db.VarChar(255)
   // 创建者
-  creator              BigInt?
+  creator     BigInt?
   // 更新人
-  operator             BigInt?
-  del_flag             Int?    @default(0) @db.TinyInt
+  operator    BigInt?
+  del_flag    Int?    @default(0) @db.TinyInt
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@unique([role_key])
   @@index([role_name])
 }
 
 model UserRole {
   id       BigInt  @id @default(autoincrement())
-  user_id  String
-  role_id  String
+  user_id  BigInt  @unique
+  role_id  BigInt  @unique
   // 创建者
   creator  BigInt?
   // 更新人

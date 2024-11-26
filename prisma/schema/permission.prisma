@@ -38,7 +38,6 @@ model Permission {
 
 model RolePermission {
   id            BigInt  @id @default(autoincrement())
-  tenant_id     BigInt  @default(0)
   role_id       BigInt
   permission_id BigInt
   creator       BigInt?

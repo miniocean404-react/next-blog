@@ -39,10 +39,37 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         if (!user) return null
 
+        const userRole = await DB.userRole.findUnique({
+          where: {
+            user_id: user.id,
+          },
+          select: {
+            role_id: true,
+          },
+        })
+
+        if (!userRole) return null
+
+        const role = await DB.role.findUnique({
+          where: {
+            id: userRole?.role_id,
+          },
+        })
+
+        if (!role) return null
+
+        console.log(password, user.password)
+
         const success = await bcrypt.compare(password, user.password || "")
         if (!success) return null
 
-        return user
+        return {
+          id: user.id.toString(),
+          name: user.nickname,
+          email: user.email,
+          image: user.avatar,
+          role: role.role_key,
+        }
       },
     }),
     GitHub({
