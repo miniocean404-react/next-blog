@@ -38,6 +38,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
             select: {
               id: true,
+              cuid: true,
               nickname: true,
               email: true,
               avatar: true,
@@ -45,7 +46,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
           })
 
-          const userRole = await DB.userRole.findUnique({
+          const userRole = await DB.userRole.findMany({
             where: {
               user_id: user?.id,
             },
@@ -54,9 +55,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
           })
 
-          const role = await DB.role.findUnique({
+          const role = await DB.role.findMany({
             where: {
-              id: userRole?.role_id,
+              id: { in: userRole.map((item) => item.role_id) },
             },
             select: {
               role_key: true,
@@ -67,11 +68,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           if (!success) return null
 
           return {
-            id: user?.id.toString(),
+            id: user?.cuid,
             name: user?.nickname,
             email: user?.email,
             image: user?.avatar,
-            role: role?.role_key,
+            role: role.map((item) => item.role_key).join(","),
           }
         } catch (error) {
           return null

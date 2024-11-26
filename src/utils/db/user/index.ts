@@ -5,23 +5,6 @@ import { DB } from "../index"
 // 看出来 prisma 多方便了吧，直接将 User表的数据类型映射过来了
 // 因为我们使用
 
-const GetUserByIdSchema = z.object({
-  id: z.string(),
-})
-
-export async function getUserById({ id }: typeof GetUserByIdSchema._type) {
-  try {
-    const data = await DB.user.findMany({
-      where: { id },
-    })
-    return data
-  } catch (e: unknown) {
-    if (e instanceof Error) {
-      console.log(e.message)
-    }
-  }
-}
-
 const UserSchema = z.object({
   name: z.string().nullable(),
   email: z.string().nullable(),

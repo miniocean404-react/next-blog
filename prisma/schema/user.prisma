@@ -1,6 +1,6 @@
 model User {
   id            BigInt    @id @default(autoincrement())
-  cuid          String?   @default(cuid())
+  cuid          String    @unique @default(cuid())
   account       String?   @db.VarChar(32)
   nickname      String?   @db.VarChar(32)
   email         String?   @unique @db.VarChar(64)
@@ -68,8 +68,8 @@ model Role {
 
 model UserRole {
   id       BigInt  @id @default(autoincrement())
-  user_id  BigInt  @unique
-  role_id  BigInt  @unique
+  user_id  BigInt
+  role_id  BigInt
   // 创建者
   creator  BigInt?
   // 更新人
