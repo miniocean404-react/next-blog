@@ -1,5 +1,21 @@
 import type { Config } from "tailwindcss"
 
+/**
+ * ```json
+ * padding: {
+ *  修改 p-1 是 padding:0.25rem 改为 p-1 是 padding:30px
+ *  "1": "30px",
+ * },
+ * fontSize: {
+ *  修改 text-base 改为 font-size: 30px; line-height: 2rem;
+ *  base: ["30px", "2rem"],
+ * },
+ * screens: {
+ *  修改媒体查询 768px 尺寸为 300px
+ *  md: "300px",
+ * },
+ * ```
+ */
 const config: Config = {
   darkMode: ["class"],
   // 为所有的 tailwindcss 类名添加前缀
@@ -14,8 +30,6 @@ const config: Config = {
   theme: {
     container: {},
     extend: {
-      padding: {},
-      fontSize: {},
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
