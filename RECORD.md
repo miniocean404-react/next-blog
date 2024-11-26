@@ -2,6 +2,7 @@
 
 1. trpc 客户端超时断开的属性
 2. next.js vscode debugger
+3. 处理 vercel 被墙：https://juejin.cn/post/7383894687302434825?share_token=02ea3777-09f9-440b-bbc3-0ff352e4b95d
 
 # 学习视频、文档
 
@@ -19,6 +20,10 @@ next14: https://www.bilibili.com/video/BV157pRe8EyD/?spm_id_from=333.337.search-
 5. NextJs 14 从入门到精通: https://juejin.cn/post/7386873708601032754?searchId=202410121658107D42828C6191F9A45AFC
 6. 2024 Nextjs 开发资源最佳组合 :https://juejin.cn/post/7393185863654260777?share_token=0ad84dd7-a257-4fae-818f-919b8460c6de
 7. NextJs 从 0-1 实现一个博客系统，万字长文: https://juejin.cn/post/7398350653355950119?searchId=2024101316595559FB7FCA51677527D51A
+
+## vercel 被墙
+
+1. https://juejin.cn/post/7383894687302434825?share_token=02ea3777-09f9-440b-bbc3-0ff352e4b95d
 
 ## 跨域
 
