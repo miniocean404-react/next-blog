@@ -26,9 +26,10 @@ export function ChatWindow(props: PropsWithChildren<ChatWindowProps>) {
   return (
     <div
       className={clsx(
-        "flex-grow overflow-hidden",
+        "flex-grow overflow-hidden ",
         // 设置消息少的时候消息在顶部
         "flex flex-col justify-start",
+        "mx-auto w-full",
         className,
       )}
     >
@@ -39,9 +40,11 @@ export function ChatWindow(props: PropsWithChildren<ChatWindowProps>) {
           "scrollbar",
         )}
       >
-        {/* flex 内容底部填充这个可以在初始时候将对话内容撑起来，这是一种方法 */}
-        {/* <div className={"flex-grow flex-shrink"}></div> */}
-        {props.children}
+        <div>
+          {/* flex 内容底部填充这个可以在初始时候将对话内容撑起来，这是一种方法 */}
+          {/* <div className={"flex-grow flex-shrink"}></div> */}
+          {props.children}
+        </div>
       </div>
     </div>
   )

@@ -13,6 +13,12 @@ export default function Ai() {
       content: "你好，我是 AI 机器人，有什么问题可以问我",
       type: "send",
     },
+
+    {
+      id: 2,
+      content: "你好，我是 AI 机器人，有什么问题可以问我",
+      type: "receive",
+    },
   ])
   const answerRef = useRef<Unsubscribable>()
 
@@ -61,15 +67,13 @@ export default function Ai() {
 
   return (
     <div className="mt-16">
-      <ChatLayout className="h-[calc(100dvh-64px)]  ">
-        <ChatWindow>
-          <div className="w-full mx-auto md:max-w-mini-layout">
-            {messages.map((message, index) => (
-              <ChatMessage type={message.type} key={index}>
-                {message.content}
-              </ChatMessage>
-            ))}
-          </div>
+      <ChatLayout className="h-[calc(100dvh-64px)]">
+        <ChatWindow className="md:max-w-mini-layout">
+          {messages.map((message, index) => (
+            <ChatMessage type={message.type} key={index}>
+              {message.content}
+            </ChatMessage>
+          ))}
         </ChatWindow>
 
         <ChatInput className="p-3.5 2xl:px-0 md:max-w-mini-layout" onSend={send}></ChatInput>
