@@ -5,6 +5,8 @@ import {
   PHASE_PRODUCTION_BUILD,
   PHASE_PRODUCTION_SERVER,
 } from "next/constants.js"
+import nextMDX from "@next/mdx"
+import rehypePrettyCode from "rehype-pretty-code"
 import path from "path"
 import { fileURLToPath } from "url"
 
@@ -15,9 +17,18 @@ const isProd = process.env.NODE_ENV === "production"
 
 const withNextIntl = createNextIntlPlugin("./src/utils/i18n/request.ts")
 
+const withMDX = nextMDX({
+  extension: /\.(md|mdx)$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+})
+
 const config: NextConfig = {
   output: "standalone", // SSG 设置为 export
   distDir: ".next",
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactStrictMode: false, // 可防止多渲染一次 DOM
   basePath: process.env.NEXT_PUBLIC_WEB_PREFIX, // 路由前缀
   env: {
@@ -153,4 +164,4 @@ const config: NextConfig = {
   },
 }
 
-export default withNextIntl(config)
+export default withMDX(withNextIntl(config))

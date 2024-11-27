@@ -1,3 +1,7 @@
+"use client"
+
+// import Index from "./index.mdx"
+
 export default function Demo() {
-  return <div>Demo</div>
+  return <div className="h-[200vh]">{/* <Index></Index> */}</div>
 }
