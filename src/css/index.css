@@ -1,5 +1,4 @@
 @import "./var/index.css";
-@import "./components/index.css";
 
 @tailwind base;
 @tailwind components;
@@ -102,7 +101,7 @@
 
     /* Safari Chrome */
     &::-webkit-scrollbar {
-      width: var(--mini-scrollbar-width);
+      width: 5px;
     }
 
     &::-webkit-scrollbar-track {
@@ -111,7 +110,7 @@
 
     &::-webkit-scrollbar-thumb {
       background-color: var(--border);
-      border-radius: var(--mini-c-scrollbar-thumb-radius);
+      border-radius: 5px;
     }
   }
 }

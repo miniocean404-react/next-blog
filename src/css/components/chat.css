@@ -1,7 +1,0 @@
-:root {
-  /* 消息卡片 */
-  --mini-c-chat-message-card-bg: var(--mini-c-bg-soft);
-
-  /* 聊天输入框 */
-  --mini-c-chat-input-card-shadow: var(--mini-shadow-3);
-}

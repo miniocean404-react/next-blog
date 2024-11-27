@@ -35,8 +35,10 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      width: {},
       colors: {
         background: "hsl(var(--background))",
+        "background-soft": "hsl(var(--mini-c-bg-soft))",
         foreground: "hsl(var(--foreground))",
         card: {
           DEFAULT: "hsl(var(--card))",

@@ -57,12 +57,9 @@ export function ChatMessage(props: PropsWithChildren<ChatMessageProps>) {
     <div>
       <div className={clsx("w-full flex", { ["flex-row-reverse"]: props.type === "send" })}>
         <div
-          className={clsx(
-            "rounded bg-[var(--mini-c-chat-message-card-bg)] text-primary p-2 w-fit max-w-[70%]",
-            {
-              "bg-transparent max-w-full": props.type === "receive",
-            },
-          )}
+          className={clsx("rounded bg-background-soft text-primary p-2 w-fit max-w-[70%]", {
+            "bg-transparent max-w-full": props.type === "receive",
+          })}
         >
           {props.children}
         </div>
@@ -150,7 +147,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
     <div className={clsx("w-full mx-auto", props.className)}>
       <div
         className={clsx(
-          "relative rounded-2xl bg-background p-3 pl-3.5 shadow-[var(--mini-c-chat-input-card-shadow)] border border-solid grid gap-2.5  grid-cols-[auto_1fr_auto]",
+          "relative rounded-2xl bg-background p-3 pl-3.5 shadow-lg border border-solid grid gap-2.5 grid-cols-[auto_1fr_auto]",
           "[grid-template-areas:'left-tools_input-area_right-tools']",
           {
             "[grid-template-areas:'input-area_input-area_input-area''left-tools_._right-tools']":
