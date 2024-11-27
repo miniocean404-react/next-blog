@@ -6,7 +6,7 @@
   /* 聊天输入框 */
   --mini-c-chat-input-card-bg: var(--mini-c-bg);
   --mini-c-chat-input-card-shadow: var(--mini-shadow-3);
-  --mini-c-chat-input-card-border: var(--mini-c-gutter);
+  --mini-c-chat-input-card-border: var(--border);
   --mini-c-chat-input-card-caret: #0057ff;
 
   /* 聊天输入框工具 */
