@@ -29,7 +29,7 @@ export function Account(props: PropsWithChildren<AccountProps>) {
 
   return (
     <>
-      {session.user && (
+      {session?.user && (
         <DropdownMenu>
           <div className="px-2 cursor-pointer">
             <DropdownMenuTrigger asChild>
@@ -67,7 +67,7 @@ export function Account(props: PropsWithChildren<AccountProps>) {
         </DropdownMenu>
       )}
 
-      {!session.user && (
+      {!session?.user && (
         <div className="px-0">
           <Button variant={"ghost"}>
             <Link href="/login">{t("navigation")}</Link>

@@ -35,6 +35,7 @@ export async function Navigation() {
           className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
           href={GITHUB_LINK}
           title="GitHub"
+          target="_blank"
         >
           <Github className="size-5"></Github>
         </Link>
@@ -45,6 +46,7 @@ export async function Navigation() {
           className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
           href={NOTION_LINK}
           title="Notion"
+          target="_blank"
         >
           <Notion className="size-5"></Notion>
         </Link>

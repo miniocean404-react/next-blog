@@ -96,16 +96,22 @@
 
 @layer utilities {
   .scrollbar {
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--mini-c-scrollbar-thumb);
-      border-radius: var(--mini-c-scrollbar-thumb-radius);
-      background-clip: padding-box;
-      border-right: 3px solid transparent;
+    /* 火狐 */
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+
+    /* Safari Chrome */
+    &::-webkit-scrollbar {
+      width: var(--mini-scrollbar-width);
     }
 
-    &::-webkit-scrollbar {
-      display: block;
-      width: var(--mini-scrollbar-width);
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--border);
+      border-radius: var(--mini-c-scrollbar-thumb-radius);
     }
   }
 }
