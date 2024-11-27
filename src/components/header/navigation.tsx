@@ -10,21 +10,21 @@ export async function Navigation() {
   return (
     <>
       <Link
-        className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
+        className="text-sm font-500 cursor-pointer px-3 py-0 text-primary transition-color duration-500 ease hover:text-primary/70"
         href={"/ai"}
       >
         {t("navigation.ai")}
       </Link>
 
       <Link
-        className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
+        className="text-sm font-500 cursor-pointer px-3 py-0 text-primary transition-color duration-500 ease hover:text-primary/70"
         href={"/"}
       >
         {t("navigation.article")}
       </Link>
 
       <Link
-        className="text-sm font-500 cursor-pointer px-3 py-0 text-[var(--mini-c-text-1)] transition-color duration-500 ease hover:text-[var(--mini-c-text-2)]"
+        className="text-sm font-500 cursor-pointer px-3 py-0 text-primary transition-color duration-500 ease hover:text-primary/70"
         href={"/"}
       >
         {t("navigation.demo")}
@@ -32,7 +32,7 @@ export async function Navigation() {
 
       <div className="px-2">
         <Link
-          className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
+          className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-accent"
           href={GITHUB_LINK}
           title="GitHub"
           target="_blank"
@@ -43,7 +43,7 @@ export async function Navigation() {
 
       <div className="px-2">
         <Link
-          className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-[var(--mini-c-bg-alt)]"
+          className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-accent"
           href={NOTION_LINK}
           title="Notion"
           target="_blank"

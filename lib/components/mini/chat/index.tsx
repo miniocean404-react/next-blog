@@ -58,7 +58,7 @@ export function ChatMessage(props: PropsWithChildren<ChatMessageProps>) {
       <div className={clsx("w-full flex", { ["flex-row-reverse"]: props.type === "send" })}>
         <div
           className={clsx(
-            "rounded bg-[var(--mini-c-chat-message-card-bg)] text-[var(--mini-c-chat-message-text)] p-2 w-fit max-w-[70%]",
+            "rounded bg-[var(--mini-c-chat-message-card-bg)] text-primary p-2 w-fit max-w-[70%]",
             {
               "bg-transparent max-w-full": props.type === "receive",
             },
@@ -150,7 +150,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
     <div className={clsx("w-full mx-auto", props.className)}>
       <div
         className={clsx(
-          "relative rounded-2xl bg-[var(--mini-c-chat-input-card-bg)] p-3 pl-3.5 shadow-[var(--mini-c-chat-input-card-shadow)] border border-solid border-[ var(--mini-c-chat-input-card-border)] grid gap-2.5  grid-cols-[auto_1fr_auto]",
+          "relative rounded-2xl bg-background p-3 pl-3.5 shadow-[var(--mini-c-chat-input-card-shadow)] border border-solid grid gap-2.5  grid-cols-[auto_1fr_auto]",
           "[grid-template-areas:'left-tools_input-area_right-tools']",
           {
             "[grid-template-areas:'input-area_input-area_input-area''left-tools_._right-tools']":
@@ -165,7 +165,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
         >
           <textarea
             className={clsx(
-              "w-full bg-inherit caret-[var(--mini-c-chat-input-card-caret)] min-w-32 max-h-44 p-0 resize-none outline-none overflow-auto align-bottom",
+              "w-full bg-inherit caret-blue-400 min-w-32 max-h-44 p-0 resize-none outline-none overflow-auto align-bottom",
               "scrollbar",
             )}
             ref={textareaRef}
@@ -189,15 +189,13 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
         </div>
 
         <div className={"flex items-center [grid-area:right-tools]"}>
-          <div
-            className={"bg-[var(--mini-c-chat-input-tool-divider)] w-[1] h-5 my-0 ml-1 mr-3"}
-          ></div>
+          <div className={"bg-border w-[1] h-5 my-0 ml-1 mr-3"}></div>
 
           <button
             className={clsx(
-              "w-8 h-8 rounded-[50%] bg-[var(--mini-c-chat-i-send-bg)] text-[var(--mini-c-chat-i-send-inner)]",
+              "w-8 h-8 rounded-[50%] bg-blue-600 text-white",
               "flex justify-center items-center cursor-pointer",
-              "hover:bg-[var(--mini-c-chat-i-send-bg-soft)] hover:text-[var(--mini-c-chat-i-send-inner-soft)]",
+              "hover:bg-blue-700 hover:text-white/80",
             )}
             onClick={onSend}
           >

@@ -8,7 +8,7 @@ export default function MobileMenu() {
 
   return (
     <button className="h-10 flex items-center px-3 md:hidden" onClick={() => toggleSidebar()}>
-      <AlignRight className="size-4 text-[var(--mini-c-text-2)]"></AlignRight>
+      <AlignRight className="size-4 text-primary/70"></AlignRight>
     </button>
   )
 }
