@@ -1,4 +1,7 @@
 .dark {
+  /*
+   * Colors: Palette
+   */
   --mini-c-gray-1: #515c67;
   --mini-c-gray-2: #414853;
   --mini-c-gray-3: #32363f;
@@ -29,15 +32,24 @@
   --mini-c-red-3: #b62a3c;
   --mini-c-red-soft: rgba(244, 63, 94, 0.16);
 
+  /**
+  * Colors: 背景
+  */
   --mini-c-bg: #1b1b1f;
   --mini-c-bg-alt: #161618;
   --mini-c-bg-elv: #202127;
   --mini-c-bg-soft: #202127;
 
+  /**
+  * Colors: 边框
+  */
   --mini-c-border: #3c3f44;
   --mini-c-divider: #2e2e32;
   --mini-c-gutter: #000000;
 
+  /**
+  * Colors: Text
+  */
   --mini-c-text-1: rgba(255, 255, 245, 0.86);
   --mini-c-text-2: rgba(235, 235, 245, 0.6);
   --mini-c-text-3: rgba(235, 235, 245, 0.38);
