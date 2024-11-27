@@ -12,6 +12,7 @@
     "start": "next start",
     "start-standalone": "node .next/standalone/server.js",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "commit": "cz",
     "clean": "rimraf ./node_modules",
     "format": "prettier --write  src/**/*.{css,tsx,ts}",
