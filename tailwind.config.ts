@@ -30,15 +30,47 @@ const config: Config = {
   theme: {
     container: {},
     extend: {
+      maxWidth: {
+        "mini-layout": "calc(var(--mini-layout-max-width) - 4rem)",
+      },
+      boxShadow: {
+        "mini-1": "var(--mini-shadow-1)",
+        "mini-2": "var(--mini-shadow-2)",
+        "mini-3": "var(--mini-shadow-3)",
+        "mini-4": "var(--mini-shadow-4)",
+        "mini-5": "var(--mini-shadow-4)",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      width: {},
+      zIndex: {
+        "mini-bg": "var(--mini-z-index-bg)",
+        "mini-footer": "var(--mini-z-index-footer)",
+        "mini-local-nav": "var(--mini-z-index-local-nav)",
+        "mini-nav": "var(--mini-z-index-nav)",
+        "mini-layout-top": "var(--mini-z-index-layout-top)",
+        "mini-backdrop": "var(--mini-z-index-backdrop)",
+        "mini-sidebar": "var(--mini-z-index-sidebar)",
+        "mini-header": "var(--mini-z-index-header)",
+      },
       colors: {
+        "mini-background": "var(--mini-c-bg)",
+        "mini-background-alt": "var(--mini-c-bg-alt)",
+        "mini-background-elv": "var(--mini-c-bg-elv)",
+        "mini-background-soft": "var(--mini-c-bg-soft)",
+
+        "mini-backdrop": "var(--mini-backdrop-bg-color)",
+        "mini-border": "var(--mini-c-border)",
+        "mini-divider": "var(--mini-c-divider)",
+        "mini-gutter": "var(--mini-c-gutter)",
+
+        "mini-text-1": "var(--mini-c-text-1)",
+        "mini-text-2": "var(--mini-c-text-2)",
+        "mini-text-3": "var(--mini-c-text-3)",
+
         background: "hsl(var(--background))",
-        "background-soft": "hsl(var(--mini-c-bg-soft))",
         foreground: "hsl(var(--foreground))",
         card: {
           DEFAULT: "hsl(var(--card))",

@@ -1,4 +1,6 @@
-@import "./var/index.css";
+@import "./var/common.css";
+@import "./var/dark.css";
+@import "./var/light.css";
 
 @tailwind base;
 @tailwind components;

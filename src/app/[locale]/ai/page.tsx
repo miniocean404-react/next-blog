@@ -63,7 +63,7 @@ export default function Ai() {
     <div className="mt-16">
       <ChatLayout className="h-[calc(100dvh-64px)]  ">
         <ChatWindow>
-          <div className="w-full mx-auto md:max-w-[var(--mini-layout-max-width)]">
+          <div className="w-full mx-auto md:max-w-mini-layout">
             {messages.map((message, index) => (
               <ChatMessage type={message.type} key={index}>
                 {message.content}
@@ -72,10 +72,7 @@ export default function Ai() {
           </div>
         </ChatWindow>
 
-        <ChatInput
-          className="p-3.5 2xl:px-0 md:max-w-[var(--mini-layout-max-width)]"
-          onSend={send}
-        ></ChatInput>
+        <ChatInput className="p-3.5 2xl:px-0 md:max-w-mini-layout" onSend={send}></ChatInput>
       </ChatLayout>
     </div>
   )

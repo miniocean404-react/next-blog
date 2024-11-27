@@ -57,7 +57,7 @@ export function ChatMessage(props: PropsWithChildren<ChatMessageProps>) {
     <div>
       <div className={clsx("w-full flex", { ["flex-row-reverse"]: props.type === "send" })}>
         <div
-          className={clsx("rounded bg-background-soft text-primary p-2 w-fit max-w-[70%]", {
+          className={clsx("rounded bg-mini-background-soft text-primary p-2 w-fit max-w-[70%]", {
             "bg-transparent max-w-full": props.type === "receive",
           })}
         >

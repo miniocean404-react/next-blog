@@ -8,7 +8,7 @@ export default function ThemeParticles() {
 
   return (
     <Particles
-      className={"fixed inset-0 [z-index:var(--mini-z-index-bg)]"}
+      className={"fixed inset-0 z-mini-bg"}
       quantity={100}
       ease={80}
       color={theme === "light" ? "#000000" : "#ffffff"}
