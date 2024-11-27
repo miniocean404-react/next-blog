@@ -30,6 +30,10 @@ const config: Config = {
   theme: {
     container: {},
     extend: {
+      fontFamily: {
+        sans: ["var(--mini-font-family-base)"],
+        mono: ["var(--mini-font-family-mono)"],
+      },
       maxWidth: {
         "mini-layout": "calc(var(--mini-layout-max-width) - 4rem)",
       },

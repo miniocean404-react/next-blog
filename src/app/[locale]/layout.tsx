@@ -13,15 +13,47 @@ import BaiDuAnalytics from "~/lib/components/mini/analytics/baidu"
 import Toast from "@/components/toast"
 import { SidebarInset, SidebarProvider } from "~/lib/components/shadcn/ui/sidebar"
 import Siderbar from "@/components/siderbar"
+import { JetBrains_Mono } from "next/font/google"
+import { cn } from "@/utils/tw"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
-const miSansFont = localFont({
+// 无衬线字体，适合文字
+const zh_inter = localFont({
   src: "../../../public/font/MiSans VF.ttf",
   // 就是 css font-display
   display: "swap",
   weight: "400",
-  variable: "--MiSans",
+  // 字体使用的 css 变量定义，就不用 font-family 了
+  variable: "--mini-font-family-base",
+  fallback: [
+    "Inter",
+    "ui-sans-serif",
+    "system-ui",
+    "sans-serif",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji",
+  ],
+})
+
+// 等宽字体，适合代码
+const roboto_mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--mini-font-family-mono",
+  fallback: [
+    // 默认用户界面的等宽字体
+    "ui-monospace",
+    "Menlo",
+    "Monaco",
+    "Consolas",
+    "Liberation Mono",
+    "Courier New",
+    "monospace",
+  ],
 })
 
 export function generateStaticParams() {
@@ -46,8 +78,12 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html suppressHydrationWarning lang={locale}>
-      <body className={miSansFont.className}>
+    <html
+      suppressHydrationWarning
+      lang={locale}
+      className={cn(zh_inter.variable, roboto_mono.variable)}
+    >
+      <body>
         <ThemeProvider attribute="class" enableSystem>
           <NextIntlClientProvider messages={messages}>
             <GoogleAnalytics></GoogleAnalytics>
