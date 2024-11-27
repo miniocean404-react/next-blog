@@ -38,6 +38,7 @@ model User {
   @@index([email])
   @@index([real_name])
   @@index([mobile], map: "mobile")
+  @@map("user")
 }
 
 model Role {
@@ -64,6 +65,7 @@ model Role {
 
   @@unique([role_key])
   @@index([role_name])
+  @@map("role")
 }
 
 model UserRole {

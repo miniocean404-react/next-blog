@@ -34,6 +34,7 @@ model Permission {
 
   @@index([resource_name])
   @@index([parent_id])
+  @@map("permission")
 }
 
 model RolePermission {

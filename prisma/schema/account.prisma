@@ -24,4 +24,5 @@ model Account {
 
   @@unique([provider, providerAccountId])
   @@index([userId])
+  @@map("account")
 }
