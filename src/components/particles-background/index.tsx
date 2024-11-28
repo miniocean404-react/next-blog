@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes"
 import Particles from "~/lib/components/magicui/particles"
 
-export default function ThemeParticles() {
+export default function ParticlesBackground() {
   const { theme } = useTheme()
 
   return (
