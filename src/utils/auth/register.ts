@@ -1,8 +1,8 @@
 "use server"
 
-import bcrypt from "bcryptjs"
 import { DB } from "@/utils/db"
 import type { RegisterFormSchemaType } from "@/app/[locale]/passport/register/page"
+import { hashPassword } from "@/utils/crypto"
 
 export const register = async (data: RegisterFormSchemaType) => {
   const isExist = await DB.user.findUnique({
@@ -18,7 +18,8 @@ export const register = async (data: RegisterFormSchemaType) => {
   }
 
   // 给密码加盐，密码明文存数据库不安全
-  const hashedPassword = await bcrypt.hash(data.password, 10)
+
+  const hashedPassword = hashPassword(data.password, 10)
 
   const user = await DB.user.create({
     data: {

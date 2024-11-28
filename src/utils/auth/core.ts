@@ -6,7 +6,7 @@ import Credentials from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { DB } from "@/utils/db"
 import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
-import bcrypt from "bcryptjs"
+import { isEqualHashPassword } from "@/utils/crypto"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(DB),
@@ -64,7 +64,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
           })
 
-          const success = await bcrypt.compare(password, user?.password || "")
+          const success = isEqualHashPassword(password, user?.password || "")
           if (!success) return null
 
           return {
