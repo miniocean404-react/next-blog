@@ -1,51 +1,94 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { Button } from "~/lib/components/shadcn/ui/button"
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "~/lib/components/shadcn/ui/form"
 
+import { Card, CardContent, CardHeader, CardTitle } from "~/lib/components/shadcn/ui/card"
+
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/lib/components/shadcn/ui/card"
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "~/lib/components/shadcn/ui//input-otp"
+
 import { Input } from "~/lib/components/shadcn/ui/input"
 
-import { use } from "react"
+import { use, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { register } from "@/utils/auth/register"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
 import { useTranslations } from "next-intl"
 import toast from "react-hot-toast"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
 import Link from "next/link"
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react"
+import "swiper/css/bundle"
+
+import { register } from "@/utils/auth/register"
 import { trpcClient } from "@/server/trpc/client"
+import {
+  codeFormSchema,
+  registerFormSchema,
+  type RegisterFormSchemaType,
+} from "@/utils/schema/register"
 
-const registerFormSchema = z.object({
-  email: z.string().email({ message: "无效的邮箱格式" }),
-  username: z.string().min(1, { message: "用户名不能为空" }),
-  password: z.string().min(6, { message: "密码不能为空,并且密码至少 6 位" }),
-})
-
-export type RegisterFormSchemaType = z.infer<typeof registerFormSchema>
-
-export default function Login({ searchParams }: { searchParams: Promise<{ error: string }> }) {
+export default function RegisterPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error: string }>
+}) {
   const { error } = use<{ error: string }>(searchParams)
   const router = useRouter()
-  const t = useTranslations("register")
 
-  const form = useForm<RegisterFormSchemaType>({
+  return (
+    <div className="h-screen flex justify-center items-center mx-8 md:mx-0">
+      <Swiper
+        className="w-96 h-max"
+        spaceBetween={50}
+        slidesPerView={1}
+        allowTouchMove={true}
+        modules={[]}
+      >
+        {/* 注册 */}
+        <SwiperSlide>
+          <Register />
+        </SwiperSlide>
+
+        {/* 验证码 */}
+        <SwiperSlide>
+          <VerificationCode />
+        </SwiperSlide>
+
+        {/* 成功 */}
+        <SwiperSlide>
+          <SuccessRegister />
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  )
+}
+
+function Register() {
+  const t = useTranslations("register")
+  const swiper = useSwiper()
+
+  const registerForm = useForm<RegisterFormSchemaType>({
     resolver: zodResolver(registerFormSchema),
+    // 当为true的时候，当用户提交了一个验证失败的表单的时候，他会将焦点设置在第一个有错误的字段上面
+    shouldFocusError: true,
+    //启用浏览器本机验证
+    shouldUseNativeValidation: false,
     defaultValues: {
       email: "",
       username: "",
@@ -53,30 +96,30 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
     },
   })
 
-  async function onSubmit(values: RegisterFormSchemaType) {
-    const result = await register(values)
+  async function onRegisterSubmit(values: RegisterFormSchemaType) {
+    swiper.slideNext()
 
-    if (result?.error) {
-      return toast.error(result.error)
-    } else {
-      await trpcClient.User.sendEmail.query({ email: values.email })
-      router.push("/passport/verification-code")
-      return { errors: "" }
-    }
+    // const result = await register(values)
+    // if (result?.error) {
+    //   return toast.error(result.error)
+    // } else {
+    //   await trpcClient.User.sendEmail.query({ email: values.email })
+    //   return { errors: "" }
+    // }
   }
 
   return (
-    <div className="h-screen flex justify-center items-center mx-8 md:mx-0">
-      <Card className="mx-auto w-96">
+    <div className="p-1">
+      <Card className="mx-auto">
         <CardHeader>
           <CardTitle>{t("card.title")}</CardTitle>
         </CardHeader>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+        <Form {...registerForm}>
+          <form onSubmit={registerForm.handleSubmit(onRegisterSubmit)}>
             <CardContent className="space-y-4">
               <FormField
-                control={form.control}
+                control={registerForm.control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
@@ -92,7 +135,7 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
               />
 
               <FormField
-                control={form.control}
+                control={registerForm.control}
                 name="username"
                 render={({ field }) => (
                   <FormItem>
@@ -107,7 +150,7 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
               />
 
               <FormField
-                control={form.control}
+                control={registerForm.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem>
@@ -127,7 +170,7 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
               />
 
               <Button className="w-full" type="submit">
-                {t("card.create")}
+                {t("card.next")}
               </Button>
 
               <div className="relative my-4">
@@ -149,4 +192,83 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
       </Card>
     </div>
   )
+}
+
+function VerificationCode() {
+  const t = useTranslations("register")
+  const swiper = useSwiper()
+
+  const codeRef = useRef<HTMLInputElement>(null)
+
+  const codeForm = useForm<z.infer<typeof codeFormSchema>>({
+    resolver: zodResolver(codeFormSchema),
+    defaultValues: {
+      pin: "",
+    },
+  })
+
+  useEffect(() => {
+    swiper.on("slideChangeTransitionEnd", () => {
+      if (swiper.activeIndex === 1) {
+        codeRef.current?.focus()
+      }
+    })
+
+    return () => {
+      swiper.off("slideChangeTransitionEnd")
+    }
+  }, [])
+
+  const onComplete = (data: string) => {
+    codeForm.handleSubmit(onCodeSubmit)()
+  }
+
+  function onCodeSubmit(data: z.infer<typeof codeFormSchema>) {
+    swiper.slideNext()
+  }
+
+  return (
+    <div className="p-1 w-full h-full flex justify-center items-center">
+      <Form {...codeForm}>
+        <form onSubmit={codeForm.handleSubmit(onCodeSubmit)} className="w-2/3 space-y-6">
+          <FormField
+            control={codeForm.control}
+            name="pin"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t("code.title")}</FormLabel>
+                <FormControl ref={codeRef}>
+                  {/* destructive */}
+                  {/* autoFocus 自动聚焦 */}
+                  <InputOTP maxLength={6} onComplete={onComplete} inputMode="numeric" {...field}>
+                    <InputOTPGroup>
+                      <InputOTPSlot index={0} />
+                      <InputOTPSlot index={1} />
+                      <InputOTPSlot index={2} />
+                    </InputOTPGroup>
+
+                    <InputOTPSeparator />
+
+                    <InputOTPGroup>
+                      <InputOTPSlot index={3} />
+                      <InputOTPSlot index={4} />
+                      <InputOTPSlot index={5} />
+                    </InputOTPGroup>
+                  </InputOTP>
+                </FormControl>
+                <FormDescription>{t("code.desc")}</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </form>
+      </Form>
+    </div>
+  )
+}
+
+function SuccessRegister() {
+  // router.push("/passport/login")
+
+  return <div>成功</div>
 }

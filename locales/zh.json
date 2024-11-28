@@ -81,9 +81,13 @@
       "usernamePlaceholder": "请输入用户名",
       "password": "密码",
       "passwordPlaceholder": "请输入密码",
-      "create": "创建",
+      "next": "下一步",
       "continue": "或继续",
       "login": "快速登录"
+    },
+    "code": {
+      "title": "一次性验证码",
+      "desc": "请输入发送到您邮箱的一次性密码。"
     }
   },
   "login": {
