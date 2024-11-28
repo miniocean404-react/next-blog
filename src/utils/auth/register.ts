@@ -18,7 +18,6 @@ export const register = async (data: RegisterFormSchemaType) => {
   }
 
   // 给密码加盐，密码明文存数据库不安全
-
   const hashedPassword = hashPassword(data.password, 10)
 
   const user = await DB.user.create({
