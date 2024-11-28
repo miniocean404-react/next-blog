@@ -28,7 +28,7 @@ export const sendEmail = async (mailInfo: MailInfo) => {
     secure: true,
     auth: {
       user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
+      pass: process.env.MAIL_SECRET_PASS,
     },
   })
 

@@ -29,6 +29,7 @@ import { useTranslations } from "next-intl"
 import toast from "react-hot-toast"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
 import Link from "next/link"
+import { trpcClient } from "@/server/trpc/client"
 
 const registerFormSchema = z.object({
   email: z.string().email({ message: "无效的邮箱格式" }),
@@ -58,8 +59,8 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
     if (result?.error) {
       return toast.error(result.error)
     } else {
-      // 注册成功，跳到登录页面
-      router.push("/passport/login")
+      await trpcClient.User.sendEmail.query({ email: values.email })
+      router.push("/passport/verification-code")
       return { errors: "" }
     }
   }
