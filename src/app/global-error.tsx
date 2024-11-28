@@ -1,6 +1,8 @@
 "use client"
 import { useEffect } from "react"
 
+import ErrorPage from "next/error"
+
 export default function GlobalError({
   error,
   reset,
@@ -14,11 +16,18 @@ export default function GlobalError({
   }, [error])
 
   return (
-    <div>
-      <h2>出错啦!</h2>
-      <p>错误名称：{error.name}</p>
-      <p>错误消息：{error.message}</p>
-      <button onClick={() => reset()}>Try again</button>
+    <div onClick={() => reset()}>
+      <ErrorPage
+        title={`
+        出错啦!
+        错误名称：${error.name}
+        错误消息：${error.message}
+
+        点击再次尝试
+        `}
+        statusCode={404}
+        withDarkMode
+      />
     </div>
   )
 }
