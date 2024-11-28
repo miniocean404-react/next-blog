@@ -12,7 +12,7 @@ export default function Home(props: { locale: string }) {
     <div>
       {/* 软导航直接导航到 demo/1*/}
       {/* 硬导航会被 (.)demo 拦截 */}
-      <Link href={"/zh/learn/InterceptingRoute/demo/1"}>软导航</Link>
+      <Link href={"/learn/InterceptingRoute/demo/1"}>软导航</Link>
     </div>
   )
 }

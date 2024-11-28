@@ -1,6 +1,7 @@
 import { corsMiddleware } from "@/middleware/cors"
 import intlWapperMiddleware from "@/middleware/intl"
 import loggerMiddleware from "@/middleware/logger"
+import signUpGuardMiddleware from "@/middleware/sign-up"
 import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server"
 
 // 中间件匹配原则，不在这个范围内则不会执行 middleware 逻辑
@@ -23,13 +24,13 @@ export const config = {
   // ],
 }
 
-// 处理跨域
-export function middleware(request: NextRequest, event: NextFetchEvent) {
+export async function middleware(request: NextRequest, event: NextFetchEvent) {
   let resp: NextResponse<unknown> = NextResponse.next()
 
   resp = intlWapperMiddleware(request, resp, event)
   resp = loggerMiddleware(request, resp, event)
   resp = corsMiddleware(request, resp, event)
+  resp = await signUpGuardMiddleware(request, resp, event)
 
   return resp
 }

@@ -2,7 +2,11 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import z from "zod"
+import { loginCredentials, loginGithub, loginGoogle } from "@/utils/auth/login"
+import Link from "next/link"
+import { toast } from "react-hot-toast"
+
 import { Button } from "~/lib/components/shadcn/ui/button"
 import {
   Form,
@@ -16,51 +20,45 @@ import {
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "~/lib/components/shadcn/ui/card"
 import { Input } from "~/lib/components/shadcn/ui/input"
-
-import { use } from "react"
-import { useRouter } from "next/navigation"
-import { register } from "@/utils/auth/register"
-import { useTranslations } from "next-intl"
-import toast from "react-hot-toast"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
-import Link from "next/link"
+import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
 
-const registerFormSchema = z.object({
-  email: z.string().email({ message: "无效的邮箱格式" }),
-  username: z.string().min(1, { message: "用户名不能为空" }),
-  password: z.string().min(6, { message: "密码不能为空,并且密码至少 6 位" }),
+const loginFormSchema = z.object({
+  email: z.string().email("无效的邮箱格式"),
+  password: z.string().min(1, {
+    message: "不能为空",
+  }),
 })
 
-export type RegisterFormSchemaType = z.infer<typeof registerFormSchema>
+export type loginFormSchemaType = z.infer<typeof loginFormSchema>
 
-export default function Login({ searchParams }: { searchParams: Promise<{ error: string }> }) {
-  const { error } = use<{ error: string }>(searchParams)
+export default function Login() {
+  const t = useTranslations("login")
   const router = useRouter()
-  const t = useTranslations("register")
 
-  const form = useForm<RegisterFormSchemaType>({
-    resolver: zodResolver(registerFormSchema),
+  const form = useForm<loginFormSchemaType>({
+    resolver: zodResolver(loginFormSchema),
     defaultValues: {
       email: "",
-      username: "",
       password: "",
     },
   })
 
-  async function onSubmit(values: RegisterFormSchemaType) {
-    const result = await register(values)
+  async function onSubmit(values: loginFormSchemaType) {
+    const result = await loginCredentials(values)
 
     if (result?.error) {
-      return toast.error(result.error)
+      toast.error(result.error)
     } else {
-      // 注册成功，跳到登录页面
-      router.push("/login")
-      return { errors: "" }
+      // 登录成功，跳到首页
+      router.push("/")
     }
   }
 
@@ -68,7 +66,8 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
     <div className="h-screen flex justify-center items-center mx-8 md:mx-0">
       <Card className="mx-auto w-96">
         <CardHeader>
-          <CardTitle>{t("card.title")}</CardTitle>
+          <CardTitle className="text-2xl">{t("card.title")}</CardTitle>
+          <CardDescription>{t("card.desc")}</CardDescription>
         </CardHeader>
 
         <Form {...form}>
@@ -81,25 +80,14 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
                   <FormItem>
                     <FormLabel htmlFor="email">{t("card.email")}</FormLabel>
                     <FormControl>
-                      <Input placeholder={t("card.emailPlaceholder")} {...field} />
+                      <Input
+                        id="email"
+                        placeholder={t("card.emailPlaceholder")}
+                        required
+                        {...field}
+                      />
                     </FormControl>
-
                     {/* <FormDescription>这是将显示在您的个人资料和电子邮件中的名称。</FormDescription> */}
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("card.username")}</FormLabel>
-                    <FormControl>
-                      <Input placeholder={t("card.usernamePlaceholder")} {...field} />
-                    </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
@@ -126,7 +114,7 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
               />
 
               <Button className="w-full" type="submit">
-                {t("card.create")}
+                {t("card.sure")}
               </Button>
 
               <div className="relative my-4">
@@ -138,14 +126,33 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
               </div>
 
               <div className="mt-4 text-center text-sm">
-                <Link className="underline" href={"/login"}>
-                  {t("card.login")}
+                {t("card.registerTip")}
+                <Link className="underline" href={"/passport/register"}>
+                  {t("card.register")}
                 </Link>
               </div>
             </CardContent>
           </form>
         </Form>
       </Card>
+
+      {/* <div className="">
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <input {...form.register("email")} />
+          <input {...form.register("password")} />
+          <button type="submit">用户名密码 登录</button>
+        </form>
+      </div>
+
+      <form action={loginGithub}>
+        <button>github 登录</button>
+      </form>
+
+      <form action={loginGoogle}>
+        <button>google 登录</button>
+      </form> */}
+
+      {/* <Link href={"/passport/register"}>去注册</Link> */}
     </div>
   )
 }

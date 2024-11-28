@@ -19,13 +19,14 @@ import { logout } from "@/utils/auth/logout"
 import { usePathname } from "next/navigation"
 import { Button } from "~/lib/components/shadcn/ui/button"
 import Link from "next/link"
+import { PASSPORT } from "@/constant/page-type"
 
 export function Account(props: PropsWithChildren<AccountProps>) {
   const { session } = props
   const t = useTranslations("header.account")
   const pathname = usePathname()
 
-  if (pathname === "/login" || pathname === "/register") return
+  if (pathname.startsWith(PASSPORT)) return
 
   return (
     <>
@@ -70,7 +71,7 @@ export function Account(props: PropsWithChildren<AccountProps>) {
       {!session?.user && (
         <div className="px-0">
           <Button variant={"ghost"}>
-            <Link href="/login">{t("navigation")}</Link>
+            <Link href="/passport/login">{t("navigation")}</Link>
           </Button>
         </div>
       )}

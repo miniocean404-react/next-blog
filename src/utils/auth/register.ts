@@ -2,7 +2,7 @@
 
 import bcrypt from "bcryptjs"
 import { DB } from "@/utils/db"
-import type { RegisterFormSchemaType } from "@/app/[locale]/register/page"
+import type { RegisterFormSchemaType } from "@/app/[locale]/passport/register/page"
 
 export const register = async (data: RegisterFormSchemaType) => {
   const isExist = await DB.user.findUnique({

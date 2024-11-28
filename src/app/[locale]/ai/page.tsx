@@ -8,17 +8,16 @@ import { ChatWindow, ChatInput, ChatMessage, ChatLayout } from "~/lib/components
 export default function Ai() {
   const problemRef = useRef<HTMLInputElement>(null)
   const [messages, setMessages] = useState<MessageBody[]>([
-    {
-      id: 1,
-      content: "你好，我是 AI 机器人，有什么问题可以问我",
-      type: "send",
-    },
-
-    {
-      id: 2,
-      content: "你好，我是 AI 机器人，有什么问题可以问我",
-      type: "receive",
-    },
+    // {
+    //   id: 1,
+    //   content: "你好，我是 AI 机器人，有什么问题可以问我",
+    //   type: "send",
+    // },
+    // {
+    //   id: 2,
+    //   content: "你好，我是 AI 机器人，有什么问题可以问我",
+    //   type: "receive",
+    // },
   ])
   const answerRef = useRef<Unsubscribable>()
 

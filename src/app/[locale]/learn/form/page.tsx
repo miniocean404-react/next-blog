@@ -46,7 +46,7 @@ export default function Login({ searchParams }: { searchParams: Promise<{ error:
       return { errors: result.error }
     } else {
       // 注册成功，跳到登录页面
-      router.push("/login")
+      router.push("/passport/login")
       return { errors: "" }
     }
   }

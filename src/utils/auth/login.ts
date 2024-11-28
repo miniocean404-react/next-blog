@@ -1,6 +1,6 @@
 "use server"
 
-import type { loginFormSchemaType } from "@/app/[locale]/login/page"
+import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
 import { signIn } from "@/utils/auth/core"
 import { AuthError } from "next-auth"
 
