@@ -11,6 +11,7 @@ import BaiDuAnalytics from "~/lib/components/mini/analytics/baidu"
 import GoogleAnalytics from "~/lib/components/mini/analytics/google"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"
+import "@/css/index.css"
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
@@ -201,7 +202,7 @@ export function generateStaticParams() {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale()
 
-  // Ensure that the incoming `locale` is valid
+  // 确保传入的“区域设置”是有效的
   if (!routing.locales.includes(locale as any)) {
     notFound()
   }
@@ -217,11 +218,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     >
       <body>
         <ThemeProvider attribute="class" enableSystem>
-          <GoogleAnalytics></GoogleAnalytics>
-          <BaiDuAnalytics></BaiDuAnalytics>
-          <Toast></Toast>
+          <NextIntlClientProvider messages={messages}>
+            <GoogleAnalytics></GoogleAnalytics>
+            <BaiDuAnalytics></BaiDuAnalytics>
+            <Toast></Toast>
 
-          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+            {children}
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

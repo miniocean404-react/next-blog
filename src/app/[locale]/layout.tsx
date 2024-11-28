@@ -1,5 +1,3 @@
-import "@/css/index.css"
-
 import getConfig from "next/config"
 import Header from "@/components/header"
 

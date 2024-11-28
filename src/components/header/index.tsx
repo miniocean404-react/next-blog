@@ -25,13 +25,14 @@ export default async function Header() {
   return (
     <>
       {/* 彩虹 */}
-      <div className="w-full h-24 fixed top-[0] pointer-events-none before:content-none before:absolute before:w-full before:h-3/5 before:z-0 before:left-2/4 before:top-[0] before:-bottom-1/5 before:-translate-x-1/2 before:translate-y-[0] before:rotate-[0] before:skew-x-[0] before:skew-y-[0] before:scale-x-100 before:scale-y-100 before:filter blur-3xl before:opacity-20 before:[background-size:200%] before:bg-[linear-gradient(90deg,_#ff4242,_#a1ff42,_#42a1ff,_#42d0ff,_#a142ff)] before:animate-[rainbow_var(--speed,_2s)_infinite_linear] z-mini-header"></div>
+      <div className="w-full h-24 fixed top-[0] pointer-events-none before:content-[''] before:absolute before:w-full before:h-3/5 before:z-0 before:left-2/4 before:top-[0] before:-bottom-1/5 before:-translate-x-1/2 before:translate-y-[0] before:rotate-[0] before:skew-x-[0] before:skew-y-[0] before:scale-x-100 before:scale-y-100 before:filter blur-3xl before:opacity-20 before:[background-size:200%] before:bg-[linear-gradient(90deg,_#ff4242,_#a1ff42,_#42a1ff,_#42d0ff,_#a142ff)] before:animate-[rainbow_var(--speed,_2s)_infinite_linear] z-[var(--mini-z-index-header)]"></div>
+
       {/* 网站标题图标切换 */}
       <DynWebTitle title={t("app.blogName")}></DynWebTitle>
 
       <header
         className={cn(
-          "absolute top-0 z-mini-header backdrop-blur-md",
+          "fixed top-0 z-mini-header backdrop-blur-md",
           "border-b",
           "flex items-center h-16 w-full",
           "px-2 md:px-8",
