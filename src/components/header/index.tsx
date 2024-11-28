@@ -14,7 +14,7 @@ import { cn } from "@/utils/tw"
 import { getLocale, getTranslations } from "next-intl/server"
 import { Account } from "./sign-up"
 import { Navigation } from "@/components/header/navigation"
-import MobileMenu from "@/components/header/mobile-menu"
+
 export default async function Header() {
   // const header = await headers()
   // const _ = header.get("user-agent")
@@ -25,7 +25,7 @@ export default async function Header() {
   return (
     <>
       {/* 彩虹 */}
-      <div className="w-full h-24 fixed top-[0] pointer-events-none before:content-[''] before:absolute before:w-full before:h-3/5 before:z-0 before:left-2/4 before:top-[0] before:-bottom-1/5 before:-translate-x-1/2 before:translate-y-[0] before:rotate-[0] before:skew-x-[0] before:skew-y-[0] before:scale-x-100 before:scale-y-100 before:filter blur-3xl before:opacity-20 before:[background-size:200%] before:bg-[linear-gradient(90deg,_#ff4242,_#a1ff42,_#42a1ff,_#42d0ff,_#a142ff)] before:animate-[rainbow_var(--speed,_2s)_infinite_linear] z-mini-header"></div>
+      <div className="w-full h-24 fixed top-[0] pointer-events-none before:content-none before:absolute before:w-full before:h-3/5 before:z-0 before:left-2/4 before:top-[0] before:-bottom-1/5 before:-translate-x-1/2 before:translate-y-[0] before:rotate-[0] before:skew-x-[0] before:skew-y-[0] before:scale-x-100 before:scale-y-100 before:filter blur-3xl before:opacity-20 before:[background-size:200%] before:bg-[linear-gradient(90deg,_#ff4242,_#a1ff42,_#42a1ff,_#42d0ff,_#a142ff)] before:animate-[rainbow_var(--speed,_2s)_infinite_linear] z-mini-header"></div>
       {/* 网站标题图标切换 */}
       <DynWebTitle title={t("app.blogName")}></DynWebTitle>
 
@@ -64,9 +64,6 @@ export default async function Header() {
               <ThemeSwitch />
               <Account session={session}></Account>
             </div>
-
-            {/* 移动端菜单栏按钮 */}
-            <MobileMenu />
           </div>
         </div>
       </header>

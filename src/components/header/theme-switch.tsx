@@ -1,11 +1,12 @@
 "use client"
 
 import { Moon, Sun } from "lucide-react"
-import { type MouseEvent } from "react"
+import { type MouseEvent, type PropsWithChildren } from "react"
 import { useTheme } from "next-themes"
 import { useMounted } from "@/utils/hook/mounted"
+import { cn } from "@/utils/tw"
 
-export default function ThemeSwitch() {
+export default function ThemeSwitch(props: PropsWithChildren<ThemeSwitchProps>) {
   const { systemTheme, theme, setTheme } = useTheme()
   const mounted = useMounted()
 
@@ -39,10 +40,10 @@ export default function ThemeSwitch() {
     setTheme(isDark ? "light" : "dark")
   }
 
-  if (!mounted) return <button className="size-9 px-2"></button>
+  if (!mounted) return <button className={cn("size-9 px-2", props.className)}></button>
 
   return (
-    <div className="px-2">
+    <div className={cn("px-2", props.className)}>
       <button
         className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-accent"
         onClick={toggle}

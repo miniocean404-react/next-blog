@@ -1,10 +1,11 @@
 import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
 import { getTranslations } from "next-intl/server"
 import Link from "next/link"
+import type { PropsWithChildren } from "react"
 import Github from "~/public/svg/github.svg"
 import Notion from "~/public/svg/notion.svg"
 
-export async function Navigation() {
+export async function Navigation(props: PropsWithChildren<NavigationProps>) {
   const t = await getTranslations("header")
 
   return (

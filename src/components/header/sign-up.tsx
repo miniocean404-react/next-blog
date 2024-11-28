@@ -22,14 +22,14 @@ import Link from "next/link"
 import { VISITE_LIMIT_PASSPORT } from "@/constant/page-type"
 
 export function Account(props: PropsWithChildren<AccountProps>) {
-  const { session } = props
+  const { className, session } = props
   const t = useTranslations("header.account")
   const pathname = usePathname()
 
   if (pathname.startsWith(VISITE_LIMIT_PASSPORT)) return
 
   return (
-    <>
+    <div className={className}>
       {session?.user && (
         <DropdownMenu>
           <div className="px-2 cursor-pointer">
@@ -75,6 +75,6 @@ export function Account(props: PropsWithChildren<AccountProps>) {
           </Button>
         </div>
       )}
-    </>
+    </div>
   )
 }
