@@ -19,14 +19,14 @@ import { logout } from "@/utils/auth/logout"
 import { usePathname } from "next/navigation"
 import { Button } from "~/lib/components/shadcn/ui/button"
 import Link from "next/link"
-import { PASSPORT } from "@/constant/page-type"
+import { VISITE_LIMIT_PASSPORT } from "@/constant/page-type"
 
 export function Account(props: PropsWithChildren<AccountProps>) {
   const { session } = props
   const t = useTranslations("header.account")
   const pathname = usePathname()
 
-  if (pathname.startsWith(PASSPORT)) return
+  if (pathname.startsWith(VISITE_LIMIT_PASSPORT)) return
 
   return (
     <>

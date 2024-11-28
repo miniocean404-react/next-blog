@@ -1,4 +1,4 @@
-import { PASSPORT } from "@/constant/page-type"
+import { VISITE_LIMIT_AUTH, VISITE_LIMIT_PASSPORT } from "@/constant/page-type"
 import { auth } from "@/utils/auth/core"
 import { NextRequest, NextResponse, NextFetchEvent } from "next/server"
 
@@ -12,8 +12,12 @@ export default async function signUpGuardMiddleware(
   const islogangedIn = !!session?.user
   const pathname = request.nextUrl.pathname
 
-  if (islogangedIn && pathname.startsWith(PASSPORT)) {
+  if (islogangedIn && pathname.startsWith(VISITE_LIMIT_PASSPORT)) {
     return NextResponse.redirect(new URL("/", request.nextUrl))
+  }
+
+  if (!islogangedIn && pathname.startsWith(VISITE_LIMIT_AUTH)) {
+    return NextResponse.redirect(new URL("/passport/login", request.nextUrl))
   }
 
   // 没有登录，并且访问的页面不是以auth开头的，则重定向到登录页
