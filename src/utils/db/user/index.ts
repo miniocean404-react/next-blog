@@ -25,10 +25,10 @@ export async function updateUser(body: typeof UpdateUserByIdSchema._type) {
   try {
     UserSchema.parse(body)
 
-    return await DB.user.update({
-      where: { id: body.id },
-      data: { email: "1037306928qq.com" },
-    })
+    // return await DB.user.update({
+    //   where: { id: body.id },
+    //   data: { email: "1037306928qq.com" },
+    // })
   } catch (e: unknown) {
     if (e instanceof Error) {
       console.log(e.message)
@@ -44,9 +44,9 @@ export async function deleteUser(body: typeof DeleteUserByIdSchema._type) {
   try {
     UserSchema.parse(body)
 
-    return await DB.user.delete({
-      where: { id: body.id },
-    })
+    // return await DB.user.delete({
+    //   where: { id: body.id },
+    // })
   } catch (e: unknown) {
     if (e instanceof Error) {
       console.log(e.message)

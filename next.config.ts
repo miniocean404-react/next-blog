@@ -26,7 +26,7 @@ const withMDX = nextMDX({
 })
 
 const config: NextConfig = {
-  output: "standalone", // SSG 设置为 export
+  // output: "standalone", // SSG 设置为 export
   distDir: ".next",
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactStrictMode: false, // 可防止多渲染一次 DOM

@@ -15,31 +15,13 @@ export const User = appRouter({
 
       const res = await DB?.user.findUnique({
         where: {
-          name,
+          nickname: name,
           email,
         },
         // include 是否显示 roles 表的数据, select 查询只展示的字段
         select: {
-          name: true,
+          nickname: true,
           email: true,
-          roles: {
-            select: {
-              role: {
-                select: {
-                  name: true,
-                  permissions: {
-                    select: {
-                      permission: {
-                        select: {
-                          name: true,
-                        },
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
         },
       })
 

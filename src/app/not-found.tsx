@@ -5,11 +5,5 @@
 import Error from "next/error"
 
 export default function NotFound() {
-  return (
-    <html>
-      <body>
-        <Error title="找不到页面啦" statusCode={404} withDarkMode />
-      </body>
-    </html>
-  )
+  return <Error title="找不到页面啦" statusCode={404} withDarkMode />
 }

@@ -14,13 +14,11 @@ export default function GlobalError({
   }, [error])
 
   return (
-    <html>
-      <body>
-        <h2>出错啦!</h2>
-        <p>错误名称：{error.name}</p>
-        <p>错误消息：{error.message}</p>
-        <button onClick={() => reset()}>Try again</button>
-      </body>
-    </html>
+    <div>
+      <h2>出错啦!</h2>
+      <p>错误名称：{error.name}</p>
+      <p>错误消息：{error.message}</p>
+      <button onClick={() => reset()}>Try again</button>
+    </div>
   )
 }

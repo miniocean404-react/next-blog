@@ -1,6 +1,16 @@
+import Toast from "@/components/toast"
 import { APP_URL, GITHUB_LINK } from "@/constant/link"
+import { routing } from "@/utils/i18n/routing"
+import { cn } from "@/utils/tw"
 import type { Metadata, ResolvingMetadata, Viewport } from "next"
-import { getLocale, getTranslations } from "next-intl/server"
+import { getLocale, getMessages, getTranslations, setRequestLocale } from "next-intl/server"
+import { ThemeProvider } from "next-themes"
+import { JetBrains_Mono } from "next/font/google"
+import localFont from "next/font/local"
+import BaiDuAnalytics from "~/lib/components/mini/analytics/baidu"
+import GoogleAnalytics from "~/lib/components/mini/analytics/google"
+import { notFound } from "next/navigation"
+import { NextIntlClientProvider } from "next-intl"
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
@@ -146,6 +156,74 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
   }
 }
 
+// 无衬线字体，适合文字
+const zh_inter = localFont({
+  src: "../../public/font/MiSans VF.ttf",
+  // 就是 css font-display
+  display: "swap",
+  weight: "400",
+  // 字体使用的 css 变量定义，就不用 font-family 了
+  variable: "--mini-font-family-base",
+  fallback: [
+    "Inter",
+    "ui-sans-serif",
+    "system-ui",
+    "sans-serif",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji",
+  ],
+})
+
+// 等宽字体，适合代码
+const roboto_mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--mini-font-family-mono",
+  fallback: [
+    // 默认用户界面的等宽字体
+    "ui-monospace",
+    "Menlo",
+    "Monaco",
+    "Consolas",
+    "Liberation Mono",
+    "Courier New",
+    "monospace",
+  ],
+})
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  return children
+  const locale = await getLocale()
+
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as any)) {
+    notFound()
+  }
+
+  setRequestLocale(locale)
+  const messages = await getMessages()
+
+  return (
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      className={cn(zh_inter.variable, roboto_mono.variable)}
+    >
+      <body>
+        <ThemeProvider attribute="class" enableSystem>
+          <GoogleAnalytics></GoogleAnalytics>
+          <BaiDuAnalytics></BaiDuAnalytics>
+          <Toast></Toast>
+
+          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  )
 }
