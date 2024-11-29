@@ -3,6 +3,7 @@ import { publicProcedure } from "../trpc/procedure"
 import { appRouter } from "../trpc/server"
 import { z } from "zod"
 import { genVerificationCode } from "@/utils/id"
+import { trpcResult } from "@/server/trpc/shared"
 
 export const User = appRouter({
   getUserPermission: publicProcedure
@@ -71,15 +72,10 @@ export const User = appRouter({
         },
       })
 
-      if (
-        input.email !== verificationToken?.identifier ||
-        !verificationToken ||
-        verificationToken.expires < new Date()
-      ) {
-        return {
-          error: "验证码已失效",
-        }
-      }
+      if (input.email !== verificationToken?.identifier || !verificationToken)
+        return trpcResult.failMsg("验证码错误")
+
+      if (verificationToken.expires < new Date()) return trpcResult.failMsg("验证码已过期")
 
       const user = await DB?.user.findUnique({
         where: {
@@ -90,11 +86,7 @@ export const User = appRouter({
         },
       })
 
-      if (!user) {
-        return {
-          error: "激活失败，请联系管理员",
-        }
-      }
+      if (!user) return trpcResult.failMsg("激活失败，请联系管理员")
 
       await DB?.verificationToken.delete({
         where: {

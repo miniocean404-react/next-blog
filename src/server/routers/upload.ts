@@ -5,6 +5,7 @@ import { publicProcedure } from "../trpc/procedure"
 import { appRouter } from "../trpc/server"
 import { zfd } from "zod-form-data"
 import { TRPCError } from "@trpc/server"
+import { trpcResult } from "@/server/trpc/shared"
 
 export const Upload = appRouter({
   uploadImageKit: publicProcedure
@@ -23,6 +24,6 @@ export const Upload = appRouter({
       }
 
       const result = await uploadImageKit(buffer, file.name)
-      return result
+      return trpcResult.success(result)
     }),
 })

@@ -42,7 +42,7 @@ import {
   registerFormSchema,
   type RegisterFormSchemaType,
 } from "@/utils/schema/register"
-import { RegisterInfoProvider, useRegisterInfo } from "@/utils/context/register"
+import { RegisterInfoProvider, useRegisterInfoContext } from "@/utils/context/register"
 
 export default function RegisterPage({
   searchParams,
@@ -60,6 +60,7 @@ export default function RegisterPage({
           spaceBetween={50}
           slidesPerView={1}
           allowTouchMove={false}
+          initialSlide={0}
           modules={[]}
         >
           {/* 注册 */}
@@ -85,7 +86,7 @@ export default function RegisterPage({
 function Register() {
   const t = useTranslations("register")
   const swiper = useSwiper()
-  const registerInfo = useRegisterInfo()
+  const registerInfo = useRegisterInfoContext()
 
   const registerForm = useForm<RegisterFormSchemaType>({
     resolver: zodResolver(registerFormSchema),
@@ -202,7 +203,7 @@ function Register() {
 function VerificationCode() {
   const t = useTranslations("register")
   const swiper = useSwiper()
-  const registerInfo = useRegisterInfo()
+  const registerInfo = useRegisterInfoContext()
 
   const codeRef = useRef<HTMLInputElement>(null)
 
@@ -232,11 +233,11 @@ function VerificationCode() {
   async function onCodeSubmit(data: z.infer<typeof codeFormSchema>) {
     const res = await trpcClient.User.verificationToken.query({
       token: data.pin,
-      email: registerInfo.info.email,
+      email: registerInfo.data.email,
     })
 
-    if (res?.error) {
-      return codeForm.setError("pin", { message: res.error })
+    if (res?.msg) {
+      return codeForm.setError("pin", { message: res.msg })
     }
 
     swiper.slideNext()
@@ -253,7 +254,6 @@ function VerificationCode() {
               <FormItem>
                 <FormLabel>{t("code.title")}</FormLabel>
                 <FormControl ref={codeRef}>
-                  {/* destructive */}
                   {/* autoFocus 自动聚焦 */}
                   <InputOTP maxLength={6} onComplete={onComplete} inputMode="numeric" {...field}>
                     <InputOTPGroup>

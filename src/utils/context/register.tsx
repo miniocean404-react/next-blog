@@ -1,30 +1,21 @@
 import type { RegisterFormSchemaType } from "@/utils/schema/register"
 import React, { useContext, useState, type PropsWithChildren } from "react"
 
-const RegisterInfoContext = React.createContext<RegisterFormSchemaType | undefined>({
-  email: "",
-  username: "",
-  password: "",
-})
-
 // 可以用 context 存储 auth 状态来进行传递
-export function useRegisterInfo() {
-  const [info, setInfo] = useState<RegisterFormSchemaType>({
+function useRegisterInfo() {
+  const [data, setData] = useState<RegisterFormSchemaType>({
     email: "",
     username: "",
     password: "",
-  }) //状态
+  })
 
   return {
-    //认证状态
-    info,
-    //登录
-    async set(info: RegisterFormSchemaType): Promise<void> {
-      setInfo(info)
+    data,
+    set(info: RegisterFormSchemaType): void {
+      setData(info)
     },
-    //退出
     clear() {
-      setInfo({
+      setData({
         email: "",
         username: "",
         password: "",
@@ -33,13 +24,16 @@ export function useRegisterInfo() {
   }
 }
 
+const RegisterInfoContext = React.createContext<ReturnType<typeof useRegisterInfo> | null>(
+  null,
+) as React.Context<ReturnType<typeof useRegisterInfo>>
+
+// Context.Provider 下的所有消费组件，在 Provider.value 变化后，都会 re-render
 export function RegisterInfoProvider({ children }: PropsWithChildren<any>) {
   const register = useRegisterInfo()
-  return (
-    <RegisterInfoContext.Provider value={register.info}>{children}</RegisterInfoContext.Provider>
-  )
+  return <RegisterInfoContext.Provider value={register} children={children} />
 }
 
-export default function AuthConsumer() {
+export function useRegisterInfoContext() {
   return useContext(RegisterInfoContext)
 }

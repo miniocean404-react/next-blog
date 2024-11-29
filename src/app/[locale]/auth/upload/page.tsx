@@ -20,7 +20,7 @@ export default function Upload() {
         // const res = await trpcClient.Prodcut.getProductById.query({ id: "1" })
         const res = await trpcClient.Upload.uploadImageKit.mutate(form)
 
-        res?.url && toast.success(`上传成功: ${res.url}`)
+        res.data?.url && toast.success(`上传成功: ${res.data.url}`)
       } catch (error: unknown) {
         if (error instanceof TRPCClientError) {
           // 完整响应体
