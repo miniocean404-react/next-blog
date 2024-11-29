@@ -230,7 +230,7 @@ function VerificationCode() {
       email: registerInfo.data.email,
     })
 
-    if (res?.msg) {
+    if (res.code !== 200) {
       return codeForm.setError("pin", { message: res.msg })
     }
 

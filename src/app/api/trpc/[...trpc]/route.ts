@@ -1,8 +1,8 @@
 // app/api/trpc/[...trpc]/route.ts
-import { NextRequest } from "next/server"
-import { fetchRequestHandler } from "@trpc/server/adapters/fetch"
 import { trpcRouter } from "@/server/routers"
 import { createTRPCContext } from "@/server/trpc/context"
+import { fetchRequestHandler } from "@trpc/server/adapters/fetch"
+import { NextRequest } from "next/server"
 
 function handler(req: NextRequest) {
   return fetchRequestHandler({

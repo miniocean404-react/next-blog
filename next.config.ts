@@ -1,14 +1,15 @@
+import nextMDX from "@next/mdx"
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
-import {
-  PHASE_DEVELOPMENT_SERVER,
-  PHASE_PRODUCTION_BUILD,
-  PHASE_PRODUCTION_SERVER,
-} from "next/constants.js"
-import nextMDX from "@next/mdx"
-import rehypePrettyCode from "rehype-pretty-code"
 import path from "path"
 import { fileURLToPath } from "url"
+
+// import {
+//   PHASE_DEVELOPMENT_SERVER,
+//   PHASE_PRODUCTION_BUILD,
+//   PHASE_PRODUCTION_SERVER,
+// } from "next/constants.js"
+// import rehypePrettyCode from "rehype-pretty-code"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
