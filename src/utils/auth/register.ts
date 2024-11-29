@@ -1,8 +1,9 @@
 "use server"
 
-import { DB } from "@/utils/db"
-import type { RegisterFormSchemaType } from "@/app/[locale]/passport/register/page"
+import { trpcResult } from "@/server/trpc/shared"
 import { hashPassword } from "@/utils/crypto"
+import { DB } from "@/utils/db"
+import type { RegisterFormSchemaType } from "@/utils/schema/register"
 
 export const register = async (data: RegisterFormSchemaType) => {
   const isExist = await DB.user.findUnique({
@@ -11,11 +12,7 @@ export const register = async (data: RegisterFormSchemaType) => {
     },
   })
 
-  if (isExist) {
-    return {
-      error: "当前邮箱已存在！",
-    }
-  }
+  if (isExist) return trpcResult.failMsg("当前邮箱已存在！")
 
   // 给密码加盐，密码明文存数据库不安全
   const hashedPassword = hashPassword(data.password, 10)
@@ -43,4 +40,6 @@ export const register = async (data: RegisterFormSchemaType) => {
       },
     })
   }
+
+  return trpcResult.successMsg("注册成功")
 }

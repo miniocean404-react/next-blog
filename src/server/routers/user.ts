@@ -1,9 +1,9 @@
+import { trpcResult } from "@/server/trpc/shared"
 import { sendEmail } from "@/utils/email"
+import { genVerificationCode } from "@/utils/id"
+import { z } from "zod"
 import { publicProcedure } from "../trpc/procedure"
 import { appRouter } from "../trpc/server"
-import { z } from "zod"
-import { genVerificationCode } from "@/utils/id"
-import { trpcResult } from "@/server/trpc/shared"
 
 export const User = appRouter({
   getUserPermission: publicProcedure
@@ -54,7 +54,7 @@ export const User = appRouter({
         html: `验证码为：${token}`,
       })
 
-      return null
+      return trpcResult.successMsg("验证码已发送")
     }),
   verificationToken: publicProcedure
     .input(
@@ -102,5 +102,7 @@ export const User = appRouter({
           emailVerified: new Date(),
         },
       })
+
+      return trpcResult.successMsg("激活成功")
     }),
 })

@@ -1,6 +1,28 @@
 "use client"
 
+import { trpcClient } from "@/server/trpc/client"
+import { RegisterInfoProvider, useRegisterInfoContext } from "@/utils/context/register"
+import {
+  codeFormSchema,
+  registerFormSchema,
+  type RegisterFormSchemaType,
+} from "@/utils/schema/register"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { use, useEffect, useRef } from "react"
+import { useForm } from "react-hook-form"
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react"
+import { z } from "zod"
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "~/lib/components/shadcn/ui//input-otp"
 import { Button } from "~/lib/components/shadcn/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "~/lib/components/shadcn/ui/card"
 import {
   Form,
   FormControl,
@@ -10,39 +32,12 @@ import {
   FormLabel,
   FormMessage,
 } from "~/lib/components/shadcn/ui/form"
-
-import { Card, CardContent, CardHeader, CardTitle } from "~/lib/components/shadcn/ui/card"
-
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "~/lib/components/shadcn/ui//input-otp"
-
 import { Input } from "~/lib/components/shadcn/ui/input"
-
-import { use, useEffect, useRef } from "react"
-import { useRouter } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
-import { useTranslations } from "next-intl"
-import toast from "react-hot-toast"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
-import Link from "next/link"
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react"
-import "swiper/css/bundle"
 
 import { register } from "@/utils/auth/register"
-import { trpcClient } from "@/server/trpc/client"
-import {
-  codeFormSchema,
-  registerFormSchema,
-  type RegisterFormSchemaType,
-} from "@/utils/schema/register"
-import { RegisterInfoProvider, useRegisterInfoContext } from "@/utils/context/register"
+import toast from "react-hot-toast"
+import "swiper/css/bundle"
 
 export default function RegisterPage({
   searchParams,
@@ -102,16 +97,15 @@ function Register() {
   })
 
   async function onRegisterSubmit(values: RegisterFormSchemaType) {
-    swiper.slideNext()
-    registerInfo.set(values)
-
-    // const result = await register(values)
-    // if (result?.error) {
-    //   return toast.error(result.error)
-    // } else {
-    //   await trpcClient.User.sendEmail.query({ email: values.email })
-    //   return { errors: "" }
-    // }
+    const result = await register(values)
+    if (result.code !== 200) {
+      return toast.error(result.msg)
+    } else {
+      await trpcClient.User.sendEmail.query({ email: values.email })
+      swiper.slideNext()
+      registerInfo.set(values)
+      return
+    }
   }
 
   return (

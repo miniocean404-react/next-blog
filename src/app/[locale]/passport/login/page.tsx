@@ -1,11 +1,11 @@
 "use client"
 
+import { loginCredentials } from "@/utils/auth/login"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import z from "zod"
-import { loginCredentials, loginGithub, loginGoogle } from "@/utils/auth/login"
 import Link from "next/link"
+import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
+import z from "zod"
 
 import { Button } from "~/lib/components/shadcn/ui/button"
 import {
@@ -17,18 +17,17 @@ import {
   FormMessage,
 } from "~/lib/components/shadcn/ui/form"
 
+import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "~/lib/components/shadcn/ui/card"
 import { Input } from "~/lib/components/shadcn/ui/input"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
-import { useTranslations } from "next-intl"
-import { useRouter } from "next/navigation"
 
 const loginFormSchema = z.object({
   email: z.string().email("无效的邮箱格式"),
@@ -54,8 +53,8 @@ export default function Login() {
   async function onSubmit(values: loginFormSchemaType) {
     const result = await loginCredentials(values)
 
-    if (result?.error) {
-      toast.error(result.error)
+    if (result.code !== 200) {
+      toast.error(result.msg)
     } else {
       // 登录成功，跳到首页
       router.push("/")

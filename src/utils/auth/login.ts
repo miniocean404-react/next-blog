@@ -1,6 +1,7 @@
 "use server"
 
 import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
+import { trpcResult } from "@/server/trpc/shared"
 import { signIn } from "@/utils/auth/core"
 import { AuthError } from "next-auth"
 
@@ -10,11 +11,11 @@ export const loginCredentials = async (credentials: loginFormSchemaType) => {
       ...credentials,
       redirectTo: `/`,
     })
+
+    return trpcResult.successMsg("登录成功")
   } catch (error) {
     if (error instanceof AuthError) {
-      return {
-        error: "用户名或密码错误",
-      }
+      return trpcResult.failMsg("用户名或密码错误")
     }
 
     // 这里一定要抛出异常，不然成功登录后不会重定向
