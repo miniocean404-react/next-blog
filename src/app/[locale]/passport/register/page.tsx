@@ -42,6 +42,7 @@ import {
   registerFormSchema,
   type RegisterFormSchemaType,
 } from "@/utils/schema/register"
+import { RegisterInfoProvider, useRegisterInfo } from "@/utils/context/register"
 
 export default function RegisterPage({
   searchParams,
@@ -53,28 +54,30 @@ export default function RegisterPage({
 
   return (
     <div className="h-screen flex justify-center items-center mx-8 md:mx-0">
-      <Swiper
-        className="w-96 h-max"
-        spaceBetween={50}
-        slidesPerView={1}
-        allowTouchMove={true}
-        modules={[]}
-      >
-        {/* 注册 */}
-        <SwiperSlide className="!h-auto">
-          <Register />
-        </SwiperSlide>
+      <RegisterInfoProvider>
+        <Swiper
+          className="w-96 h-max"
+          spaceBetween={50}
+          slidesPerView={1}
+          allowTouchMove={false}
+          modules={[]}
+        >
+          {/* 注册 */}
+          <SwiperSlide className="!h-auto">
+            <Register />
+          </SwiperSlide>
 
-        {/* 验证码 */}
-        <SwiperSlide className="!h-auto">
-          <VerificationCode />
-        </SwiperSlide>
+          {/* 验证码 */}
+          <SwiperSlide className="!h-auto">
+            <VerificationCode />
+          </SwiperSlide>
 
-        {/* 成功 */}
-        <SwiperSlide className="!h-auto">
-          <SuccessRegister />
-        </SwiperSlide>
-      </Swiper>
+          {/* 成功 */}
+          <SwiperSlide className="!h-auto">
+            <SuccessRegister />
+          </SwiperSlide>
+        </Swiper>
+      </RegisterInfoProvider>
     </div>
   )
 }
@@ -82,6 +85,7 @@ export default function RegisterPage({
 function Register() {
   const t = useTranslations("register")
   const swiper = useSwiper()
+  const info = useRegisterInfo()
 
   const registerForm = useForm<RegisterFormSchemaType>({
     resolver: zodResolver(registerFormSchema),
@@ -223,7 +227,13 @@ function VerificationCode() {
     codeForm.handleSubmit(onCodeSubmit)()
   }
 
-  function onCodeSubmit(data: z.infer<typeof codeFormSchema>) {
+  async function onCodeSubmit(data: z.infer<typeof codeFormSchema>) {
+    const res = await trpcClient.User.verificationToken.query({ token: data.pin })
+
+    if (res?.error) {
+      return codeForm.setError("pin", { message: res.error })
+    }
+
     swiper.slideNext()
   }
 

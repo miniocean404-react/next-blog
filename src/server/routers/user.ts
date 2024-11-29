@@ -55,4 +55,52 @@ export const User = appRouter({
 
       return null
     }),
+  verificationToken: publicProcedure
+    .input(
+      z.object({
+        token: z.string(),
+      }),
+    )
+    .query(async (opts) => {
+      const { input } = opts
+
+      const verificationToken = await DB?.verificationToken.findUnique({
+        where: {
+          token: input.token,
+        },
+      })
+
+      if (!verificationToken || verificationToken.expires < new Date()) {
+        return {
+          error: "验证码已失效",
+        }
+      }
+
+      const user = await DB?.user.findUnique({
+        where: {
+          email: verificationToken.identifier,
+        },
+      })
+
+      if (!user) {
+        return {
+          error: "激活失败，请联系管理员",
+        }
+      }
+
+      await DB?.verificationToken.delete({
+        where: {
+          token: verificationToken.token,
+        },
+      })
+
+      await DB?.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          emailVerified: new Date(),
+        },
+      })
+    }),
 })
