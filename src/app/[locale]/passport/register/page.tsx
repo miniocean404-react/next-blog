@@ -85,7 +85,7 @@ export default function RegisterPage({
 function Register() {
   const t = useTranslations("register")
   const swiper = useSwiper()
-  const info = useRegisterInfo()
+  const registerInfo = useRegisterInfo()
 
   const registerForm = useForm<RegisterFormSchemaType>({
     resolver: zodResolver(registerFormSchema),
@@ -102,6 +102,7 @@ function Register() {
 
   async function onRegisterSubmit(values: RegisterFormSchemaType) {
     swiper.slideNext()
+    registerInfo.set(values)
 
     // const result = await register(values)
     // if (result?.error) {
@@ -201,6 +202,7 @@ function Register() {
 function VerificationCode() {
   const t = useTranslations("register")
   const swiper = useSwiper()
+  const registerInfo = useRegisterInfo()
 
   const codeRef = useRef<HTMLInputElement>(null)
 
@@ -228,7 +230,10 @@ function VerificationCode() {
   }
 
   async function onCodeSubmit(data: z.infer<typeof codeFormSchema>) {
-    const res = await trpcClient.User.verificationToken.query({ token: data.pin })
+    const res = await trpcClient.User.verificationToken.query({
+      token: data.pin,
+      email: registerInfo.info.email,
+    })
 
     if (res?.error) {
       return codeForm.setError("pin", { message: res.error })

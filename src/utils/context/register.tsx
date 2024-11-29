@@ -9,7 +9,11 @@ const RegisterInfoContext = React.createContext<RegisterFormSchemaType | undefin
 
 // 可以用 context 存储 auth 状态来进行传递
 export function useRegisterInfo() {
-  const [info, setInfo] = useState<RegisterFormSchemaType>() //状态
+  const [info, setInfo] = useState<RegisterFormSchemaType>({
+    email: "",
+    username: "",
+    password: "",
+  }) //状态
 
   return {
     //认证状态

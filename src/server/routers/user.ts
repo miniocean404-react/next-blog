@@ -58,6 +58,7 @@ export const User = appRouter({
   verificationToken: publicProcedure
     .input(
       z.object({
+        email: z.string().email(),
         token: z.string(),
       }),
     )
@@ -70,7 +71,11 @@ export const User = appRouter({
         },
       })
 
-      if (!verificationToken || verificationToken.expires < new Date()) {
+      if (
+        input.email !== verificationToken?.identifier ||
+        !verificationToken ||
+        verificationToken.expires < new Date()
+      ) {
         return {
           error: "验证码已失效",
         }
@@ -78,7 +83,10 @@ export const User = appRouter({
 
       const user = await DB?.user.findUnique({
         where: {
-          email: verificationToken.identifier,
+          email: input.email,
+        },
+        select: {
+          id: true,
         },
       })
 
