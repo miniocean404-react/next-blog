@@ -14,6 +14,7 @@ import { cn } from "@/utils/tw"
 import { getLocale, getTranslations } from "next-intl/server"
 import { Account } from "./sign-up"
 import { Navigation } from "@/components/header/navigation"
+import HeaderLayout from "@/components/header/layout"
 
 export default async function Header() {
   // const header = await headers()
@@ -30,44 +31,36 @@ export default async function Header() {
       {/* 网站标题图标切换 */}
       <DynWebTitle title={t("app.blogName")}></DynWebTitle>
 
-      <header
-        className={cn(
-          "fixed top-0 z-mini-header backdrop-blur-md",
-          "border-b",
-          "flex items-center h-16 w-full",
-          "px-2 md:px-8",
-        )}
-      >
-        <div className="flex w-full max-w-mini-layout mx-auto justify-between">
-          <Link
-            className="pl-4 text-base font-600 flex items-center"
-            href={`/${locale}`}
-            title={locale}
-          >
-            <Image
-              className="mr-2 h-6"
-              src={"/favicon.svg"}
-              alt={"logo"}
-              width={24}
-              height={24}
-              priority
-            />
-            <span>{t("app.blogName")}</span>
-          </Link>
+      <HeaderLayout>
+        <Link
+          className="pl-4 text-base font-600 flex items-center"
+          href={`/${locale}`}
+          title={locale}
+        >
+          <Image
+            className="mr-2 h-6"
+            src={"/favicon.svg"}
+            alt={"logo"}
+            width={24}
+            height={24}
+            priority
+          />
+          <span>{t("app.blogName")}</span>
+        </Link>
 
-          <div className="flex items-center md:flex-grow">
-            <div className="md:pl-6 md:flex md:flex-grow">
-              <AlgoliaSearch />
-            </div>
+        <div className="flex items-center md:flex-grow">
+          <div className="md:pl-6 md:flex md:flex-grow">
+            <AlgoliaSearch />
+          </div>
 
-            <div className="hidden items-center md:flex">
-              <Navigation />
-              <ThemeSwitch />
-              <Account session={session}></Account>
-            </div>
+          <Navigation />
+
+          <div className="hidden md:items-center md:flex">
+            <ThemeSwitch />
+            <Account session={session}></Account>
           </div>
         </div>
-      </header>
+      </HeaderLayout>
     </>
   )
 }
