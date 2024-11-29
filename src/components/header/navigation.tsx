@@ -79,7 +79,7 @@ export async function Navigation(props: PropsWithChildren<NavigationProps>) {
           <AlignRight className="size-4 text-primary/70"></AlignRight>
         </DrawerTrigger>
 
-        <DrawerContent className="left-auto w-80 mt-0 inset-y-0 rounded-tr-none rounded-l-[10px]">
+        <DrawerContent direction="right">
           <DrawerHeader>
             <DrawerTitle>Are you absolutely sure?</DrawerTitle>
             <DrawerDescription>This action cannot be undone.</DrawerDescription>
