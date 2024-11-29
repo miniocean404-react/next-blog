@@ -19,6 +19,9 @@ declare global {
       IMAGE_KIT_PUBLIC_KEY: string
       IMAGE_KIT_PRIVATE_KEY: string
       IMAGE_KIT_URL_ENDPOINT: string
+
+      // 数据库
+      DATABASE_URL: string
     }
   }
 

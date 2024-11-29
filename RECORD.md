@@ -42,28 +42,29 @@ next14: https://www.bilibili.com/video/BV157pRe8EyD/?spm_id_from=333.337.search-
 1. https://juejin.cn/post/7329736763060518931?share_token=015dde7b-6e65-43b8-acb6-84629bf3194b
 2. 飞书授权登录：https://juejin.cn/post/7357261180493135898
 
-# prisma
+# drizzle-kit
 
-1. 快速入门 ORM 框架 Prisma: https://juejin.cn/post/7374308419073327113?searchId=202410281535241DB0D6F12C004DED873E
-2. Prisma数据库ORM框架学习: https://juejin.cn/post/7378459137417461760
+1. https://juejin.cn/post/7374683456717340711?searchId=20241129233037DBEB5659EE38A97DC394
 
 ### 命令
 
-初始化
+创建表
 
 ```shell
-pnpx prisma init --datasource-provider mysql
+pnpx drizzle-kit push
 ```
 
-迁移
+生成迁移
 
 ```shell
-pnpx prisma migrate dev
+pnpx drizzle-kit generate
 ```
 
-## 功能
+推送更改
 
-1. m3u8:https://juejin.cn/post/7382966707060703268?share_token=91713cfd-d861-496c-bdc0-db4ea0e75844
+```shell
+pnpx drizzle-kit push
+```
 
 # cli 命令
 
@@ -117,3 +118,26 @@ const config: Config = {
 ## Google 搜索引擎优化
 
 1. Google搜索成最大入口，简单谈下个人博客的SEO: https://juejin.cn/post/6844904050740166663?searchId=20241025005109B96F36B1CDFA183710E9
+
+# prisma
+
+1. 快速入门 ORM 框架 Prisma: https://juejin.cn/post/7374308419073327113?searchId=202410281535241DB0D6F12C004DED873E
+2. Prisma数据库ORM框架学习: https://juejin.cn/post/7378459137417461760
+
+### 命令
+
+初始化
+
+```shell
+pnpx prisma init --datasource-provider mysql
+```
+
+迁移
+
+```shell
+pnpx prisma migrate dev
+```
+
+## 功能
+
+1. m3u8:https://juejin.cn/post/7382966707060703268?share_token=91713cfd-d861-496c-bdc0-db4ea0e75844

@@ -2,7 +2,7 @@
 
 import { trpcResult } from "@/server/trpc/shared"
 import { hashPassword } from "@/utils/crypto"
-import { DB } from "@/utils/db"
+import { db, DB } from "@/db"
 import type { RegisterFormSchemaType } from "@/utils/schema/register"
 
 export const register = async (data: RegisterFormSchemaType) => {
