@@ -8,15 +8,12 @@ import Notion from "~/public/svg/notion.svg"
 import { AlignRight } from "lucide-react"
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "~/lib/components/shadcn/ui/drawer"
-import { Button } from "~/lib/components/shadcn/ui/button"
 
 export async function Navigation(props: PropsWithChildren<NavigationProps>) {
   const t = await getTranslations("header")

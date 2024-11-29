@@ -61,17 +61,17 @@ export default function RegisterPage({
         modules={[]}
       >
         {/* 注册 */}
-        <SwiperSlide>
+        <SwiperSlide className="!h-auto">
           <Register />
         </SwiperSlide>
 
         {/* 验证码 */}
-        <SwiperSlide>
+        <SwiperSlide className="!h-auto">
           <VerificationCode />
         </SwiperSlide>
 
         {/* 成功 */}
-        <SwiperSlide>
+        <SwiperSlide className="!h-auto">
           <SuccessRegister />
         </SwiperSlide>
       </Swiper>
