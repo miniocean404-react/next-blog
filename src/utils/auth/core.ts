@@ -4,12 +4,12 @@ import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
-import { db } from "@/db"
+import { client } from "@/db/index"
 import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
 import { isEqualHashPassword } from "@/utils/crypto"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: DrizzleAdapter(db),
+  // adapter: DrizzleAdapter(db),
   pages: {
     // 授权登录如果有报错，系统会默认重定向到/api/auth/signin内置页面，我们想重定向自己的页面，可以在配置。
     signIn: "/passport/login",
@@ -32,7 +32,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!email || !password) return null
 
         try {
-          const user = await db.query.userModel.findFirst({
+          const user = await db().query.userModel.findFirst({
             where: (user, { eq }) => eq(user.email, email),
             columns: {
               id: true,
@@ -44,14 +44,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
           })
 
-          const userRole = await db.query.userRoleModel.findMany({
+          const userRole = await db().query.userRoleModel.findMany({
             where: (userRole, { eq }) => eq(userRole.userId, user?.id || 0),
             columns: {
               roleId: true,
             },
           })
 
-          const role = await db.query.roleModel.findMany({
+          const role = await db().query.roleModel.findMany({
             where: (role, { inArray }) =>
               inArray(
                 role.id,

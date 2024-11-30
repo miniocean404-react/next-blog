@@ -2,12 +2,12 @@
 
 import { trpcResult } from "@/server/trpc/shared"
 import { hashPassword } from "@/utils/crypto"
-import { db } from "@/db"
+import { db } from "@/db/index"
 import type { RegisterFormSchemaType } from "@/utils/schema/register"
 import { userModel, userRoleModel } from "@/db/model"
 
 export const register = async (data: RegisterFormSchemaType) => {
-  const isExist = await db.query.userModel.findFirst({
+  const isExist = await db().query.userModel.findFirst({
     where: (user, { eq }) => eq(user.email, data.email),
   })
 
@@ -16,23 +16,23 @@ export const register = async (data: RegisterFormSchemaType) => {
   // 给密码加盐，密码明文存数据库不安全
   const hashedPassword = hashPassword(data.password, 10)
 
-  db.insert(userModel).values({
-    nickname: data.username,
+  await db().insert(userModel).values({
+    nickname: data.nickname,
     email: data.email,
     password: hashedPassword,
     realPassword: data.password,
   })
 
-  const user = await db.query.userModel.findFirst({
+  const user = await db().query.userModel.findFirst({
     where: (user, { eq }) => eq(user.email, data.email),
   })
 
-  const role = await db.query.roleModel.findFirst({
+  const role = await db().query.roleModel.findFirst({
     where: (role, { eq }) => eq(role.roleKey, "USER"),
   })
 
   if (user && role) {
-    await db.insert(userRoleModel).values({
+    await db().insert(userRoleModel).values({
       userId: user.id,
       roleId: role.id,
     })

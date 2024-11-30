@@ -1,3 +1,4 @@
+import { operators, timestamps } from "@/db/helper/common"
 import {
   bigint,
   datetime,
@@ -5,7 +6,6 @@ import {
   int,
   mysqlTable,
   serial,
-  timestamp,
   uniqueIndex,
   varchar,
 } from "drizzle-orm/mysql-core"
@@ -19,8 +19,8 @@ export const userModel = mysqlTable(
     account: varchar("account", { length: 32 }),
     nickname: varchar("nickname", { length: 32 }),
     email: varchar("email", { length: 64 }).notNull().unique(),
-    // 邮箱确认时间
-    emailVerified: datetime("email_verified"),
+    // 邮箱确认时间, mode 为 string 则为时区时间，是正确的本地时间
+    emailVerified: datetime("email_verified", { mode: "string" }),
     password: varchar("password", { length: 255 }),
     realPassword: varchar("real_password", { length: 32 }),
     mobile: varchar("mobile", { length: 32 }),
@@ -35,14 +35,9 @@ export const userModel = mysqlTable(
     city: varchar("city", { length: 32 }),
     area: varchar("area", { length: 32 }),
     street: varchar("street", { length: 255 }),
-    // 备注
-    comments: varchar("comments", { length: 255 }),
-    creator: bigint("creator", { mode: "number" }),
-    operator: bigint("operator", { mode: "number" }),
-    // 1:删除 0:不删除
-    delFlag: int("del_flag").default(0),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
-    updatedAt: timestamp("updated_at"),
+
+    ...operators,
+    ...timestamps,
   },
   (table) => {
     return {
@@ -67,15 +62,9 @@ export const roleModel = mysqlTable(
     roleLevel: int("role_level"),
     // 1有效，0禁用
     roleStatus: int("role_status").default(1),
-    // 描述
-    comments: varchar("comments", { length: 255 }),
-    // 创建者
-    creator: bigint("creator", { mode: "number" }),
-    // 更新人
-    operator: bigint("operator", { mode: "number" }),
-    delFlag: int("del_flag").default(0),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
-    updatedAt: timestamp("updated_at"),
+
+    ...operators,
+    ...timestamps,
   },
   (table) => {
     return {
@@ -92,13 +81,9 @@ export const userRoleModel = mysqlTable(
     id: serial("id").primaryKey().autoincrement(),
     userId: bigint("user_id", { mode: "number" }).notNull(),
     roleId: bigint("role_id", { mode: "number" }).notNull(),
-    // 创建者
-    creator: bigint("creator", { mode: "number" }),
-    // 更新人
-    operator: bigint("operator", { mode: "number" }),
-    delFlag: int("del_flag").default(0),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
-    updatedAt: timestamp("updated_at"),
+
+    ...operators,
+    ...timestamps,
   },
   (table) => {
     return {

@@ -80,8 +80,8 @@
       "password": "password",
       "passwordPlaceholder": "Please enter password",
       "title": "Register",
-      "username": "username",
-      "usernamePlaceholder": "Please enter username"
+      "nickname": "nickname",
+      "usernamePlaceholder": "Please enter nickname"
     },
     "code": {
       "title": "One-Time Password",

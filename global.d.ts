@@ -14,6 +14,9 @@ declare namespace NodeJS {
     // 基础路径
     NEXT_PUBLIC_BASEURL: string
 
+    // Next runtime 环境
+    NEXT_RUNTIME: string | "nodejs"
+
     AUTH_SECRET: string
 
     AUTH_GITHUB_ID: string

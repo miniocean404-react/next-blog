@@ -1,13 +1,5 @@
-import {
-  bigint,
-  boolean,
-  index,
-  int,
-  mysqlTable,
-  serial,
-  timestamp,
-  varchar,
-} from "drizzle-orm/mysql-core"
+import { operators, timestamps } from "@/db/helper/common"
+import { bigint, boolean, index, int, mysqlTable, serial, varchar } from "drizzle-orm/mysql-core"
 
 // Permission 表
 export const permissionModel = mysqlTable(
@@ -38,13 +30,9 @@ export const permissionModel = mysqlTable(
     resourcePageName: varchar("resource_page_name", { length: 32 }),
     // '1有效，0禁用'
     resourceStatus: int("resource_status").default(1),
-    comments: varchar("comments", { length: 255 }),
-    // '备注'
-    creator: bigint("creator", { mode: "number" }),
-    operator: bigint("operator", { mode: "number" }),
-    delFlag: int("del_flag").default(0),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
-    updatedAt: timestamp("updated_at"),
+
+    ...operators,
+    ...timestamps,
   },
   (table) => {
     return {
@@ -59,9 +47,7 @@ export const rolePermissionModel = mysqlTable("role_permission", {
   id: serial("id").primaryKey().autoincrement(),
   roleId: bigint("role_id", { mode: "number" }).notNull(),
   permissionId: bigint("permission_id", { mode: "number" }).notNull(),
-  creator: bigint("creator", { mode: "number" }),
-  operator: bigint("operator", { mode: "number" }),
-  delFlag: int("del_flag").default(0),
-  createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
-  updatedAt: timestamp("updated_at"),
+
+  ...operators,
+  ...timestamps,
 })

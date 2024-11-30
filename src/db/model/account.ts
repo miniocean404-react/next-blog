@@ -1,13 +1,5 @@
-import {
-  index,
-  int,
-  mysqlTable,
-  serial,
-  text,
-  timestamp,
-  uniqueIndex,
-  varchar,
-} from "drizzle-orm/mysql-core"
+import { operators, timestamps } from "@/db/helper/common"
+import { index, int, mysqlTable, serial, text, uniqueIndex, varchar } from "drizzle-orm/mysql-core"
 
 export const accountModel = mysqlTable(
   "account",
@@ -25,8 +17,8 @@ export const accountModel = mysqlTable(
     idToken: text("id_token"),
     sessionState: varchar("session_state", { length: 32 }),
     refreshTokenExpiresIn: int("refresh_token_expires_in"),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
-    updatedAt: timestamp("updated_at"),
+    ...operators,
+    ...timestamps,
   },
   (table) => {
     return {

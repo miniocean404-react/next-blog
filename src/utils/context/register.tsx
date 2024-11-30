@@ -5,7 +5,7 @@ import React, { useContext, useState, type PropsWithChildren } from "react"
 function useRegisterInfo() {
   const [data, setData] = useState<RegisterFormSchemaType>({
     email: "",
-    username: "",
+    nickname: "",
     password: "",
   })
 
@@ -17,7 +17,7 @@ function useRegisterInfo() {
     clear() {
       setData({
         email: "",
-        username: "",
+        nickname: "",
         password: "",
       })
     },

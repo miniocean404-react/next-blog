@@ -91,7 +91,7 @@ function Register() {
     shouldUseNativeValidation: false,
     defaultValues: {
       email: "",
-      username: "",
+      nickname: "",
       password: "",
     },
   })
@@ -136,10 +136,10 @@ function Register() {
 
               <FormField
                 control={registerForm.control}
-                name="username"
+                name="nickname"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("card.username")}</FormLabel>
+                    <FormLabel>{t("card.nickname")}</FormLabel>
                     <FormControl>
                       <Input placeholder={t("card.usernamePlaceholder")} {...field} />
                     </FormControl>

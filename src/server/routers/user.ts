@@ -4,7 +4,7 @@ import { genVerificationCode } from "@/utils/id"
 import { z } from "zod"
 import { publicProcedure } from "../trpc/procedure"
 import { appRouter } from "../trpc/server"
-import { db } from "@/db"
+import { db } from "@/db/index"
 import { userModel, verificationTokenModel } from "@/db/model"
 import { eq } from "drizzle-orm"
 
@@ -20,7 +20,7 @@ export const User = appRouter({
       const { name, email } = opts.input
 
       if (name && email) {
-        const res = await db.query.userModel.findFirst({
+        const res = await db().query.userModel.findFirst({
           where: (user, { eq, and }) => and(eq(user.email, email), eq(user.nickname, name)),
           columns: {
             nickname: true,
@@ -41,11 +41,13 @@ export const User = appRouter({
       const { input } = opts
       const token = genVerificationCode()
 
-      db.insert(verificationTokenModel).values({
-        identifier: input.email,
-        token,
-        expires: new Date(Date.now() + 60 * 60 * 1000),
-      })
+      await db()
+        .insert(verificationTokenModel)
+        .values({
+          identifier: input.email,
+          token,
+          expires: new Date(Date.now() + 60 * 60 * 1000).toString(),
+        })
 
       await sendEmail({
         to: input.email,
@@ -65,16 +67,17 @@ export const User = appRouter({
     .query(async (opts) => {
       const { input } = opts
 
-      const verificationToken = await db.query.verificationTokenModel.findFirst({
+      const verificationToken = await db().query.verificationTokenModel.findFirst({
         where: (verification, { eq, and }) => eq(verification.token, input.token),
       })
 
       if (input.email !== verificationToken?.identifier || !verificationToken)
         return trpcResult.failMsg("验证码错误")
 
-      if (verificationToken.expires < new Date()) return trpcResult.failMsg("验证码已过期")
+      if (new Date(verificationToken.expires) < new Date())
+        return trpcResult.failMsg("验证码已过期")
 
-      const user = await db.query.userModel.findFirst({
+      const user = await db().query.userModel.findFirst({
         where: (user, { eq }) => eq(user.email, input.email),
         columns: {
           id: true,
@@ -83,13 +86,14 @@ export const User = appRouter({
 
       if (!user) return trpcResult.failMsg("激活失败，请联系管理员")
 
-      db.delete(verificationTokenModel).where(
-        eq(verificationTokenModel.token, verificationToken.token),
-      )
+      await db()
+        .delete(verificationTokenModel)
+        .where(eq(verificationTokenModel.token, verificationToken.token))
 
-      db.update(userModel)
+      await db()
+        .update(userModel)
         .set({
-          emailVerified: new Date(),
+          emailVerified: new Date().toString(),
         })
         .where(eq(userModel.id, user.id))
 
