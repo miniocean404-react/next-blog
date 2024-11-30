@@ -1,6 +1,6 @@
 import Toast from "@/components/toast"
 import { APP_URL, GITHUB_LINK } from "@/constant/link"
-import { routing } from "@/utils/i18n/routing"
+import { routing } from "@/i18n/routing"
 import { cn } from "@/utils/tw"
 import type { Metadata, ResolvingMetadata, Viewport } from "next"
 import { getLocale, getMessages, getTranslations, setRequestLocale } from "next-intl/server"

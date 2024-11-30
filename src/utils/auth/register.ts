@@ -4,7 +4,7 @@ import { trpcResult } from "@/server/trpc/shared"
 import { hashPassword } from "@/utils/crypto"
 import { db, DB } from "@/db"
 import type { RegisterFormSchemaType } from "@/utils/schema/register"
-import { userModel } from "@/db/model"
+import { userModel, userRoleModel } from "@/db/model"
 
 export const register = async (data: RegisterFormSchemaType) => {
   const isExist = await db.query.userModel.findFirst({
@@ -32,11 +32,9 @@ export const register = async (data: RegisterFormSchemaType) => {
   })
 
   if (user && role) {
-    await DB.userRole.create({
-      data: {
-        user_id: user.id,
-        role_id: role.id,
-      },
+    await db.insert(userRoleModel).values({
+      userId: user.id,
+      roleId: role.id,
     })
   }
 

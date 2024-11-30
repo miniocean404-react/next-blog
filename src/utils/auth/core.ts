@@ -4,7 +4,7 @@ import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import { DB } from "@/db"
+import { db, DB } from "@/db"
 import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
 import { isEqualHashPassword } from "@/utils/crypto"
 
@@ -32,11 +32,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!email || !password) return null
 
         try {
-          const user = await DB.user.findFirst({
-            where: {
-              email,
-            },
-            select: {
+          const user = await db.query.userModel.findFirst({
+            where: (user, { eq }) => eq(user.email, email),
+            columns: {
               id: true,
               cuid: true,
               nickname: true,
@@ -46,21 +44,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
           })
 
-          const userRole = await DB.userRole.findMany({
-            where: {
-              user_id: user?.id,
-            },
-            select: {
-              role_id: true,
+          const userRole = await db.query.userRoleModel.findMany({
+            where: (userRole, { eq }) => eq(userRole.userId, user?.id || 0),
+            columns: {
+              roleId: true,
             },
           })
 
-          const role = await DB.role.findMany({
-            where: {
-              id: { in: userRole.map((item) => item.role_id) },
-            },
-            select: {
-              role_key: true,
+          const role = await db.query.roleModel.findMany({
+            where: (role, { inArray }) =>
+              inArray(
+                role.id,
+                userRole.map((item) => item.roleId),
+              ),
+            columns: {
+              roleKey: true,
             },
           })
 
@@ -72,7 +70,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             name: user?.nickname,
             email: user?.email,
             image: user?.avatar,
-            role: role.map((item) => item.role_key).join(","),
+            role: role.map((item) => item.roleKey).join(","),
           }
         } catch (error) {
           return null
