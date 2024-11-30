@@ -9,7 +9,7 @@ import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
 import { isEqualHashPassword } from "@/utils/crypto"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  // adapter: DrizzleAdapter(db),
+  adapter: DrizzleAdapter(db),
   pages: {
     // 授权登录如果有报错，系统会默认重定向到/api/auth/signin内置页面，我们想重定向自己的页面，可以在配置。
     signIn: "/passport/login",
