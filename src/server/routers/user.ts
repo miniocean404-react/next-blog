@@ -4,6 +4,9 @@ import { genVerificationCode } from "@/utils/id"
 import { z } from "zod"
 import { publicProcedure } from "../trpc/procedure"
 import { appRouter } from "../trpc/server"
+import { db } from "@/db"
+import { userModel, verificationTokenModel } from "@/db/model"
+import { eq } from "drizzle-orm"
 
 export const User = appRouter({
   getUserPermission: publicProcedure
@@ -16,19 +19,17 @@ export const User = appRouter({
     .query(async (opts) => {
       const { name, email } = opts.input
 
-      const res = await DB?.user.findUnique({
-        where: {
-          nickname: name,
-          email,
-        },
-        // include 是否显示 roles 表的数据, select 查询只展示的字段
-        select: {
-          nickname: true,
-          email: true,
-        },
-      })
+      if (name && email) {
+        const res = await db.query.userModel.findFirst({
+          where: (user, { eq, and }) => and(eq(user.email, email), eq(user.nickname, name)),
+          columns: {
+            nickname: true,
+            email: true,
+          },
+        })
 
-      return res
+        return res
+      }
     }),
   sendEmail: publicProcedure
     .input(
@@ -40,12 +41,10 @@ export const User = appRouter({
       const { input } = opts
       const token = genVerificationCode()
 
-      await DB?.verificationToken.create({
-        data: {
-          identifier: input.email,
-          token,
-          expires: new Date(Date.now() + 60 * 60 * 1000),
-        },
+      db.insert(verificationTokenModel).values({
+        identifier: input.email,
+        token,
+        expires: new Date(Date.now() + 60 * 60 * 1000),
       })
 
       await sendEmail({
@@ -66,10 +65,8 @@ export const User = appRouter({
     .query(async (opts) => {
       const { input } = opts
 
-      const verificationToken = await DB?.verificationToken.findUnique({
-        where: {
-          token: input.token,
-        },
+      const verificationToken = await db.query.verificationTokenModel.findFirst({
+        where: (verification, { eq, and }) => eq(verification.token, input.token),
       })
 
       if (input.email !== verificationToken?.identifier || !verificationToken)
@@ -77,31 +74,24 @@ export const User = appRouter({
 
       if (verificationToken.expires < new Date()) return trpcResult.failMsg("验证码已过期")
 
-      const user = await DB?.user.findUnique({
-        where: {
-          email: input.email,
-        },
-        select: {
+      const user = await db.query.userModel.findFirst({
+        where: (user, { eq }) => eq(user.email, input.email),
+        columns: {
           id: true,
         },
       })
 
       if (!user) return trpcResult.failMsg("激活失败，请联系管理员")
 
-      await DB?.verificationToken.delete({
-        where: {
-          token: verificationToken.token,
-        },
-      })
+      db.delete(verificationTokenModel).where(
+        eq(verificationTokenModel.token, verificationToken.token),
+      )
 
-      await DB?.user.update({
-        where: {
-          id: user.id,
-        },
-        data: {
+      db.update(userModel)
+        .set({
           emailVerified: new Date(),
-        },
-      })
+        })
+        .where(eq(userModel.id, user.id))
 
       return trpcResult.successMsg("激活成功")
     }),

@@ -2,7 +2,7 @@
 
 import { trpcResult } from "@/server/trpc/shared"
 import { hashPassword } from "@/utils/crypto"
-import { db, DB } from "@/db"
+import { db } from "@/db"
 import type { RegisterFormSchemaType } from "@/utils/schema/register"
 import { userModel, userRoleModel } from "@/db/model"
 

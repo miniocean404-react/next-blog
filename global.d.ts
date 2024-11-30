@@ -27,8 +27,6 @@ declare global {
 
   type Messages = typeof import("./locales/zh.json")
   declare interface IntlMessages extends Messages {}
-
-  var DB: undefined | PrismaClient
 }
 
 declare module "next-auth" {
