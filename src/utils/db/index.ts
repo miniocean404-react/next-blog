@@ -8,5 +8,5 @@ const prisma = new PrismaClient({
       : ["error"],
 })
 
-export const DB = globalThis.DB ?? prisma
-if (process.env.NODE_ENV !== "production") globalThis.DB = prisma
+export const db = globalThis.db ?? prisma
+if (process.env.NODE_ENV !== "production") globalThis.db = prisma

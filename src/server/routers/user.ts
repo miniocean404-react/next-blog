@@ -16,7 +16,7 @@ export const User = appRouter({
     .query(async (opts) => {
       const { name, email } = opts.input
 
-      const res = await DB?.user.findUnique({
+      const res = await db.user.findUnique({
         where: {
           nickname: name,
           email,
@@ -40,7 +40,7 @@ export const User = appRouter({
       const { input } = opts
       const token = genVerificationCode()
 
-      await DB?.verificationToken.create({
+      await db.verificationToken.create({
         data: {
           identifier: input.email,
           token,
@@ -66,7 +66,7 @@ export const User = appRouter({
     .query(async (opts) => {
       const { input } = opts
 
-      const verificationToken = await DB?.verificationToken.findUnique({
+      const verificationToken = await db.verificationToken.findUnique({
         where: {
           token: input.token,
         },
@@ -77,7 +77,7 @@ export const User = appRouter({
 
       if (verificationToken.expires < new Date()) return trpcResult.failMsg("验证码已过期")
 
-      const user = await DB?.user.findUnique({
+      const user = await db.user.findUnique({
         where: {
           email: input.email,
         },
@@ -88,13 +88,13 @@ export const User = appRouter({
 
       if (!user) return trpcResult.failMsg("激活失败，请联系管理员")
 
-      await DB?.verificationToken.delete({
+      await db.verificationToken.delete({
         where: {
           token: verificationToken.token,
         },
       })
 
-      await DB?.user.update({
+      await db.user.update({
         where: {
           id: user.id,
         },

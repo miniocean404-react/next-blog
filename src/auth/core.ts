@@ -4,12 +4,12 @@ import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import { DB } from "@/utils/db"
+import { db } from "@/utils/db"
 import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
 import { isEqualHashPassword } from "@/utils/crypto"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: PrismaAdapter(DB),
+  adapter: PrismaAdapter(db),
   pages: {
     // 授权登录如果有报错，系统会默认重定向到/api/auth/signin内置页面，我们想重定向自己的页面，可以在配置。
     signIn: "/passport/login",
@@ -32,7 +32,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!email || !password) return null
 
         try {
-          const user = await DB.user.findFirst({
+          const user = await db.user.findFirst({
             where: {
               email,
             },
@@ -46,7 +46,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
           })
 
-          const userRole = await DB.userRole.findMany({
+          const userRole = await db.userRole.findMany({
             where: {
               user_id: user?.id,
             },
@@ -55,7 +55,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
           })
 
-          const role = await DB.role.findMany({
+          const role = await db.role.findMany({
             where: {
               id: { in: userRole.map((item) => item.role_id) },
             },

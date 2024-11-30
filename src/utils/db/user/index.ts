@@ -1,7 +1,7 @@
 "use server"
 
 import { z } from "zod"
-import { DB } from "../index"
+import { db } from "../index"
 // 看出来 prisma 多方便了吧，直接将 User表的数据类型映射过来了
 // 因为我们使用
 
