@@ -9,14 +9,13 @@ import {
   uniqueIndex,
   varchar,
 } from "drizzle-orm/mysql-core"
-import { nanoid } from "nanoid"
 
 // User 表
-export const User = mysqlTable(
+export const userModel = mysqlTable(
   "user",
   {
     id: serial("id").primaryKey().autoincrement(),
-    cuid: varchar("cuid", { length: 255 }).notNull().unique().$defaultFn(nanoid),
+    cuid: varchar("cuid", { length: 255 }).notNull().unique().$defaultFn(crypto.randomUUID),
     account: varchar("account", { length: 32 }),
     nickname: varchar("nickname", { length: 32 }),
     email: varchar("email", { length: 64 }).notNull().unique(),
@@ -55,12 +54,12 @@ export const User = mysqlTable(
 )
 
 // Role 表
-export const Role = mysqlTable(
+export const roleModel = mysqlTable(
   "role",
   {
     id: serial("id").primaryKey().autoincrement(),
     // 父id
-    parentId: serial("parent_id").default(0),
+    parentId: int("parent_id").default(0),
     // 角色名称
     roleName: varchar("role_name", { length: 40 }),
     // 角色标识
@@ -87,12 +86,12 @@ export const Role = mysqlTable(
 )
 
 // UserRole 表
-export const UserRole = mysqlTable(
+export const userRoleModel = mysqlTable(
   "user_role",
   {
     id: serial("id").primaryKey().autoincrement(),
-    userId: serial("user_id").notNull(),
-    roleId: serial("role_id").notNull(),
+    userId: bigint("user_id", { mode: "number" }).notNull(),
+    roleId: bigint("role_id", { mode: "number" }).notNull(),
     // 创建者
     creator: bigint("creator", { mode: "number" }),
     // 更新人

@@ -9,7 +9,7 @@ import {
   varchar,
 } from "drizzle-orm/mysql-core"
 
-export const Account = mysqlTable(
+export const accountModel = mysqlTable(
   "account",
   {
     id: serial("id").primaryKey().autoincrement(),

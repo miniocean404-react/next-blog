@@ -10,7 +10,7 @@ import {
 } from "drizzle-orm/mysql-core"
 
 // Token 表
-export const Token = mysqlTable(
+export const tokenModel = mysqlTable(
   "token",
   {
     id: serial("id").primaryKey().autoincrement(),
@@ -35,7 +35,7 @@ export const Token = mysqlTable(
 )
 
 // Session 表
-export const Session = mysqlTable(
+export const sessionModel = mysqlTable(
   "session",
   {
     id: serial("id").primaryKey().autoincrement(),
@@ -53,7 +53,7 @@ export const Session = mysqlTable(
 )
 
 // VerificationToken 表
-export const VerificationToken = mysqlTable(
+export const verificationTokenModel = mysqlTable(
   "verification_token",
   {
     identifier: varchar("identifier", { length: 255 }).notNull(),

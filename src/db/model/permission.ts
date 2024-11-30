@@ -10,18 +10,18 @@ import {
 } from "drizzle-orm/mysql-core"
 
 // Permission 表
-export const Permission = mysqlTable(
+export const permissionModel = mysqlTable(
   "permission",
   {
     id: serial("id").primaryKey().autoincrement(),
     // 父级ID
-    parentId: bigint("parent_id", { mode: "number" }),
+    parentId: int("parent_id").default(0),
     // 资源名称
     resourceName: varchar("resource_name", { length: 40 }),
     // 资源标识
     resourceKey: varchar("resource_key", { length: 100 }),
     // 资源类型 1、模块 2、菜单 3、按钮 4、链接
-    resourceType: varchar("resource_type", { length: 1 }),
+    resourceType: int("resource_type"),
     // 资源图标
     resourceIcon: varchar("resource_icon", { length: 255 }),
     // 资源路径
@@ -55,7 +55,7 @@ export const Permission = mysqlTable(
 )
 
 // RolePermission 表
-export const RolePermission = mysqlTable("role_permission", {
+export const rolePermissionModel = mysqlTable("role_permission", {
   id: serial("id").primaryKey().autoincrement(),
   roleId: bigint("role_id", { mode: "number" }).notNull(),
   permissionId: bigint("permission_id", { mode: "number" }).notNull(),

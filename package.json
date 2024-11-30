@@ -21,7 +21,7 @@
     "tailwindcss-init": "tailwindcss init -p",
     "vercel-login": "vercel login",
     "vercel-publish": "vercel --prod",
-    "TEST": "drizzle-kit push"
+    "db:push": "drizzle-kit push"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",

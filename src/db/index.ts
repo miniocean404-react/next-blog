@@ -13,6 +13,7 @@ if (process.env.NODE_ENV !== "production") globalThis.DB = prisma
 
 import { drizzle } from "drizzle-orm/mysql2"
 import mysql from "mysql2/promise"
+import * as schema from "./model"
 
 // 创建数据库连接池
 // const poolConnection = mysql.createPool({
@@ -28,4 +29,7 @@ import mysql from "mysql2/promise"
 
 // drizzle(poolConnection)
 
-export const db = drizzle(process.env.DATABASE_URL)
+export const db = drizzle(process.env.DATABASE_URL, {
+  schema,
+  mode: "default",
+})

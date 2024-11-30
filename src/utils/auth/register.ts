@@ -4,12 +4,11 @@ import { trpcResult } from "@/server/trpc/shared"
 import { hashPassword } from "@/utils/crypto"
 import { db, DB } from "@/db"
 import type { RegisterFormSchemaType } from "@/utils/schema/register"
+import { userModel } from "@/db/model"
 
 export const register = async (data: RegisterFormSchemaType) => {
-  const isExist = await DB.user.findUnique({
-    where: {
-      email: data.email,
-    },
+  const isExist = await db.query.userModel.findFirst({
+    where: (user, { eq }) => eq(user.email, data.email),
   })
 
   if (isExist) return trpcResult.failMsg("当前邮箱已存在！")
@@ -17,19 +16,19 @@ export const register = async (data: RegisterFormSchemaType) => {
   // 给密码加盐，密码明文存数据库不安全
   const hashedPassword = hashPassword(data.password, 10)
 
-  const user = await DB.user.create({
-    data: {
-      nickname: data.username,
-      email: data.email,
-      password: hashedPassword,
-      real_assword: data.password,
-    },
+  db.insert(userModel).values({
+    nickname: data.username,
+    email: data.email,
+    password: hashedPassword,
+    realPassword: data.password,
   })
 
-  const role = await DB.role.findUnique({
-    where: {
-      role_key: "USER",
-    },
+  const user = await db.query.userModel.findFirst({
+    where: (user, { eq }) => eq(user.email, data.email),
+  })
+
+  const role = await db.query.roleModel.findFirst({
+    where: (role, { eq }) => eq(role.roleKey, "USER"),
   })
 
   if (user && role) {
@@ -41,5 +40,5 @@ export const register = async (data: RegisterFormSchemaType) => {
     })
   }
 
-  return trpcResult.successMsg("注册成功")
+  return trpcResult.successMsg("数据记录成功")
 }
