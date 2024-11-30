@@ -25,10 +25,10 @@ declare global {
 
   type Messages = typeof import("./locales/zh.json")
   declare interface IntlMessages extends Messages {}
-}
 
-declare module "next-auth" {
-  interface User {
-    role?: string | null
+  declare module "next-auth" {
+    interface User {
+      role?: string | null
+    }
   }
 }
