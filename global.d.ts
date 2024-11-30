@@ -1,5 +1,3 @@
-import { PrismaClient } from "@prisma/client"
-
 declare global {
   declare namespace NodeJS {
     declare interface ProcessEnv {

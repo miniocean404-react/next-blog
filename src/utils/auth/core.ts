@@ -3,13 +3,13 @@ import NextAuth from "next-auth"
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
-import { PrismaAdapter } from "@auth/prisma-adapter"
+import { DrizzleAdapter } from "@auth/drizzle-adapter"
 import { db } from "@/db"
 import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
 import { isEqualHashPassword } from "@/utils/crypto"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  // adapter: PrismaAdapter(DB),
+  adapter: DrizzleAdapter(db),
   pages: {
     // 授权登录如果有报错，系统会默认重定向到/api/auth/signin内置页面，我们想重定向自己的页面，可以在配置。
     signIn: "/passport/login",

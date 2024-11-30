@@ -24,6 +24,7 @@
     "db:push": "drizzle-kit push"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^1.7.4",
     "@docsearch/css": "^3.8.0",
     "@docsearch/js": "^3.8.0",
     "@hookform/resolvers": "^3.9.1",

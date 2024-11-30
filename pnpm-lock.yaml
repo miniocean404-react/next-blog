@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@auth/prisma-adapter':
-        specifier: ^2.7.4
-        version: 2.7.4(@prisma/client@6.0.0(prisma@6.0.0))(nodemailer@6.9.16)
+      '@auth/drizzle-adapter':
+        specifier: ^1.7.4
+        version: 1.7.4(nodemailer@6.9.16)
       '@docsearch/css':
         specifier: ^3.8.0
         version: 3.8.0
@@ -23,9 +23,6 @@ importers:
       '@planetscale/database':
         specifier: ^1.19.0
         version: 1.19.0
-      '@prisma/client':
-        specifier: 6.0.0
-        version: 6.0.0(prisma@6.0.0)
       '@radix-ui/react-avatar':
         specifier: ^1.1.1
         version: 1.1.1(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -113,9 +110,6 @@ importers:
       nodemailer:
         specifier: ^6.9.16
         version: 6.9.16
-      prisma:
-        specifier: 6.0.0
-        version: 6.0.0
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -369,10 +363,8 @@ packages:
       nodemailer:
         optional: true
 
-  '@auth/prisma-adapter@2.7.4':
-    resolution: {integrity: sha512-3T/X94R9J1sxOLQtsD3ijIZ0JGHPXlZQxRr/8NpnZBJ3KGxun/mNsZ1MwMRhTxy0mmn9JWXk7u9+xCcVn0pu3A==}
-    peerDependencies:
-      '@prisma/client': '>=2.26.0 || >=3 || >=4 || >=5'
+  '@auth/drizzle-adapter@1.7.4':
+    resolution: {integrity: sha512-OPZQakWWm5Hbx6okVMbtgI08WBliz/dCbFUXiPg9TThpp3Wh7MME/ubg4fW1oOp8P0gul6MkFvMVO733sVtd2w==}
 
   '@babel/code-frame@7.26.2':
     resolution: {integrity: sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ==}
@@ -6047,10 +6039,9 @@ snapshots:
     optionalDependencies:
       nodemailer: 6.9.16
 
-  '@auth/prisma-adapter@2.7.4(@prisma/client@6.0.0(prisma@6.0.0))(nodemailer@6.9.16)':
+  '@auth/drizzle-adapter@1.7.4(nodemailer@6.9.16)':
     dependencies:
       '@auth/core': 0.37.4(nodemailer@6.9.16)
-      '@prisma/client': 6.0.0(prisma@6.0.0)
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
       - '@simplewebauthn/server'
@@ -7449,10 +7440,13 @@ snapshots:
   '@prisma/client@6.0.0(prisma@6.0.0)':
     optionalDependencies:
       prisma: 6.0.0
+    optional: true
 
-  '@prisma/debug@6.0.0': {}
+  '@prisma/debug@6.0.0':
+    optional: true
 
-  '@prisma/engines-version@5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e': {}
+  '@prisma/engines-version@5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e':
+    optional: true
 
   '@prisma/engines@6.0.0':
     dependencies:
@@ -7460,16 +7454,19 @@ snapshots:
       '@prisma/engines-version': 5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e
       '@prisma/fetch-engine': 6.0.0
       '@prisma/get-platform': 6.0.0
+    optional: true
 
   '@prisma/fetch-engine@6.0.0':
     dependencies:
       '@prisma/debug': 6.0.0
       '@prisma/engines-version': 5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e
       '@prisma/get-platform': 6.0.0
+    optional: true
 
   '@prisma/get-platform@6.0.0':
     dependencies:
       '@prisma/debug': 6.0.0
+    optional: true
 
   '@radix-ui/primitive@1.1.0': {}
 
@@ -10909,6 +10906,7 @@ snapshots:
       '@prisma/engines': 6.0.0
     optionalDependencies:
       fsevents: 2.3.3
+    optional: true
 
   process-warning@4.0.0:
     optional: true
