@@ -48,12 +48,6 @@ next14: https://www.bilibili.com/video/BV157pRe8EyD/?spm_id_from=333.337.search-
 
 ### 命令
 
-创建表
-
-```shell
-pnpx drizzle-kit push
-```
-
 生成迁移
 
 ```shell
@@ -118,25 +112,6 @@ const config: Config = {
 ## Google 搜索引擎优化
 
 1. Google搜索成最大入口，简单谈下个人博客的SEO: https://juejin.cn/post/6844904050740166663?searchId=20241025005109B96F36B1CDFA183710E9
-
-# prisma
-
-1. 快速入门 ORM 框架 Prisma: https://juejin.cn/post/7374308419073327113?searchId=202410281535241DB0D6F12C004DED873E
-2. Prisma数据库ORM框架学习: https://juejin.cn/post/7378459137417461760
-
-### 命令
-
-初始化
-
-```shell
-pnpx prisma init --datasource-provider mysql
-```
-
-迁移
-
-```shell
-pnpx prisma migrate dev
-```
 
 ## 功能
 
