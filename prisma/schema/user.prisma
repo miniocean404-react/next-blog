@@ -32,8 +32,8 @@ model User {
   // 1:删除 0:不删除
   del_flag Int?    @default(0) @db.TinyInt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
 
   @@index([email])
   @@index([real_name])
@@ -60,8 +60,8 @@ model Role {
   operator    BigInt?
   del_flag    Int?    @default(0) @db.TinyInt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
 
   @@unique([role_key])
   @@index([role_name])
@@ -78,8 +78,8 @@ model UserRole {
   operator BigInt?
   del_flag Int?    @default(0) @db.TinyInt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
 
   @@index([role_id])
   @@index([user_id])

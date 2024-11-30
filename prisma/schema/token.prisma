@@ -9,8 +9,8 @@ model Token {
   rateLimit  Int?      @default(600) // rate limit per minute
   scopes     String? // space separated (Eg: "links:write", "domains:read")
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
 
   @@index([userId])
   @@map("token")
@@ -34,8 +34,8 @@ model VerificationToken {
   token      String   @unique
   expires    DateTime
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
 
   @@unique([identifier, token])
   @@map("verification_token")

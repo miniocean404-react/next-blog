@@ -29,8 +29,8 @@ model Permission {
   operator           BigInt?
   del_flag           Int      @default(0) @db.TinyInt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
 
   @@index([resource_name])
   @@index([parent_id])
@@ -44,6 +44,9 @@ model RolePermission {
   creator       BigInt?
   operator      BigInt?
   del_flag      Int     @default(0) @db.TinyInt
+
+  createdAt DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
 
   @@map("role_permission")
 }
