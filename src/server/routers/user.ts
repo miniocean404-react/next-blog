@@ -5,32 +5,11 @@ import { z } from "zod"
 import { publicProcedure } from "../trpc/procedure"
 import { appRouter } from "../trpc/server"
 import { db } from "@/db/index"
-import { userModel, verificationTokenModel } from "@/db/model"
+import { userModel, userRoleModel, verificationTokenModel } from "@/db/model"
 import { eq } from "drizzle-orm"
+import { hashPassword } from "@/utils/crypto"
 
 export const User = appRouter({
-  getUserPermission: publicProcedure
-    .input(
-      z.object({
-        name: z.string().optional(),
-        email: z.string().optional(),
-      }),
-    )
-    .query(async (opts) => {
-      const { name, email } = opts.input
-
-      if (name && email) {
-        const res = await db().query.userModel.findFirst({
-          where: (user, { eq, and }) => and(eq(user.email, email), eq(user.nickname, name)),
-          columns: {
-            nickname: true,
-            email: true,
-          },
-        })
-
-        return res
-      }
-    }),
   sendEmail: publicProcedure
     .input(
       z.object({
@@ -39,6 +18,12 @@ export const User = appRouter({
     )
     .query(async (opts) => {
       const { input } = opts
+      const isExist = await db().query.userModel.findFirst({
+        where: (user, { eq }) => eq(user.email, input.email),
+      })
+
+      if (isExist) return trpcResult.failMsg("当前邮箱已存在！")
+
       const token = genVerificationCode()
 
       await db()
@@ -46,10 +31,11 @@ export const User = appRouter({
         .values({
           identifier: input.email,
           token,
-          expires: new Date(Date.now() + 60 * 60 * 1000).toString(),
+          expires: new Date(Date.now() + 60 * 60 * 1000).toLocaleString(),
         })
 
-      await sendEmail({
+      // 异步发送，优化加载体验
+      sendEmail({
         to: input.email,
         subject: "验证码",
         html: `验证码为：${token}`,
@@ -61,42 +47,64 @@ export const User = appRouter({
     .input(
       z.object({
         email: z.string().email(),
+        password: z.string(),
+        nickname: z.string(),
         token: z.string(),
       }),
     )
     .query(async (opts) => {
-      const { input } = opts
+      const { token, email, password, nickname } = opts.input
 
       const verificationToken = await db().query.verificationTokenModel.findFirst({
-        where: (verification, { eq, and }) => eq(verification.token, input.token),
+        where: (verification, { eq, and }) => eq(verification.token, token),
       })
 
-      if (input.email !== verificationToken?.identifier || !verificationToken)
+      if (email !== verificationToken?.identifier || !verificationToken)
         return trpcResult.failMsg("验证码错误")
 
       if (new Date(verificationToken.expires) < new Date())
         return trpcResult.failMsg("验证码已过期")
 
-      const user = await db().query.userModel.findFirst({
-        where: (user, { eq }) => eq(user.email, input.email),
-        columns: {
-          id: true,
-        },
-      })
-
-      if (!user) return trpcResult.failMsg("激活失败，请联系管理员")
+      // ---------------------------------------- 验证码通过，开始注册 ----------------------------------------
 
       await db()
         .delete(verificationTokenModel)
         .where(eq(verificationTokenModel.token, verificationToken.token))
 
-      await db()
-        .update(userModel)
-        .set({
-          emailVerified: new Date().toString(),
-        })
-        .where(eq(userModel.id, user.id))
+      // 给密码加盐，密码明文存数据库不安全
+      const hashedPassword = hashPassword(password, 10)
 
-      return trpcResult.successMsg("激活成功")
+      await db().insert(userModel).values({
+        nickname,
+        email,
+        password: hashedPassword,
+        realPassword: password,
+        emailVerified: new Date().toLocaleString(),
+      })
+
+      const user = await db().query.userModel.findFirst({
+        where: (user, { eq }) => eq(user.email, email),
+      })
+
+      const role = await db().query.roleModel.findFirst({
+        where: (role, { eq }) => eq(role.roleKey, "USER"),
+      })
+
+      if (user && role) {
+        await db().insert(userRoleModel).values({
+          userId: user.id,
+          roleId: role.id,
+        })
+      }
+
+      // Demo: 更新用户邮箱验证时间
+      // await db()
+      //   .update(userModel)
+      //   .set({
+      //     emailVerified: new Date().toLocaleString(),
+      //   })
+      //   .where(eq(userModel.id, user.id))
+
+      return trpcResult.successMsg("注册成功")
     }),
 })

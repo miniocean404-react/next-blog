@@ -35,7 +35,6 @@ import {
 import { Input } from "~/lib/components/shadcn/ui/input"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
 
-import { register } from "@/utils/auth/register"
 import toast from "react-hot-toast"
 import "swiper/css/bundle"
 
@@ -97,14 +96,13 @@ function Register() {
   })
 
   async function onRegisterSubmit(values: RegisterFormSchemaType) {
-    const result = await register(values)
-    if (result.code !== 200) {
-      return toast.error(result.msg)
-    } else {
-      await trpcClient.User.sendEmail.query({ email: values.email })
+    const result = await trpcClient.User.sendEmail.query({ email: values.email })
+
+    if (result.code === 200) {
       swiper.slideNext()
       registerInfo.set(values)
-      return
+    } else {
+      toast.error(result.msg)
     }
   }
 
@@ -228,6 +226,8 @@ function VerificationCode() {
     const res = await trpcClient.User.verificationToken.query({
       token: data.pin,
       email: registerInfo.data.email,
+      nickname: registerInfo.data.nickname,
+      password: registerInfo.data.password,
     })
 
     if (res.code !== 200) {
