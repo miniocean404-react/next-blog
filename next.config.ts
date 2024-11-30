@@ -16,7 +16,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isDev = process.env.NODE_ENV === "development"
 const isProd = process.env.NODE_ENV === "production"
 
-const withNextIntl = createNextIntlPlugin("./src/utils/i18n/request.ts")
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
 
 const withMDX = nextMDX({
   extension: /\.(md|mdx)$/,
