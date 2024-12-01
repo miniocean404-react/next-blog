@@ -13,3 +13,5 @@ export const codeFormSchema = z.object({
     message: "您的一次性密码必须为6个字符。",
   }),
 })
+
+export type codeFormSchemaType = z.infer<typeof codeFormSchema>

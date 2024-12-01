@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
-import z from "zod"
 
 import { Button } from "~/lib/components/shadcn/ui/button"
 import {
@@ -28,15 +27,7 @@ import {
 import { Input } from "~/lib/components/shadcn/ui/input"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
 import { loginCredentials } from "@/action/singn-up"
-
-const loginFormSchema = z.object({
-  email: z.string().email("无效的邮箱格式"),
-  password: z.string().min(1, {
-    message: "不能为空",
-  }),
-})
-
-export type loginFormSchemaType = z.infer<typeof loginFormSchema>
+import { loginFormSchema, type loginFormSchemaType } from "@/utils/schema/login"
 
 export default function Login() {
   const t = useTranslations("login")
@@ -70,7 +61,7 @@ export default function Login() {
         </CardHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form noValidate onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent className="space-y-4">
               <FormField
                 control={form.control}

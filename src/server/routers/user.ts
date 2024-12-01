@@ -32,6 +32,8 @@ export const User = appRouter({
         },
       })
 
+      if (!user) return trpcResult.failMsg("用户不存在")
+
       const userRole = await db()
         .select()
         .from(userRoleModel)
@@ -49,7 +51,7 @@ export const User = appRouter({
       })
 
       const success = isEqualHashPassword(password, user?.password || "")
-      if (!success) return trpcResult.failMsg("密码不正确")
+      if (!success) return trpcResult.failMsg("密码错误")
 
       return trpcResult.success({
         id: user?.cuid,

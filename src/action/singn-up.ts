@@ -1,8 +1,8 @@
 "use server"
 
-import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
 import { trpcResult } from "@/server/trpc/shared"
 import { signIn, signOut } from "@/utils/auth"
+import type { loginFormSchemaType } from "@/utils/schema/login"
 import { AuthError } from "next-auth"
 
 export const loginCredentials = async (credentials: loginFormSchemaType) => {
@@ -15,6 +15,10 @@ export const loginCredentials = async (credentials: loginFormSchemaType) => {
     return trpcResult.successMsg("登录成功")
   } catch (error) {
     if (error instanceof AuthError) {
+      if (typeof error.cause?.["msg"] === "string") {
+        return trpcResult.failMsg(error.cause?.["msg"])
+      }
+
       return trpcResult.failMsg("用户名或密码错误")
     }
 

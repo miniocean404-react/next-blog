@@ -1,12 +1,16 @@
 // src/auth.ts
-import NextAuth from "next-auth"
+import NextAuth, { CredentialsSignin } from "next-auth"
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
-import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
 import { trpcClient } from "@/server/trpc/client"
+import type { loginFormSchemaType } from "@/utils/schema/login"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  debug: process.env.NODE_ENV !== "production",
+  // 在开发过程中添加此行以信任 localhost
+  trustHost: process.env.NODE_ENV !== "production",
+  secret: process.env.AUTH_SECRET,
   // adapter: DrizzleAdapter(db),
   pages: {
     // 授权登录如果有报错，系统会默认重定向到/api/auth/signin内置页面，我们想重定向自己的页面，可以在配置。
@@ -15,20 +19,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     // 退出登录后，重定向到首页
     signOut: "/",
   },
-  // debug: process.env.NODE_ENV !== "production",
-  secret: process.env.AUTH_SECRET,
   session: {
     strategy: "jwt",
   },
-  // 在开发过程中添加此行以信任 localhost
-  trustHost: process.env.NODE_ENV !== "production",
   providers: [
     // 登录
     Credentials({
       authorize: async (credentials) => {
         const { email, password } = credentials as loginFormSchemaType
-        if (!email || !password) return null
+
         const result = await trpcClient.User.login.query({ email, password })
+        if (result.code !== 200) {
+          throw new CredentialsSignin(result.msg, { cause: result })
+        }
+
         return result.data
       },
     }),

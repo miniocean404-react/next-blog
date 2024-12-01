@@ -5,6 +5,7 @@ import { RegisterInfoProvider, useRegisterInfoContext } from "@/utils/context/re
 import {
   codeFormSchema,
   registerFormSchema,
+  type codeFormSchemaType,
   type RegisterFormSchemaType,
 } from "@/utils/schema/register"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -86,7 +87,7 @@ function Register() {
     resolver: zodResolver(registerFormSchema),
     // 当为true的时候，当用户提交了一个验证失败的表单的时候，他会将焦点设置在第一个有错误的字段上面
     shouldFocusError: true,
-    //启用浏览器本机验证
+    // 启用浏览器本机验证
     shouldUseNativeValidation: false,
     defaultValues: {
       email: "",
@@ -114,7 +115,7 @@ function Register() {
         </CardHeader>
 
         <Form {...registerForm}>
-          <form onSubmit={registerForm.handleSubmit(onRegisterSubmit)}>
+          <form noValidate onSubmit={registerForm.handleSubmit(onRegisterSubmit)}>
             <CardContent className="space-y-4">
               <FormField
                 control={registerForm.control}
@@ -199,7 +200,7 @@ function VerificationCode() {
 
   const codeRef = useRef<HTMLInputElement>(null)
 
-  const codeForm = useForm<z.infer<typeof codeFormSchema>>({
+  const codeForm = useForm<codeFormSchemaType>({
     resolver: zodResolver(codeFormSchema),
     defaultValues: {
       pin: "",
@@ -222,7 +223,7 @@ function VerificationCode() {
     codeForm.handleSubmit(onCodeSubmit)()
   }
 
-  async function onCodeSubmit(data: z.infer<typeof codeFormSchema>) {
+  async function onCodeSubmit(data: codeFormSchemaType) {
     const res = await trpcClient.User.verificationToken.query({
       token: data.pin,
       email: registerInfo.data.email,
