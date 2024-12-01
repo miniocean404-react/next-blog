@@ -68,7 +68,7 @@ export const User = appRouter({
     .query(async (opts) => {
       const { input } = opts
       const isExist = await db().query.userModel.findFirst({
-        where: (user, { eq }) => eq(user.email, input.email),
+        where: (user, { eq }) => and(eq(user.email, input.email), eq(user.delFlag, false)),
       })
 
       if (isExist) return trpcResult.failMsg("当前邮箱已存在！")
@@ -132,7 +132,7 @@ export const User = appRouter({
       })
 
       const user = await db().query.userModel.findFirst({
-        where: (user, { eq }) => eq(user.email, email),
+        where: (user, { eq }) => and(eq(user.email, email), eq(user.delFlag, false)),
       })
 
       const role = await db().query.roleModel.findFirst({
