@@ -27,7 +27,9 @@ const withMDX = nextMDX({
 })
 
 const config: NextConfig = {
-  // output: "standalone", // SSG 设置为 export
+  // SSG 设置为 export,
+  // standalone：将文件打包，无需安装 node_modules 即可自行部署该文件夹，但不会生成 public 或 .next/static 文件夹，因为理想情况下，这些文件夹应由 CDN 处理
+  // output: "standalone",
   distDir: ".next",
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactStrictMode: false, // 可防止多渲染一次 DOM
