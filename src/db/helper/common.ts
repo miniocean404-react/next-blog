@@ -1,4 +1,4 @@
-import { bigint, int, timestamp, varchar } from "drizzle-orm/mysql-core"
+import { bigint, boolean, int, timestamp, varchar } from "drizzle-orm/mysql-core"
 
 export const operators = {
   // 数据行备注
@@ -8,7 +8,7 @@ export const operators = {
   // 更新人
   operator: bigint("operator", { mode: "number" }),
   // 1:删除 0:不删除
-  delFlag: int("del_flag").default(0),
+  delFlag: boolean("del_flag").default(false),
 }
 
 export const timestamps = {

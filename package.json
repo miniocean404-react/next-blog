@@ -21,7 +21,8 @@
     "tailwindcss-init": "tailwindcss init -p",
     "vercel-login": "vercel login",
     "vercel-publish": "vercel --prod",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",

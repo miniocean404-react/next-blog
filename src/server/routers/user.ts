@@ -6,7 +6,7 @@ import { publicProcedure } from "../trpc/procedure"
 import { appRouter } from "../trpc/server"
 import { db } from "@/db/index"
 import { userModel, userRoleModel, verificationTokenModel } from "@/db/model"
-import { eq } from "drizzle-orm"
+import { and, eq } from "drizzle-orm"
 import { hashPassword, isEqualHashPassword } from "@/utils/crypto"
 
 export const User = appRouter({
@@ -21,7 +21,7 @@ export const User = appRouter({
       const { email, password } = opts.input
 
       const user = await db().query.userModel.findFirst({
-        where: (user, { eq }) => eq(user.email, email),
+        where: (user, { eq }) => and(eq(user.email, email), eq(user.delFlag, false)),
         columns: {
           id: true,
           cuid: true,
