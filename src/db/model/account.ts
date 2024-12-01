@@ -1,5 +1,14 @@
 import { operators, timestamps } from "@/db/helper/common"
-import { index, int, mysqlTable, serial, text, uniqueIndex, varchar } from "drizzle-orm/mysql-core"
+import {
+  datetime,
+  index,
+  int,
+  mysqlTable,
+  serial,
+  text,
+  uniqueIndex,
+  varchar,
+} from "drizzle-orm/mysql-core"
 
 export const accountModel = mysqlTable(
   "account",
@@ -11,12 +20,12 @@ export const accountModel = mysqlTable(
     providerAccountId: varchar("provider_account_id", { length: 32 }).notNull(),
     refreshToken: text("refresh_token"),
     accessToken: text("access_token"),
-    expiresAt: int("expires_at"),
+    expiresAt: datetime("expires_at", { mode: "string" }),
     tokenType: varchar("token_type", { length: 32 }),
     scope: varchar("scope", { length: 32 }),
     idToken: text("id_token"),
     sessionState: varchar("session_state", { length: 32 }),
-    refreshTokenExpiresIn: int("refresh_token_expires_in"),
+    refreshTokenExpiresIn: datetime("refresh_token_expires_in", { mode: "string" }),
     ...operators,
     ...timestamps,
   },

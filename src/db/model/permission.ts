@@ -1,5 +1,14 @@
 import { operators, timestamps } from "@/db/helper/common"
-import { bigint, boolean, index, int, mysqlTable, serial, varchar } from "drizzle-orm/mysql-core"
+import {
+  bigint,
+  boolean,
+  index,
+  int,
+  mysqlTable,
+  serial,
+  smallint,
+  varchar,
+} from "drizzle-orm/mysql-core"
 
 // Permission 表
 export const permissionModel = mysqlTable(
@@ -13,7 +22,7 @@ export const permissionModel = mysqlTable(
     // 资源标识
     resourceKey: varchar("resource_key", { length: 100 }),
     // 资源类型 1、模块 2、菜单 3、按钮 4、链接
-    resourceType: int("resource_type"),
+    resourceType: smallint("resource_type", { unsigned: true }),
     // 资源图标
     resourceIcon: varchar("resource_icon", { length: 255 }),
     // 资源路径
@@ -21,7 +30,7 @@ export const permissionModel = mysqlTable(
     // 资料链接
     resourceUrl: varchar("resource_url", { length: 255 }),
     // 资源级别
-    resourceLevel: int("resource_level"),
+    resourceLevel: smallint("resource_level", { unsigned: true }),
     // 是否显示
     resourceShow: boolean("resource_show"),
     // 是否缓存
@@ -29,7 +38,7 @@ export const permissionModel = mysqlTable(
     // 资源页面名称
     resourcePageName: varchar("resource_page_name", { length: 32 }),
     // '1有效，0禁用'
-    resourceStatus: int("resource_status").default(1),
+    resourceStatus: boolean("resource_status").default(true),
 
     ...operators,
     ...timestamps,

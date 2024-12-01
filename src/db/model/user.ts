@@ -1,11 +1,14 @@
 import { operators, timestamps } from "@/db/helper/common"
 import {
   bigint,
+  boolean,
   datetime,
   index,
   int,
   mysqlTable,
   serial,
+  smallint,
+  tinyint,
   uniqueIndex,
   varchar,
 } from "drizzle-orm/mysql-core"
@@ -25,9 +28,9 @@ export const userModel = mysqlTable(
     realPassword: varchar("real_password", { length: 32 }),
     mobile: varchar("mobile", { length: 32 }),
     realName: varchar("real_name", { length: 32 }),
-    gender: int("gender").default(2),
+    gender: tinyint("gender").default(2),
     // '0'禁用，'1' 启用, '2' 密码过期或初次未修改
-    status: int("status").default(1),
+    status: smallint("status", { unsigned: true }).default(1),
     // 头像
     avatar: varchar("avatar", { length: 255 }),
     country: varchar("country", { length: 32 }),
@@ -59,9 +62,9 @@ export const roleModel = mysqlTable(
     roleName: varchar("role_name", { length: 40 }),
     // 角色标识
     roleKey: varchar("role_key", { length: 32 }).unique(),
-    roleLevel: int("role_level"),
+    roleLevel: smallint("role_level", { unsigned: true }),
     // 1有效，0禁用
-    roleStatus: int("role_status").default(1),
+    roleStatus: boolean("role_status").default(true),
 
     ...operators,
     ...timestamps,

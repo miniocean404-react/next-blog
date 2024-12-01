@@ -5,6 +5,7 @@ import {
   int,
   mysqlTable,
   serial,
+  smallint,
   timestamp,
   uniqueIndex,
   varchar,
@@ -22,7 +23,7 @@ export const tokenModel = mysqlTable(
     lastUsed: datetime("last_used", { mode: "string" }),
     userId: varchar("user_id", { length: 255 }).notNull(),
     // rate limit per minute
-    rateLimit: int("rate_limit").default(600),
+    rateLimit: smallint("rate_limit", { unsigned: true }).default(600),
     // space separated (Eg: "links:write", "domains:read")
     scopes: varchar("scopes", { length: 255 }),
 
