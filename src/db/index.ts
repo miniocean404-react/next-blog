@@ -12,11 +12,11 @@ export function db() {
   if (process.env.NEXT_RUNTIME === "nodejs") {
     // 创建数据库连接池
     const poolConnection = mysql.createPool({
-      host: "127.0.0.1",
-      port: 3306,
-      user: "root",
-      password: "123456",
-      database: "knowledge",
+      host: process.env.MYSQL_HOST,
+      port: process.env.MYSQL_POST,
+      user: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
       // 连接池达到上限时，是否等待连接释放后再继续连接
       waitForConnections: true,
       // 一次创建的最大连接数。(默认值:10)
