@@ -44,7 +44,7 @@ next14: https://www.bilibili.com/video/BV157pRe8EyD/?spm_id_from=333.337.search-
 
 # drizzle-kit
 
-1. https://juejin.cn/post/7374683456717340711?searchId=20241129233037DBEB5659EE38A97DC394
+1. zod-drizzle 使用: https://juejin.cn/post/7374683456717340711?searchId=20241129233037DBEB5659EE38A97DC394
 
 ### 命令
 

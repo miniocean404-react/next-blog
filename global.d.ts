@@ -32,6 +32,10 @@ declare namespace NodeJS {
     IMAGE_KIT_URL_ENDPOINT: string
 
     // 数据库
-    DATABASE_URL: string
+    MYSQL_HOST: string
+    MYSQL_POST: number
+    MYSQL_USER: string
+    MYSQL_PASSWORD: string
+    MYSQL_DATABASE: string
   }
 }
