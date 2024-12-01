@@ -3,10 +3,8 @@ import NextAuth from "next-auth"
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
-import { DrizzleAdapter } from "@auth/drizzle-adapter"
-import { client } from "@/db/index"
 import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
-import { isEqualHashPassword } from "@/utils/crypto"
+import { trpcClient } from "@/server/trpc/client"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   // adapter: DrizzleAdapter(db),
@@ -30,51 +28,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       authorize: async (credentials) => {
         const { email, password } = credentials as loginFormSchemaType
         if (!email || !password) return null
-
-        try {
-          const user = await db().query.userModel.findFirst({
-            where: (user, { eq }) => eq(user.email, email),
-            columns: {
-              id: true,
-              cuid: true,
-              nickname: true,
-              email: true,
-              avatar: true,
-              password: true,
-            },
-          })
-
-          const userRole = await db().query.userRoleModel.findMany({
-            where: (userRole, { eq }) => eq(userRole.userId, user?.id || 0),
-            columns: {
-              roleId: true,
-            },
-          })
-
-          const role = await db().query.roleModel.findMany({
-            where: (role, { inArray }) =>
-              inArray(
-                role.id,
-                userRole.map((item) => item.roleId),
-              ),
-            columns: {
-              roleKey: true,
-            },
-          })
-
-          const success = isEqualHashPassword(password, user?.password || "")
-          if (!success) return null
-
-          return {
-            id: user?.cuid,
-            name: user?.nickname,
-            email: user?.email,
-            image: user?.avatar,
-            role: role.map((item) => item.roleKey).join(","),
-          }
-        } catch (error) {
-          return null
-        }
+        const result = await trpcClient.User.login.query({ email, password })
+        return result.data
       },
     }),
     GitHub({

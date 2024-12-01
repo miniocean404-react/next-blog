@@ -9,7 +9,7 @@ import { AlignRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
-import { auth } from "@/utils/auth/core"
+import { auth } from "@/utils/auth"
 import { cn } from "@/utils/tw"
 import { getLocale, getTranslations } from "next-intl/server"
 import { Account } from "./sign-up"

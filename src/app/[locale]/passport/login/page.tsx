@@ -1,6 +1,5 @@
 "use client"
 
-import { loginCredentials } from "@/utils/auth/login"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
@@ -28,6 +27,7 @@ import {
 } from "~/lib/components/shadcn/ui/card"
 import { Input } from "~/lib/components/shadcn/ui/input"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
+import { loginCredentials } from "@/action/singn-up"
 
 const loginFormSchema = z.object({
   email: z.string().email("无效的邮箱格式"),

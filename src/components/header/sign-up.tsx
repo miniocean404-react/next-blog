@@ -15,11 +15,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/lib/components/shadcn/ui/
 
 import { type PropsWithChildren } from "react"
 import { useTranslations } from "next-intl"
-import { logout } from "@/utils/auth/logout"
 import { usePathname } from "next/navigation"
 import { Button } from "~/lib/components/shadcn/ui/button"
 import Link from "next/link"
 import { VISITE_LIMIT_PASSPORT } from "@/constant/page-type"
+import { logoutCredentials } from "@/action/singn-up"
 
 export function Account(props: PropsWithChildren<AccountProps>) {
   const { className, session } = props
@@ -60,7 +60,7 @@ export function Account(props: PropsWithChildren<AccountProps>) {
 
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem onClick={logout}>
+            <DropdownMenuItem onClick={logoutCredentials}>
               {t("menu.exit")}
               <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
             </DropdownMenuItem>

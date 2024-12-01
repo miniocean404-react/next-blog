@@ -7,9 +7,58 @@ import { appRouter } from "../trpc/server"
 import { db } from "@/db/index"
 import { userModel, userRoleModel, verificationTokenModel } from "@/db/model"
 import { eq } from "drizzle-orm"
-import { hashPassword } from "@/utils/crypto"
+import { hashPassword, isEqualHashPassword } from "@/utils/crypto"
 
 export const User = appRouter({
+  login: publicProcedure
+    .input(
+      z.object({
+        email: z.string().email(),
+        password: z.string(),
+      }),
+    )
+    .query(async (opts) => {
+      const { email, password } = opts.input
+
+      const user = await db().query.userModel.findFirst({
+        where: (user, { eq }) => eq(user.email, email),
+        columns: {
+          id: true,
+          cuid: true,
+          nickname: true,
+          email: true,
+          avatar: true,
+          password: true,
+        },
+      })
+
+      const userRole = await db()
+        .select()
+        .from(userRoleModel)
+        .where(eq(userRoleModel.userId, user?.id || 0))
+
+      const role = await db().query.roleModel.findMany({
+        where: (role, { inArray }) =>
+          inArray(
+            role.id,
+            userRole.map((item) => item.roleId),
+          ),
+        columns: {
+          roleKey: true,
+        },
+      })
+
+      const success = isEqualHashPassword(password, user?.password || "")
+      if (!success) return trpcResult.failMsg("密码不正确")
+
+      return trpcResult.success({
+        id: user?.cuid,
+        name: user?.nickname,
+        email: user?.email,
+        image: user?.avatar,
+        role: role.map((item) => item.roleKey).join(","),
+      })
+    }),
   sendEmail: publicProcedure
     .input(
       z.object({

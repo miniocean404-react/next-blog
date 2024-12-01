@@ -2,7 +2,7 @@
 
 import type { loginFormSchemaType } from "@/app/[locale]/passport/login/page"
 import { trpcResult } from "@/server/trpc/shared"
-import { signIn } from "@/utils/auth/core"
+import { signIn, signOut } from "@/utils/auth"
 import { AuthError } from "next-auth"
 
 export const loginCredentials = async (credentials: loginFormSchemaType) => {
@@ -30,4 +30,8 @@ export const loginGithub = async () => {
 export const loginGoogle = async () => {
   // 登录完成后，重定向到user页面
   await signIn("google", { redirectTo: `/user` })
+}
+
+export const logoutCredentials = async () => {
+  await signOut()
 }

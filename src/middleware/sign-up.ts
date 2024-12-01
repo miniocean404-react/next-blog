@@ -1,5 +1,5 @@
 import { VISITE_LIMIT_AUTH, VISITE_LIMIT_PASSPORT } from "@/constant/page-type"
-import { auth } from "@/utils/auth/core"
+import { auth } from "@/utils/auth"
 import { NextRequest, NextResponse, NextFetchEvent } from "next/server"
 
 // 必须放在 intl 中间件后边，否则跳转异常

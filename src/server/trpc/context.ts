@@ -1,4 +1,4 @@
-import { auth } from "@/utils/auth/core"
+import { auth } from "@/utils/auth"
 import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch"
 
 export async function createTRPCContext(opts?: FetchCreateContextFnOptions) {
