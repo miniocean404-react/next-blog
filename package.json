@@ -22,7 +22,8 @@
     "vercel-login": "vercel login",
     "vercel-publish": "vercel --prod",
     "db:push": "drizzle-kit push",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "db:web": "drizzle-kit studio"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",
