@@ -1,12 +1,11 @@
 "use client"
 
-import { rawApi } from "@/server/client/raw"
+import { api } from "@/server/client/react-query-provider"
 import type { Unsubscribable } from "@trpc/server/observable"
 import { useRef, useState } from "react"
 import { ChatInput, ChatLayout, ChatMessage, ChatWindow } from "~/lib/components/mini/chat"
 
 export default function Ai() {
-  const problemRef = useRef<HTMLInputElement>(null)
   const [messages, setMessages] = useState<MessageBody[]>([
     // {
     //   id: 1,
@@ -24,7 +23,7 @@ export default function Ai() {
   const getAnswer = async (content: string) => {
     answerRef.current?.unsubscribe()
 
-    answerRef.current = rawApi.Ai.aiExchange.subscribe(
+    answerRef.current = api.useUtils().client.Ai.aiExchange.subscribe(
       { content },
       {
         onData(value: Answer | "done") {

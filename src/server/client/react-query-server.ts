@@ -11,7 +11,7 @@ import { trpcRouter } from "@/server/routers"
 //            will return the same client during the same request.
 export const getQueryClient = cache(createReactQueryClient)
 const caller = createCallerFactory(trpcRouter)(createTRPCContext)
-export const { trpc, HydrateClient } = createHydrationHelpers<typeof trpcRouter>(
+export const { trpc: apiServer, HydrateClient } = createHydrationHelpers<typeof trpcRouter>(
   caller,
   getQueryClient,
 )

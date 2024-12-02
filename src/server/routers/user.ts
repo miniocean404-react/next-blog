@@ -67,7 +67,7 @@ export const User = appRouter({
         email: z.string(),
       }),
     )
-    .query(async (opts) => {
+    .mutation(async (opts) => {
       const { input } = opts
 
       const isExist = await db().query.userModel.findFirst({
@@ -104,7 +104,7 @@ export const User = appRouter({
         token: z.string(),
       }),
     )
-    .query(async (opts) => {
+    .mutation(async (opts) => {
       const { token, email, password, nickname } = opts.input
 
       const verificationToken = await db().query.verificationTokenModel.findFirst({

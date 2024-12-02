@@ -1,6 +1,5 @@
 "use client"
 
-import { rawApi } from "@/server/client/raw"
 import { RegisterInfoProvider, useRegisterInfoContext } from "@/utils/context/register"
 import {
   codeFormSchema,
@@ -37,6 +36,7 @@ import { Separator } from "~/lib/components/shadcn/ui/separator"
 
 import toast from "react-hot-toast"
 import "swiper/css/bundle"
+import { api } from "@/server/client/react-query-provider"
 
 export default function RegisterPage({
   searchParams,
@@ -78,6 +78,8 @@ export default function RegisterPage({
 }
 
 function Register() {
+  const { mutate: sendEmail, isPending, data } = api.User.sendEmail.useMutation()
+
   const t = useTranslations("register")
   const swiper = useSwiper()
   const registerInfo = useRegisterInfoContext()
@@ -96,14 +98,20 @@ function Register() {
   })
 
   async function onRegisterSubmit(values: RegisterFormSchemaType) {
-    const result = await rawApi.User.sendEmail.query({ email: values.email })
-
-    if (result.code === 200) {
-      swiper.slideNext()
-      registerInfo.set(values)
-    } else {
-      toast.error(result.msg)
-    }
+    sendEmail(
+      { email: values.email },
+      {
+        // variables 是传递给请求的参数
+        onSuccess(data, variables, context) {
+          if (data?.code === 200) {
+            swiper.slideNext()
+            registerInfo.set(values)
+          } else {
+            toast.error(data?.msg || "")
+          }
+        },
+      },
+    )
   }
 
   return (
@@ -193,6 +201,7 @@ function Register() {
 }
 
 function VerificationCode() {
+  const { mutate } = api.User.verificationToken.useMutation()
   const t = useTranslations("register")
   const swiper = useSwiper()
   const registerInfo = useRegisterInfoContext()
@@ -223,18 +232,23 @@ function VerificationCode() {
   }
 
   async function onCodeSubmit(data: codeFormSchemaType) {
-    const res = await rawApi.User.verificationToken.query({
-      token: data.pin,
-      email: registerInfo.data.email,
-      nickname: registerInfo.data.nickname,
-      password: registerInfo.data.password,
-    })
+    mutate(
+      {
+        token: data.pin,
+        email: registerInfo.data.email,
+        nickname: registerInfo.data.nickname,
+        password: registerInfo.data.password,
+      },
+      {
+        onSuccess(data) {
+          if (data.code !== 200) {
+            return codeForm.setError("pin", { message: data.msg })
+          }
 
-    if (res.code !== 200) {
-      return codeForm.setError("pin", { message: res.msg })
-    }
-
-    swiper.slideNext()
+          swiper.slideNext()
+        },
+      },
+    )
   }
 
   return (
