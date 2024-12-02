@@ -6,7 +6,7 @@ import { trpcClient } from "@/server/trpc/client"
 import type { loginFormSchemaType } from "@/utils/schema/login"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  debug: process.env.NODE_ENV !== "production",
+  // debug: process.env.NODE_ENV !== "production",
   // 在开发过程中添加此行以信任 localhost
   trustHost: process.env.NODE_ENV !== "production",
   secret: process.env.AUTH_SECRET,

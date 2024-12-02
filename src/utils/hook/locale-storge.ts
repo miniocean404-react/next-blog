@@ -10,7 +10,7 @@ export default function useLocalStorage(key: string, defaultValue: string) {
       const item = localStorage.getItem(key)
       item && setValue(JSON.parse(item))
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
 
     return () => {
