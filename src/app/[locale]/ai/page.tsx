@@ -1,6 +1,6 @@
 "use client"
 
-import { api } from "@/server/trpc/client"
+import { rawApi } from "@/server/client/raw"
 import type { Unsubscribable } from "@trpc/server/observable"
 import { useRef, useState } from "react"
 import { ChatInput, ChatLayout, ChatMessage, ChatWindow } from "~/lib/components/mini/chat"
@@ -24,7 +24,7 @@ export default function Ai() {
   const getAnswer = async (content: string) => {
     answerRef.current?.unsubscribe()
 
-    answerRef.current = api.Ai.aiExchange.subscribe(
+    answerRef.current = rawApi.Ai.aiExchange.subscribe(
       { content },
       {
         onData(value: Answer | "done") {

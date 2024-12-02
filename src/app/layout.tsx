@@ -11,6 +11,8 @@ import BaiDuAnalytics from "~/lib/components/mini/analytics/baidu"
 import GoogleAnalytics from "~/lib/components/mini/analytics/google"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"
+import { TRPCProvider } from "@/server/client/react-query-provider"
+import { HydrateClient } from "@/server/client/react-query-server"
 import "@/css/index.css"
 
 export const viewport: Viewport = {
@@ -217,15 +219,19 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       className={cn(zh_inter.variable, roboto_mono.variable)}
     >
       <body>
-        <ThemeProvider attribute="class" enableSystem>
-          <NextIntlClientProvider messages={messages}>
-            <GoogleAnalytics></GoogleAnalytics>
-            <BaiDuAnalytics></BaiDuAnalytics>
-            <Toast></Toast>
+        <TRPCProvider>
+          <HydrateClient>
+            <ThemeProvider attribute="class" enableSystem>
+              <NextIntlClientProvider messages={messages}>
+                <GoogleAnalytics></GoogleAnalytics>
+                <BaiDuAnalytics></BaiDuAnalytics>
+                <Toast></Toast>
 
-            {children}
-          </NextIntlClientProvider>
-        </ThemeProvider>
+                {children}
+              </NextIntlClientProvider>
+            </ThemeProvider>
+          </HydrateClient>
+        </TRPCProvider>
       </body>
     </html>
   )

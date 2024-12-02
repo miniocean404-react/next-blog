@@ -1,6 +1,6 @@
 "use client"
 
-import { api } from "@/server/trpc/client"
+import { rawApi } from "@/server/client/raw"
 import { RegisterInfoProvider, useRegisterInfoContext } from "@/utils/context/register"
 import {
   codeFormSchema,
@@ -96,7 +96,7 @@ function Register() {
   })
 
   async function onRegisterSubmit(values: RegisterFormSchemaType) {
-    const result = await api.User.sendEmail.query({ email: values.email })
+    const result = await rawApi.User.sendEmail.query({ email: values.email })
 
     if (result.code === 200) {
       swiper.slideNext()
@@ -223,7 +223,7 @@ function VerificationCode() {
   }
 
   async function onCodeSubmit(data: codeFormSchemaType) {
-    const res = await api.User.verificationToken.query({
+    const res = await rawApi.User.verificationToken.query({
       token: data.pin,
       email: registerInfo.data.email,
       nickname: registerInfo.data.nickname,
