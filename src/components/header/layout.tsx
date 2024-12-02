@@ -5,7 +5,7 @@ export default function HeaderLayout({ children }: PropsWithChildren<any>) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-mini-header backdrop-blur-md",
+        "fixed top-0 z-mini-header backdrop-blur-md",
         "border-b",
         "flex items-center h-16 w-full",
         "px-2 md:px-8",

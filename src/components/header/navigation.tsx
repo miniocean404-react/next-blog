@@ -25,7 +25,7 @@ export async function Navigation(props: PropsWithChildren<NavigationProps>) {
   return (
     <>
       {/* PC 导航 */}
-      <div className="hidden md:items-center md:flex">
+      <nav className="hidden md:items-center md:flex">
         <Link
           className="text-sm font-500 cursor-pointer px-3 py-0 text-primary transition-color duration-500 ease hover:text-primary/70"
           href={"/ai"}
@@ -68,7 +68,7 @@ export async function Navigation(props: PropsWithChildren<NavigationProps>) {
             <Notion className="size-5"></Notion>
           </Link>
         </div>
-      </div>
+      </nav>
 
       {/* 移动端导航 */}
       <Drawer direction="right">

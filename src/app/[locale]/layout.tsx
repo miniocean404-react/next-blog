@@ -14,7 +14,7 @@ export default async function LocaleLayout({
     // 为 vaul 抽屉组件包裹一层
     <div className="bg-background" data-vaul-drawer-wrapper>
       <Header></Header>
-      {children}
+      <main>{children}</main>
     </div>
   )
 }

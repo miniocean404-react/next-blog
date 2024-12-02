@@ -69,6 +69,7 @@ export const User = appRouter({
     )
     .query(async (opts) => {
       const { input } = opts
+
       const isExist = await db().query.userModel.findFirst({
         where: (user, { eq }) => and(eq(user.email, input.email), eq(user.delFlag, false)),
       })
@@ -99,7 +100,7 @@ export const User = appRouter({
       z.object({
         email: z.string().email(),
         password: z.string(),
-        nickname: z.string(),
+        nickname: z.string().optional(),
         token: z.string(),
       }),
     )
