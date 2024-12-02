@@ -1,6 +1,7 @@
 "use client"
 
 import { api } from "@/server/client/react-query-provider"
+import { skipToken } from "@tanstack/react-query"
 import type { Unsubscribable } from "@trpc/server/observable"
 import { useRef, useState } from "react"
 import { ChatInput, ChatLayout, ChatMessage, ChatWindow } from "~/lib/components/mini/chat"
@@ -18,44 +19,41 @@ export default function Ai() {
     //   type: "receive",
     // },
   ])
-  const answerRef = useRef<Unsubscribable>()
 
-  const getAnswer = async (content: string) => {
-    answerRef.current?.unsubscribe()
+  const [content, setContent] = useState("")
 
-    answerRef.current = api.useUtils().client.Ai.aiExchange.subscribe(
-      { content },
-      {
-        onData(value: Answer | "done") {
-          if (value === "done") {
-            return answerRef.current?.unsubscribe()
-          }
+  const result = api.Ai.aiExchange.useSubscription(content ? { content } : skipToken, {
+    onData(value: Answer | "done") {
+      if (value === "done") {
+        setContent("")
+        return result.reset()
+      }
 
-          const answer = value.choices[0].delta.content
+      const answer = value.choices[0].delta.content
 
-          setMessages((prev) => {
-            const newMessage = [...prev]
+      setMessages((prev) => {
+        const newMessage = [...prev]
 
-            const preMessageIndex = newMessage.findIndex((message) => message.id === value.id)
-            if (preMessageIndex > -1) {
-              newMessage[preMessageIndex].content = newMessage[preMessageIndex].content += answer
-            } else {
-              newMessage.push({
-                id: value.id,
-                type: "receive",
-                content: answer,
-              })
-            }
-
-            return newMessage
+        const preMessageIndex = newMessage.findIndex((message) => message.id === value.id)
+        if (preMessageIndex > -1) {
+          newMessage[preMessageIndex].content = newMessage[preMessageIndex].content += answer
+        } else {
+          newMessage.push({
+            id: value.id,
+            type: "receive",
+            content: answer,
           })
-        },
-      },
-    )
-  }
+        }
+
+        return newMessage
+      })
+    },
+  })
 
   const send = (value: string) => {
-    getAnswer(value)
+    result.reset()
+    setContent(value)
+
     setMessages((prev) => {
       const newMessage = [...prev]
       newMessage.push({ type: "send", content: value })
