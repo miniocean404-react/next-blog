@@ -50,7 +50,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     //   return true
     // },
     // 每次使用 auth () 方法获取 session 信息的时候会调用
-    jwt({ token, account, user, profile }) {
+    jwt(params) {
+      const { token, account, user, profile } = params
+
       // 用户在登录期间可用
       if (user) {
         token.role = user.role

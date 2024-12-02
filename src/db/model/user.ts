@@ -21,7 +21,7 @@ export const userModel = mysqlTable(
     cuid: varchar("cuid", { length: 255 }).notNull().unique().$defaultFn(crypto.randomUUID),
     account: varchar("account", { length: 32 }),
     nickname: varchar("nickname", { length: 32 }),
-    email: varchar("email", { length: 64 }).notNull().unique(),
+    email: varchar("email", { length: 64 }).notNull(),
     // 邮箱确认时间, mode 为 string 则为时区时间，是正确的本地时间
     emailVerified: datetime("email_verified", { mode: "string" }),
     password: varchar("password", { length: 255 }),

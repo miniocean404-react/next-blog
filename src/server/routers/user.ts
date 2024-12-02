@@ -107,7 +107,8 @@ export const User = appRouter({
       const { token, email, password, nickname } = opts.input
 
       const verificationToken = await db().query.verificationTokenModel.findFirst({
-        where: (verification, { eq, and }) => eq(verification.token, token),
+        where: (verification, { eq, and }) =>
+          and(eq(verification.token, token), eq(verification.delFlag, false)),
       })
 
       if (email !== verificationToken?.identifier || !verificationToken)
@@ -134,19 +135,21 @@ export const User = appRouter({
       })
 
       const user = await db().query.userModel.findFirst({
-        where: (user, { eq }) => and(eq(user.email, email), eq(user.delFlag, false)),
+        where: (user, { eq, and }) => and(eq(user.email, email), eq(user.delFlag, false)),
       })
 
       const role = await db().query.roleModel.findFirst({
-        where: (role, { eq }) => eq(role.roleKey, "USER"),
+        where: (role, { eq, and }) => and(eq(role.roleKey, "USER"), eq(role.delFlag, false)),
       })
 
-      if (user && role) {
-        await db().insert(userRoleModel).values({
-          userId: user.id,
-          roleId: role.id,
-        })
-      }
+      if (!user || !role) return trpcResult.failMsg("注册失败")
+
+      await db().insert(userRoleModel).values({
+        userId: user.id,
+        roleId: role.id,
+      })
+
+      return trpcResult.successMsg("注册成功")
 
       // Demo: 更新用户邮箱验证时间
       // await db()
@@ -155,7 +158,5 @@ export const User = appRouter({
       //     emailVerified: new Date().toLocaleString(),
       //   })
       //   .where(eq(userModel.id, user.id))
-
-      return trpcResult.successMsg("注册成功")
     }),
 })
