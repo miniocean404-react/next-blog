@@ -9,14 +9,14 @@ export default async function signUpGuardMiddleware(
   event: NextFetchEvent,
 ): Promise<NextResponse> {
   const session = await auth()
-  const isLogangedIn = !!session?.user
+  const isLoginIn = !!session?.user
   const pathname = request.nextUrl.pathname
 
-  if (isLogangedIn && pathname.startsWith(VISITE_LIMIT_PASSPORT)) {
+  if (isLoginIn && pathname.startsWith(VISITE_LIMIT_PASSPORT)) {
     return NextResponse.redirect(new URL("/", request.nextUrl))
   }
 
-  if (!isLogangedIn && pathname.startsWith(VISITE_LIMIT_AUTH)) {
+  if (!isLoginIn && pathname.startsWith(VISITE_LIMIT_AUTH)) {
     return NextResponse.redirect(new URL("/passport/login", request.nextUrl))
   }
 
