@@ -15,7 +15,6 @@ import { useRouter } from "next/navigation"
 import { use, useEffect, useRef } from "react"
 import { useForm } from "react-hook-form"
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react"
-import { z } from "zod"
 import {
   InputOTP,
   InputOTPGroup,

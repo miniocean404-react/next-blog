@@ -1,4 +1,3 @@
-// src/auth.ts
 import NextAuth, { CredentialsSignin } from "next-auth"
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
@@ -46,15 +45,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
+    // 控制是否允许用户登录。
     // async signIn({ user, account, profile, email, credentials }) {
     //   return true
     // },
+    // 每次使用 auth () 方法获取 session 信息的时候会调用
     jwt({ token, account, user, profile }) {
       // 用户在登录期间可用
       if (user) {
         token.role = user.role
       }
-      return token
+      return { ...token, ...user }
     },
     session(params) {
       const { session, token } = params
