@@ -1,17 +1,17 @@
 import {
   createTRPCClient,
-  unstable_httpBatchStreamLink,
+  httpBatchLink,
+  httpLink,
+  isNonJsonSerializable,
   loggerLink,
   splitLink,
+  unstable_httpBatchStreamLink,
   unstable_httpSubscriptionLink,
-  isNonJsonSerializable,
-  httpLink,
-  httpBatchLink,
 } from "@trpc/client"
 import { type TRPCRouter } from "../routers/index"
 import { getBaseUrl } from "./shared"
 
-export const trpcClient = createTRPCClient<TRPCRouter>({
+export const api = createTRPCClient<TRPCRouter>({
   links: [
     loggerLink({
       enabled: (opts) => {

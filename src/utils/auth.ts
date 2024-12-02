@@ -2,7 +2,7 @@ import NextAuth, { CredentialsSignin } from "next-auth"
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
-import { trpcClient } from "@/server/trpc/client"
+import { api } from "@/server/trpc/client"
 import type { loginFormSchemaType } from "@/utils/schema/login"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -21,13 +21,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   session: {
     strategy: "jwt",
   },
+  // 自定义 session jwt 编码解码逻辑
+  // jwt: {
+  //   encode(params) {},
+  //   decode(params) {},
+  // },
   providers: [
     // 登录
     Credentials({
       authorize: async (credentials) => {
         const { email, password } = credentials as loginFormSchemaType
 
-        const result = await trpcClient.User.login.query({ email, password })
+        const result = await api.User.login.query({ email, password })
         if (result.code !== 200) {
           throw new CredentialsSignin(result.msg, { cause: result })
         }
@@ -51,13 +56,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     // },
     // 每次使用 auth () 方法获取 session 信息的时候会调用
     jwt(params) {
-      const { token, account, user, profile } = params
+      const { token, user, account, profile, trigger } = params
 
-      // 用户在登录期间可用
       if (user) {
         token.role = user.role
       }
-      return { ...token, ...user }
+
+      return token
     },
     session(params) {
       const { session, token } = params

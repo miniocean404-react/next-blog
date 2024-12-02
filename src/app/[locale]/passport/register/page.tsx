@@ -1,11 +1,11 @@
 "use client"
 
-import { trpcClient } from "@/server/trpc/client"
+import { api } from "@/server/trpc/client"
 import { RegisterInfoProvider, useRegisterInfoContext } from "@/utils/context/register"
 import {
   codeFormSchema,
-  registerFormSchema,
   type codeFormSchemaType,
+  registerFormSchema,
   type RegisterFormSchemaType,
 } from "@/utils/schema/register"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -96,7 +96,7 @@ function Register() {
   })
 
   async function onRegisterSubmit(values: RegisterFormSchemaType) {
-    const result = await trpcClient.User.sendEmail.query({ email: values.email })
+    const result = await api.User.sendEmail.query({ email: values.email })
 
     if (result.code === 200) {
       swiper.slideNext()
@@ -223,7 +223,7 @@ function VerificationCode() {
   }
 
   async function onCodeSubmit(data: codeFormSchemaType) {
-    const res = await trpcClient.User.verificationToken.query({
+    const res = await api.User.verificationToken.query({
       token: data.pin,
       email: registerInfo.data.email,
       nickname: registerInfo.data.nickname,

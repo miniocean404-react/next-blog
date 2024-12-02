@@ -1,6 +1,6 @@
 "use client"
 
-import { trpcClient } from "@/server/trpc/client"
+import { api } from "@/server/trpc/client"
 import { TRPCClientError } from "@trpc/client"
 import type { ChangeEvent } from "react"
 import toast from "react-hot-toast"
@@ -18,7 +18,7 @@ export default function Upload() {
         form.set("file", file)
 
         // const res = await trpcClient.Prodcut.getProductById.query({ id: "1" })
-        const res = await trpcClient.Upload.uploadImageKit.mutate(form)
+        const res = await api.Upload.uploadImageKit.mutate(form)
 
         res.data?.url && toast.success(`上传成功: ${res.data.url}`)
       } catch (error: unknown) {

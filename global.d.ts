@@ -17,16 +17,21 @@ declare namespace NodeJS {
     // Next runtime 环境
     NEXT_RUNTIME: string | "nodejs"
 
+    // Next Auth 秘钥
     AUTH_SECRET: string
 
+    // Github OAuth
     AUTH_GITHUB_ID: string
     AUTH_GITHUB_SECRET: string
 
+    // Google OAuth
     AUTH_GOOGLE_ID: string
     AUTH_GOOGLE_SECRET: string
 
+    // 豆包 AI
     DOUBAO_API_KEY: string
 
+    // Image Kit
     IMAGE_KIT_PUBLIC_KEY: string
     IMAGE_KIT_PRIVATE_KEY: string
     IMAGE_KIT_URL_ENDPOINT: string

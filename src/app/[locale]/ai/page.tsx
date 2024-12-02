@@ -1,9 +1,9 @@
 "use client"
 
-import { trpcClient } from "@/server/trpc/client"
+import { api } from "@/server/trpc/client"
 import type { Unsubscribable } from "@trpc/server/observable"
-import { useRef, useState, type SyntheticEvent } from "react"
-import { ChatWindow, ChatInput, ChatMessage, ChatLayout } from "~/lib/components/mini/chat"
+import { useRef, useState } from "react"
+import { ChatInput, ChatLayout, ChatMessage, ChatWindow } from "~/lib/components/mini/chat"
 
 export default function Ai() {
   const problemRef = useRef<HTMLInputElement>(null)
@@ -24,7 +24,7 @@ export default function Ai() {
   const getAnswer = async (content: string) => {
     answerRef.current?.unsubscribe()
 
-    answerRef.current = trpcClient.Ai.aiExchange.subscribe(
+    answerRef.current = api.Ai.aiExchange.subscribe(
       { content },
       {
         onData(value: Answer | "done") {
