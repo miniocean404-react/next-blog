@@ -27,23 +27,23 @@ export const api = createTRPCClient<TRPCRouter>({
         !isNonJsonSerializable(op.input) && op.type !== "subscription" && !op.context["stream"],
       // 可以被序列化, httpLink 都可以用于上传
       true: httpBatchLink({
-        url: `${getBaseUrl()}/api/trpc`,
+        url: getBaseUrl(),
       }),
       false: splitLink({
         condition: (op) =>
           isNonJsonSerializable(op.input) && op.type !== "subscription" && !op.context["stream"],
         // 不可以被序列化
         true: httpLink({
-          url: `${getBaseUrl()}/api/trpc`,
+          url: getBaseUrl(),
         }),
         false: splitLink({
           condition: (op) => op.type === "subscription" && !op.context["stream"],
           // 可以被序列化
           true: unstable_httpSubscriptionLink({
-            url: `${getBaseUrl()}/api/trpc`,
+            url: getBaseUrl(),
           }),
           false: unstable_httpBatchStreamLink({
-            url: `${getBaseUrl()}/api/trpc`,
+            url: getBaseUrl(),
           }),
         }),
       }),
