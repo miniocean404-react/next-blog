@@ -62,7 +62,17 @@ const documents = defineCollection({
     const body = await compileMDX(context, document, {
       remarkPlugins: [codeImport, remarkGfm],
       rehypePlugins: [
+        [rehypePrettyCode, prettyCodeOptions],
         rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            properties: {
+              className: ["subheading-anchor"],
+              ariaLabel: "Link to section",
+            },
+          },
+        ],
         // rehypeComponent,
         () => (tree) => {
           visit(tree, (node) => {
@@ -80,13 +90,13 @@ const documents = defineCollection({
                   codeEl.data.meta = codeEl.data.meta.replace(regex, "")
                 }
               }
+
               // node.__rawString__ = codeEl.children?.[0].value
               node.__src__ = node.properties?.__src__
               node.__style__ = node.properties?.__style__
             }
           })
         },
-        [rehypePrettyCode, prettyCodeOptions],
         () => (tree) => {
           visit(tree, (node) => {
             if (node?.type === "element" && node?.tagName === "figure") {
@@ -117,15 +127,6 @@ const documents = defineCollection({
           })
         },
         // rehypeNpmCommand,
-        [
-          rehypeAutolinkHeadings,
-          {
-            properties: {
-              className: ["subheading-anchor"],
-              ariaLabel: "Link to section",
-            },
-          },
-        ],
       ],
     })
     return {
