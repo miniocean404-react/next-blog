@@ -3,8 +3,7 @@ import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
 import type { loginFormSchemaType } from "@/utils/schema/login"
-import { apiServer } from "@/server/client/react-query-server"
-import { api } from "@/server/client/react-query-provider"
+import { rawApi } from "@/server/client/raw"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   // debug: process.env.NODE_ENV !== "production",
@@ -33,7 +32,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       authorize: async (credentials) => {
         const { email, password } = credentials as loginFormSchemaType
 
-        const result = await api.useUtils().client.User.login.query({ email, password })
+        const result = await rawApi.User.login.mutate({ email, password })
 
         if (result.code !== 200) {
           throw new CredentialsSignin(result.msg, { cause: result })

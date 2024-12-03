@@ -17,7 +17,7 @@ export const User = appRouter({
         password: z.string(),
       }),
     )
-    .query(async (opts) => {
+    .mutation(async (opts) => {
       const { email, password } = opts.input
 
       const user = await db().query.userModel.findFirst({
