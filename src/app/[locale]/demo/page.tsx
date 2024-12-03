@@ -1,4 +1,3 @@
-"use client"
 import Code from "~/lib/components/mini/code"
 import Index from "./index.mdx"
 

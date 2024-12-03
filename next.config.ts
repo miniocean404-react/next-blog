@@ -9,7 +9,7 @@ import { fileURLToPath } from "url"
 //   PHASE_PRODUCTION_BUILD,
 //   PHASE_PRODUCTION_SERVER,
 // } from "next/constants.js"
-// import rehypePrettyCode from "rehype-pretty-code"
+import rehypePrettyCode from "rehype-pretty-code"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -22,7 +22,7 @@ const withMDX = nextMDX({
   extension: /\.(md|mdx)$/,
   options: {
     remarkPlugins: [],
-    rehypePlugins: [],
+    // rehypePlugins: [[rehypePrettyCode, {}]],
   },
 })
 
