@@ -80,8 +80,6 @@ const documents = defineCollection({
                   codeEl.data.meta = codeEl.data.meta.replace(regex, "")
                 }
               }
-
-              // 暂时注释
               // node.__rawString__ = codeEl.children?.[0].value
               node.__src__ = node.properties?.__src__
               node.__style__ = node.properties?.__style__
@@ -102,7 +100,6 @@ const documents = defineCollection({
               }
 
               preElement.properties["__withMeta__"] = node.children.at(0).tagName === "div"
-              // 暂时注释
               // preElement.properties["__rawString__"] = node.__rawString__
 
               if (node.__src__) {

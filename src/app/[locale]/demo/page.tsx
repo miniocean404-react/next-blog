@@ -6,16 +6,11 @@ import "@/css/mdx.css"
 
 export default function Demo() {
   return (
-    <div className="mt-16 mx-auto max-w-mini-layout">
+    <div className="mt-16 mx-auto max-w-mini-layout ">
       <ul>
         {allDocs.map((doc) => {
           const Component = useMDXComponent(doc.body.code)
-
-          return (
-            <li key={doc._meta.path}>
-              <Component components={components}></Component>
-            </li>
-          )
+          return <Component key={doc._meta.path} components={components}></Component>
         })}
       </ul>
     </div>
