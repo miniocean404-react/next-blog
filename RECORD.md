@@ -68,10 +68,6 @@ pnpx drizzle-kit push
 next dev --experimental-https
 ```
 
-# MDX
-
-1. Next.js + next-mdx-remote 在App Router中使用指南——SSR+fs篇: https://juejin.cn/post/7376635991606706228
-
 # SEO
 
 1. OpenGraph，又叫 OG 协议：https://segmentfault.com/a/1190000040863000
