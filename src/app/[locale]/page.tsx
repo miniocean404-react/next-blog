@@ -2,6 +2,7 @@ import FloatDock from "@/components/float-docker"
 import ParticlesBackground from "@/components/particles-background"
 import TypedJs from "@/components/typed"
 import { getTranslations } from "next-intl/server"
+import { decode } from "next-auth/jwt"
 
 export default async function Home(props: { params: { locale: string } }) {
   const t = await getTranslations()
