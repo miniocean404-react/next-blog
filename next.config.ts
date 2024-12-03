@@ -22,7 +22,7 @@ const withMDX = nextMDX({
   extension: /\.(md|mdx)$/,
   options: {
     remarkPlugins: [],
-    // rehypePlugins: [["rehypePrettyCode"]],
+    // rehypePlugins: [[]],
   },
 })
 
@@ -148,6 +148,7 @@ const config: NextConfig = {
   },
 
   experimental: {
+    optimizeCss: true,
     turbo: {
       rules: {
         "*.svg": {
