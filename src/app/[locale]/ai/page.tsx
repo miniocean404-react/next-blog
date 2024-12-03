@@ -2,61 +2,54 @@
 
 import { api } from "@/server/client/react-query-provider"
 import { skipToken } from "@tanstack/react-query"
-import type { Unsubscribable } from "@trpc/server/observable"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ChatInput, ChatLayout, ChatMessage, ChatWindow } from "~/lib/components/mini/chat"
+import type { Unsubscribable } from "@trpc/server/observable"
+import { rawApi } from "@/server/client/raw"
 
 export default function Ai() {
   const [messages, setMessages] = useState<MessageBody[]>([
-    // {
-    //   id: 1,
-    //   content: "你好，我是 AI 机器人，有什么问题可以问我",
-    //   type: "send",
-    // },
-    // {
-    //   id: 2,
-    //   content: "你好，我是 AI 机器人，有什么问题可以问我",
-    //   type: "receive",
-    // },
+    { role: "system", content: "你是豆包，是由字节跳动开发的 AI 人工智能助手" },
   ])
 
-  const [content, setContent] = useState("")
+  const unsubscribableRef = useRef<Unsubscribable>()
 
-  const result = api.Ai.aiExchange.useSubscription(content ? { content } : skipToken, {
-    onData(value: Answer | "done") {
-      if (value === "done") {
-        setContent("")
-        return result.reset()
-      }
+  function subscription(messages: MessageBody[]) {
+    unsubscribableRef.current = rawApi.Ai.aiExchange.subscribe(messages, {
+      onData(part) {
+        if (part.choices[0].finish_reason === "stop")
+          return unsubscribableRef.current?.unsubscribe()
 
-      const answer = value.choices[0].delta.content
+        const answer = part.choices[0].delta.content
 
-      setMessages((prev) => {
-        const newMessage = [...prev]
+        setMessages((prev) => {
+          const newMessage = [...prev]
 
-        const preMessageIndex = newMessage.findIndex((message) => message.id === value.id)
-        if (preMessageIndex > -1) {
-          newMessage[preMessageIndex].content = newMessage[preMessageIndex].content += answer
-        } else {
-          newMessage.push({
-            id: value.id,
-            type: "receive",
-            content: answer,
-          })
-        }
+          const preMessageIndex = newMessage.findIndex((message) => message.id === part.id)
 
-        return newMessage
-      })
-    },
-  })
+          if (preMessageIndex > -1) {
+            newMessage[preMessageIndex].content = newMessage[preMessageIndex].content += answer
+          } else {
+            newMessage.push({
+              id: part.id,
+              role: "assistant",
+              content: answer,
+            })
+          }
+
+          return newMessage
+        })
+      },
+    })
+  }
 
   const send = (value: string) => {
-    result.reset()
-    setContent(value)
+    unsubscribableRef.current?.unsubscribe()
 
     setMessages((prev) => {
       const newMessage = [...prev]
-      newMessage.push({ type: "send", content: value })
+      newMessage.push({ role: "user", content: value })
+      subscription(newMessage)
       return newMessage
     })
   }
@@ -65,11 +58,15 @@ export default function Ai() {
     <div className="mt-16">
       <ChatLayout className="h-[calc(100dvh-64px)]">
         <ChatWindow className="md:max-w-mini-layout">
-          {messages.map((message, index) => (
-            <ChatMessage type={message.type} key={index}>
-              {message.content}
-            </ChatMessage>
-          ))}
+          {messages.map((message, index) => {
+            if (message.role === "user" || message.role === "assistant") {
+              return (
+                <ChatMessage type={message.role} key={index}>
+                  {message.content}
+                </ChatMessage>
+              )
+            }
+          })}
         </ChatWindow>
 
         <ChatInput className="p-3.5 2xl:px-0 md:max-w-mini-layout" onSend={send}></ChatInput>

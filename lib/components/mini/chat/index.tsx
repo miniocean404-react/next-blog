@@ -52,16 +52,17 @@ export function ChatWindow(props: PropsWithChildren<ChatWindowProps>) {
 
 interface ChatMessageProps {
   className?: string
-  type: "send" | "receive"
+  // 用户是发送方，助手是接收方
+  type: "user" | "assistant"
 }
 
 export function ChatMessage(props: PropsWithChildren<ChatMessageProps>) {
   return (
     <div>
-      <div className={clsx("w-full flex", { ["flex-row-reverse"]: props.type === "send" })}>
+      <div className={clsx("w-full flex", { ["flex-row-reverse"]: props.type === "user" })}>
         <div
           className={clsx("rounded bg-mini-background-soft text-primary p-2 w-fit max-w-[70%]", {
-            "bg-transparent max-w-full": props.type === "receive",
+            "bg-transparent max-w-full": props.type === "assistant",
           })}
         >
           {props.children}
