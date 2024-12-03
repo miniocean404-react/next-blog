@@ -8,8 +8,8 @@ import remarkGfm from "remark-gfm"
 import { createHighlighter } from "shiki"
 import { visit } from "unist-util-visit"
 
-import { rehypeComponent } from "./lib/rehype-component"
-import { rehypeNpmCommand } from "./lib/rehype-npm-command"
+// import { rehypeComponent } from "./lib/rehype-component"
+// import { rehypeNpmCommand } from "./lib/rehype-npm-command"
 
 const prettyCodeOptions: Options = {
   theme: "github-dark",
@@ -95,27 +95,27 @@ const documents = defineCollection({
   directory: "content",
   include: "**/*.mdx",
   schema: (z) => ({
-    title: z.string(),
-    description: z.string(),
-    published: z.boolean().default(true),
-    date: z.string().optional(),
-    links: z
-      .object({
-        doc: z.string().optional(),
-        api: z.string().optional(),
-      })
-      .optional(),
-    featured: z.boolean().optional().default(false),
-    component: z.boolean().optional().default(false),
-    toc: z.boolean().optional().default(true),
-    image: z.string().optional(),
+    // title: z.string(),
+    // description: z.string(),
+    // published: z.boolean().default(true),
+    // date: z.string().optional(),
+    // links: z
+    //   .object({
+    //     doc: z.string().optional(),
+    //     api: z.string().optional(),
+    //   })
+    //   .optional(),
+    // featured: z.boolean().optional().default(false),
+    // component: z.boolean().optional().default(false),
+    // toc: z.boolean().optional().default(true),
+    // image: z.string().optional(),
   }),
   transform: async (document, context) => {
     const body = await compileMDX(context, document, {
       remarkPlugins: [codeImport, remarkGfm],
       rehypePlugins: [
         rehypeSlug,
-        rehypeComponent,
+        // rehypeComponent,
         () => (tree) => {
           visit(tree, (node) => {
             if (node?.type === "element" && node?.tagName === "pre") {
@@ -168,7 +168,7 @@ const documents = defineCollection({
             }
           })
         },
-        rehypeNpmCommand,
+        // rehypeNpmCommand,
         [
           rehypeAutolinkHeadings,
           {

@@ -3,7 +3,7 @@ import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
 import path from "path"
 import { fileURLToPath } from "url"
-
+import { withContentCollections } from "@content-collections/next"
 // import {
 //   PHASE_DEVELOPMENT_SERVER,
 //   PHASE_PRODUCTION_BUILD,
@@ -168,4 +168,4 @@ const config: NextConfig = {
   },
 }
 
-export default withMDX(withNextIntl(config))
+export default withContentCollections(withNextIntl(config))
