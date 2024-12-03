@@ -80,7 +80,9 @@ const documents = defineCollection({
                   codeEl.data.meta = codeEl.data.meta.replace(regex, "")
                 }
               }
-              node.__rawString__ = codeEl.children?.[0].value
+
+              // 暂时注释
+              // node.__rawString__ = codeEl.children?.[0].value
               node.__src__ = node.properties?.__src__
               node.__style__ = node.properties?.__style__
             }
@@ -100,7 +102,8 @@ const documents = defineCollection({
               }
 
               preElement.properties["__withMeta__"] = node.children.at(0).tagName === "div"
-              preElement.properties["__rawString__"] = node.__rawString__
+              // 暂时注释
+              // preElement.properties["__rawString__"] = node.__rawString__
 
               if (node.__src__) {
                 preElement.properties["__src__"] = node.__src__
@@ -116,7 +119,7 @@ const documents = defineCollection({
             }
           })
         },
-        rehypeNpmCommand,
+        // rehypeNpmCommand,
         [
           rehypeAutolinkHeadings,
           {
