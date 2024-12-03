@@ -81,12 +81,10 @@
     "zustand": "5.0.1"
   },
   "devDependencies": {
+    "@types/unist": "^3.0.3",
     "@content-collections/core": "^0.7.3",
     "@content-collections/mdx": "^0.2.0",
     "@content-collections/next": "^0.2.4",
-    "@mdx-js/loader": "^3.1.0",
-    "@mdx-js/react": "^3.1.0",
-    "@next/mdx": "^15.0.3",
     "@svgr/webpack": "^8.1.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/canvas-confetti": "^1.6.4",

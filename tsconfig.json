@@ -5,7 +5,7 @@
       // 如果设置根目录为@ 就要为./ 并且如果没有正确提示路径就代表设置错误
       "@/*": ["./src/*"],
       "~/*": ["./*"],
-      "content-collections": ["./.content-collections/generated"]
+      "content-collections": ["./content/.content-collections/generated"]
     },
     "target": "ESNext", // 指定ECMAScript目标版本
     "module": "ESNext", // 指定生成哪个模块系统代码

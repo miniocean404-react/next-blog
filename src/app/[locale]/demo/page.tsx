@@ -1,8 +1,8 @@
-import Code from "~/lib/components/mini/code"
 import { allDocs } from "content-collections"
 import { useMDXComponent } from "@content-collections/mdx/react"
 import { cn } from "@/utils/tw"
 import Link from "next/link"
+import "@/css/mdx.css"
 
 const CustomLink = (props: any) => {
   const href = props.href
@@ -144,9 +144,7 @@ const components = {
 
 export default function Demo() {
   return (
-    <div className="mt-16">
-      <Code code={` console.log("Hello World")`}></Code>
-
+    <div className="mt-16 mx-auto max-w-mini-layout">
       <ul>
         {allDocs.map((post) => {
           const Component = useMDXComponent(post.body.code)

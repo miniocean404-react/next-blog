@@ -1,9 +1,8 @@
-import nextMDX from "@next/mdx"
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
 import path from "path"
 import { fileURLToPath } from "url"
-import { withContentCollections } from "@content-collections/next"
+import { createContentCollectionPlugin } from "@content-collections/next"
 // import {
 //   PHASE_DEVELOPMENT_SERVER,
 //   PHASE_PRODUCTION_BUILD,
@@ -15,16 +14,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const isDev = process.env.NODE_ENV === "development"
 const isProd = process.env.NODE_ENV === "production"
-
-const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
-
-const withMDX = nextMDX({
-  extension: /\.(md|mdx)$/,
-  options: {
-    remarkPlugins: [],
-    // rehypePlugins: [[]],
-  },
-})
 
 const config: NextConfig = {
   // export: 会打包为 SSG(静态 html) https://nextjs.org/docs/pages/building-your-application/deploying/static-exports
@@ -168,4 +157,10 @@ const config: NextConfig = {
   },
 }
 
-export default withContentCollections(withNextIntl(config))
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
+
+const withPlugin = createContentCollectionPlugin({
+  configPath: "./content/content-collections.ts",
+})
+
+export default withPlugin(withNextIntl(config))

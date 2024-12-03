@@ -1,22 +1,26 @@
 import { defineCollection, defineConfig } from "@content-collections/core"
 import { compileMDX } from "@content-collections/mdx"
-import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypePrettyCode, { type Options } from "rehype-pretty-code"
-import rehypeSlug from "rehype-slug"
-import { codeImport } from "remark-code-import"
-import remarkGfm from "remark-gfm"
+
+// 一款基于 TextMate 语法高亮
 import { createHighlighter } from "shiki"
+import rehypePrettyCode, { type Options } from "rehype-pretty-code"
+// 使用文件路径及行号添加代码块
+import { codeImport } from "remark-code-import"
+// 为 html 标题添加连接
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+// 为 html 标题添加 id
+import rehypeSlug from "rehype-slug"
+// 支持 GFM 的备注插件（自动链接文字、脚注、删除线、表格、任务列表）。
+import remarkGfm from "remark-gfm"
+// markdown 语法树遍历
 import { visit } from "unist-util-visit"
 
 // import { rehypeComponent } from "./lib/rehype-component"
-// import { rehypeNpmCommand } from "./lib/rehype-npm-command"
+import { rehypeNpmCommand } from "./plugin/rehype-npm-command"
 
 const prettyCodeOptions: Options = {
-  theme: "github-dark",
-  getHighlighter: (options) =>
-    createHighlighter({
-      ...options,
-    }),
+  theme: "one-dark-pro",
+  getHighlighter: (options) => createHighlighter(options),
   onVisitLine(node) {
     // Prevent lines from collapsing in `display: grid` mode, and allow empty
     // lines to be copy/pasted
@@ -25,74 +29,18 @@ const prettyCodeOptions: Options = {
     }
   },
   onVisitHighlightedLine(node) {
-    if (!node.properties.className) {
-      node.properties.className = []
-    }
+    if (!node.properties.className) node.properties.className = []
     node.properties.className.push("line--highlighted")
   },
   onVisitHighlightedChars(node) {
-    if (!node.properties.className) {
-      node.properties.className = []
-    }
+    if (!node.properties.className) node.properties.className = []
     node.properties.className = ["word--highlighted"]
   },
 }
 
-const showcase = defineCollection({
-  name: "Showcase",
-  directory: "content/showcase",
-  include: "**/*.mdx",
-  schema: (z) => ({
-    title: z.string(),
-    description: z.string(),
-    image: z.string(),
-    href: z.string(),
-    affiliation: z.string(),
-    featured: z.boolean().optional().default(false),
-  }),
-  transform: async (document, context) => {
-    const body = await compileMDX(context, document, {
-      remarkPlugins: [codeImport, remarkGfm],
-    })
-    return {
-      ...document,
-      slug: `/showcase/${document._meta.path}`,
-      slugAsParams: document._meta.path,
-      body: {
-        raw: document.content,
-        code: body,
-      },
-    }
-  },
-})
-
-const pages = defineCollection({
-  name: "Page",
-  directory: "content/pages",
-  include: "**/*.mdx",
-  schema: (z) => ({
-    title: z.string(),
-    description: z.string(),
-  }),
-  transform: async (document, context) => {
-    const body = await compileMDX(context, document, {
-      remarkPlugins: [codeImport, remarkGfm],
-    })
-    return {
-      ...document,
-      slug: `/${document._meta.path}`,
-      slugAsParams: document._meta.path,
-      body: {
-        raw: document.content,
-        code: body,
-      },
-    }
-  },
-})
-
 const documents = defineCollection({
   name: "Doc",
-  directory: "content",
+  directory: "./mdx",
   include: "**/*.mdx",
   schema: (z) => ({
     // title: z.string(),
@@ -168,7 +116,7 @@ const documents = defineCollection({
             }
           })
         },
-        // rehypeNpmCommand,
+        rehypeNpmCommand,
         [
           rehypeAutolinkHeadings,
           {
@@ -182,7 +130,7 @@ const documents = defineCollection({
     })
     return {
       ...document,
-      image: `${process.env.NEXT_PUBLIC_APP_URL}/og?title=${encodeURI(document.title)}`,
+      // image: `${process.env.NEXT_PUBLIC_APP_URL}/og?title=${encodeURI(document.title)}`,
       slug: `/${document._meta.path}`,
       slugAsParams: document._meta.path.split("/").slice(1).join("/"),
       body: {
@@ -194,5 +142,5 @@ const documents = defineCollection({
 })
 
 export default defineConfig({
-  collections: [documents, pages, showcase],
+  collections: [documents],
 })
