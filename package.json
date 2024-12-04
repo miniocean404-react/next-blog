@@ -50,11 +50,11 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
-    "drizzle-orm": "^0.36.4",
+    "drizzle-orm": "^0.37.0",
     "framer-motion": "^11.12.0",
     "imagekit": "^5.2.0",
     "input-otp": "^1.4.1",
-    "lucide-react": "0.462.0",
+    "lucide-react": "0.465.0",
     "mysql2": "^3.11.5",
     "nanoid": "^5.0.9",
     "next": "15.0.3",
@@ -100,14 +100,14 @@
     "cz-customizable": "^7.0.0",
     "dedent": "^1.5.3",
     "dotenv": "^16.4.5",
-    "drizzle-kit": "^0.28.1",
+    "drizzle-kit": "^0.29.1",
     "husky": "9.1.7",
     "lint-staged": "15.2.10",
     "mdast-util-toc": "^7.1.0",
     "next-contentlayer2": "^0.5.3",
     "picocolors": "^1.1.1",
     "postcss": "^8.4.49",
-    "prettier": "3.4.1",
+    "prettier": "3.4.2",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "0.14.0",
     "rehype-slug": "^6.0.0",
@@ -151,7 +151,7 @@
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
-        "@contentlayer2"
+        "@opentelemetry/sdk-trace-base"
       ]
     }
   }
