@@ -1,3 +1,12 @@
+export interface NavItem {
+  title: string
+  href?: string
+  disabled?: boolean
+  external?: boolean
+  icon?: any
+  label?: string
+}
+
 export interface NavItemWithChildren extends NavItem {
   items: NavItemWithChildren[]
 }
@@ -14,13 +23,4 @@ export interface DocsConfig {
   mainNav: MainNavItem[]
   sidebarNav: SidebarNavItem[]
   chartsNav: SidebarNavItem[]
-}
-
-export interface NavItem {
-  title: string
-  href?: string
-  disabled?: boolean
-  external?: boolean
-  icon?: any
-  label?: string
 }
