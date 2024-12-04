@@ -1,4 +1,4 @@
-export default async function UploadLayout({
+export default async function DocsLayout({
   children,
 }: {
   children: React.ReactNode

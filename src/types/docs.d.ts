@@ -1,0 +1,3 @@
+interface DocsParams {
+  slug: string[]
+}
