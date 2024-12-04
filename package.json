@@ -24,8 +24,8 @@
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
     "db:web": "drizzle-kit studio",
-    "dev:docs": "contentlayer2 dev -c ./content/contentlayer.ts",
-    "build:docs": "contentlayer2 build -c ./content/contentlayer.ts"
+    "dev:docs": "contentlayer2 dev -c ./contentlayer.config.ts",
+    "build:docs": "contentlayer2 build -c ./contentlayer.config.ts"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",

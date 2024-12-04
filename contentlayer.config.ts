@@ -20,7 +20,7 @@ import { visit } from "unist-util-visit"
 import { createHighlighter } from "shiki"
 
 // import { rehypeComponent } from "./lib/rehype-component"
-import { rehypeNpmCommand } from "./plugin/rehype-npm-command"
+import { rehypeNpmCommand } from "./docs/plugin/rehype-npm-command"
 
 const prettyCodeOptions: Options = {
   theme: "one-dark-pro",
@@ -67,7 +67,8 @@ const LinksProperties = defineNestedType(() => ({
 
 export const Doc = defineDocumentType(() => ({
   name: "Doc",
-  filePathPattern: `./mdx/**/*.mdx`,
+  // 基于 makeSource 的 contentDirPath 路径
+  filePathPattern: "**/*.mdx",
   contentType: "mdx",
   fields: {
     title: {
@@ -106,7 +107,7 @@ export const Doc = defineDocumentType(() => ({
 }))
 
 export default makeSource({
-  contentDirPath: "./content",
+  contentDirPath: "./docs",
   documentTypes: [Doc],
   mdx: {
     remarkPlugins: [remarkGfm, codeImport],

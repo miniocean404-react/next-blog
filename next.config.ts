@@ -2,7 +2,6 @@ import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
 import path from "path"
 import { fileURLToPath } from "url"
-import { createContentCollectionPlugin } from "@content-collections/next"
 import { createContentlayerPlugin } from "next-contentlayer2"
 
 // import {
