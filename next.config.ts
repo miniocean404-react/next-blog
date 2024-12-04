@@ -161,7 +161,7 @@ const config: NextConfig = {
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
 
 const withContentlayerPlugin = createContentlayerPlugin({
-  configPath: "./content/contentlayer.ts",
+  configPath: "./contentlayer.config.ts",
 })
 
 export default withContentlayerPlugin(withNextIntl(config))
