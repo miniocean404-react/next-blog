@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/utils/tw"
-import type { TableOfContents } from "~/content/utils/toc"
+import type { TableOfContents } from "~/content/components/toc/toc"
 import { useEffect, useMemo, useState } from "react"
 
 interface TocProps {

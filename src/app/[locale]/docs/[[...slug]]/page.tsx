@@ -1,9 +1,9 @@
 import { cn } from "@/utils/tw"
 import { allDocs } from "contentlayer/generated"
 import { notFound } from "next/navigation"
-import { Mdx } from "~/content/components"
-import { DashboardTableOfContents } from "~/content/ui/toc"
-import { getTableOfContents } from "~/content/utils/toc"
+import { Mdx } from "~/content/components/skeleton"
+import { DashboardTableOfContents } from "~/content/components/toc"
+import { getTableOfContents } from "~/content/components/toc/toc"
 // import { useLiveReload } from "next-contentlayer2/hooks"
 
 async function getDocFromParams({ params }: { params: DocsParams }) {

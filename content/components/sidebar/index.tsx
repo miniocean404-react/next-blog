@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { cn } from "@/utils/tw"
-import type { DocsConfig } from "~/content/config"
+import type { DocsConfig } from "~/content/components/sidebar/config"
 
 export interface NavItem {
   title: string

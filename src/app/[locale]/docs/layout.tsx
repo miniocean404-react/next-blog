@@ -1,5 +1,5 @@
-import { DocsSidebarNav } from "~/content/ui/sidebar"
-import { docsConfig } from "~/content/config"
+import { DocsSidebarNav } from "~/content/components/sidebar"
+import { docsConfig } from "~/content/components/sidebar/config"
 import { cn } from "@/utils/tw"
 
 export default async function DocsLayout({

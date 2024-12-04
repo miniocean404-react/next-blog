@@ -1,4 +1,4 @@
-import type { MainNavItem, SidebarNavItem } from "~/content/ui/sidebar"
+import type { MainNavItem, SidebarNavItem } from "~/content/components/sidebar"
 
 export interface DocsConfig {
   mainNav: MainNavItem[]
