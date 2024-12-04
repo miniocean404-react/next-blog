@@ -1,6 +1,11 @@
 import { cn } from "@/utils/tw"
 import { allDocs } from "contentlayer/generated"
+import { notFound } from "next/navigation"
 import { Mdx } from "~/content/components"
+import { docsConfig } from "~/content/config"
+import { DocsSidebarNav, DocsSidebarNavItems } from "~/content/ui/sidebar"
+import { DashboardTableOfContents } from "~/content/ui/toc"
+import { getTableOfContents } from "~/content/utils/toc"
 // import { useLiveReload } from "next-contentlayer2/hooks"
 
 async function getDocFromParams({ params }: { params: DocsParams }) {
@@ -31,8 +36,10 @@ export default async function Docs({
   const doc = await getDocFromParams({ params })
 
   if (!doc) {
-    return null
+    return notFound()
   }
+
+  const toc = await getTableOfContents(doc.body.raw)
 
   return (
     <div
@@ -42,13 +49,17 @@ export default async function Docs({
         "md:grid-cols-[220px_minmax(0,1fr)_300px] md:gap-6",
       )}
     >
-      <aside></aside>
+      <aside>
+        <DocsSidebarNav config={docsConfig}></DocsSidebarNav>
+      </aside>
 
-      <main>
+      <main className="overflow-auto">
         <Mdx key={doc._id} code={doc.body.code}></Mdx>
       </main>
 
-      <div></div>
+      <div>
+        <DashboardTableOfContents toc={toc}></DashboardTableOfContents>
+      </div>
     </div>
   )
 }
