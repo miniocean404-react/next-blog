@@ -1,30 +1,25 @@
-// @ts-nocheck
 "use client"
 
-import * as React from "react"
-
-import { useMounted } from "@/utils/hook/mounted"
 import { cn } from "@/utils/tw"
 import type { TableOfContents } from "~/content/utils/toc"
+import { useEffect, useMemo, useState } from "react"
 
 interface TocProps {
   toc: TableOfContents
 }
 
 export function DashboardTableOfContents({ toc }: TocProps) {
-  const itemIds = React.useMemo(
-    () =>
-      toc.items
-        ? toc.items
-            .flatMap((item) => [item.url, item?.items?.map((item) => item.url)])
-            .flat()
-            .filter(Boolean)
-            .map((id) => id?.split("#")[1])
-        : [],
-    [toc],
-  )
+  const itemIds = useMemo(() => {
+    return toc.items
+      ? (toc.items
+          .flatMap((item) => [item.url, item?.items?.map((item) => item.url)])
+          .flat()
+          .filter(Boolean)
+          .map((id) => id?.split("#")[1]) as string[])
+      : []
+  }, [toc])
+
   const activeHeading = useActiveItem(itemIds)
-  const mounted = useMounted()
 
   if (!toc?.items?.length) {
     return null
@@ -39,9 +34,9 @@ export function DashboardTableOfContents({ toc }: TocProps) {
 }
 
 function useActiveItem(itemIds: string[]) {
-  const [activeId, setActiveId] = React.useState(null)
+  const [activeId, setActiveId] = useState("")
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
