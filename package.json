@@ -145,5 +145,12 @@
     "commitizen": {
       "path": "./node_modules/cz-customizable"
     }
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@contentlayer2"
+      ]
+    }
   }
 }
