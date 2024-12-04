@@ -55,22 +55,20 @@ export default function Ai() {
   }
 
   return (
-    <div className="mt-16">
-      <ChatLayout className="h-[calc(100dvh-64px)]">
-        <ChatWindow className="md:max-w-mini-layout">
-          {messages.map((message, index) => {
-            if (message.role === "user" || message.role === "assistant") {
-              return (
-                <ChatMessage type={message.role} key={index}>
-                  {message.content}
-                </ChatMessage>
-              )
-            }
-          })}
-        </ChatWindow>
+    <ChatLayout className="h-mini-layout-one-screen">
+      <ChatWindow className="md:max-w-mini-layout">
+        {messages.map((message, index) => {
+          if (message.role === "user" || message.role === "assistant") {
+            return (
+              <ChatMessage type={message.role} key={index}>
+                {message.content}
+              </ChatMessage>
+            )
+          }
+        })}
+      </ChatWindow>
 
-        <ChatInput className="p-3.5 2xl:px-0 md:max-w-mini-layout" onSend={send}></ChatInput>
-      </ChatLayout>
-    </div>
+      <ChatInput className="p-3.5 2xl:px-0 md:max-w-mini-layout" onSend={send}></ChatInput>
+    </ChatLayout>
   )
 }

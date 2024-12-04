@@ -41,11 +41,11 @@ export default async function Docs({
 
   return (
     <>
-      <main className="mt-8 overflow-auto no-scrollbar">
+      <main className=" py-8 no-scrollbar">
         <Mdx key={doc._id} code={doc.body.code}></Mdx>
       </main>
 
-      <div className="mt-8 text-sm overflow-auto no-scrollbar">
+      <div className="sticky top-16 h-mini-layout-one-screen py-8 text-sm overflow-auto no-scrollbar">
         <DashboardTableOfContents toc={toc}></DashboardTableOfContents>
       </div>
     </>

@@ -12,13 +12,12 @@ export default async function DocsLayout({
     <div
       className={cn(
         "max-w-mini-layout",
-        "h-[calc(100vh-4rem)]",
-        "w-full mt-16 mx-auto py-6 grid px-8",
-        "lg:grid-cols-[240px_minmax(0,1fr)_300px] lg:gap-10",
-        "md:grid-cols-[220px_minmax(0,1fr)_300px] md:gap-6",
+        "mx-auto grid px-8",
+        "lg:grid-cols-[200px_minmax(0,1fr)_260px] lg:gap-16",
+        "md:grid-cols-[180px_minmax(0,1fr)_260px] md:gap-6",
       )}
     >
-      <aside className="mt-8 overflow-auto no-scrollbar">
+      <aside className="sticky top-16 h-mini-layout-one-screen py-8 overflow-auto no-scrollbar">
         <DocsSidebarNav config={docsConfig}></DocsSidebarNav>
       </aside>
 

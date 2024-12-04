@@ -37,7 +37,10 @@ const config: Config = {
         mono: ["var(--mini-font-family-mono)"],
       },
       maxWidth: {
-        "mini-layout": "calc(var(--mini-layout-max-width) - 4rem)",
+        "mini-layout": "var(--mini-layout-max-width)",
+      },
+      height: {
+        "mini-layout-one-screen": "calc(100dvh - 4rem)",
       },
       boxShadow: {
         "mini-1": "var(--mini-shadow-1)",

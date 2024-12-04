@@ -47,7 +47,7 @@ export default function RegisterPage({
   const router = useRouter()
 
   return (
-    <div className="h-screen flex justify-center items-center mx-8 md:mx-0">
+    <div className="h-mini-layout-one-screen flex justify-center items-center mx-8 md:mx-0">
       <RegisterInfoProvider>
         <Swiper
           className="w-96 h-max"
