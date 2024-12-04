@@ -18,10 +18,6 @@ import {
 export async function Navigation(props: PropsWithChildren<NavigationProps>) {
   const t = await getTranslations("header")
 
-  const toggle = () => {
-    console.error("还未实现")
-  }
-
   return (
     <>
       {/* PC 导航 */}
@@ -78,8 +74,7 @@ export async function Navigation(props: PropsWithChildren<NavigationProps>) {
 
         <DrawerContent direction="right">
           <DrawerHeader>
-            <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-            <DrawerDescription>This action cannot be undone.</DrawerDescription>
+            <DrawerTitle></DrawerTitle>
           </DrawerHeader>
 
           {/* <DrawerFooter>
