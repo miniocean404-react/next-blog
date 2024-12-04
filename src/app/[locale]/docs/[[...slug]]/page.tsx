@@ -45,7 +45,7 @@ export default async function Docs({
         <Mdx key={doc._id} code={doc.body.code}></Mdx>
       </main>
 
-      <div className="mt-8 overflow-auto no-scrollbar">
+      <div className="mt-8 text-sm overflow-auto no-scrollbar">
         <DashboardTableOfContents toc={toc}></DashboardTableOfContents>
       </div>
     </>
