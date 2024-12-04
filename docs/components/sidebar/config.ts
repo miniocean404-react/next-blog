@@ -1,10 +1,4 @@
-import type { MainNavItem, SidebarNavItem } from "./index"
-
-export interface DocsConfig {
-  mainNav: MainNavItem[]
-  sidebarNav: SidebarNavItem[]
-  chartsNav: SidebarNavItem[]
-}
+import type { DocsConfig } from "./type"
 
 export const docsConfig: DocsConfig = {
   mainNav: [

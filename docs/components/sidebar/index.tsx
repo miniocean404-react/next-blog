@@ -4,28 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { cn } from "@/utils/tw"
-import type { DocsConfig } from "./config"
-
-export interface NavItem {
-  title: string
-  href?: string
-  disabled?: boolean
-  external?: boolean
-  icon?: any
-  label?: string
-}
-
-export interface NavItemWithChildren extends NavItem {
-  items: NavItemWithChildren[]
-}
-
-export interface MainNavItem extends NavItem {}
-
-export interface SidebarNavItem extends NavItemWithChildren {}
-
-export interface DocsSidebarNavProps {
-  config: DocsConfig
-}
+import type { DocsSidebarNavProps, SidebarNavItem } from "./type"
 
 export function DocsSidebarNav({ config }: DocsSidebarNavProps) {
   const pathname = usePathname()
