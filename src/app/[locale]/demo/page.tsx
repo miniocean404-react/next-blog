@@ -1,5 +1,6 @@
 import { allDocs } from "contentlayer/generated"
 import { Mdx } from "~/content/components"
+import { useLiveReload } from "next-contentlayer2/hooks"
 
 export default function Demo() {
   return (
