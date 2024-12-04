@@ -20,7 +20,7 @@ import { visit } from "unist-util-visit"
 import { createHighlighter } from "shiki"
 
 // import { rehypeComponent } from "./lib/rehype-component"
-import { rehypeNpmCommand } from "./docs/plugin/rehype-npm-command"
+import { rehypeNpmCommand } from "./lib/mdx/plugin/rehype-npm-command"
 
 const prettyCodeOptions: Options = {
   theme: "one-dark-pro",

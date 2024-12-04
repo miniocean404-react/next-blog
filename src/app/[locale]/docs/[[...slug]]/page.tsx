@@ -1,8 +1,8 @@
 import { allDocs } from "contentlayer/generated"
 import { notFound } from "next/navigation"
-import { Mdx } from "~/docs/components/skeleton"
-import { DashboardTableOfContents } from "~/docs/components/toc"
-import { getTableOfContents } from "~/docs/components/toc/toc"
+import { Mdx } from "~/lib/mdx/components/skeleton"
+import { DashboardTableOfContents } from "~/lib/mdx/components/toc"
+import { getTableOfContents } from "~/lib/mdx/components/toc/toc"
 
 // import { useLiveReload } from "next-contentlayer2/hooks"
 

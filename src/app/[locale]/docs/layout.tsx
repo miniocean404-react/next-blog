@@ -1,6 +1,6 @@
 import { cn } from "@/utils/tw"
-import { DocsSidebarNav } from "~/docs/components/sidebar"
-import { docsConfig } from "~/docs/components/sidebar/config"
+import { DocsSidebarNav } from "~/lib/mdx/components/sidebar"
+import { docsConfig } from "~/lib/mdx/components/sidebar/config"
 
 export default async function DocsLayout({
   children,
