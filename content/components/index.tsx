@@ -2,6 +2,7 @@ import { cn } from "@/utils/tw"
 import Link from "next/link"
 import Image from "next/image"
 import { CustomLink } from "~/content/components/link"
+import { useMDXComponent } from "next-contentlayer2/hooks"
 
 // https://github1s.com/magicuidesign/magicui/blob/main/components/mdx-components.tsx#L14
 export const components = {
@@ -10,8 +11,6 @@ export const components = {
     <h1 className={cn("font-heading mt-2 scroll-m-20 text-4xl font-bold", className)} {...props} />
   ),
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
-    console.log(props)
-
     return (
       <h2
         className={cn(
@@ -126,4 +125,22 @@ export const components = {
       {...props}
     />
   ),
+}
+
+interface MdxProps {
+  code: string
+}
+
+import "@/css/mdx.css"
+
+export function Mdx({ code }: MdxProps) {
+  const Component = useMDXComponent(code, {
+    style: "default",
+  })
+
+  return (
+    <div className="mdx">
+      <Component components={components} />
+    </div>
+  )
 }

@@ -1,3 +1,4 @@
+/** @type {import('prettier').Config} */
 module.exports = {
   useTabs: false, // 使用 tab 缩进，默认 false
   tabWidth: 2, //tab 缩进大小，默认为 2
@@ -22,4 +23,4 @@ module.exports = {
 
   rangeStart: 0, // 每个文件格式化的范围是文件的全部内容
   rangeEnd: Infinity,
-};
+}

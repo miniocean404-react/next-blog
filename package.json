@@ -23,7 +23,9 @@
     "vercel-publish": "vercel --prod",
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
-    "db:web": "drizzle-kit studio"
+    "db:web": "drizzle-kit studio",
+    "build:docs-dev": "contentlayer2 dev -c ./content/contentlayer.ts",
+    "build:docs": "contentlayer2 build -c ./content/contentlayer.ts"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",
@@ -82,10 +84,7 @@
     "zustand": "5.0.1"
   },
   "devDependencies": {
-    "@types/unist": "^3.0.3",
-    "@content-collections/core": "^0.7.3",
-    "@content-collections/mdx": "^0.2.0",
-    "@content-collections/next": "^0.2.4",
+    "@contentlayer2/source-files": "^0.5.3",
     "@svgr/webpack": "^8.1.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/canvas-confetti": "^1.6.4",
@@ -94,15 +93,17 @@
     "@types/nodemailer": "^6.4.17",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
+    "@types/unist": "^3.0.3",
     "autoprefixer": "^10.4.20",
     "commitizen": "^4.2.5",
-    "critters": "^0.0.25",
+    "contentlayer2": "^0.5.3",
     "cz-customizable": "^7.0.0",
     "dedent": "^1.5.3",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.28.1",
     "husky": "9.1.7",
     "lint-staged": "15.2.10",
+    "next-contentlayer2": "^0.5.3",
     "picocolors": "^1.1.1",
     "postcss": "^8.4.49",
     "prettier": "3.4.1",

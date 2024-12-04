@@ -3,6 +3,8 @@ import createNextIntlPlugin from "next-intl/plugin"
 import path from "path"
 import { fileURLToPath } from "url"
 import { createContentCollectionPlugin } from "@content-collections/next"
+import { createContentlayerPlugin } from "next-contentlayer2"
+
 // import {
 //   PHASE_DEVELOPMENT_SERVER,
 //   PHASE_PRODUCTION_BUILD,
@@ -159,8 +161,8 @@ const config: NextConfig = {
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
 
-const withPlugin = createContentCollectionPlugin({
-  configPath: "./content/content-collections.ts",
+const withContentlayerPlugin = createContentlayerPlugin({
+  configPath: "./content/contentlayer.ts",
 })
 
-export default withPlugin(withNextIntl(config))
+export default withContentlayerPlugin(withNextIntl(config))

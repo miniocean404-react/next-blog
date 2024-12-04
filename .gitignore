@@ -3,7 +3,7 @@
 dist
 .idea
 .env
-.content-collections
+.contentlayer
 
 # dependencies
 /node_modules
