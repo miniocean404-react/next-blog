@@ -3,7 +3,7 @@ import Header from "@/components/header"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
-export default async function HomeLayout({ children }: LayoutPropsWith<LayoutParams>) {
+export default function HomeLayout({ children }: LayoutPropsWith<LayoutParams>) {
   return (
     // 为 vaul 抽屉组件包裹一层
     <div className="bg-background" data-vaul-drawer-wrapper>
