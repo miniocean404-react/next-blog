@@ -92,8 +92,9 @@
     }
   },
   "login": {
+    "back": "返回",
     "card": {
-      "title": "登录",
+      "title": "欢迎回来",
       "desc": "在下面输入您的邮箱以登录您的帐户",
       "email": "邮箱",
       "emailPlaceholder": "请输入邮箱",

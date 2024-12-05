@@ -17,18 +17,12 @@ import {
 
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/lib/components/shadcn/ui/card"
 import { Input } from "~/lib/components/shadcn/ui/input"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
 import { loginCredentials } from "@/action/singn-up"
 import { loginFormSchema, type loginFormSchemaType } from "@/utils/schema/login"
-import { Loader2 } from "lucide-react"
+import Image from "next/image"
+import { ChevronLeft } from "lucide-react"
 
 export default function Login() {
   const t = useTranslations("login")
@@ -54,81 +48,96 @@ export default function Login() {
   }
 
   return (
-    <div className="h-mini-layout-one-screen flex justify-center items-center mx-8 md:mx-0">
-      <Card className="mx-auto w-96">
-        <CardHeader className="items-center">
-          <CardTitle className="text-2xl">{t("card.title")}</CardTitle>
-          <CardDescription>{t("card.desc")}</CardDescription>
-        </CardHeader>
+    <div className="px-8">
+      <Button className="fixed top-8" variant="ghost">
+        <ChevronLeft />
+        {t("back")}
+      </Button>
 
-        <Form {...form}>
-          <form noValidate onSubmit={form.handleSubmit(onSubmit)}>
-            <CardContent className="space-y-4">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel htmlFor="email">{t("card.email")}</FormLabel>
-                    <FormControl>
-                      <Input
-                        id="email"
-                        placeholder={t("card.emailPlaceholder")}
-                        required
-                        {...field}
-                      />
-                    </FormControl>
-                    {/* <FormDescription>这是将显示在您的个人资料和电子邮件中的名称。</FormDescription> */}
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+      <div className="h-dvh flex justify-center items-center mx-8 md:mx-0">
+        <div className="w-[350px] flex flex-col gap-6">
+          <div className="flex flex-col gap-2 items-center">
+            <Image
+              className="h-6"
+              src={"/favicon.svg"}
+              alt={"logo"}
+              width={24}
+              height={24}
+              priority
+            />
 
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("card.password")}</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder={t("card.passwordPlaceholder")}
-                        type="password"
-                        aria-autocomplete="list"
-                        {...field}
-                      />
-                    </FormControl>
+            <h1 className="text-2xl">{t("card.title")}</h1>
+            <p className="text-sm text-muted-foreground">{t("card.desc")}</p>
+          </div>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          <Form {...form}>
+            <form noValidate onSubmit={form.handleSubmit(onSubmit)}>
+              <div className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel htmlFor="email">{t("card.email")}</FormLabel>
+                      <FormControl>
+                        <Input
+                          id="email"
+                          placeholder={t("card.emailPlaceholder")}
+                          required
+                          {...field}
+                        />
+                      </FormControl>
+                      {/* <FormDescription>这是将显示在您的个人资料和电子邮件中的名称。</FormDescription> */}
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-              <Button disabled={false} className="w-full" type="submit">
-                {/* <Loader2 className="animate-spin" /> */}
-                {t("card.sure")}
-              </Button>
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t("card.password")}</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder={t("card.passwordPlaceholder")}
+                          type="password"
+                          aria-autocomplete="list"
+                          {...field}
+                        />
+                      </FormControl>
 
-              <div className="relative my-4">
-                <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
+                <Button disabled={false} className="w-full" type="submit">
+                  {/* <Loader2 className="animate-spin" /> */}
+                  {t("card.sure")}
+                </Button>
+
+                <div className="relative my-4">
+                  <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
+
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
+                  </div>
                 </div>
               </div>
+            </form>
+          </Form>
 
-              <div className="mt-4 text-center text-sm">
-                {t("card.registerTip")}
-                <Link className="underline" href={"/passport/register"}>
-                  {t("card.register")}
-                </Link>
-              </div>
-            </CardContent>
-          </form>
-        </Form>
-      </Card>
+          <div className="text-center text-sm">
+            {t("card.registerTip")}
+            <Link className="underline" href={"/passport/register"}>
+              {t("card.register")}
+            </Link>
+          </div>
+        </div>
 
-      {/* <div className="">
+        {/* <div className="">
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <input {...form.register("email")} />
           <input {...form.register("password")} />
@@ -144,7 +153,8 @@ export default function Login() {
         <button>google 登录</button>
       </form> */}
 
-      {/* <Link href={"/passport/register"}>去注册</Link> */}
+        {/* <Link href={"/passport/register"}>去注册</Link> */}
+      </div>
     </div>
   )
 }
