@@ -28,6 +28,7 @@ import { Input } from "~/lib/components/shadcn/ui/input"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
 import { loginCredentials } from "@/action/singn-up"
 import { loginFormSchema, type loginFormSchemaType } from "@/utils/schema/login"
+import { Loader2 } from "lucide-react"
 
 export default function Login() {
   const t = useTranslations("login")
@@ -103,7 +104,8 @@ export default function Login() {
                 )}
               />
 
-              <Button className="w-full" type="submit">
+              <Button disabled={false} className="w-full" type="submit">
+                {/* <Loader2 className="animate-spin" /> */}
                 {t("card.sure")}
               </Button>
 

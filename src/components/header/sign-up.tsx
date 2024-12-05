@@ -21,6 +21,7 @@ import Link from "next/link"
 import { VISITE_LIMIT_PASSPORT } from "@/constant/page-type"
 import { logoutCredentials } from "@/action/singn-up"
 import type { AccountProps } from "@/types/header"
+import { User } from "lucide-react"
 
 export function Account(props: PropsWithChildren<AccountProps>) {
   const { className, session } = props
@@ -35,9 +36,11 @@ export function Account(props: PropsWithChildren<AccountProps>) {
         <DropdownMenu>
           <div className="px-2 cursor-pointer">
             <DropdownMenuTrigger asChild>
-              <Avatar>
+              <Avatar className="size-8">
                 <AvatarImage src={session.user?.image || undefined} alt="@avatar" />
-                <AvatarFallback>{session.user?.name?.slice(0, 2)}</AvatarFallback>
+                <AvatarFallback>
+                  <User size={16}></User>
+                </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
           </div>

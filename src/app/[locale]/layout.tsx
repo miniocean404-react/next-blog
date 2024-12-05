@@ -3,13 +3,7 @@ import Header from "@/components/header"
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode
-  params: { locale: string }
-}) {
+export default async function HomeLayout({ children }: LayoutPropsWith<LayoutParams>) {
   return (
     // 为 vaul 抽屉组件包裹一层
     <div className="bg-background" data-vaul-drawer-wrapper>
