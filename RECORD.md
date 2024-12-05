@@ -3,6 +3,8 @@
 1. trpc 客户端超时断开的属性
 2. next.js vscode debugger
 3. 处理 vercel 被墙：https://juejin.cn/post/7383894687302434825?share_token=02ea3777-09f9-440b-bbc3-0ff352e4b95d
+4. openai 包中废弃的包
+5. contentlayer2 中 mdxComponents 生产打包失败问题
 
 # 学习视频、文档
 
