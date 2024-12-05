@@ -202,7 +202,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: LayoutPropsWith) {
   const locale = await getLocale()
 
   // 确保传入的“区域设置”是有效的

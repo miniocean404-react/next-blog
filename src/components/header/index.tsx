@@ -13,6 +13,7 @@ import { Account } from "./sign-up"
 import { Navigation } from "@/components/header/navigation"
 import HeaderLayout from "@/components/header/layout"
 import RainbowBackground from "~/lib/components/mini/rainbow"
+import HeaderShow from "@/components/header/show"
 
 export default async function Header() {
   // const header = await headers()
@@ -22,7 +23,7 @@ export default async function Header() {
   const session = await auth()
 
   return (
-    <>
+    <HeaderShow>
       {/* 彩虹 */}
       <RainbowBackground />
 
@@ -59,6 +60,6 @@ export default async function Header() {
           </div>
         </div>
       </HeaderLayout>
-    </>
+    </HeaderShow>
   )
 }
