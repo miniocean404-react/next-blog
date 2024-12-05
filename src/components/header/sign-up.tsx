@@ -36,7 +36,7 @@ export function Account(props: PropsWithChildren<AccountProps>) {
             <DropdownMenuTrigger asChild>
               <Avatar>
                 <AvatarImage src={session.user?.image || undefined} alt="@avatar" />
-                <AvatarFallback>{session.user.name}</AvatarFallback>
+                <AvatarFallback>{session.user?.name?.slice(0, 2)}</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
           </div>
