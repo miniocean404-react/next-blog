@@ -127,6 +127,8 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
       description: t("appDescription"),
       images: {
         url: "/favicon-96x96.png",
+        width: 96,
+        height: 96,
         alt: t("appDefaultTitle"),
       },
     },

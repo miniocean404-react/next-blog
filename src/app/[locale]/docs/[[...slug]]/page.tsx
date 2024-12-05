@@ -29,21 +29,14 @@ export async function generateMetadata(
       description: doc.description,
       type: "article",
       url: `${process.env.NEXT_PUBLIC_APP_URL}/${doc.slug}`,
-      images: [
-        {
-          url: `/favicon-96x96.png`,
-          width: 1200,
-          height: 630,
-          alt: t("appDefaultTitle"),
-        },
-      ],
+      images: metadata.openGraph?.images,
     },
     twitter: {
-      card: "summary_large_image",
+      card: metadata.twitter?.card || "summary_large_image",
       title: doc.title,
       description: doc.description,
-      images: [`/favicon-96x96.png`],
-      creator: `@${t("author")}`,
+      images: metadata.twitter?.images,
+      creator: metadata.twitter?.creator || `@${t("author")}`,
     },
   }
 }
