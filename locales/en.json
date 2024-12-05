@@ -4,7 +4,8 @@
     "appDescription": "Welcome to the blog of \"I am Miniocean404\"! \nJavascript, Vue, Css, Nextjs, React, TypeScript, NextJs, NestJs, Nodejs, Docker, and more. ",
     "appName": "Blog",
     "appTitleTemplate": "blog",
-    "blogName": "Miniocean404 Blog"
+    "blogName": "Miniocean404 Blog",
+    "author": "我是小海洋呀（Miniocean404）"
   },
   "header": {
     "navigation": {

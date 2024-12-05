@@ -4,7 +4,8 @@
     "appName": "Blog",
     "appDefaultTitle": "Miniocean404 博客 | 一些关于技术和生活的的记录",
     "appTitleTemplate": "博客",
-    "appDescription": "欢迎来到 “我是小海洋呀（Miniocean404）” 的博客！ Javascript、Vue、Css、Nextjs、React、TypeScript、NextJs、NestJs、Nodejs、Docker 等。无论你是技术爱好者还是追求生活趣味的朋友，都欢迎前来访问，一同探索技术的奥秘。"
+    "appDescription": "欢迎来到 “我是小海洋呀（Miniocean404）” 的博客！ Javascript、Vue、Css、Nextjs、React、TypeScript、NextJs、NestJs、Nodejs、Docker 等。无论你是技术爱好者还是追求生活趣味的朋友，都欢迎前来访问，一同探索技术的奥秘。",
+    "author": "我是小海洋呀（Miniocean404）"
   },
   "header": {
     "navigation": {

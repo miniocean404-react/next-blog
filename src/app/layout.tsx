@@ -1,5 +1,5 @@
 import Toast from "@/components/toast"
-import { APP_URL, GITHUB_LINK } from "@/constant/link"
+import { GITHUB_LINK } from "@/constant/link"
 import { routing } from "@/i18n/routing"
 import { cn } from "@/utils/tw"
 import type { Metadata, ResolvingMetadata, Viewport } from "next"
@@ -24,10 +24,9 @@ export const viewport: Viewport = {
 export async function generateMetadata(_: any, parent: ResolvingMetadata): Promise<Metadata> {
   const locale = await getLocale()
   const t = await getTranslations("app")
-  const author = "我是小海洋呀（Miniocean404）"
 
   return {
-    metadataBase: new URL(APP_URL),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL),
     applicationName: t("appName"),
     title: {
       default: t("appDefaultTitle"),
@@ -49,8 +48,8 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
       "Nodejs",
       "Docker",
     ],
-    creator: `@${author}`,
-    authors: [{ url: GITHUB_LINK, name: author }],
+    creator: `@${t("author")}`,
+    authors: [{ url: GITHUB_LINK, name: t("author") }],
     // 如果 app 下放了文件就无需设置，生成网站：https://realfavicongenerator.net/
     icons: {
       shortcut: "/favicon.ico",
@@ -92,7 +91,7 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
     },
     category: "分类",
     abstract: "摘要",
-    publisher: author,
+    publisher: t("author"),
 
     robots: {
       index: true,
@@ -139,13 +138,13 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
     // creator: Twitter 卡片的创建者的 Twitter 用户名。这有助于引导关注并增加互动。
     twitter: {
       card: "summary_large_image",
-      site: `@${author}`,
+      site: `@${t("author")}`,
       title: {
         default: t("appDefaultTitle"),
         template: t("appTitleTemplate"),
       },
       description: t("appDescription"),
-      creator: `@${author}`,
+      creator: `@${t("author")}`,
       images: {
         url: "/favicon-96x96.png",
         alt: t("appDefaultTitle"),

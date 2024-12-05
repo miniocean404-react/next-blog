@@ -11,6 +11,9 @@ declare interface IntlMessages extends Messages {}
 
 declare namespace NodeJS {
   declare interface ProcessEnv {
+    // APP 基础 URL
+    NEXT_PUBLIC_APP_URL: string
+
     // 基础路径
     NEXT_PUBLIC_BASEURL: string
 

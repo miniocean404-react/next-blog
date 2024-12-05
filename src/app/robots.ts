@@ -1,4 +1,3 @@
-import { APP_URL } from "@/constant/link"
 import type { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
@@ -60,6 +59,6 @@ export default function robots(): MetadataRoute.Robots {
     ],
 
     // sitemap的地址
-    sitemap: [`${APP_URL}/sitemap.xml`],
+    sitemap: [`${process.env.NEXT_PUBLIC_APP_URL}/sitemap.xml`],
   }
 }

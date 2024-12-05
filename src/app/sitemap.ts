@@ -1,4 +1,3 @@
-import { APP_URL } from "@/constant/link"
 import { MetadataRoute } from "next"
 
 // 站点地图 可帮助搜索引擎更有效地发现您的网页并为其建立索引，也分为动态和静态两种
@@ -6,43 +5,43 @@ import { MetadataRoute } from "next"
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: APP_URL,
+      url: process.env.NEXT_PUBLIC_APP_URL,
       lastModified: new Date().toISOString(),
       changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: `${APP_URL}/ai`,
+      url: `${process.env.NEXT_PUBLIC_APP_URL}/ai`,
       lastModified: new Date().toISOString(),
       changeFrequency: "daily",
       priority: 0.8,
     },
     {
-      url: `${APP_URL}/zh`,
+      url: `${process.env.NEXT_PUBLIC_APP_URL}/zh`,
       lastModified: new Date().toISOString(),
       changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: `${APP_URL}/en`,
+      url: `${process.env.NEXT_PUBLIC_APP_URL}/en`,
       lastModified: new Date().toISOString(),
       changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: `${APP_URL}/en/ai`,
+      url: `${process.env.NEXT_PUBLIC_APP_URL}/en/ai`,
       lastModified: new Date().toISOString(),
       changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: `${APP_URL}/manifest.webmanifest`,
+      url: `${process.env.NEXT_PUBLIC_APP_URL}/manifest.webmanifest`,
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: `${APP_URL}/robots.txt`,
+      url: `${process.env.NEXT_PUBLIC_APP_URL}/robots.txt`,
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
       priority: 0.9,

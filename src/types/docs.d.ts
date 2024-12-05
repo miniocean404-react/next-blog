@@ -1,3 +1,6 @@
-interface DocsParams {
-  slug: string[]
+interface DocPageProps {
+  params: {
+    slug: string[]
+  }
+  searchParams?: URLSearchParams
 }
