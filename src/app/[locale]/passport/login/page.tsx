@@ -55,7 +55,7 @@ export default function Login() {
   return (
     <div className="h-mini-layout-one-screen flex justify-center items-center mx-8 md:mx-0">
       <Card className="mx-auto w-96">
-        <CardHeader>
+        <CardHeader className="items-center">
           <CardTitle className="text-2xl">{t("card.title")}</CardTitle>
           <CardDescription>{t("card.desc")}</CardDescription>
         </CardHeader>

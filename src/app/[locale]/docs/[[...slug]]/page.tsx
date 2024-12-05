@@ -9,7 +9,7 @@ import { getTableOfContents } from "~/lib/mdx/components/toc/toc"
 // import { useLiveReload } from "next-contentlayer2/hooks"
 
 export async function generateMetadata(
-  { params }: DocPageProps,
+  { params }: PagePropsWith<DocPageParams>,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const metadata = await parent
@@ -47,7 +47,7 @@ export function generateStaticParams() {
   }))
 }
 
-export default async function Docs({ params }: DocPageProps) {
+export default async function Docs({ params }: PagePropsWith<DocPageParams>) {
   const doc = await getDocFromParams({ params })
 
   if (!doc) {
@@ -69,8 +69,8 @@ export default async function Docs({ params }: DocPageProps) {
   )
 }
 
-async function getDocFromParams({ params }: DocPageProps) {
-  const slug = params.slug?.join("/") || ""
+async function getDocFromParams({ params }: PagePropsWith<DocPageParams>) {
+  const slug = (await params).slug?.join("/") || ""
   const doc = allDocs.find((doc) => {
     return doc.slugAsParams === slug
   })
