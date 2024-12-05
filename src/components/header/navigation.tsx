@@ -9,11 +9,10 @@ import { AlignRight } from "lucide-react"
 import {
   Drawer,
   DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "~/lib/components/shadcn/ui/drawer"
+import type { NavigationProps } from "@/types/header"
 
 export async function Navigation(props: PropsWithChildren<NavigationProps>) {
   const t = await getTranslations("header")

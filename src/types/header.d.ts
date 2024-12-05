@@ -1,7 +1,4 @@
-interface HeaderServerProps {
-  search: ReactNode
-  switch: ReactNode
-}
+import { Session } from "next-auth"
 
 interface AccountProps {
   className?: string
@@ -12,9 +9,6 @@ interface ThemeSwitchProps {
   className?: string
 }
 
-interface ThemeSwitchProps {
-  className?: string
-}
 interface NavigationProps {
   className?: string
 }

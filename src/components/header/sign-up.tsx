@@ -20,6 +20,7 @@ import { Button } from "~/lib/components/shadcn/ui/button"
 import Link from "next/link"
 import { VISITE_LIMIT_PASSPORT } from "@/constant/page-type"
 import { logoutCredentials } from "@/action/singn-up"
+import type { AccountProps } from "@/types/header"
 
 export function Account(props: PropsWithChildren<AccountProps>) {
   const { className, session } = props

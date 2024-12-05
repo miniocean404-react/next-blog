@@ -5,6 +5,7 @@ import { type MouseEvent, type PropsWithChildren } from "react"
 import { useTheme } from "next-themes"
 import { useMounted } from "@/utils/hook/mounted"
 import { cn } from "@/utils/tw"
+import type { ThemeSwitchProps } from "@/types/header"
 
 export default function ThemeSwitch(props: PropsWithChildren<ThemeSwitchProps>) {
   const { systemTheme, theme, setTheme } = useTheme()
