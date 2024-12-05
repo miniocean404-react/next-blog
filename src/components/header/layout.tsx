@@ -9,8 +9,9 @@ import RainbowBackground from "~/lib/components/mini/rainbow"
 
 export default function HeaderLayout({ children }: PropsWithChildren<any>) {
   const pathname = usePathname()
-  if (pathname.includes("passport")) return null
   const t = useTranslations("app")
+
+  if (pathname.includes("passport")) return null
 
   return (
     <>

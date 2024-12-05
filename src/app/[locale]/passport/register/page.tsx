@@ -1,31 +1,17 @@
 "use client"
 
-import { RegisterInfoProvider, useRegisterInfoContext } from "@/utils/context/register"
-import {
-  codeFormSchema,
-  type codeFormSchemaType,
-  registerFormSchema,
-  type RegisterFormSchemaType,
-} from "@/utils/schema/register"
+import { registerFormSchema, type RegisterFormSchemaType } from "@/utils/schema/register"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { use, useEffect, useRef } from "react"
+import { use } from "react"
 import { useForm } from "react-hook-form"
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react"
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "~/lib/components/shadcn/ui//input-otp"
+
 import { Button } from "~/lib/components/shadcn/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "~/lib/components/shadcn/ui/card"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -34,10 +20,12 @@ import {
 import { Input } from "~/lib/components/shadcn/ui/input"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
 
-import toast from "react-hot-toast"
-import "swiper/css/bundle"
+import { loginCredentials } from "@/action/singn-up"
 import { api } from "@/server/client/react-query-provider"
 import Image from "next/image"
+import toast from "react-hot-toast"
+import { useInterval, useSetState } from "react-use"
+import { cn } from "@/utils/tw"
 
 export default function RegisterPage({
   searchParams,
@@ -46,12 +34,22 @@ export default function RegisterPage({
 }) {
   const { error } = use<{ error: string }>(searchParams)
   const router = useRouter()
+  const t = useTranslations("register")
+  const [countdown, setCountdown] = useSetState({
+    seconds: 60,
+    start: false,
+  })
 
   const { mutate: sendEmail, isPending, data } = api.User.sendEmail.useMutation()
+  const { mutate: createAccount } = api.User.verificationToken.useMutation()
 
-  const t = useTranslations("register")
-  const swiper = useSwiper()
-  const registerInfo = useRegisterInfoContext()
+  useInterval(
+    () => {
+      if (countdown.seconds <= 0) return setCountdown({ seconds: 60, start: false })
+      setCountdown({ seconds: countdown.seconds - 1 })
+    },
+    countdown.start ? 1000 : null,
+  )
 
   const registerForm = useForm<RegisterFormSchemaType>({
     resolver: zodResolver(registerFormSchema),
@@ -63,19 +61,20 @@ export default function RegisterPage({
       email: "",
       nickname: "",
       password: "",
+      pin: "",
     },
   })
 
-  async function onRegisterSubmit(values: RegisterFormSchemaType) {
+  function onSendEmail() {
+    setCountdown({ start: true })
+    const email = registerForm.getValues("email")
+
     sendEmail(
-      { email: values.email },
+      { email },
       {
         // variables 是传递给请求的参数
         onSuccess(data, variables, context) {
-          if (data?.code === 200) {
-            swiper.slideNext()
-            registerInfo.set(values)
-          } else {
+          if (data?.code !== 200) {
             toast.error(data?.msg || "")
           }
         },
@@ -83,11 +82,37 @@ export default function RegisterPage({
     )
   }
 
-  return (
-    <div className="h-dvh grid grid-cols-[2fr_1fr] items-center mx-8 md:mx-0">
-      <div className="bg-blue-400"></div>
+  // xxx.handleSubmit(onCodeSubmit)() 可以直接手动提交，不需要按钮
+  async function onRegisterSubmit(values: RegisterFormSchemaType) {
+    createAccount(
+      {
+        token: values.pin,
+        ...values,
+      },
+      {
+        async onSuccess(data) {
+          if (data.code !== 200) {
+            return registerForm.setError("pin", { message: data.msg })
+          }
 
-      <div className="p-8 mx-auto w-[350px] flex flex-col gap-6 ">
+          const result = await loginCredentials(values)
+
+          if (result.code !== 200) {
+            toast.error(result.msg)
+          } else {
+            // 登录成功，跳到首页
+            router.push("/")
+          }
+        },
+      },
+    )
+  }
+
+  return (
+    <div className={cn("h-dvh grid items-center px-4", "lg:grid-cols-[4fr_3fr] lg:px-0")}>
+      <div className="bg-muted h-full hidden lg:block"></div>
+
+      <div className="flex flex-col gap-6 sm:w-[350px] sm:mx-auto">
         <div className="flex flex-col gap-2 items-center">
           <Image
             className="h-6"
@@ -103,77 +128,95 @@ export default function RegisterPage({
         </div>
 
         <Form {...registerForm}>
-          <form noValidate onSubmit={registerForm.handleSubmit(onRegisterSubmit)}>
-            <CardContent className="space-y-4">
-              <FormField
-                control={registerForm.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel htmlFor="email">{t("card.email")}</FormLabel>
-                    <FormControl>
-                      <Input placeholder={t("card.emailPlaceholder")} {...field} />
-                    </FormControl>
+          <form
+            className="space-y-4"
+            noValidate
+            onSubmit={registerForm.handleSubmit(onRegisterSubmit)}
+          >
+            <FormField
+              control={registerForm.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor="email">{t("card.email")}</FormLabel>
+                  {/* 这里使用 ref 可以获取 Input 元素的 ref*/}
+                  <FormControl>
+                    <Input placeholder={t("card.emailPlaceholder")} {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-                    {/* <FormDescription>这是将显示在您的个人资料和电子邮件中的名称。</FormDescription> */}
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <FormField
+              control={registerForm.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("card.password")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={t("card.passwordPlaceholder")}
+                      type="password"
+                      aria-autocomplete="list"
+                      {...field}
+                    />
+                  </FormControl>
 
-              <FormField
-                control={registerForm.control}
-                name="nickname"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("card.nickname")}</FormLabel>
-                    <FormControl>
-                      <Input placeholder={t("card.usernamePlaceholder")} {...field} />
-                    </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={registerForm.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("card.password")}</FormLabel>
+            <FormField
+              control={registerForm.control}
+              name="pin"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="flex">
                     <FormControl>
                       <Input
-                        placeholder={t("card.passwordPlaceholder")}
-                        type="password"
+                        placeholder={t("code.desc")}
+                        type="text"
                         aria-autocomplete="list"
                         {...field}
                       />
                     </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                    <Button
+                      type="button"
+                      disabled={countdown.start}
+                      variant={"link"}
+                      onClick={onSendEmail}
+                    >
+                      {/* 后重新发送 */}
+                      {countdown.start
+                        ? t("code.send", { seconds: countdown.seconds })
+                        : t("code.getCode")}
+                    </Button>
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-              <Button className="w-full" type="submit">
-                {t("card.next")}
-              </Button>
+            <Button className="w-full" type="submit">
+              {t("card.sure")}
+            </Button>
 
-              <div className="relative my-4">
-                <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
+            <div className="relative my-4">
+              <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
 
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
-                </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
               </div>
+            </div>
 
-              <div className="mt-4 text-center text-sm">
-                <Link className="underline" href={"/passport/login"}>
-                  {t("card.login")}
-                </Link>
-              </div>
-            </CardContent>
+            <div className="mt-4 text-center text-sm">
+              <Link className="underline" href={"/passport/login"}>
+                {t("card.login")}
+              </Link>
+            </div>
           </form>
         </Form>
 
@@ -184,96 +227,6 @@ export default function RegisterPage({
         </Link>
       </div> */}
       </div>
-    </div>
-  )
-}
-
-function VerificationCode() {
-  const { mutate } = api.User.verificationToken.useMutation()
-  const t = useTranslations("register")
-  const swiper = useSwiper()
-  const registerInfo = useRegisterInfoContext()
-
-  const codeRef = useRef<HTMLInputElement>(null)
-
-  const codeForm = useForm<codeFormSchemaType>({
-    resolver: zodResolver(codeFormSchema),
-    defaultValues: {
-      pin: "",
-    },
-  })
-
-  useEffect(() => {
-    swiper.on("slideChangeTransitionEnd", () => {
-      if (swiper.activeIndex === 1) {
-        codeRef.current?.focus()
-      }
-    })
-
-    return () => {
-      swiper.off("slideChangeTransitionEnd")
-    }
-  }, [])
-
-  const onComplete = (data: string) => {
-    codeForm.handleSubmit(onCodeSubmit)()
-  }
-
-  async function onCodeSubmit(data: codeFormSchemaType) {
-    mutate(
-      {
-        token: data.pin,
-        email: registerInfo.data.email,
-        nickname: registerInfo.data.nickname,
-        password: registerInfo.data.password,
-      },
-      {
-        onSuccess(data) {
-          if (data.code !== 200) {
-            return codeForm.setError("pin", { message: data.msg })
-          }
-
-          swiper.slideNext()
-        },
-      },
-    )
-  }
-
-  return (
-    <div className="p-1 w-full h-full flex justify-center items-center">
-      <Form {...codeForm}>
-        <form onSubmit={codeForm.handleSubmit(onCodeSubmit)} className="w-2/3 space-y-6">
-          <FormField
-            control={codeForm.control}
-            name="pin"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t("code.title")}</FormLabel>
-                <FormControl ref={codeRef}>
-                  {/* autoFocus 自动聚焦 */}
-                  <InputOTP maxLength={6} onComplete={onComplete} inputMode="numeric" {...field}>
-                    <InputOTPGroup>
-                      <InputOTPSlot index={0} />
-                      <InputOTPSlot index={1} />
-                      <InputOTPSlot index={2} />
-                    </InputOTPGroup>
-
-                    <InputOTPSeparator />
-
-                    <InputOTPGroup>
-                      <InputOTPSlot index={3} />
-                      <InputOTPSlot index={4} />
-                      <InputOTPSlot index={5} />
-                    </InputOTPGroup>
-                  </InputOTP>
-                </FormControl>
-                <FormDescription>{t("code.desc")}</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </form>
-      </Form>
     </div>
   )
 }

@@ -52,14 +52,14 @@ export default function Login() {
   }
 
   return (
-    <div className="px-8">
-      <Button className="fixed top-8" variant="ghost" onClick={back}>
+    <div className="px-4 lg:px-8">
+      <Button className="fixed top-4 md:top-8" variant="ghost" onClick={back}>
         <ChevronLeft />
         {t("back")}
       </Button>
 
-      <div className="h-dvh flex justify-center items-center mx-8 md:mx-0">
-        <div className="w-[350px] flex flex-col gap-6">
+      <div className="h-dvh flex justify-center items-center lg:mx-8 md:mx-0">
+        <div className="w-full md:w-[350px] flex flex-col gap-6">
           <div className="flex flex-col gap-2 items-center">
             <Image
               className="h-6"

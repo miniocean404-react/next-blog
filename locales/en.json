@@ -75,7 +75,6 @@
   },
   "register": {
     "card": {
-      "create": "next",
       "email": "email",
       "emailPlaceholder": "Please enter your email",
       "password": "password",
@@ -83,11 +82,15 @@
       "title": "Create an account",
       "nickname": "nickname",
       "usernamePlaceholder": "Please enter nickname",
-      "desc": "Enter your information below to create your account"
+      "desc": "Enter your information below to create your account",
+      "sure": "confirm",
+      "continue": "or continue",
+      "login": "Quick login"
     },
     "code": {
-      "title": "One-Time Password",
-      "desc": "Please enter the one-time password sent to your email."
+      "desc": "Please enter the one-time password",
+      "getCode": "Get verification code",
+      "send": "Resend in {seconds} seconds"
     }
   },
   "login": {
