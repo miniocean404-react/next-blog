@@ -80,9 +80,10 @@
       "emailPlaceholder": "Please enter your email",
       "password": "password",
       "passwordPlaceholder": "Please enter password",
-      "title": "Register",
+      "title": "Create an account",
       "nickname": "nickname",
-      "usernamePlaceholder": "Please enter nickname"
+      "usernamePlaceholder": "Please enter nickname",
+      "desc": "Enter your information below to create your account"
     },
     "code": {
       "title": "One-Time Password",

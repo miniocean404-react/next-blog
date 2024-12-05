@@ -75,7 +75,8 @@
   },
   "register": {
     "card": {
-      "title": "注册",
+      "title": "创建账户",
+      "desc": "在下面输入您的信息以创建您的帐户",
       "email": "邮箱",
       "emailPlaceholder": "请输入邮箱",
       "nickname": "昵称",

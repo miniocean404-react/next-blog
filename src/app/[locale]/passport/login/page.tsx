@@ -47,9 +47,13 @@ export default function Login() {
     }
   }
 
+  const back = () => {
+    router.push("/")
+  }
+
   return (
     <div className="px-8">
-      <Button className="fixed top-8" variant="ghost">
+      <Button className="fixed top-8" variant="ghost" onClick={back}>
         <ChevronLeft />
         {t("back")}
       </Button>

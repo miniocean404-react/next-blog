@@ -37,6 +37,7 @@ import { Separator } from "~/lib/components/shadcn/ui/separator"
 import toast from "react-hot-toast"
 import "swiper/css/bundle"
 import { api } from "@/server/client/react-query-provider"
+import Image from "next/image"
 
 export default function RegisterPage({
   searchParams,
@@ -46,38 +47,6 @@ export default function RegisterPage({
   const { error } = use<{ error: string }>(searchParams)
   const router = useRouter()
 
-  return (
-    <div className="h-mini-layout-one-screen flex justify-center items-center mx-8 md:mx-0">
-      <RegisterInfoProvider>
-        <Swiper
-          className="w-96 h-max"
-          spaceBetween={50}
-          slidesPerView={1}
-          allowTouchMove={false}
-          initialSlide={0}
-          modules={[]}
-        >
-          {/* 注册 */}
-          <SwiperSlide className="!h-auto">
-            <Register />
-          </SwiperSlide>
-
-          {/* 验证码 */}
-          <SwiperSlide className="!h-auto">
-            <VerificationCode />
-          </SwiperSlide>
-
-          {/* 成功 */}
-          <SwiperSlide className="!h-auto">
-            <SuccessRegister />
-          </SwiperSlide>
-        </Swiper>
-      </RegisterInfoProvider>
-    </div>
-  )
-}
-
-function Register() {
   const { mutate: sendEmail, isPending, data } = api.User.sendEmail.useMutation()
 
   const t = useTranslations("register")
@@ -115,11 +84,23 @@ function Register() {
   }
 
   return (
-    <div className="p-1">
-      <Card className="mx-auto">
-        <CardHeader>
-          <CardTitle>{t("card.title")}</CardTitle>
-        </CardHeader>
+    <div className="h-dvh grid grid-cols-[2fr_1fr] items-center mx-8 md:mx-0">
+      <div className="bg-blue-400"></div>
+
+      <div className="p-8 mx-auto w-[350px] flex flex-col gap-6 ">
+        <div className="flex flex-col gap-2 items-center">
+          <Image
+            className="h-6"
+            src={"/favicon.svg"}
+            alt={"logo"}
+            width={24}
+            height={24}
+            priority
+          />
+
+          <h1 className="text-2xl">{t("card.title")}</h1>
+          <p className="text-sm text-muted-foreground">{t("card.desc")}</p>
+        </div>
 
         <Form {...registerForm}>
           <form noValidate onSubmit={registerForm.handleSubmit(onRegisterSubmit)}>
@@ -195,7 +176,14 @@ function Register() {
             </CardContent>
           </form>
         </Form>
-      </Card>
+
+        {/* <div className="text-center text-sm">
+        {t("card.registerTip")}
+        <Link className="underline" href={"/passport/register"}>
+          {t("card.register")}
+        </Link>
+      </div> */}
+      </div>
     </div>
   )
 }
@@ -290,8 +278,25 @@ function VerificationCode() {
   )
 }
 
-function SuccessRegister() {
-  // router.push("/passport/login")
+// <div className="h-mini-layout-one-screen flex justify-center items-center mx-8 md:mx-0">
+//   <RegisterInfoProvider>
+//     <Swiper
+//       className="w-96 h-max"
+//       spaceBetween={50}
+//       slidesPerView={1}
+//       allowTouchMove={false}
+//       initialSlide={0}
+//       modules={[]}
+//     >
+//       {/* 注册 */}
+//       <SwiperSlide className="!h-auto">
+//         <Register />
+//       </SwiperSlide>
 
-  return <div>成功</div>
-}
+//       {/* 验证码 */}
+//       <SwiperSlide className="!h-auto">
+//         <VerificationCode />
+//       </SwiperSlide>
+//     </Swiper>
+//   </RegisterInfoProvider>
+// </div>
