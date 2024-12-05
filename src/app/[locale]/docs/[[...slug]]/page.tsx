@@ -28,7 +28,7 @@ export async function generateMetadata(
       title: doc.title,
       description: doc.description,
       type: "article",
-      url: `${process.env.NEXT_PUBLIC_APP_URL}/${doc.slug}`,
+      url: `/${doc.slug}`,
       images: metadata.openGraph?.images,
     },
     twitter: {
