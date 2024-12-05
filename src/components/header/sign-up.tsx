@@ -7,7 +7,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "~/lib/components/shadcn/ui/dropdown-menu"
 
@@ -46,28 +45,27 @@ export function Account(props: PropsWithChildren<AccountProps>) {
           </div>
 
           <DropdownMenuContent className="w-56" align="end" sideOffset={20}>
-            <DropdownMenuLabel>{t("menu.title")}</DropdownMenuLabel>
+            <DropdownMenuLabel className="space-y-1">
+              <p>{t("menu.title")}</p>
+
+              {session.user.name && (
+                <p className="truncate text-xs text-muted-foreground font-normal">
+                  {session.user.name}
+                </p>
+              )}
+            </DropdownMenuLabel>
 
             <DropdownMenuSeparator />
 
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                {t("menu.info")}
-                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-              </DropdownMenuItem>
+              <DropdownMenuItem>{t("menu.info")}</DropdownMenuItem>
 
-              <DropdownMenuItem>
-                {t("menu.setting")}
-                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-              </DropdownMenuItem>
+              <DropdownMenuItem>{t("menu.setting")}</DropdownMenuItem>
             </DropdownMenuGroup>
 
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem onClick={logoutCredentials}>
-              {t("menu.exit")}
-              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-            </DropdownMenuItem>
+            <DropdownMenuItem onClick={logoutCredentials}>{t("menu.exit")}</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )}
