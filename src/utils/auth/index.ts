@@ -1,4 +1,4 @@
-import NextAuth, { CredentialsSignin } from "next-auth"
+import NextAuth, { CredentialsSignin, type User } from "next-auth"
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
@@ -29,17 +29,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     // 登录
     Credentials({
-      authorize: async (credentials) => {
-        const { email, password } = credentials as loginFormSchemaType
-
-        const result = await rawApi.User.login.mutate({ email, password })
-
-        if (result.code !== 200) {
-          throw new CredentialsSignin(result.msg, { cause: result })
-        }
-
-        return result.data
-      },
+      authorize: async (credentials) => credentials,
     }),
     GitHub({
       clientId: process.env.AUTH_GITHUB_ID,
