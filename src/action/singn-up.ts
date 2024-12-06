@@ -10,14 +10,12 @@ export const loginCredentials = async (credentials: loginFormSchemaType) => {
   try {
     const result = await rawApi.User.login.mutate(credentials)
 
-    if (result.code !== 200) {
-      return result
+    if (result.code === 200) {
+      await signIn("credentials", {
+        ...credentials,
+        redirectTo: `/`,
+      })
     }
-
-    await signIn("credentials", {
-      ...credentials,
-      redirectTo: `/`,
-    })
 
     return result
   } catch (error) {
