@@ -1,4 +1,5 @@
 "use client"
+import ThemeSwitch from "@/components/header/theme-switch"
 import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
 import type {
   MobileNavProps,
@@ -139,6 +140,8 @@ function MobileNav(props: PropsWithChildren<MobileNavProps>) {
                 </Link>
               )
             })}
+
+            <ThemeSwitch></ThemeSwitch>
           </div>
         </nav>
       </menu>
