@@ -44,7 +44,7 @@ export default async function Header() {
 
         <Navigation />
 
-        <div className="hidden md:items-center md:flex">
+        <div className="hidden lg:items-center lg:flex">
           <ThemeSwitch />
           <Account session={session}></Account>
         </div>

@@ -50,9 +50,6 @@ export function Navigation(props: PropsWithChildren<NavigationProps>) {
   return (
     <>
       <PcNav navigation={navigation} icons={icons} />
-
-      {/* 移动端导航 */}
-
       <MobileNav icons={icons} navigation={navigation} />
     </>
   )
@@ -60,7 +57,7 @@ export function Navigation(props: PropsWithChildren<NavigationProps>) {
 
 function PcNav(props: PcNavProps) {
   return (
-    <nav className="hidden md:items-center md:flex">
+    <nav className="hidden lg:items-center lg:flex">
       {props.navigation.map((element) => {
         return (
           <Link
@@ -99,7 +96,7 @@ function MobileNav(props: PropsWithChildren<MobileNavProps>) {
 
   return (
     <>
-      <div className="h-10 flex items-center px-3 md:hidden" onClick={toggle}>
+      <div className="h-10 flex items-center px-3 lg:hidden" onClick={toggle}>
         <AlignRight className="size-4 text-primary/70"></AlignRight>
       </div>
 
@@ -108,7 +105,7 @@ function MobileNav(props: PropsWithChildren<MobileNavProps>) {
           "absolute left-0 top-[calc(100%+1px)] ",
           "w-full opacity-0 px-16 transition-all duration-250 bg-background h-0",
           "overflow-auto",
-          "md:hidden",
+          "lg:hidden",
           {
             "opacity-100": show,
             "h-mini-layout-one-screen": show,
