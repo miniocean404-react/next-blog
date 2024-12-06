@@ -63,6 +63,7 @@ const config: Config = {
         "mini-backdrop": "var(--mini-z-index-backdrop)",
         "mini-sidebar": "var(--mini-z-index-sidebar)",
         "mini-header": "var(--mini-z-index-header)",
+        "mini-rainbow": "var(--mini-z-index-rainbow)",
       },
       colors: {
         "mini-background": "var(--mini-c-bg)",
