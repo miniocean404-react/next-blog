@@ -66,6 +66,7 @@ function PcNav(props: PcNavProps) {
           <Link
             className="text-sm font-500 cursor-pointer px-3 py-0 text-primary transition-color duration-500 ease hover:text-primary/70"
             href={element.link}
+            key={element.text}
           >
             {element.text}
           </Link>
@@ -75,6 +76,7 @@ function PcNav(props: PcNavProps) {
       {props.icons.map((element) => {
         return (
           <Link
+            key={element.title}
             className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-accent mx-2"
             href={element.link}
             title="GitHub"
@@ -89,7 +91,7 @@ function PcNav(props: PcNavProps) {
 }
 
 function MobileNav(props: PropsWithChildren<MobileNavProps>) {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
 
   const toggle = () => {
     setShow((pre) => !pre)
@@ -103,19 +105,21 @@ function MobileNav(props: PropsWithChildren<MobileNavProps>) {
 
       <menu
         className={cn(
-          "absolute left-0 top-[calc(100%+1px)] w-full h-mini-layout-one-screen opacity-100 px-16 transition-all duration-500 bg-background ",
+          "absolute left-0 top-[calc(100%+1px)] ",
+          "w-full opacity-0 px-16 transition-all duration-250 bg-background h-0",
           "overflow-auto",
           "md:hidden",
           {
-            "h-0": show,
-            "opacity-0": show,
+            "opacity-100": show,
+            "h-mini-layout-one-screen": show,
           },
         )}
       >
-        <nav className="pt-6 pb-24">
+        <nav className={cn("pt-6 pb-24 transition-all duration-500")}>
           {props.navigation.map((element) => {
             return (
               <Link
+                key={element.text}
                 className={cn(
                   "text-sm font-500 cursor-pointer text-primary transition-color duration-500 ease hover:text-primary/70 ",
                   "w-full border-b py-3 text-left inline-block",
@@ -132,6 +136,7 @@ function MobileNav(props: PropsWithChildren<MobileNavProps>) {
             {props.icons.map((element) => {
               return (
                 <Link
+                  key={element.title}
                   className="size-12 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-accent"
                   href={element.link}
                   title="GitHub"
