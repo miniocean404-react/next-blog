@@ -105,6 +105,7 @@ function MobileNav(props: PropsWithChildren<MobileNavProps>) {
         className={cn(
           "absolute left-0 top-[calc(100%+1px)] w-full h-mini-layout-one-screen opacity-100 px-16 transition-all duration-500 bg-background ",
           "overflow-auto",
+          "md:hidden",
           {
             "h-0": show,
             "opacity-0": show,
