@@ -1,13 +1,13 @@
 "use client"
 
+import { useMounted } from "@/utils/hook/mounted"
 import { cn } from "@/utils/tw"
+import "@docsearch/css"
+import docsearch from "@docsearch/js"
 import { Search as SearchIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import { useEffect, type PropsWithChildren } from "react"
-import "@docsearch/css"
 import "./index.css"
-import docsearch from "@docsearch/js"
-import { useMounted } from "@/utils/hook/mounted"
 
 export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
   const t = useTranslations()
@@ -36,26 +36,23 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
   }, [])
 
   return (
-    <>
-      <div id="docsearch" className={cn({ hidden: !isMonted })}>
-        <button
-          type="button"
-          className="DocSearch DocSearch-Button"
-          aria-label={translations.button?.buttonAriaLabel}
-        >
-          <span className="DocSearch-Button-Container">
-            <SearchIcon className={"DocSearch-Search-Icon"}></SearchIcon>
-            <span className={"DocSearch-Button-Placeholder"}>{t("home.search")}</span>
-          </span>
+    // <link rel="preconnect" href="https://YOUR_APP_ID-dsn.algolia.net" crossorigin />
+    <div id="docsearch" className={cn({ hidden: !isMonted })}>
+      <button
+        type="button"
+        className="DocSearch DocSearch-Button"
+        aria-label={translations.button?.buttonAriaLabel}
+      >
+        <span className="DocSearch-Button-Container">
+          <SearchIcon className={"DocSearch-Search-Icon"}></SearchIcon>
+          <span className={"DocSearch-Button-Placeholder"}>{t("home.search")}</span>
+        </span>
 
-          <span className="DocSearch-Button-Keys">
-            <kbd className="DocSearch-Button-Keys"></kbd>
-            <kbd className="DocSearch-Button-Keys">K</kbd>
-          </span>
-        </button>
-      </div>
-
-      {/* <link rel="preconnect" href="https://YOUR_APP_ID-dsn.algolia.net" crossorigin /> */}
-    </>
+        <span className="DocSearch-Button-Keys">
+          <kbd className="DocSearch-Button-Keys"></kbd>
+          <kbd className="DocSearch-Button-Keys">K</kbd>
+        </span>
+      </button>
+    </div>
   )
 }

@@ -1,4 +1,5 @@
 import { Session } from "next-auth"
+import type { ReactNode } from "react"
 
 interface AccountProps {
   className?: string
@@ -6,10 +7,6 @@ interface AccountProps {
 }
 
 interface ThemeSwitchProps {
-  className?: string
-}
-
-interface NavigationProps {
   className?: string
 }
 
@@ -32,6 +29,6 @@ interface NavigationLinks {
 
 interface NavigationIcons {
   link: string
-  Icon: any
+  Icon: ReactNode
   title: string
 }

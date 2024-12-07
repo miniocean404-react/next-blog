@@ -1,11 +1,11 @@
 "use client"
 
-import { Moon, Sun } from "lucide-react"
-import { type MouseEvent, type PropsWithChildren } from "react"
-import { useTheme } from "next-themes"
+import type { ThemeSwitchProps } from "@/types/header"
 import { useMounted } from "@/utils/hook/mounted"
 import { cn } from "@/utils/tw"
-import type { ThemeSwitchProps } from "@/types/header"
+import { Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
+import { type MouseEvent, type PropsWithChildren } from "react"
 
 export default function ThemeSwitch(props: PropsWithChildren<ThemeSwitchProps>) {
   const { systemTheme, theme, setTheme } = useTheme()

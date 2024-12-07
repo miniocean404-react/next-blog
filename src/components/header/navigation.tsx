@@ -1,61 +1,13 @@
 "use client"
+
 import ThemeSwitch from "@/components/header/theme-switch"
-import { GITHUB_LINK, NOTION_LINK } from "@/constant/link"
-import type {
-  MobileNavProps,
-  NavigationIcons,
-  NavigationLinks,
-  NavigationProps,
-  PcNavProps,
-} from "@/types/header"
+import type { MobileNavProps, PcNavProps } from "@/types/header"
 import { cn } from "@/utils/tw"
 import { AlignRight } from "lucide-react"
-import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { useState, type PropsWithChildren } from "react"
-import Github from "~/public/svg/github.svg"
-import Notion from "~/public/svg/notion.svg"
 
-export function Navigation(props: PropsWithChildren<NavigationProps>) {
-  const t = useTranslations("header")
-
-  const navigation: NavigationLinks[] = [
-    {
-      link: "/ai",
-      text: t("navigation.ai"),
-    },
-    {
-      link: "/",
-      text: t("navigation.article"),
-    },
-    {
-      link: "/",
-      text: t("navigation.demo"),
-    },
-  ]
-
-  const icons: NavigationIcons[] = [
-    {
-      link: GITHUB_LINK,
-      Icon: Github,
-      title: "Github",
-    },
-    {
-      link: NOTION_LINK,
-      Icon: Notion,
-      title: "Notion",
-    },
-  ]
-
-  return (
-    <>
-      <PcNav navigation={navigation} icons={icons} />
-      <MobileNav icons={icons} navigation={navigation} />
-    </>
-  )
-}
-
-function PcNav(props: PcNavProps) {
+export function PcNavigation(props: PcNavProps) {
   return (
     <nav className="hidden lg:items-center lg:flex">
       {props.navigation.map((element) => {
@@ -79,7 +31,7 @@ function PcNav(props: PcNavProps) {
             title="GitHub"
             target="_blank"
           >
-            <element.Icon className="size-5"></element.Icon>
+            <div className="size-5">{element.Icon}</div>
           </Link>
         )
       })}
@@ -87,7 +39,7 @@ function PcNav(props: PcNavProps) {
   )
 }
 
-function MobileNav(props: PropsWithChildren<MobileNavProps>) {
+export function MobileNavigation(props: PropsWithChildren<MobileNavProps>) {
   const [show, setShow] = useState(false)
 
   const toggle = () => {
@@ -96,11 +48,11 @@ function MobileNav(props: PropsWithChildren<MobileNavProps>) {
 
   return (
     <>
-      <div className="h-10 flex items-center px-3 lg:hidden" onClick={toggle}>
+      <menu className="h-10 flex items-center px-3 cursor-pointer lg:hidden" onClick={toggle}>
         <AlignRight className="size-4 text-primary/70"></AlignRight>
-      </div>
+      </menu>
 
-      <menu
+      <div
         className={cn(
           "absolute left-0 top-[calc(100%+1px)] ",
           "w-full opacity-0 px-16 transition-all duration-250 bg-background h-0",
@@ -139,7 +91,7 @@ function MobileNav(props: PropsWithChildren<MobileNavProps>) {
                   title="GitHub"
                   target="_blank"
                 >
-                  <element.Icon className="size-6"></element.Icon>
+                  <div className="size-6">{element.Icon}</div>
                 </Link>
               )
             })}
@@ -147,7 +99,7 @@ function MobileNav(props: PropsWithChildren<MobileNavProps>) {
             <ThemeSwitch></ThemeSwitch>
           </div>
         </nav>
-      </menu>
+      </div>
     </>
   )
 }

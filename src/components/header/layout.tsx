@@ -25,11 +25,13 @@ export default function HeaderLayout({ children }: PropsWithChildren<any>) {
         className={cn(
           "sticky top-0 z-mini-header backdrop-blur-md",
           "border-b",
-          "flex items-center h-16 w-full",
+          "flex items-center  h-16 w-full",
           "px-2 md:px-8",
         )}
       >
-        <div className="flex w-full max-w-mini-layout mx-auto justify-between">{children}</div>
+        <div className="flex w-full max-w-mini-layout mx-auto items-center lg:justify-between">
+          {children}
+        </div>
       </header>
     </>
   )
