@@ -164,4 +164,4 @@ const withContentlayerPlugin = createContentlayerPlugin({
   configPath: "./contentlayer.config.ts",
 })
 
-export default withNextIntl(config)
+export default withContentlayerPlugin(withNextIntl(config))
