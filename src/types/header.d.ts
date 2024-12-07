@@ -14,6 +14,7 @@ interface MobileNavProps {
   className?: string
   navigation: NavigationLinks[]
   icons: NavigationIcons[]
+  themeSwitch: ReactNode
 }
 
 interface PcNavProps {

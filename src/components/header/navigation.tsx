@@ -1,6 +1,5 @@
 "use client"
 
-import ThemeSwitch from "@/components/header/theme-switch"
 import type { MobileNavProps, PcNavProps } from "@/types/header"
 import { cn } from "@/utils/tw"
 import { AlignRight } from "lucide-react"
@@ -96,7 +95,7 @@ export function MobileNavigation(props: PropsWithChildren<MobileNavProps>) {
               )
             })}
 
-            <ThemeSwitch></ThemeSwitch>
+            {props.themeSwitch}
           </div>
         </nav>
       </div>

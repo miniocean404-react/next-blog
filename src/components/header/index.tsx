@@ -62,7 +62,11 @@ export default async function Header() {
         <Account session={session}></Account>
       </div>
 
-      <MobileNavigation navigation={navigation} icons={icons}></MobileNavigation>
+      <MobileNavigation
+        navigation={navigation}
+        icons={icons}
+        themeSwitch={<ThemeSwitch />}
+      ></MobileNavigation>
     </HeaderLayout>
   )
 }
