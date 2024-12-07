@@ -8,7 +8,6 @@ import { db } from "@/db"
 import { userModel, userRoleModel, verificationTokenModel } from "@/db/model"
 import { and, eq } from "drizzle-orm"
 import { hashPassword, isEqualHashPassword } from "@/utils/crypto"
-import { localUTCDate } from "@/utils/date"
 
 import dayjs from "dayjs"
 import "dayjs/locale/zh-cn"
