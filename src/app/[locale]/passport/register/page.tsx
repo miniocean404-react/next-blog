@@ -42,6 +42,7 @@ export default function RegisterPage({
 
   const { mutate: sendEmail, isPending, data } = api.User.sendEmail.useMutation()
   const { mutate: createAccount } = api.User.verificationToken.useMutation()
+  const { mutate: login } = api.User.login.useMutation()
 
   useInterval(
     () => {
@@ -95,14 +96,17 @@ export default function RegisterPage({
             return registerForm.setError("pin", { message: data.msg })
           }
 
-          const result = await loginCredentials(values)
-
-          if (result.code !== 200) {
-            toast.error(result.msg)
-          } else {
-            // 登录成功，跳到首页
-            router.push("/")
-          }
+          login(values, {
+            async onSuccess(result, variables, context) {
+              if (result.code === 200 && result.data) {
+                await loginCredentials(result.data)
+                // 登录成功，跳到首页
+                router.push("/")
+              } else {
+                toast.error(result.msg)
+              }
+            },
+          })
         },
       },
     )

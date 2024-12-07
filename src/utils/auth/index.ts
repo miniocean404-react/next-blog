@@ -2,14 +2,10 @@ import NextAuth, { CredentialsSignin, type User } from "next-auth"
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
-import type { loginFormSchemaType } from "@/utils/schema/login"
-import { rawApi } from "@/server/client/raw"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   // debug: process.env.NODE_ENV !== "production",
-  // 在开发过程中添加此行以信任 localhost
-  trustHost: process.env.NODE_ENV !== "production",
-  secret: process.env.AUTH_SECRET,
+  secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
   // adapter: DrizzleAdapter(db),
   pages: {
     // 授权登录如果有报错，系统会默认重定向到/api/auth/signin内置页面，我们想重定向自己的页面，可以在配置。

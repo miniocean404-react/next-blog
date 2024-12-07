@@ -21,7 +21,7 @@ declare namespace NodeJS {
     NEXT_RUNTIME: string | "nodejs"
 
     // Next Auth 秘钥
-    AUTH_SECRET: string
+    NEXT_PUBLIC_AUTH_SECRET: string
 
     // Github OAuth
     AUTH_GITHUB_ID: string

@@ -23,9 +23,11 @@ import { loginCredentials } from "@/action/singn-up"
 import { loginFormSchema, type loginFormSchemaType } from "@/utils/schema/login"
 import Image from "next/image"
 import { ChevronLeft } from "lucide-react"
+import { api } from "@/server/client/react-query-provider"
 
 export default function Login() {
   const t = useTranslations("login")
+  const { mutate } = api.User.login.useMutation()
   const router = useRouter()
 
   const form = useForm<loginFormSchemaType>({
@@ -37,14 +39,17 @@ export default function Login() {
   })
 
   async function onSubmit(values: loginFormSchemaType) {
-    const result = await loginCredentials(values)
-
-    if (result.code !== 200) {
-      toast.error(result.msg)
-    } else {
-      // 登录成功，跳到首页
-      router.push("/")
-    }
+    mutate(values, {
+      async onSuccess(result, variables, context) {
+        if (result.code === 200 && result.data) {
+          await loginCredentials(result.data)
+          // 登录成功，跳到首页
+          router.push("/")
+        } else {
+          toast.error(result.msg)
+        }
+      },
+    })
   }
 
   const back = () => {
