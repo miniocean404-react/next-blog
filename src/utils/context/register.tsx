@@ -7,6 +7,7 @@ function useRegisterInfo() {
     email: "",
     nickname: "",
     password: "",
+    pin: "",
   })
 
   return {
@@ -19,6 +20,7 @@ function useRegisterInfo() {
         email: "",
         nickname: "",
         password: "",
+        pin: "",
       })
     },
   }
