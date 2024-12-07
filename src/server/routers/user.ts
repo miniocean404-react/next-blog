@@ -8,6 +8,11 @@ import { db } from "@/db"
 import { userModel, userRoleModel, verificationTokenModel } from "@/db/model"
 import { and, eq } from "drizzle-orm"
 import { hashPassword, isEqualHashPassword } from "@/utils/crypto"
+import { localUTCDate } from "@/utils/date"
+
+import dayjs from "dayjs"
+import "dayjs/locale/zh-cn"
+dayjs.locale("zh-cn")
 
 export const User = appRouter({
   login: publicProcedure
@@ -83,7 +88,7 @@ export const User = appRouter({
         .values({
           identifier: input.email,
           token,
-          expires: new Date(Date.now() + 60 * 60 * 1000).toLocaleString(),
+          expires: dayjs().add(1, "hour").format(),
         })
 
       // 异步发送，优化加载体验
@@ -115,8 +120,7 @@ export const User = appRouter({
       if (email !== verificationToken?.identifier || !verificationToken)
         return trpcResult.failMsg("验证码错误")
 
-      if (new Date(verificationToken.expires) < new Date())
-        return trpcResult.failMsg("验证码已过期")
+      if (dayjs().isAfter(verificationToken.expires)) return trpcResult.failMsg("验证码已过期")
 
       // ---------------------------------------- 验证码通过，开始注册 ----------------------------------------
 
@@ -132,7 +136,7 @@ export const User = appRouter({
         email,
         password: hashedPassword,
         realPassword: password,
-        emailVerified: new Date().toLocaleString(),
+        emailVerified: dayjs().format(),
       })
 
       const user = await db().query.userModel.findFirst({
@@ -156,7 +160,7 @@ export const User = appRouter({
       // await db()
       //   .update(userModel)
       //   .set({
-      //     emailVerified: new Date().toLocaleString(),
+      //     emailVerified: dayjs().format(),
       //   })
       //   .where(eq(userModel.id, user.id))
     }),
