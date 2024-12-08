@@ -130,30 +130,35 @@ export const User = appRouter({
       // 给密码加盐，密码明文存数据库不安全
       const hashedPassword = hashPassword(password, 10)
 
-      await db().insert(userModel).values({
-        nickname,
-        email,
-        password: hashedPassword,
-        realPassword: password,
-        emailVerified: dayjs().format(),
+      return await db().transaction(async (tx) => {
+        await db().insert(userModel).values({
+          nickname,
+          email,
+          password: hashedPassword,
+          realPassword: password,
+          emailVerified: dayjs().format(),
+        })
+
+        const user = await db().query.userModel.findFirst({
+          where: (user, { eq, and }) => and(eq(user.email, email), eq(user.delFlag, false)),
+        })
+
+        const role = await db().query.roleModel.findFirst({
+          where: (role, { eq, and }) => and(eq(role.roleKey, "USER"), eq(role.delFlag, false)),
+        })
+
+        if (!user || !role) {
+          tx.rollback()
+          return trpcResult.failMsg("注册失败")
+        }
+
+        await db().insert(userRoleModel).values({
+          userId: user.id,
+          roleId: role.id,
+        })
+
+        return trpcResult.successMsg("注册成功")
       })
-
-      const user = await db().query.userModel.findFirst({
-        where: (user, { eq, and }) => and(eq(user.email, email), eq(user.delFlag, false)),
-      })
-
-      const role = await db().query.roleModel.findFirst({
-        where: (role, { eq, and }) => and(eq(role.roleKey, "USER"), eq(role.delFlag, false)),
-      })
-
-      if (!user || !role) return trpcResult.failMsg("注册失败")
-
-      await db().insert(userRoleModel).values({
-        userId: user.id,
-        roleId: role.id,
-      })
-
-      return trpcResult.successMsg("注册成功")
 
       // Demo: 更新用户邮箱验证时间
       // await db()
