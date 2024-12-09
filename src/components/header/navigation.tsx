@@ -8,11 +8,11 @@ import { useState, type PropsWithChildren } from "react"
 
 export function PcNavigation(props: PcNavProps) {
   return (
-    <nav className="hidden lg:items-center lg:flex">
+    <nav className="hidden lg:flex lg:items-center">
       {props.navigation.map((element) => {
         return (
           <Link
-            className="text-sm font-500 cursor-pointer px-3 py-0 text-primary transition-color duration-500 ease hover:text-primary/70"
+            className="font-500 transition-color ease cursor-pointer px-3 py-0 text-sm text-primary duration-500 hover:text-primary/70"
             href={element.link}
             key={element.text}
           >
@@ -25,7 +25,7 @@ export function PcNavigation(props: PcNavProps) {
         return (
           <Link
             key={element.title}
-            className="size-9 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-accent mx-2"
+            className="mx-2 inline-flex size-9 cursor-pointer items-center justify-center rounded-xl hover:bg-accent"
             href={element.link}
             title="GitHub"
             target="_blank"
@@ -47,14 +47,14 @@ export function MobileNavigation(props: PropsWithChildren<MobileNavProps>) {
 
   return (
     <>
-      <menu className="h-10 flex items-center px-3 cursor-pointer lg:hidden" onClick={toggle}>
+      <menu className="flex h-10 cursor-pointer items-center px-3 lg:hidden" onClick={toggle}>
         <AlignRight className="size-4 text-primary/70"></AlignRight>
       </menu>
 
       <div
         className={cn(
-          "absolute left-0 top-[calc(100%+1px)] ",
-          "w-full opacity-0 px-16 transition-all duration-500 bg-background h-0",
+          "absolute left-0 top-[calc(100%+1px)]",
+          "h-0 w-full bg-background px-16 opacity-0 transition-all duration-500",
           "overflow-auto",
           "lg:hidden",
           {
@@ -63,14 +63,14 @@ export function MobileNavigation(props: PropsWithChildren<MobileNavProps>) {
           },
         )}
       >
-        <nav className={cn("pt-6 pb-24 transition-all duration-500")}>
+        <nav className={cn("pb-24 pt-6 transition-all duration-500")}>
           {props.navigation.map((element) => {
             return (
               <Link
                 key={element.text}
                 className={cn(
-                  "text-sm font-500 cursor-pointer text-primary transition-color duration-500 ease hover:text-primary/70 ",
-                  "w-full border-b py-3 text-left inline-block",
+                  "font-500 transition-color ease cursor-pointer text-sm text-primary duration-500 hover:text-primary/70",
+                  "inline-block w-full border-b py-3 text-left",
                 )}
                 href={element.link}
                 onClick={toggle}
@@ -80,12 +80,12 @@ export function MobileNavigation(props: PropsWithChildren<MobileNavProps>) {
             )
           })}
 
-          <div className="flex w-full justify-center mt-3">
+          <div className="mt-3 flex w-full justify-center">
             {props.icons.map((element) => {
               return (
                 <Link
                   key={element.title}
-                  className="size-12 inline-flex justify-center items-center cursor-pointer rounded-xl hover:bg-accent"
+                  className="inline-flex size-12 cursor-pointer items-center justify-center rounded-xl hover:bg-accent"
                   href={element.link}
                   title="GitHub"
                   target="_blank"

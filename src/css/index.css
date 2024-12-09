@@ -21,7 +21,7 @@
   }
   html,
   body {
-    @apply bg-background text-foreground scrollbar;
+    @apply scrollbar bg-background text-foreground;
   }
 
   :root {

@@ -5,6 +5,7 @@
 3. 处理 vercel 被墙：https://juejin.cn/post/7383894687302434825?share_token=02ea3777-09f9-440b-bbc3-0ff352e4b95d
 4. openai 包中废弃的包
 5. contentlayer2 中 mdxComponents 生产打包失败问题
+6. giscus: 评论组件 - 使用 github 的 Discussions 实现评论的功能
 
 # Next Cli 命令
 
@@ -88,12 +89,20 @@ pnpx drizzle-kit push
 
 1. m3u8:https://juejin.cn/post/7382966707060703268?share_token=91713cfd-d861-496c-bdc0-db4ea0e75844
 
-## Tailwindcss
+## vercel.json 文档
+
+- https://vercel.com/docs/projects/project-configuration
+
+## MDX
+
+1. 如何用 Nextjs 搭建一个基于 MDX 的博客网站: https://juejin.cn/post/7408821833552936986?share_token=91b2ddbb-fbc7-490b-aeaf-c13880cb00d4
+
+# Tailwindcss
 
 1. 快速掌握 Tailwind：最流行的原子化 CSS 框架（神说光）：https://juejin.cn/post/7231539903649398843?share_token=46882d88-1374-4aa4-84b7-4259040113b1
 2. Next.js 项目写 Tailwind CSS 基本都会遇到的两个问题: https://juejin.cn/post/7387611028988002314?share_token=fd22ddc1-6a98-4e38-a135-6f323fb15c71
 
-### 自定义 tailwindcss 插件
+## 自定义 tailwindcss 插件
 
 ```ts
 const plugin = require("tailwindcss/plugin")
@@ -118,11 +127,3 @@ const config: Config = {
 // 就可以在 html 中使用 <div className="gunag gunagguang"></div>
 // 插件的方式或者 @layer 的方式都可以扩展。
 ```
-
-## vercel.json 文档
-
-- https://vercel.com/docs/projects/project-configuration
-
-## MDX
-
-1. 如何用Nextjs搭建一个基于MDX的博客网站: https://juejin.cn/post/7408821833552936986?share_token=91b2ddbb-fbc7-490b-aeaf-c13880cb00d4

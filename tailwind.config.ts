@@ -14,6 +14,15 @@ import type { Config } from "tailwindcss"
  *  修改媒体查询 768px 尺寸为 300px
  *  md: "300px",
  * },
+ * 确保 tailwindcss 一定打包类名到 css 文件中
+ * safelist:{
+ *  'bg-indigo-600'
+ * }
+ * blocklist 中的类名不会被打包到样式文件中。比如文章中的文字包含了 container，Tailwind CSS 就会打包 container 类名，但其实没有需要，
+ * 或者你自定义了自己的 container 类名，不希望使用 Tailwind CSS 的 container 类名，那此时就可以配置 blocklist
+ * blocklist:{
+ *  'container',
+ * }
  * ```
  */
 const config: Config = {

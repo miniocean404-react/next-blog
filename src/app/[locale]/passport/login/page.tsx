@@ -63,9 +63,9 @@ export default function Login() {
         {t("back")}
       </Button>
 
-      <div className="h-dvh flex justify-center items-center lg:mx-8 md:mx-0">
-        <div className="w-full md:w-[350px] flex flex-col gap-6">
-          <div className="flex flex-col gap-2 items-center">
+      <div className="flex h-dvh items-center justify-center md:mx-0 lg:mx-8">
+        <div className="flex w-full flex-col gap-6 md:w-[350px]">
+          <div className="flex flex-col items-center gap-2">
             <Image
               className="h-6"
               src={"/favicon.svg"}

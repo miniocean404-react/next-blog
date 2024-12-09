@@ -68,7 +68,7 @@ export default function Ai() {
         })}
       </ChatWindow>
 
-      <ChatInput className="p-3.5 2xl:px-0 md:max-w-mini-layout" onSend={send}></ChatInput>
+      <ChatInput className="p-3.5 md:max-w-mini-layout 2xl:px-0" onSend={send}></ChatInput>
     </ChatLayout>
   )
 }

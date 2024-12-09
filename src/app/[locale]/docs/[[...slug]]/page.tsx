@@ -58,11 +58,11 @@ export default async function Docs({ params }: PagePropsWith<DocPageParams>) {
 
   return (
     <>
-      <main className=" py-8 no-scrollbar">
+      <main className="no-scrollbar py-8">
         <Mdx key={doc._id} code={doc.body.code}></Mdx>
       </main>
 
-      <div className="sticky top-16 h-mini-layout-one-screen py-8 text-sm overflow-auto no-scrollbar">
+      <div className="no-scrollbar sticky top-16 h-mini-layout-one-screen overflow-auto py-8 text-sm">
         <DashboardTableOfContents toc={toc}></DashboardTableOfContents>
       </div>
     </>

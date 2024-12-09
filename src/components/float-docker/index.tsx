@@ -9,24 +9,24 @@ import Notion from "~/public/svg/notion.svg"
 export default function FloatDock() {
   return (
     <Dock
-      className="fixed bottom-10 left-1/2 -translate-x-1/2 hidden lg:flex"
+      className="fixed bottom-10 left-1/2 hidden -translate-x-1/2 lg:flex"
       magnification={60}
       distance={100}
     >
-      <DockIcon className="rounded-full bg-black/10 dark:bg-white/10 p-2">
-        <Link className="w-full h-full" href={"/ai"} title="Ai">
+      <DockIcon className="rounded-full bg-black/10 p-2 dark:bg-white/10">
+        <Link className="h-full w-full" href={"/ai"} title="Ai">
           <Ai size={"100%"} />
         </Link>
       </DockIcon>
 
-      <DockIcon className="rounded-full bg-black/10 dark:bg-white/10 p-2">
-        <Link className="w-full h-full" href={GITHUB_LINK} target="_blank" title="Github">
+      <DockIcon className="rounded-full bg-black/10 p-2 dark:bg-white/10">
+        <Link className="h-full w-full" href={GITHUB_LINK} target="_blank" title="Github">
           <Github size={"100%"} />
         </Link>
       </DockIcon>
 
-      <DockIcon className="rounded-full bg-black/10 dark:bg-white/10 p-2">
-        <Link className="w-full h-full" href={NOTION_LINK} target="_blank" title="Notion">
+      <DockIcon className="rounded-full bg-black/10 p-2 dark:bg-white/10">
+        <Link className="h-full w-full" href={NOTION_LINK} target="_blank" title="Notion">
           <Notion size={"100%"} />
         </Link>
       </DockIcon>

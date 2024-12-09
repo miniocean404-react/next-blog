@@ -113,11 +113,11 @@ export default function RegisterPage({
   }
 
   return (
-    <div className={cn("h-dvh grid items-center px-4", "lg:grid-cols-[4fr_3fr] lg:px-0")}>
-      <div className="bg-muted h-full hidden lg:block"></div>
+    <div className={cn("grid h-dvh items-center px-4", "lg:grid-cols-[4fr_3fr] lg:px-0")}>
+      <div className="hidden h-full bg-muted lg:block"></div>
 
-      <div className="flex flex-col gap-6 sm:w-[350px] sm:mx-auto">
-        <div className="flex flex-col gap-2 items-center">
+      <div className="flex flex-col gap-6 sm:mx-auto sm:w-[350px]">
+        <div className="flex flex-col items-center gap-2">
           <Image
             className="h-6"
             src={"/favicon.svg"}

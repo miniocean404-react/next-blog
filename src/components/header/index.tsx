@@ -52,11 +52,11 @@ export default async function Header() {
     <HeaderLayout>
       <HeaderTitle></HeaderTitle>
 
-      <div className="ml-auto md:pl-6 md:flex md:flex-grow">
+      <div className="ml-auto md:flex md:flex-grow md:pl-6">
         <AlgoliaSearch />
       </div>
 
-      <div className="hidden lg:items-center lg:flex">
+      <div className="hidden lg:flex lg:items-center">
         <PcNavigation navigation={navigation} icons={icons}></PcNavigation>
         <ThemeSwitch />
       </div>

@@ -19,8 +19,8 @@ export default function TypedJs({ texts }: { texts: string[] }) {
   }, [])
 
   return (
-    <div className="flex justify-center items-center h-mini-layout-one-screen">
-      <div className={"text-3xl md:text-6xl px-6"}>
+    <div className="flex h-mini-layout-one-screen items-center justify-center">
+      <div className={"px-6 text-3xl md:text-6xl"}>
         <span ref={el}></span>
       </div>
     </div>

@@ -9,7 +9,7 @@ export default async function HeaderTitle() {
   const locale = await getLocale()
 
   return (
-    <Link className="pl-4 text-base font-600 flex items-center" href={`/${locale}`} title={locale}>
+    <Link className="font-600 flex items-center pl-4 text-base" href={`/${locale}`} title={locale}>
       <Image
         className="mr-2 h-6"
         src={"/favicon.svg"}

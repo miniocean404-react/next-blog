@@ -23,4 +23,9 @@ module.exports = {
 
   rangeStart: 0, // 每个文件格式化的范围是文件的全部内容
   rangeEnd: Infinity,
+  // prettier 插件
+  plugins: [
+    // prettier tailwindcss 自动排序插件
+    "prettier-plugin-tailwindcss",
+  ],
 }
