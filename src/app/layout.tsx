@@ -1,19 +1,20 @@
+import Eruda from "@/components/eruda"
 import Toast from "@/components/toast"
 import { GITHUB_LINK } from "@/constant/link"
+import "@/css/index.css"
 import { routing } from "@/i18n/routing"
+import { TRPCProvider } from "@/server/client/react-query-provider"
+import { HydrateClient } from "@/server/client/react-query-server"
 import { cn } from "@/utils/tw"
 import type { Metadata, ResolvingMetadata, Viewport } from "next"
+import { NextIntlClientProvider } from "next-intl"
 import { getLocale, getMessages, getTranslations, setRequestLocale } from "next-intl/server"
 import { ThemeProvider } from "next-themes"
 import { JetBrains_Mono } from "next/font/google"
 import localFont from "next/font/local"
+import { notFound } from "next/navigation"
 import BaiDuAnalytics from "~/lib/components/mini/analytics/baidu"
 import GoogleAnalytics from "~/lib/components/mini/analytics/google"
-import { notFound } from "next/navigation"
-import { NextIntlClientProvider } from "next-intl"
-import { TRPCProvider } from "@/server/client/react-query-provider"
-import { HydrateClient } from "@/server/client/react-query-server"
-import "@/css/index.css"
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
@@ -224,9 +225,10 @@ export default async function RootLayout({ children }: LayoutPropsWith) {
           <HydrateClient>
             <ThemeProvider attribute="class" enableSystem>
               <NextIntlClientProvider messages={messages}>
-                <GoogleAnalytics></GoogleAnalytics>
-                <BaiDuAnalytics></BaiDuAnalytics>
-                <Toast></Toast>
+                <GoogleAnalytics />
+                <BaiDuAnalytics />
+                <Toast />
+                <Eruda />
 
                 {children}
               </NextIntlClientProvider>

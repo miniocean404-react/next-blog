@@ -12,7 +12,7 @@ export function PcNavigation(props: PcNavProps) {
       {props.navigation.map((element) => {
         return (
           <Link
-            className="font-500 transition-color ease cursor-pointer px-3 py-0 text-sm text-primary duration-500 hover:text-primary/70"
+            className="font-500 transition-color ease duration-250 cursor-pointer px-3 py-0 text-sm text-primary hover:text-primary/70"
             href={element.link}
             key={element.text}
           >
@@ -54,22 +54,26 @@ export function MobileNavigation(props: PropsWithChildren<MobileNavProps>) {
       <div
         className={cn(
           "absolute left-0 top-[calc(100%+1px)]",
-          "h-0 w-full bg-background px-16 opacity-0 transition-all duration-500",
+          "invisible h-mini-layout-one-screen w-full bg-background px-16 opacity-0 transition-all duration-500",
           "overflow-auto",
           "lg:hidden",
           {
             "opacity-100": show,
-            "h-mini-layout-one-screen": show,
+            visible: show,
           },
         )}
       >
-        <nav className={cn("pb-24 pt-6 transition-all duration-500")}>
+        <nav
+          className={cn("pb-24 pt-6 transition-transform duration-500", {
+            "-translate-y-2": !show,
+          })}
+        >
           {props.navigation.map((element) => {
             return (
               <Link
                 key={element.text}
                 className={cn(
-                  "font-500 transition-color ease cursor-pointer text-sm text-primary duration-500 hover:text-primary/70",
+                  "font-500 transition-color ease duration-250 cursor-pointer text-sm text-primary hover:text-primary/70",
                   "inline-block w-full border-b py-3 text-left",
                 )}
                 href={element.link}

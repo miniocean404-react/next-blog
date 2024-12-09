@@ -7,7 +7,7 @@
 5. giscus: 评论组件 - 使用 github 的 Discussions 实现评论的功能
 6. React 19 Typescript 类型错误问题
 7. contentlayer2 中 mdxComponents 生产打包失败问题（Next15 升级 react 19 解决）
-8. 移动端菜单动画滚动条抽搐
+8. 移动端主题切换按钮动画
 
 # Next Cli 命令
 

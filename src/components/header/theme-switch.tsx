@@ -13,8 +13,10 @@ export default function ThemeSwitch(props: PropsWithChildren<ThemeSwitchProps>) 
 
   const toggle = async (e: MouseEvent<HTMLButtonElement>) => {
     const isDark = theme === "dark"
+
     const x = e.clientX
     const y = e.clientY
+
     const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
     const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
 
@@ -24,7 +26,7 @@ export default function ThemeSwitch(props: PropsWithChildren<ThemeSwitchProps>) 
     await transition.ready
     document.documentElement.animate(
       {
-        clipPath: isDark ? [...clipPath].reverse() : clipPath,
+        clipPath: isDark ? clipPath.reverse() : clipPath,
       },
       {
         delay: 0,
