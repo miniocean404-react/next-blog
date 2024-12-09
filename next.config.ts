@@ -95,9 +95,9 @@ const config: NextConfig = {
   },
   eslint: {
     // 默认 false，是否在构建时忽略 eslint
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
-  // 默认false，是否在构建时忽略 typescript 错误
+  // 默认 false，是否在构建时忽略 typescript 错误, (升级 react19 暂时关闭)
   typescript: {
     ignoreBuildErrors: true,
   },
