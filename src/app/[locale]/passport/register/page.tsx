@@ -1,13 +1,18 @@
 "use client"
 
+import { loginCredentials } from "@/action/singn-up"
+import { api } from "@/server/client/react-query-provider"
 import { registerFormSchema, type RegisterFormSchemaType } from "@/utils/schema/register"
+import { cn } from "@/utils/tw"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTranslations } from "next-intl"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { use } from "react"
 import { useForm } from "react-hook-form"
-
+import toast from "react-hot-toast"
+import { useInterval, useSetState } from "react-use"
 import { Button } from "~/lib/components/shadcn/ui/button"
 import {
   Form,
@@ -19,13 +24,6 @@ import {
 } from "~/lib/components/shadcn/ui/form"
 import { Input } from "~/lib/components/shadcn/ui/input"
 import { Separator } from "~/lib/components/shadcn/ui/separator"
-
-import { loginCredentials } from "@/action/singn-up"
-import { api } from "@/server/client/react-query-provider"
-import Image from "next/image"
-import toast from "react-hot-toast"
-import { useInterval, useSetState } from "react-use"
-import { cn } from "@/utils/tw"
 
 export default function RegisterPage({
   searchParams,

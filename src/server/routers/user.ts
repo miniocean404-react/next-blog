@@ -68,7 +68,7 @@ export const User = appRouter({
   sendEmail: publicProcedure
     .input(
       z.object({
-        email: z.string(),
+        email: z.string().email(),
       }),
     )
     .mutation(async (opts) => {
