@@ -1,7 +1,6 @@
 import Eruda from "@/components/eruda"
 import Toast from "@/components/toast"
 import { GITHUB_LINK } from "@/constant/link"
-import "@/css/index.css"
 import { routing } from "@/i18n/routing"
 import { TRPCProvider } from "@/server/client/react-query-provider"
 import { HydrateClient } from "@/server/client/react-query-server"
@@ -15,6 +14,8 @@ import localFont from "next/font/local"
 import { notFound } from "next/navigation"
 import BaiDuAnalytics from "~/lib/components/mini/analytics/baidu"
 import GoogleAnalytics from "~/lib/components/mini/analytics/google"
+
+import "@/css/index.css"
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
