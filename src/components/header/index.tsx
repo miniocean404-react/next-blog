@@ -59,8 +59,9 @@ export default async function Header() {
       <div className="hidden lg:items-center lg:flex">
         <PcNavigation navigation={navigation} icons={icons}></PcNavigation>
         <ThemeSwitch />
-        <Account session={session}></Account>
       </div>
+
+      <Account session={session}></Account>
 
       <MobileNavigation
         navigation={navigation}

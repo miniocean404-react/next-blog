@@ -54,7 +54,7 @@ export function MobileNavigation(props: PropsWithChildren<MobileNavProps>) {
       <div
         className={cn(
           "absolute left-0 top-[calc(100%+1px)] ",
-          "w-full opacity-0 px-16 transition-all duration-250 bg-background h-0",
+          "w-full opacity-0 px-16 transition-all duration-500 bg-background h-0",
           "overflow-auto",
           "lg:hidden",
           {

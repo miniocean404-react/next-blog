@@ -69,10 +69,18 @@ export function Account(props: PropsWithChildren<AccountProps>) {
       )}
 
       {!session?.user && (
-        <div className="px-0">
+        <div className="px-0 hidden lg:block">
           <Button variant={"ghost"}>
             <Link href="/passport/login">{t("navigation")}</Link>
           </Button>
+        </div>
+      )}
+
+      {!session?.user && (
+        <div className="lg:hidden flex justify-center items-center px-2">
+          <Link href={"/passport/login"} className="cursor-pointer text-primary">
+            <User size={16}></User>
+          </Link>
         </div>
       )}
     </div>
