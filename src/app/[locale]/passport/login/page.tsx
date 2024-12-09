@@ -27,7 +27,7 @@ import { api } from "@/server/client/react-query-provider"
 
 export default function Login() {
   const t = useTranslations("login")
-  const { mutate } = api.User.login.useMutation()
+  const { mutate, error } = api.User.login.useMutation()
   const router = useRouter()
 
   const form = useForm<loginFormSchemaType>({

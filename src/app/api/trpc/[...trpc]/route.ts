@@ -18,9 +18,10 @@ function handler(req: NextRequest) {
     //   }
     // },
     // 全局处理 trpc 错误,不能处理响应
-    // onError(opts) {
-    //   const { error, type, path, input, ctx, req } = opts
-    // },
+    onError(opts) {
+      const { error, type, path, input, ctx, req } = opts
+      console.error(`TRPC 错误, ${path}`, error)
+    },
   })
 }
 
