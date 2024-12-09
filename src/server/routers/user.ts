@@ -1,4 +1,3 @@
-import { trpcResult } from "@/server/trpc/shared"
 import { sendEmail } from "@/utils/email"
 import { genVerificationCode } from "@/utils/id"
 import { z } from "zod"
@@ -11,6 +10,7 @@ import { hashPassword, isEqualHashPassword } from "@/utils/crypto"
 
 import dayjs from "dayjs"
 import "dayjs/locale/zh-cn"
+import { TRPCError } from "@trpc/server"
 dayjs.locale("zh-cn")
 
 export const User = appRouter({
@@ -36,7 +36,7 @@ export const User = appRouter({
         },
       })
 
-      if (!user) return trpcResult.failMsg("用户不存在")
+      if (!user) throw new TRPCError({ code: "BAD_REQUEST", message: "用户不存在" })
 
       const userRole = await db()
         .select()
@@ -55,15 +55,15 @@ export const User = appRouter({
       })
 
       const success = isEqualHashPassword(password, user?.password || "")
-      if (!success) return trpcResult.failMsg("密码错误")
+      if (!success) throw new TRPCError({ code: "BAD_REQUEST", message: "密码错误" })
 
-      return trpcResult.success({
+      return {
         id: user?.cuid,
         name: user?.nickname,
         email: user?.email,
         image: user?.avatar,
         role: role.map((item) => item.roleKey).join(","),
-      })
+      }
     }),
   sendEmail: publicProcedure
     .input(
@@ -78,7 +78,7 @@ export const User = appRouter({
         where: (user, { eq }) => and(eq(user.email, input.email), eq(user.delFlag, false)),
       })
 
-      if (isExist) return trpcResult.failMsg("当前邮箱已存在！")
+      if (isExist) throw new TRPCError({ code: "BAD_REQUEST", message: "当前邮箱已存在！" })
 
       const token = genVerificationCode()
 
@@ -96,8 +96,6 @@ export const User = appRouter({
         subject: "验证码",
         html: `验证码为：${token}`,
       })
-
-      return trpcResult.successMsg("验证码已发送")
     }),
   verificationToken: publicProcedure
     .input(
@@ -116,10 +114,13 @@ export const User = appRouter({
           and(eq(verification.token, token), eq(verification.delFlag, false)),
       })
 
-      if (email !== verificationToken?.identifier || !verificationToken)
-        return trpcResult.failMsg("验证码错误")
+      if (email !== verificationToken?.identifier || !verificationToken) {
+        throw new TRPCError({ code: "BAD_REQUEST", message: "验证码错误" })
+      }
 
-      if (dayjs().isAfter(verificationToken.expires)) return trpcResult.failMsg("验证码已过期")
+      if (dayjs().isAfter(verificationToken.expires)) {
+        throw new TRPCError({ code: "BAD_REQUEST", message: "验证码已过期" })
+      }
 
       // ---------------------------------------- 验证码通过，开始注册 ----------------------------------------
 
@@ -149,15 +150,13 @@ export const User = appRouter({
 
         if (!user || !role) {
           tx.rollback()
-          return trpcResult.failMsg("注册失败")
+          throw new TRPCError({ code: "BAD_REQUEST", message: "注册失败" })
         }
 
         await db().insert(userRoleModel).values({
           userId: user.id,
           roleId: role.id,
         })
-
-        return trpcResult.successMsg("注册成功")
       })
 
       // Demo: 更新用户邮箱验证时间

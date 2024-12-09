@@ -1,7 +1,7 @@
 "use server"
 
-import { trpcResult } from "@/server/trpc/shared"
 import { signIn, signOut } from "@/utils/auth"
+import { TRPCError } from "@trpc/server"
 import { AuthError, type User } from "next-auth"
 
 export const loginCredentials = async (credentials: User) => {
@@ -11,7 +11,8 @@ export const loginCredentials = async (credentials: User) => {
       redirectTo: `/`,
     })
   } catch (error) {
-    if (error instanceof AuthError) return trpcResult.failMsg("用户名或密码错误")
+    if (error instanceof AuthError)
+      throw new TRPCError({ code: "BAD_REQUEST", message: "用户名或密码错误" })
     // 这里一定要抛出异常，不然成功登录后不会重定向
     throw error
   }

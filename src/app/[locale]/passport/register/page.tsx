@@ -74,10 +74,8 @@ export default function RegisterPage({
       { email },
       {
         // variables 是传递给请求的参数
-        onSuccess(data, variables, context) {
-          if (data?.code !== 200) {
-            toast.error(data?.msg || "")
-          }
+        onError(error, variables, context) {
+          toast.error(error.message)
         },
       },
     )
@@ -92,21 +90,19 @@ export default function RegisterPage({
       },
       {
         async onSuccess(data) {
-          if (data.code !== 200) {
-            return registerForm.setError("pin", { message: data.msg })
-          }
-
           login(values, {
-            async onSuccess(result, variables, context) {
-              if (result.code === 200 && result.data) {
-                await loginCredentials(result.data)
-                // 登录成功，跳到首页
-                router.push("/")
-              } else {
-                toast.error(result.msg)
-              }
+            async onSuccess(data, variables, context) {
+              await loginCredentials(data)
+              // 登录成功，跳到首页
+              router.push("/")
+            },
+            onError(error, variables, context) {
+              toast.error(error.message)
             },
           })
+        },
+        onError(error, variables, context) {
+          registerForm.setError("pin", { message: error.message })
         },
       },
     )

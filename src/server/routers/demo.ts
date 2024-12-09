@@ -3,7 +3,6 @@ import { TRPCError } from "@trpc/server"
 import { publicProcedure, adminProcedure, authedProcedure } from "../trpc/procedure"
 import { appMiddleware, appRouter } from "../trpc/server"
 import { z } from "zod"
-import { trpcResult } from "@/server/trpc/shared"
 
 const mid2 = appMiddleware(async (opts) => {
   console.log("--- 中间件 --- 前置处理")
@@ -49,7 +48,6 @@ export const Demo = appRouter({
     .mutation(async (opt) => {
       try {
         // Insert data into Database
-        return trpcResult.successMsg("创建用户成功")
       } catch (e: any) {
         console.error(e.message)
         throw new TRPCError({

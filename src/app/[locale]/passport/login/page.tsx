@@ -40,14 +40,13 @@ export default function Login() {
 
   async function onSubmit(values: loginFormSchemaType) {
     mutate(values, {
-      async onSuccess(result, variables, context) {
-        if (result.code === 200 && result.data) {
-          await loginCredentials(result.data)
-          // 登录成功，跳到首页
-          router.push("/")
-        } else {
-          toast.error(result.msg)
-        }
+      async onSuccess(data, variables, context) {
+        await loginCredentials(data)
+        // 登录成功，跳到首页
+        router.push("/")
+      },
+      onError(error, variables, context) {
+        toast.error(error.message)
       },
     })
   }
