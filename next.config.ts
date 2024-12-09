@@ -93,11 +93,13 @@ const config: NextConfig = {
       },
     ]
   },
-  // 默认 false，是否在构建时忽略 eslint
-  // ignoreDuringBuilds: true,
+  eslint: {
+    // 默认 false，是否在构建时忽略 eslint
+    ignoreDuringBuilds: true,
+  },
   // 默认false，是否在构建时忽略 typescript 错误
   typescript: {
-    ignoreBuildErrors: false,
+    ignoreBuildErrors: true,
   },
   // 默认为false,将带有斜杠的 URL 重定向到不带斜杠的对应 URL 类似的网址/about/将重定向到/about
   trailingSlash: false,

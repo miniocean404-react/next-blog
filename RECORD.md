@@ -4,8 +4,9 @@
 2. next.js vscode debugger
 3. 处理 vercel 被墙：https://juejin.cn/post/7383894687302434825?share_token=02ea3777-09f9-440b-bbc3-0ff352e4b95d
 4. openai 包中废弃的包
-5. contentlayer2 中 mdxComponents 生产打包失败问题
-6. giscus: 评论组件 - 使用 github 的 Discussions 实现评论的功能
+5. giscus: 评论组件 - 使用 github 的 Discussions 实现评论的功能
+6. React 19 Typescript 类型错误问题
+7. contentlayer2 中 mdxComponents 生产打包失败问题（Next15 升级 react 19 解决）
 
 # Next Cli 命令
 
