@@ -8,3 +8,5 @@ export const registerFormSchema = z.object({
 })
 
 export type RegisterFormSchemaType = z.infer<typeof registerFormSchema>
+
+export const emailSchema = z.string().email()

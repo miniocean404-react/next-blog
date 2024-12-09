@@ -2,7 +2,11 @@
 
 import { loginCredentials } from "@/action/singn-up"
 import { api } from "@/server/client/react-query-provider"
-import { registerFormSchema, type RegisterFormSchemaType } from "@/utils/schema/register"
+import {
+  emailSchema,
+  registerFormSchema,
+  type RegisterFormSchemaType,
+} from "@/utils/schema/register"
 import { cn } from "@/utils/tw"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTranslations } from "next-intl"
@@ -183,7 +187,10 @@ export default function RegisterPage({
 
                     <Button
                       type="button"
-                      disabled={countdown.start}
+                      disabled={
+                        countdown.start ||
+                        !emailSchema.safeParse(registerForm.watch("email")).success
+                      }
                       variant={"link"}
                       onClick={onSendEmail}
                     >
