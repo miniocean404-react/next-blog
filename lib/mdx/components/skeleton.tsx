@@ -2,6 +2,10 @@ import { cn } from "@/utils/tw"
 import Image from "next/image"
 import Link from "next/link"
 import { useMDXComponent } from "next-contentlayer2/hooks"
+import { CopyButton, CopyNpmCommandButton } from "~/lib/mdx/components/copy-button"
+import { ComponentPreview } from "~/lib/mdx/components/preview"
+
+import "@/css/mdx.css"
 
 export const CustomLink = (props: any) => {
   const href = props.href
@@ -189,15 +193,12 @@ export const components = {
       {...props}
     />
   ),
+  ComponentPreview,
 }
 
 interface MdxProps {
   code: string
 }
-
-import "@/css/mdx.css"
-import { CopyButton, CopyNpmCommandButton } from "~/lib/mdx/components/copy-button"
-import type { NpmCommands } from "~/lib/mdx/types/node"
 
 export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code, {
