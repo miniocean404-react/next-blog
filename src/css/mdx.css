@@ -22,18 +22,17 @@
   @apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0;
   counter-reset: line;
   box-decoration-break: clone;
-  overflow: auto;
 }
 
-[data-rehype-pretty-code-figure] [data-line] {
+[data-rehype-pretty-code-figure] span[data-line] {
   @apply inline-block min-h-[1rem] w-full px-4 py-0.5;
 }
 
-[data-rehype-pretty-code-figure] [data-line-numbers] [data-line] {
+[data-rehype-pretty-code-figure] [data-line-numbers] span[data-line] {
   @apply px-2;
 }
 
-[data-rehype-pretty-code-figure] [data-line-numbers] > [data-line]::before {
+[data-rehype-pretty-code-figure] [data-line-numbers] > span[data-line]::before {
   @apply text-xs text-zinc-50/40;
   counter-increment: line;
   content: counter(line);
@@ -63,7 +62,7 @@
   @apply mt-2 px-4 pt-6 text-sm font-medium text-foreground;
 }
 
-[data-rehype-pretty-code-title] + pre {
+[data-rehype-pretty-code-title] + div > pre {
   @apply mt-2;
 }
 

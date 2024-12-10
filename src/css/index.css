@@ -98,26 +98,30 @@
 
 @layer utilities {
   /* 火狐  */
-  @supports not selector(::-webkit-scrollbar) {
-    .scrollbar {
-      scrollbar-width: thin;
-      scrollbar-color: hsl(var(--border)) transparent;
+  @supports selector(::-webkit-scrollbar) {
+    /* Safari Chrome */
+    .scrollbar::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+
+      /* 添加滚动条的边框 */
+      background-clip: content-box;
+      border: 2px solid transparent;
+      background-color: hsl(var(--border));
+    }
+
+    .scrollbar::-webkit-scrollbar-track {
+      background: transparent;
     }
   }
 
-  /* Safari Chrome */
-  .scrollbar::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-
-  .scrollbar::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-
-    /* 添加滚动条的边框 */
-    background-clip: content-box;
-    border: 2px solid transparent;
-    background-color: hsl(var(--border));
+  .new-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
   }
 
   .no-scrollbar {

@@ -32,7 +32,7 @@ import { rehypeNpmCommand } from "./lib/mdx/plugin/rehype-npm-command"
 import { rehypeGetCode, rehypeSetParentProp } from "~/lib/mdx/plugin/rehype-code"
 
 const prettyCodeOptions: Options = {
-  theme: "one-dark-pro",
+  theme: "github-dark",
   getHighlighter,
   onVisitLine(node) {
     // Prevent lines from collapsing in `display: grid` mode, and allow empty

@@ -14,16 +14,16 @@ export default function HeaderLayout({ children }: PropsWithChildren<any>) {
   if (pathname.includes("passport")) return null
 
   return (
-    <>
-      {/* 网站标题图标切换 */}
-      <DynWebTitle title={t("blogName")}></DynWebTitle>
-
+    <header className="sticky top-0 z-mini-header">
       {/* 彩虹 */}
       <RainbowBackground />
 
-      <header
+      {/* 网站标题图标切换 */}
+      <DynWebTitle title={t("blogName")}></DynWebTitle>
+
+      <div
         className={cn(
-          "sticky top-0 z-mini-header backdrop-blur-md",
+          "backdrop-blur-md",
           "border-b",
           "flex h-16 w-full items-center",
           "px-2 md:px-8",
@@ -32,7 +32,7 @@ export default function HeaderLayout({ children }: PropsWithChildren<any>) {
         <div className="mx-auto flex w-full max-w-mini-layout items-center lg:justify-between">
           {children}
         </div>
-      </header>
-    </>
+      </div>
+    </header>
   )
 }

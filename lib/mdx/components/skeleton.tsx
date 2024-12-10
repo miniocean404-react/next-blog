@@ -135,7 +135,7 @@ export const components = {
       <div className="relative">
         <pre
           className={cn(
-            "mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
+            "new-scrollbar mb-4 mt-6 max-h-[650px] overflow-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
             className,
           )}
           {...prop}
@@ -176,13 +176,7 @@ export const components = {
     <div className="[&>h3]:step steps mb-12 ml-4 border-l pl-8 [counter-reset:step]" {...props} />
   ),
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <code
-      className={cn(
-        "scrollbar relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm",
-        className,
-      )}
-      {...props}
-    />
+    <code className={cn("relative rounded px-[0.3rem] font-mono text-sm", className)} {...props} />
   ),
   LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
     <Link
