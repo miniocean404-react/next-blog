@@ -8,6 +8,7 @@
 6. 移动端主题切换按钮动画
 7. openai 包中废弃的包
 8. contentlayer2 中 mdxComponents 生产打包失败问题（Next15 升级 react 19 解决）
+9. contentlayer2 组件预览
 
 # Next Cli 命令
 
