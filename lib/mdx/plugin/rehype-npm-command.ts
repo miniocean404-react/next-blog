@@ -1,35 +1,5 @@
-import type { Node } from "unist"
-export interface UnistNode extends Node {
-  type: string
-  name?: string
-  tagName?: string
-  value?: string
-  properties?: {
-    __rawString__?: string
-    __className__?: string
-    __event__?: string
-    [key: string]: unknown
-  } & NpmCommands
-  attributes?: {
-    name: string
-    value: unknown
-    type?: string
-  }[]
-  children?: UnistNode[]
-}
-
-export interface UnistTree extends UnistNode {
-  children: UnistNode[]
-}
-
-export interface NpmCommands {
-  __npmCommand__?: string
-  __yarnCommand__?: string
-  __pnpmCommand__?: string
-  __bunCommand__?: string
-}
-
 import { visit } from "unist-util-visit"
+import type { UnistNode, UnistTree } from "~/lib/mdx/types/node"
 
 export function rehypeNpmCommand() {
   return (tree: UnistTree) => {
@@ -39,33 +9,33 @@ export function rehypeNpmCommand() {
       }
 
       // npm install.
-      if (node.properties?.["__rawString__"]?.startsWith("npm install")) {
-        const npmCommand = node.properties?.["__rawString__"]
-        node.properties["__npmCommand__"] = npmCommand
-        node.properties["__yarnCommand__"] = npmCommand.replace("npm install", "yarn add")
-        node.properties["__pnpmCommand__"] = npmCommand.replace("npm install", "pnpm add")
-        node.properties["__bunCommand__"] = npmCommand.replace("npm install", "bun add")
+      if (node.properties?.["__code__"]?.startsWith("npm install")) {
+        const npmCommand = node.properties?.["__code__"]
+        node.properties["__npm_command__"] = npmCommand
+        node.properties["__yarn_command__"] = npmCommand.replace("npm install", "yarn add")
+        node.properties["__pnpm_command__"] = npmCommand.replace("npm install", "pnpm add")
+        node.properties["__bun_command__"] = npmCommand.replace("npm install", "bun add")
       }
 
       // npx create.
-      if (node.properties?.["__rawString__"]?.startsWith("npx create-")) {
-        const npmCommand = node.properties?.["__rawString__"]
-        node.properties["__npmCommand__"] = npmCommand
-        node.properties["__yarnCommand__"] = npmCommand.replace("npx create-", "yarn create ")
-        node.properties["__pnpmCommand__"] = npmCommand.replace("npx create-", "pnpm create ")
-        node.properties["__bunCommand__"] = npmCommand.replace("npx", "bunx --bun")
+      if (node.properties?.["__code__"]?.startsWith("npx create-")) {
+        const npmCommand = node.properties?.["__code__"]
+        node.properties["__npm_command__"] = npmCommand
+        node.properties["__yarn_command__"] = npmCommand.replace("npx create-", "yarn create ")
+        node.properties["__pnpm_command__"] = npmCommand.replace("npx create-", "pnpm create ")
+        node.properties["__bun_command__"] = npmCommand.replace("npx", "bunx --bun")
       }
 
       // npx.
       if (
-        node.properties?.["__rawString__"]?.startsWith("npx") &&
-        !node.properties?.["__rawString__"]?.startsWith("npx create-")
+        node.properties?.["__code__"]?.startsWith("npx") &&
+        !node.properties?.["__code__"]?.startsWith("npx create-")
       ) {
-        const npmCommand = node.properties?.["__rawString__"]
-        node.properties["__npmCommand__"] = npmCommand
-        node.properties["__yarnCommand__"] = npmCommand
-        node.properties["__pnpmCommand__"] = npmCommand.replace("npx", "pnpm dlx")
-        node.properties["__bunCommand__"] = npmCommand.replace("npx", "bunx --bun")
+        const npmCommand = node.properties?.["__code__"]
+        node.properties["__npm_command__"] = npmCommand
+        node.properties["__yarn_command__"] = npmCommand
+        node.properties["__pnpm_command__"] = npmCommand.replace("npx", "pnpm dlx")
+        node.properties["__bun_command__"] = npmCommand.replace("npx", "bunx --bun")
       }
     })
   }

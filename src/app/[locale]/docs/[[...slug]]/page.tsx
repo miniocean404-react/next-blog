@@ -13,12 +13,11 @@ export async function generateMetadata(
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const metadata = await parent
+
   const doc = await getDocFromParams({ params })
   const t = await getTranslations("app")
 
-  if (!doc) {
-    return {}
-  }
+  if (!doc) return {}
 
   return {
     metadataBase: metadata.metadataBase,
@@ -50,9 +49,7 @@ export function generateStaticParams() {
 export default async function Docs({ params }: PagePropsWith<DocPageParams>) {
   const doc = await getDocFromParams({ params })
 
-  if (!doc) {
-    return notFound()
-  }
+  if (!doc) return notFound()
 
   const toc = await getTableOfContents(doc.body.raw)
 

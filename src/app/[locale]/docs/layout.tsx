@@ -2,12 +2,7 @@ import { cn } from "@/utils/tw"
 import { DocsSidebarNav } from "~/lib/mdx/components/sidebar"
 import { docsConfig } from "~/lib/mdx/components/sidebar/config"
 
-export default async function DocsLayout({
-  children,
-}: {
-  children: React.ReactNode
-  params: { locale: string }
-}) {
+export default async function DocsLayout({ children }: LayoutPropsWith<DocsLayoutParams>) {
   return (
     <div
       className={cn(

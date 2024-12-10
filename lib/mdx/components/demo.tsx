@@ -40,11 +40,11 @@
 //   ),
 //   pre: ({
 //     className,
-//     __rawString__,
-//     __npmCommand__,
-//     __pnpmCommand__,
-//     __yarnCommand__,
-//     __bunCommand__,
+//     __code__,
+//     __npm_command__,
+//     __pnpm_command__,
+//     __yarn_command__,
+//     __bun_command__,
 //     __withMeta__,
 //     __src__,
 //     __event__,
@@ -53,11 +53,11 @@
 //     ...props
 //   }: React.HTMLAttributes<HTMLPreElement> & {
 //     // __style__?: Style["name"]
-//     __rawString__?: string
-//     __npmCommand__?: string
-//     __pnpmCommand__?: string
-//     __yarnCommand__?: string
-//     __bunCommand__?: string
+//     __code__?: string
+//     __npm_command__?: string
+//     __pnpm_command__?: string
+//     __yarn_command__?: string
+//     __bun_command__?: string
 //     __withMeta__?: boolean
 //     __src__?: string
 //     __event__?: Event["name"]
@@ -72,21 +72,21 @@
 //           )}
 //           {...props}
 //         />
-//         {__rawString__ && __src__ && __event__ && (
+//         {__code__ && __src__ && __event__ && (
 //           <CopyButton
-//             value={__rawString__}
+//             value={__code__}
 //             src={__src__}
 //             event={__event__}
 //             className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
 //           />
 //         )}
-//         {__npmCommand__ && __yarnCommand__ && __pnpmCommand__ && __bunCommand__ && (
+//         {__npm_command__ && __yarn_command__ && __pnpm_command__ && __bun_command__ && (
 //           <CopyNpmCommandButton
 //             commands={{
-//               __npmCommand__,
-//               __pnpmCommand__,
-//               __yarnCommand__,
-//               __bunCommand__,
+//               __npm_command__,
+//               __pnpm_command__,
+//               __yarn_command__,
+//               __bun_command__,
 //             }}
 //             className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
 //           />

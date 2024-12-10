@@ -112,6 +112,44 @@ export const components = {
       {...props}
     />
   ),
+  pre: (
+    prop: React.HTMLAttributes<HTMLPreElement> & {
+      __style__?: Style["name"]
+      __code__?: string
+      __withMeta__?: boolean
+      __src__?: string
+    },
+  ) => {
+    const {
+      className,
+      __code__,
+      __withMeta__,
+      __src__,
+      // __event__,
+      __style__,
+      ...props
+    } = prop
+
+    return (
+      <div className="relative">
+        <pre
+          className={cn(
+            "mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
+            className,
+          )}
+          {...props}
+        />
+        {__code__ && (
+          <CopyButton
+            value={__code__}
+            src={__src__}
+            // event={__event__}
+            className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
+          />
+        )}
+      </div>
+    )
+  },
   Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
     <h3
       className={cn(
@@ -127,7 +165,7 @@ export const components = {
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
-        "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm scrollbar",
+        "scrollbar relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm",
         className,
       )}
       {...props}
@@ -149,6 +187,7 @@ interface MdxProps {
 }
 
 import "@/css/mdx.css"
+import { CopyButton } from "~/lib/mdx/components/copy-button"
 
 export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code, {
