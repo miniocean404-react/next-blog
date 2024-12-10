@@ -53,17 +53,6 @@ const prettyCodeOptions: Options = {
   },
 }
 
-const computedFields: ComputedFields = {
-  slug: {
-    type: "string",
-    resolve: (doc) => `/${doc._raw.flattenedPath}`,
-  },
-  slugAsParams: {
-    type: "string",
-    resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
-  },
-}
-
 const LinksProperties = defineNestedType(() => ({
   name: "LinksProperties",
   fields: {
@@ -114,7 +103,16 @@ export const Doc = defineDocumentType(() => ({
     //   required: false,
     // },
   },
-  computedFields,
+  computedFields: {
+    slug: {
+      type: "string",
+      resolve: (doc) => `/${doc._raw.flattenedPath}`,
+    },
+    slugAsParams: {
+      type: "string",
+      resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+    },
+  },
 }))
 
 export default makeSource({

@@ -2,16 +2,16 @@
 
 import { useMounted } from "@/utils/hook/mounted"
 import { cn } from "@/utils/tw"
-import "@docsearch/css"
 import docsearch from "@docsearch/js"
 import { Search as SearchIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import { useEffect, type PropsWithChildren } from "react"
+
+import "@docsearch/css"
 import "./index.css"
 
 export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
   const t = useTranslations()
-  const locale = useLocale()
   const isMonted = useMounted()
 
   const translations = t.raw<any>("header.search")
