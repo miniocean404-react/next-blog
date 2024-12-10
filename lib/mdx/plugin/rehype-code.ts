@@ -1,3 +1,4 @@
+// markdown 语法树遍历
 import { visit } from "unist-util-visit"
 import type { UnistNode } from "~/lib/mdx/types/node"
 

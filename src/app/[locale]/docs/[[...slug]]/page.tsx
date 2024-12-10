@@ -41,9 +41,11 @@ export async function generateMetadata(
 }
 
 export function generateStaticParams() {
-  return allDocs.map((doc) => ({
-    slug: doc.slugAsParams.split("/"),
-  }))
+  return allDocs.map((doc) => {
+    return {
+      slug: doc.slugAsParams.split("/"),
+    }
+  })
 }
 
 export default async function Docs({ params }: PagePropsWith<DocPageParams>) {

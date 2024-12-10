@@ -15,8 +15,6 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeSlug from "rehype-slug"
 // 拓展markdown的功能，支持 GFM 的备注插件（自动链接文字、脚注、删除线、表格、任务列表，支持表格、等）。
 import remarkGfm from "remark-gfm"
-// markdown 语法树遍历
-import { visit } from "unist-util-visit"
 
 // remark：
 // remark-math 支持数学公式
@@ -120,8 +118,8 @@ export default makeSource({
   documentTypes: [Doc],
   // 生成文章内容的索引以供搜索使用
   // onSuccess: async (importData) => {
-  //   const { allDocs } = await importData()
-  //   await generateTags(allDocs)
+  // const { allDocs } = await importData()
+  // await generateTags(allDocs)
   // },
   mdx: {
     cwd: process.cwd(),
