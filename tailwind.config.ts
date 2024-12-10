@@ -36,7 +36,7 @@ const config: Config = {
     "./lib/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
     // mdx 组件需要包含
-    "./docs/components/**/*.{js,ts,jsx,tsx,mdx}",
+    // "./lib/mdx/components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {},

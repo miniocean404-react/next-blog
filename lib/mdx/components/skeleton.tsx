@@ -112,14 +112,7 @@ export const components = {
       {...props}
     />
   ),
-  pre: (
-    prop: React.HTMLAttributes<HTMLPreElement> & {
-      __style__?: Style["name"]
-      __code__?: string
-      __withMeta__?: boolean
-      __src__?: string
-    },
-  ) => {
+  pre: (props: preElementProps) => {
     const {
       className,
       __code__,
@@ -127,8 +120,12 @@ export const components = {
       __src__,
       // __event__,
       __style__,
-      ...props
-    } = prop
+      __npm_command__,
+      __yarn_command__,
+      __pnpm_command__,
+      __bun_command__,
+      ...prop
+    } = props
 
     return (
       <div className="relative">
@@ -137,13 +134,25 @@ export const components = {
             "mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
             className,
           )}
-          {...props}
+          {...prop}
         />
-        {__code__ && (
+        {__code__ && !__npm_command__ && (
           <CopyButton
             value={__code__}
             src={__src__}
             // event={__event__}
+            className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
+          />
+        )}
+
+        {__npm_command__ && __yarn_command__ && __pnpm_command__ && __bun_command__ && (
+          <CopyNpmCommandButton
+            commands={{
+              __npm_command__,
+              __yarn_command__,
+              __pnpm_command__,
+              __bun_command__,
+            }}
             className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
           />
         )}
@@ -187,7 +196,8 @@ interface MdxProps {
 }
 
 import "@/css/mdx.css"
-import { CopyButton } from "~/lib/mdx/components/copy-button"
+import { CopyButton, CopyNpmCommandButton } from "~/lib/mdx/components/copy-button"
+import type { NpmCommands } from "~/lib/mdx/types/node"
 
 export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code, {

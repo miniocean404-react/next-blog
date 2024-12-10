@@ -39,9 +39,7 @@ export function rehypeSetParentProp() {
 
         const preElement = node.children.at(-1)
 
-        if (!preElement || preElement?.tagName !== "pre" || !preElement.properties) {
-          return
-        }
+        if (!preElement || preElement?.tagName !== "pre" || !preElement.properties) return
 
         preElement.properties["__withMeta__"] = node.children.at(0)?.tagName === "div"
         preElement.properties["__code__"] = node.properties.__code__
