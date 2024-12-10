@@ -26,13 +26,13 @@ export default async function Header() {
       text: t("navigation.ai"),
     },
     {
-      link: "/",
+      link: "/docs",
       text: t("navigation.article"),
     },
-    {
-      link: "/",
-      text: t("navigation.demo"),
-    },
+    // {
+    //   link: "/",
+    //   text: t("navigation.demo"),
+    // },
   ]
 
   const icons: NavigationIcons[] = [

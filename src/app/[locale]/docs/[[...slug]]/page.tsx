@@ -62,7 +62,7 @@ export default async function Docs({ params }: PagePropsWith<DocPageParams>) {
         <Mdx key={doc._id} code={doc.body.code}></Mdx>
       </main>
 
-      <div className="no-scrollbar sticky top-16 h-mini-layout-one-screen overflow-auto py-8 text-sm">
+      <div className="no-scrollbar sticky top-16 hidden h-mini-layout-one-screen overflow-auto py-8 text-sm md:block">
         <DashboardTableOfContents toc={toc}></DashboardTableOfContents>
       </div>
     </>
