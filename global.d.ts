@@ -18,7 +18,7 @@ declare namespace NodeJS {
     NEXT_PUBLIC_BASEURL: string
 
     // Next runtime 环境
-    NEXT_RUNTIME: string | "nodejs"
+    NEXT_RUNTIME: string | "nodejs" | ""
 
     // Next Auth 秘钥
     NEXT_PUBLIC_AUTH_SECRET: string

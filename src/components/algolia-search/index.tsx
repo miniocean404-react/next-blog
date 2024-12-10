@@ -30,7 +30,8 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
       // facetFilters: [""],
       // },
       insights: true,
-      initialQuery: "第一次查询参数",
+      // 第一次查询参数
+      initialQuery: "",
       translations,
     })
   }, [])
