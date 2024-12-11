@@ -1,5 +1,5 @@
 interface DocPageParams {
-  slug: string[]
+  pathSep: string
 }
 
 interface DocsLayoutParams {

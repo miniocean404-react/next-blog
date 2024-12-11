@@ -26,6 +26,8 @@ import { createHighlighter as getHighlighter } from "shiki"
 // import { rehypeComponent } from "./lib/rehype-component"
 import { rehypeNpmCommand } from "./lib/mdx/plugin/rehype-npm-command"
 import { rehypeGetCode, rehypeSetParentProp } from "~/lib/mdx/plugin/rehype-code"
+import { statSync } from "fs"
+import { join } from "path"
 
 const prettyCodeOptions: Options = {
   theme: "github-dark",
@@ -98,13 +100,27 @@ export const Doc = defineDocumentType(() => ({
     // },
   },
   computedFields: {
-    slug: {
+    path: {
       type: "string",
       resolve: (doc) => `/${doc._raw.flattenedPath}`,
     },
-    slugAsParams: {
+    pathSep: {
       type: "string",
       resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+    },
+    createdAt: {
+      type: "date",
+      resolve: (doc) => {
+        const stats = statSync(join("./docs", doc._raw.sourceFilePath))
+        return stats.birthtime
+      },
+    },
+    updatedAt: {
+      type: "date",
+      resolve: (doc) => {
+        const stats = statSync(join("./docs", doc._raw.sourceFilePath))
+        return stats.mtime
+      },
     },
   },
 }))
@@ -115,24 +131,23 @@ export default makeSource({
   // 生成文章内容的索引以供搜索使用
   onSuccess: async (importData) => {
     // const { allDocs, allDocuments } = await importData()
-    // allDocuments.map((doc) => {})
-
-    const res = dirTree(
-      "docs",
-      { attributes: ["type", "extension"] },
-      (file, path, stats) => {
-        file.custom = {
-          href: file.path.replace("docs", ""),
-          title: file.name.replace(file.extension || "", ""),
-        }
-      },
-      (dir, path, stats) => {
-        dir.custom = {
-          title: dir.name,
-        }
-      },
-    )
-
+    // allDocuments.map((doc) => {
+    // })
+    // const res = dirTree(
+    //   "docs",
+    //   { attributes: ["type", "extension"] },
+    //   (file, path, stats) => {
+    //     file.custom = {
+    //       href: file.path.replace("docs", ""),
+    //       title: file.name.replace(file.extension || "", ""),
+    //     }
+    //   },
+    //   (dir, path, stats) => {
+    //     dir.custom = {
+    //       title: dir.name,
+    //     }
+    //   },
+    // )
     // console.log(res)
   },
   mdx: {

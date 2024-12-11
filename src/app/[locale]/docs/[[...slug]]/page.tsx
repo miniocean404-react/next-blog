@@ -27,7 +27,7 @@ export async function generateMetadata(
       title: doc.title,
       description: doc.description,
       type: "article",
-      url: `/${doc.slug}`,
+      url: `/${doc.path}`,
       images: metadata.openGraph?.images,
     },
     twitter: {
@@ -43,7 +43,7 @@ export async function generateMetadata(
 export function generateStaticParams() {
   return allDocs.map((doc) => {
     return {
-      slug: doc.slugAsParams.split("/"),
+      pathSep: doc.pathSep,
     }
   })
 }
@@ -69,10 +69,9 @@ export default async function Docs({ params }: PagePropsWith<DocPageParams>) {
 }
 
 async function getDocFromParams({ params }: PagePropsWith<DocPageParams>) {
-  const slug = (await params).slug?.join("/") || ""
-  const doc = allDocs.find((doc) => {
-    return doc.slugAsParams === slug
-  })
+  const pathSep = (await params).pathSep
+
+  const doc = allDocs.find((doc) => doc.pathSep === pathSep)
 
   if (!doc) return null
 
