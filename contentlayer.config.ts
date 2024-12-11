@@ -2,6 +2,7 @@ import { defineDocumentType, defineNestedType, makeSource } from "contentlayer2/
 import readingTime from "reading-time"
 import { extractTocHeadings } from "pliny/mdx-plugins/index.js"
 import { allCoreContent, sortPosts } from "pliny/utils/contentlayer.js"
+import dirTree from "directory-tree"
 
 // 代码块美化
 import rehypePrettyCode, { type Options } from "rehype-pretty-code"
@@ -28,8 +29,10 @@ import { createHighlighter as getHighlighter } from "shiki"
 // import { rehypeComponent } from "./lib/rehype-component"
 import { rehypeNpmCommand } from "./lib/mdx/plugin/rehype-npm-command"
 import { rehypeGetCode, rehypeSetParentProp } from "~/lib/mdx/plugin/rehype-code"
-import { statSync } from "fs"
-import { join } from "path"
+import fs from "fs"
+import path from "path"
+
+const DOC_PATH = "docs"
 
 const prettyCodeOptions: Options = {
   theme: "github-dark",
@@ -117,14 +120,14 @@ export const Doc = defineDocumentType(() => ({
     createdAt: {
       type: "date",
       resolve: (doc) => {
-        const stats = statSync(join("./docs", doc._raw.sourceFilePath))
+        const stats = fs.statSync(path.join(DOC_PATH, doc._raw.sourceFilePath))
         return stats.birthtime
       },
     },
     updatedAt: {
       type: "date",
       resolve: (doc) => {
-        const stats = statSync(join("./docs", doc._raw.sourceFilePath))
+        const stats = fs.statSync(path.join(DOC_PATH, doc._raw.sourceFilePath))
         return stats.mtime
       },
     },
@@ -136,7 +139,7 @@ export const Doc = defineDocumentType(() => ({
 }))
 
 export default makeSource({
-  contentDirPath: "./docs",
+  contentDirPath: DOC_PATH,
   documentTypes: [Doc],
   // 生成文章内容的索引以供搜索使用
   onSuccess: async (importData) => {
@@ -147,6 +150,8 @@ export default makeSource({
 
     // 创建排序索引
     // allCoreContent(sortPosts(allDocuments))
+
+    generateFileTree()
   },
   mdx: {
     cwd: process.cwd(),
@@ -170,3 +175,24 @@ export default makeSource({
     ],
   },
 })
+
+function generateFileTree() {
+  const tree = dirTree(
+    DOC_PATH,
+    { attributes: ["extension", "type"] },
+    (item, path, stats) => {
+      item.custom = {
+        title: item.name.replace(item.extension || "", ""),
+        path: item.path.replace(DOC_PATH, "").replace(item.extension || "", ""),
+      }
+    },
+    (item, path, stats) => {
+      // item.custom[""]
+      item.custom = {
+        title: item.name.replace(item.extension || "", ""),
+      }
+    },
+  )
+
+  fs.writeFileSync("lib/mdx/tree.json", JSON.stringify(tree, null, 2))
+}

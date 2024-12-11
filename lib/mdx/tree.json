@@ -1,0 +1,40 @@
+{
+  "path": "docs",
+  "name": "docs",
+  "children": [
+    {
+      "path": "docs/snippets",
+      "name": "snippets",
+      "children": [
+        {
+          "path": "docs/snippets/测试.mdx",
+          "name": "测试.mdx",
+          "extension": ".mdx",
+          "type": "file",
+          "custom": {
+            "title": "测试",
+            "path": "/snippets/测试"
+          }
+        }
+      ],
+      "type": "directory",
+      "custom": {
+        "title": "snippets"
+      }
+    },
+    {
+      "path": "docs/首页.mdx",
+      "name": "首页.mdx",
+      "extension": ".mdx",
+      "type": "file",
+      "custom": {
+        "title": "首页",
+        "path": "/首页"
+      }
+    }
+  ],
+  "type": "directory",
+  "custom": {
+    "title": "docs"
+  }
+}
