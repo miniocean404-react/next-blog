@@ -1,9 +1,5 @@
-import {
-  defineDocumentType,
-  defineNestedType,
-  makeSource,
-  type ComputedFields,
-} from "contentlayer2/source-files"
+import { defineDocumentType, defineNestedType, makeSource } from "contentlayer2/source-files"
+import dirTree from "directory-tree"
 
 // 代码块美化
 import rehypePrettyCode, { type Options } from "rehype-pretty-code"
@@ -117,10 +113,28 @@ export default makeSource({
   contentDirPath: "./docs",
   documentTypes: [Doc],
   // 生成文章内容的索引以供搜索使用
-  // onSuccess: async (importData) => {
-  // const { allDocs } = await importData()
-  // await generateTags(allDocs)
-  // },
+  onSuccess: async (importData) => {
+    // const { allDocs, allDocuments } = await importData()
+    // allDocuments.map((doc) => {})
+
+    const res = dirTree(
+      "docs",
+      { attributes: ["type", "extension"] },
+      (file, path, stats) => {
+        file.custom = {
+          href: file.path.replace("docs", ""),
+          title: file.name.replace(file.extension || "", ""),
+        }
+      },
+      (dir, path, stats) => {
+        dir.custom = {
+          title: dir.name,
+        }
+      },
+    )
+
+    // console.log(res)
+  },
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [remarkGfm, codeImport],

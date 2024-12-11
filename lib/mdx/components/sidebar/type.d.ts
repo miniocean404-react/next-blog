@@ -16,11 +16,5 @@ export interface MainNavItem extends NavItem {}
 export interface SidebarNavItem extends NavItemWithChildren {}
 
 export interface DocsSidebarNavProps {
-  config: DocsConfig
-}
-
-export interface DocsConfig {
-  mainNav: MainNavItem[]
-  sidebarNav: SidebarNavItem[]
-  chartsNav: SidebarNavItem[]
+  config: SidebarNavItem[]
 }

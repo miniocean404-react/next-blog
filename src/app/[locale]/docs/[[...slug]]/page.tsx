@@ -74,9 +74,7 @@ async function getDocFromParams({ params }: PagePropsWith<DocPageParams>) {
     return doc.slugAsParams === slug
   })
 
-  if (!doc) {
-    return null
-  }
+  if (!doc) return null
 
   return doc
 }
