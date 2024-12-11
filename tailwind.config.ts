@@ -79,16 +79,13 @@ const config: Config = {
         "mini-background-alt": "var(--mini-c-bg-alt)",
         "mini-background-elv": "var(--mini-c-bg-elv)",
         "mini-background-soft": "var(--mini-c-bg-soft)",
-
         "mini-backdrop": "var(--mini-backdrop-bg-color)",
         "mini-border": "var(--mini-c-border)",
         "mini-divider": "var(--mini-c-divider)",
         "mini-gutter": "var(--mini-c-gutter)",
-
         "mini-text-1": "var(--mini-c-text-1)",
         "mini-text-2": "var(--mini-c-text-2)",
         "mini-text-3": "var(--mini-c-text-3)",
-
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
