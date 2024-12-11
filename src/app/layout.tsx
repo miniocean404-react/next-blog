@@ -1,4 +1,4 @@
-import Eruda from "@/components/eruda"
+import Eruda from "~/lib/components/mini/eruda"
 import Toast from "@/components/toast"
 import { GITHUB_LINK } from "@/constant/link"
 import { routing } from "@/i18n/routing"
