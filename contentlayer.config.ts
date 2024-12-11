@@ -2,7 +2,6 @@ import { defineDocumentType, defineNestedType, makeSource } from "contentlayer2/
 import readingTime from "reading-time"
 import { extractTocHeadings } from "pliny/mdx-plugins/index.js"
 import { allCoreContent, sortPosts } from "pliny/utils/contentlayer.js"
-import dirTree from "directory-tree"
 
 // 代码块美化
 import rehypePrettyCode, { type Options } from "rehype-pretty-code"
@@ -150,8 +149,6 @@ export default makeSource({
 
     // 创建排序索引
     // allCoreContent(sortPosts(allDocuments))
-
-    generateFileTree()
   },
   mdx: {
     cwd: process.cwd(),
@@ -176,23 +173,23 @@ export default makeSource({
   },
 })
 
-function generateFileTree() {
-  const tree = dirTree(
-    DOC_PATH,
-    { attributes: ["extension", "type"], normalizePath: true },
-    (item, path, stats) => {
-      item.custom = {
-        title: item.name.replace(item.extension || "", ""),
-        path: item.path.replace(DOC_PATH, "").replace(item.extension || "", ""),
-      }
-    },
-    (item, path, stats) => {
-      // item.custom[""]
-      item.custom = {
-        title: item.name.replace(item.extension || "", ""),
-      }
-    },
-  )
+// function generateFileTree() {
+//   const tree = directoryTree(
+//     DOC_PATH,
+//     { attributes: ["extension", "type"], normalizePath: true },
+//     (item, path, stats) => {
+//       item.custom = {
+//         title: item.name.replace(item.extension || "", ""),
+//         path: item.path.replace(DOC_PATH, "").replace(item.extension || "", ""),
+//       }
+//     },
+//     (item, path, stats) => {
+//       // item.custom[""]
+//       item.custom = {
+//         title: item.name.replace(item.extension || "", ""),
+//       }
+//     },
+//   )
 
-  fs.writeFileSync("src/components/mdx/siderbar.json", JSON.stringify(tree, null, 2))
-}
+//   fs.writeFileSync("src/components/mdx/siderbar.json", JSON.stringify(tree, null, 2))
+// }
