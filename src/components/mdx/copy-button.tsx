@@ -11,34 +11,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "~/lib/components/shadcn/ui/dropdown-menu"
-import type { NpmCommands } from "~/lib/mdx/types/node"
+import type { NpmCommands } from "~/lib/mdx/node"
 import { cn } from "~/lib/utils"
-
-const eventSchema = z.object({
-  name: z.enum([
-    "copy_npm_command",
-    "copy_usage_import_code",
-    "copy_usage_code",
-    "copy_primitive_code",
-    "copy_theme_code",
-    "copy_block_code",
-    "copy_chunk_code",
-    "enable_lift_mode",
-    "copy_chart_code",
-    "copy_chart_theme",
-    "copy_chart_data",
-    "copy_color",
-  ]),
-  // declare type AllowedPropertyValues = string | number | boolean | null
-  properties: z.record(z.union([z.string(), z.number(), z.boolean(), z.null()])).optional(),
-})
-
-export type Event = z.infer<typeof eventSchema>
 
 interface CopyButtonProps extends ButtonProps {
   value: string
   src?: string
-  event?: Event["name"]
 }
 
 export function CopyButton({
@@ -46,7 +24,6 @@ export function CopyButton({
   className,
   src,
   variant = "ghost",
-  event,
   ...props
 }: CopyButtonProps) {
   const [hasCopied, setHasCopied] = useState(false)
@@ -66,17 +43,7 @@ export function CopyButton({
         className,
       )}
       onClick={() => {
-        copyToClipboardWithMeta(
-          value,
-          event
-            ? {
-                name: event,
-                properties: {
-                  code: value,
-                },
-              }
-            : undefined,
-        )
+        copyToClipboardWithMeta(value)
         setHasCopied(true)
       }}
       {...props}
@@ -100,14 +67,8 @@ export function CopyNpmCommandButton({ commands, className, ...props }: CopyNpmC
     }, 2000)
   }, [hasCopied])
 
-  const copyCommand = useCallback((value: string, pm: "npm" | "pnpm" | "yarn" | "bun") => {
-    copyToClipboardWithMeta(value, {
-      name: "copy_npm_command",
-      properties: {
-        command: value,
-        pm,
-      },
-    })
+  const copyCommand = useCallback((value: string) => {
+    copyToClipboardWithMeta(value)
     setHasCopied(true)
   }, [])
 
@@ -127,16 +88,16 @@ export function CopyNpmCommandButton({ commands, className, ...props }: CopyNpmC
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => copyCommand(commands.__npm_command__, "npm")}>
+        <DropdownMenuItem onClick={() => copyCommand(commands.__npm_command__)}>
           npm
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => copyCommand(commands.__yarn_command__, "yarn")}>
+        <DropdownMenuItem onClick={() => copyCommand(commands.__yarn_command__)}>
           yarn
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => copyCommand(commands.__pnpm_command__, "pnpm")}>
+        <DropdownMenuItem onClick={() => copyCommand(commands.__pnpm_command__)}>
           pnpm
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => copyCommand(commands.__bun_command__, "bun")}>
+        <DropdownMenuItem onClick={() => copyCommand(commands.__bun_command__)}>
           bun
         </DropdownMenuItem>
       </DropdownMenuContent>

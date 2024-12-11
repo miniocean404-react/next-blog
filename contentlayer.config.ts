@@ -27,8 +27,8 @@ import remarkGfm from "remark-gfm"
 import { createHighlighter as getHighlighter } from "shiki"
 
 // import { rehypeComponent } from "./lib/rehype-component"
-import { rehypeNpmCommand } from "./lib/mdx/plugin/rehype-npm-command"
-import { rehypeGetCode, rehypeSetParentProp } from "~/lib/mdx/plugin/rehype-code"
+import { rehypeNpmCommand } from "./lib/mdx/rehype-npm-command"
+import { rehypeGetCode, rehypeSetParentProp } from "~/lib/mdx/rehype-code"
 import fs from "fs"
 import path from "path"
 
@@ -179,7 +179,7 @@ export default makeSource({
 function generateFileTree() {
   const tree = dirTree(
     DOC_PATH,
-    { attributes: ["extension", "type"] },
+    { attributes: ["extension", "type"], normalizePath: true },
     (item, path, stats) => {
       item.custom = {
         title: item.name.replace(item.extension || "", ""),
@@ -194,5 +194,5 @@ function generateFileTree() {
     },
   )
 
-  fs.writeFileSync("lib/mdx/tree.json", JSON.stringify(tree, null, 2))
+  fs.writeFileSync("src/components/mdx/siderbar.json", JSON.stringify(tree, null, 2))
 }

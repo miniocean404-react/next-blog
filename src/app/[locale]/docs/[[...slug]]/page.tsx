@@ -2,9 +2,9 @@ import { allDocs } from "contentlayer/generated"
 import type { Metadata, ResolvingMetadata } from "next"
 import { getTranslations } from "next-intl/server"
 import { notFound } from "next/navigation"
-import { Mdx } from "~/lib/mdx/components/skeleton"
-import { DashboardTableOfContents } from "~/lib/mdx/components/toc"
-import { getTableOfContents } from "~/lib/mdx/components/toc/toc"
+import { Mdx } from "@/components/mdx/use-mdx"
+import { DashboardTableOfContents } from "@/components/mdx/dashboard"
+import { getTableOfContents } from "@/components/mdx/toc"
 
 // import { useLiveReload } from "next-contentlayer2/hooks"
 

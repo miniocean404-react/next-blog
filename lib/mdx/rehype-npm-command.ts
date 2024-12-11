@@ -1,5 +1,5 @@
 import { visit } from "unist-util-visit"
-import type { UnistNode, UnistTree } from "~/lib/mdx/types/node"
+import type { UnistNode, UnistTree } from "~/lib/mdx/node"
 
 export function rehypeNpmCommand() {
   return (tree: UnistTree) => {

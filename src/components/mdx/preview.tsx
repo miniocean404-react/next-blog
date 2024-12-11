@@ -4,7 +4,7 @@ import * as React from "react"
 import Image from "next/image"
 
 import { cn } from "~/lib/utils"
-import { CopyButton } from "~/lib/mdx/components/copy-button"
+import { CopyButton } from "@/components/mdx/copy-button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/lib/components/shadcn/ui/tabs"
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -1,6 +1,5 @@
 import { cn } from "@/utils/tw"
-import { DocsSidebarNav } from "~/lib/mdx/components/sidebar"
-import { docsConfig } from "~/lib/mdx/components/sidebar/config"
+import { docsConfig, DocsSidebarNav } from "@/components/mdx/siderbar"
 
 export default async function DocsLayout({ children }: LayoutPropsWith<DocsLayoutParams>) {
   return (

@@ -2,8 +2,8 @@ import { cn } from "@/utils/tw"
 import Image from "next/image"
 import Link from "next/link"
 import { useMDXComponent } from "next-contentlayer2/hooks"
-import { CopyButton, CopyNpmCommandButton } from "~/lib/mdx/components/copy-button"
-import { ComponentPreview } from "~/lib/mdx/components/preview"
+import { CopyButton, CopyNpmCommandButton } from "@/components/mdx/copy-button"
+import { ComponentPreview } from "@/components/mdx/preview"
 
 import "@/css/mdx.css"
 
