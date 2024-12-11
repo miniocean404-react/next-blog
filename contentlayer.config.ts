@@ -1,5 +1,4 @@
 import { defineDocumentType, defineNestedType, makeSource } from "contentlayer2/source-files"
-import dirTree from "directory-tree"
 
 // 代码块美化
 import rehypePrettyCode, { type Options } from "rehype-pretty-code"
@@ -100,13 +99,13 @@ export const Doc = defineDocumentType(() => ({
     // },
   },
   computedFields: {
-    path: {
+    router: {
       type: "string",
       resolve: (doc) => `/${doc._raw.flattenedPath}`,
     },
-    pathSep: {
+    routerSep: {
       type: "string",
-      resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+      resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/") || "/",
     },
     createdAt: {
       type: "date",
@@ -133,22 +132,6 @@ export default makeSource({
     // const { allDocs, allDocuments } = await importData()
     // allDocuments.map((doc) => {
     // })
-    // const res = dirTree(
-    //   "docs",
-    //   { attributes: ["type", "extension"] },
-    //   (file, path, stats) => {
-    //     file.custom = {
-    //       href: file.path.replace("docs", ""),
-    //       title: file.name.replace(file.extension || "", ""),
-    //     }
-    //   },
-    //   (dir, path, stats) => {
-    //     dir.custom = {
-    //       title: dir.name,
-    //     }
-    //   },
-    // )
-    // console.log(res)
   },
   mdx: {
     cwd: process.cwd(),
