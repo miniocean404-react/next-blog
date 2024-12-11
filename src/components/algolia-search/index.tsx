@@ -4,7 +4,7 @@ import { useMounted } from "@/utils/hook/mounted"
 import { cn } from "@/utils/tw"
 import docsearch from "@docsearch/js"
 import { Search as SearchIcon } from "lucide-react"
-import { useLocale, useTranslations } from "next-intl"
+import { useTranslations } from "next-intl"
 import { useEffect, type PropsWithChildren } from "react"
 
 import "@docsearch/css"
@@ -32,6 +32,7 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
       insights: true,
       // 第一次查询参数
       initialQuery: "",
+      placeholder: t("header.search.placeholder"),
       translations,
     })
   }, [])

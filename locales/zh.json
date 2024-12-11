@@ -23,6 +23,7 @@
       }
     },
     "search": {
+      "placeholder": "搜索文档",
       "button": {
         "buttonText": "搜索",
         "buttonAriaLabel": "搜索文档"
