@@ -99,6 +99,7 @@ pnpx drizzle-kit push
 ## MDX
 
 1. 如何用 Nextjs 搭建一个基于 MDX 的博客网站: https://juejin.cn/post/7408821833552936986?share_token=91b2ddbb-fbc7-490b-aeaf-c13880cb00d4
+2. 参考项目：https://github.com/pmndrs/_blog
 
 # Tailwindcss
 

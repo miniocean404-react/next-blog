@@ -1,4 +1,7 @@
 import { defineDocumentType, defineNestedType, makeSource } from "contentlayer2/source-files"
+import readingTime from "reading-time"
+import { extractTocHeadings } from "pliny/mdx-plugins/index.js"
+import { allCoreContent, sortPosts } from "pliny/utils/contentlayer.js"
 
 // 代码块美化
 import rehypePrettyCode, { type Options } from "rehype-pretty-code"
@@ -107,6 +110,10 @@ export const Doc = defineDocumentType(() => ({
       type: "string",
       resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/") || "/",
     },
+    readingTime: {
+      type: "json",
+      resolve: (doc) => readingTime(doc.body.raw),
+    },
     createdAt: {
       type: "date",
       resolve: (doc) => {
@@ -121,6 +128,10 @@ export const Doc = defineDocumentType(() => ({
         return stats.mtime
       },
     },
+    toc: {
+      type: "string",
+      resolve: async (doc) => await extractTocHeadings(doc.body.raw),
+    },
   },
 }))
 
@@ -129,9 +140,13 @@ export default makeSource({
   documentTypes: [Doc],
   // 生成文章内容的索引以供搜索使用
   onSuccess: async (importData) => {
-    // const { allDocs, allDocuments } = await importData()
+    const { allDocs, allDocuments } = await importData()
     // allDocuments.map((doc) => {
+    // console.log(doc._raw.flattenedPath)
     // })
+
+    // 创建排序索引
+    // allCoreContent(sortPosts(allDocuments))
   },
   mdx: {
     cwd: process.cwd(),
