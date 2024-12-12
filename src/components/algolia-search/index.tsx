@@ -21,9 +21,9 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
   useEffect(() => {
     docsearch({
       container: "#docsearch",
-      appId: "R2IYF7ETH7",
-      apiKey: "599cec31baffa4868cae4e79f180729b",
-      indexName: "docsearch",
+      appId: process.env.NEXT_PUBLIC_ALIGO_APPID,
+      apiKey: process.env.NEXT_PUBLIC_ALIGO_APIKEY,
+      indexName: "miniocean404s",
       // todo 未知类型问题
       // searchParameters: {
       // facetFilters: [`language:${locale}`, "version:1.0.0"],

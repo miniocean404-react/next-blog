@@ -23,6 +23,10 @@ declare namespace NodeJS {
     // Next Auth 秘钥
     NEXT_PUBLIC_AUTH_SECRET: string
 
+    // ALIGO 秘钥
+    NEXT_PUBLIC_ALIGO_APPID: string
+    NEXT_PUBLIC_ALIGO_APIKEY: string
+
     // Github OAuth
     AUTH_GITHUB_ID: string
     AUTH_GITHUB_SECRET: string
