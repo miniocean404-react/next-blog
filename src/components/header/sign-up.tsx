@@ -31,9 +31,9 @@ export function Account(props: PropsWithChildren<AccountProps>) {
     <div className={className}>
       {session?.user && (
         <DropdownMenu>
-          <div className="cursor-pointer px-2">
+          <div className="cursor-pointer px-3">
             <DropdownMenuTrigger asChild>
-              <Avatar className="size-8">
+              <Avatar className="w-full sm:size-10">
                 <AvatarImage src={session.user?.image || undefined} alt="@avatar" />
                 <AvatarFallback className="bg-transparent lg:bg-muted">
                   <User size={16}></User>
@@ -77,7 +77,7 @@ export function Account(props: PropsWithChildren<AccountProps>) {
       )}
 
       {!session?.user && (
-        <div className="flex items-center justify-center px-2 lg:hidden">
+        <div className="flex h-10 items-center justify-center px-3 lg:hidden">
           <Link href={"/passport/login"} className="cursor-pointer text-primary">
             <User size={16}></User>
           </Link>
