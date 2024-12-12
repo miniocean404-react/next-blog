@@ -26,12 +26,12 @@ import remarkGfm from "remark-gfm"
 import { createHighlighter as getHighlighter } from "shiki"
 
 // import { rehypeComponent } from "./lib/rehype-component"
-import { rehypeNpmCommand } from "./lib/mdx/rehype-npm-command"
-import { rehypeGetCode, rehypeSetParentProp } from "~/lib/mdx/rehype-code"
+import { rehypeNpmCommand } from "~/content/plugin/rehype-npm-command"
+import { rehypeGetCode, rehypeSetParentProp } from "~/content/plugin/rehype-code"
 import fs from "fs"
 import path from "path"
 
-const DOC_PATH = "docs"
+const ROOT = "content"
 
 const prettyCodeOptions: Options = {
   theme: "github-dark",
@@ -79,24 +79,24 @@ export const Doc = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
-    // published: {
-    //   type: "boolean",
-    //   default: true,
-    // },
     links: {
       type: "nested",
       of: LinksProperties,
+    },
+    component: {
+      type: "boolean",
+      default: false,
+      required: false,
     },
     // featured: {
     //   type: "boolean",
     //   default: false,
     //   required: false,
     // },
-    component: {
-      type: "boolean",
-      default: false,
-      required: false,
-    },
+    // published: {
+    //   type: "boolean",
+    //   default: true,
+    // },
     // toc: {
     //   type: "boolean",
     //   default: true,
@@ -104,17 +104,13 @@ export const Doc = defineDocumentType(() => ({
     // },
   },
   computedFields: {
-    router: {
+    filePath: {
       type: "string",
       resolve: (doc) => `/${doc._raw.flattenedPath}`,
     },
-    routerSep: {
+    pathname: {
       type: "string",
       resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
-    },
-    fullRouter: {
-      type: "string",
-      resolve: (doc) => `${DOC_PATH}/${doc._raw.flattenedPath.split("/").slice(1).join("/")}`,
     },
     readingTime: {
       type: "json",
@@ -123,14 +119,14 @@ export const Doc = defineDocumentType(() => ({
     createdAt: {
       type: "date",
       resolve: (doc) => {
-        const stats = fs.statSync(path.join(DOC_PATH, doc._raw.sourceFilePath))
+        const stats = fs.statSync(path.join(ROOT, doc._raw.sourceFilePath))
         return stats.birthtime
       },
     },
     updatedAt: {
       type: "date",
       resolve: (doc) => {
-        const stats = fs.statSync(path.join(DOC_PATH, doc._raw.sourceFilePath))
+        const stats = fs.statSync(path.join(ROOT, doc._raw.sourceFilePath))
         return stats.mtime
       },
     },
@@ -142,18 +138,18 @@ export const Doc = defineDocumentType(() => ({
 }))
 
 export default makeSource({
-  contentDirPath: DOC_PATH,
+  contentDirPath: ROOT,
   documentTypes: [Doc],
   // 生成文章内容的索引以供搜索使用
-  onSuccess: async (importData) => {
-    const { allDocs, allDocuments } = await importData()
-    // allDocuments.map((doc) => {
-    // console.log(doc._raw.flattenedPath)
-    // })
+  // onSuccess: async (importData) => {
+  // const { allDocs, allDocuments } = await importData()
+  // allDocuments.map((doc) => {
+  // console.log(doc._raw.flattenedPath)
+  // })
 
-    // 创建排序索引
-    // allCoreContent(sortPosts(allDocuments))
-  },
+  // 创建排序索引
+  // allCoreContent(sortPosts(allDocuments))
+  // },
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [remarkGfm, codeImport],

@@ -27,7 +27,7 @@ export async function generateMetadata(
       title: doc.title,
       description: doc.description,
       type: "article",
-      url: `/${doc.router}`,
+      url: `${doc.filePath}`,
       images: metadata.openGraph?.images,
     },
     twitter: {
@@ -42,9 +42,17 @@ export async function generateMetadata(
 
 // 如果是 /doc 根目录 slug 就是 undefind 没有参数，但是可以捕获
 export function generateStaticParams() {
+  console.log(
+    allDocs.map((doc) => {
+      return {
+        slug: doc.pathname.split("/"),
+      }
+    }),
+  )
+
   return allDocs.map((doc) => {
     return {
-      slug: doc.routerSep.split("/"),
+      slug: doc.pathname.split("/"),
     }
   })
 }
@@ -70,9 +78,9 @@ export default async function Docs({ params }: PagePropsWith<DocPageParams>) {
 }
 
 async function getDocFromParams({ params }: PagePropsWith<DocPageParams>) {
-  const routerSep = (await params).slug?.join("/") || ""
+  const pathname = (await params).slug?.join("/") || ""
 
-  const doc = allDocs.find((doc) => doc.routerSep === routerSep)
+  const doc = allDocs.find((doc) => doc.pathname === pathname)
 
   if (!doc) return null
 
