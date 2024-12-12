@@ -70,7 +70,7 @@ export default async function Docs({ params }: PagePropsWith<DocPageParams>) {
 }
 
 async function getDocFromParams({ params }: PagePropsWith<DocPageParams>) {
-  const pathname = (await params).slug?.join("/") || ""
+  const pathname = (await params).slug?.join("/") || "home"
 
   const doc = allDocs.find((doc) => doc.pathname === pathname)
 
