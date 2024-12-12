@@ -91,6 +91,7 @@ pnpx drizzle-kit push
 ## Algolia
 
 1. 快来给你的博客添加全文搜索: https://juejin.cn/post/7157340749065895944?searchId=202412121602012E85B3C1C0D20C0351D3
+2. Github Actions 在 Docker 中运行自托管的 Algolia：https://github.com/marketplace/actions/docsearch-scraper-action
 
 ### 功能
 
