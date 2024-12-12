@@ -5,7 +5,7 @@ import { allDocuments } from "~/.contentlayer/generated"
 // sitemap 是向搜索引擎展示网站结构的工具，可以理解为网站地图。有了 sitemap.xml，搜索引擎可以更高效地爬取网站，确保内容更快地展现在搜索结果中。对于大型的、内容丰富的网站，或是频繁更新的网站，sitemap 带来的效益是非常高的。
 export default function sitemap(): MetadataRoute.Sitemap {
   const docs = allDocuments.map<MetadataRoute.Sitemap[number]>((doc) => ({
-    url: `${process.env.NEXT_PUBLIC_APP_URL}/${doc.slugAsParams}`,
+    url: `${process.env.NEXT_PUBLIC_APP_URL}/${doc.fullRouter}`,
     lastModified: doc.updatedAt,
     changeFrequency: "weekly",
     priority: 0.7,

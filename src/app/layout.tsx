@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 
 // https://weijunext.com/article/seo-key-options
 // 在页面中也可以设置专属页面 metadata，并与顶级 metadata 进行merge
-export async function generateMetadata(_: any, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(params: any, parent: ResolvingMetadata): Promise<Metadata> {
   const locale = await getLocale()
   const t = await getTranslations("app")
 
@@ -154,11 +154,12 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata): Promi
         alt: t("appDefaultTitle"),
       },
     },
-    alternates: {
-      // 因为有 metadataBase 默认 URL 的存在，所以直接写 /
-      canonical: "/",
-      languages: { zh: "/", "zh-CN": `/zh`, en: `/en` },
-    },
+    // canonical 需要动态设置（暂时无法动态设置），如果不动态设置爬虫可能值爬取 canonical 的路径，因为它是为了防止同一个 URL 因为 search 参数导致重复爬取，及权重问题
+    // alternates: {
+    // 因为有 metadataBase 默认 URL 的存在，所以直接写 /
+    // canonical: "/",
+    // languages: { zh: "/", "zh-CN": `/zh`, en: `/en` },
+    // },
   }
 }
 

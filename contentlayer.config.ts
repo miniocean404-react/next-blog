@@ -110,7 +110,11 @@ export const Doc = defineDocumentType(() => ({
     },
     routerSep: {
       type: "string",
-      resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/") || "/",
+      resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+    },
+    fullRouter: {
+      type: "string",
+      resolve: (doc) => `${DOC_PATH}/${doc._raw.flattenedPath.split("/").slice(1).join("/")}`,
     },
     readingTime: {
       type: "json",

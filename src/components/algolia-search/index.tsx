@@ -11,10 +11,10 @@ import "@docsearch/css"
 import "./index.css"
 
 export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
-  const t = useTranslations()
+  const t = useTranslations("header")
   const isMonted = useMounted()
 
-  const translations = t.raw<any>("header.search")
+  const translations = t.raw<any>("search")
 
   // useHotkeys(["meta+k", "ctrl+k"], openSearch, [], { preventDefault: true })
 
@@ -32,7 +32,7 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
       insights: true,
       // 第一次查询参数
       initialQuery: "",
-      placeholder: t("header.search.placeholder"),
+      placeholder: t("search.placeholder"),
       translations,
     })
   }, [])
@@ -47,7 +47,7 @@ export default function AlgoliaSearch({ children }: PropsWithChildren<any>) {
       >
         <span className="DocSearch-Button-Container">
           <SearchIcon className={"DocSearch-Search-Icon"}></SearchIcon>
-          <span className={"DocSearch-Button-Placeholder"}>{t("home.search")}</span>
+          <span className={"DocSearch-Button-Placeholder"}>{t("search.button.buttonText")}</span>
         </span>
 
         <span className="DocSearch-Button-Keys">

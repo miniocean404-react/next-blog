@@ -88,6 +88,10 @@ pnpx drizzle-kit push
 
 1. Google搜索成最大入口，简单谈下个人博客的SEO: https://juejin.cn/post/6844904050740166663?searchId=20241025005109B96F36B1CDFA183710E9
 
+## Algolia
+
+1. 快来给你的博客添加全文搜索: https://juejin.cn/post/7157340749065895944?searchId=202412121602012E85B3C1C0D20C0351D3
+
 ### 功能
 
 1. m3u8:https://juejin.cn/post/7382966707060703268?share_token=91713cfd-d861-496c-bdc0-db4ea0e75844

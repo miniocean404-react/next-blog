@@ -43,12 +43,14 @@ export async function generateMetadata(
 export function generateStaticParams() {
   return allDocs.map((doc) => {
     return {
-      routerSep: doc.routerSep,
+      slug: doc.routerSep.split("/"),
     }
   })
 }
 
 export default async function Docs({ params }: PagePropsWith<DocPageParams>) {
+  console.log(await params)
+
   const doc = await getDocFromParams({ params })
 
   if (!doc) return notFound()
@@ -69,7 +71,7 @@ export default async function Docs({ params }: PagePropsWith<DocPageParams>) {
 }
 
 async function getDocFromParams({ params }: PagePropsWith<DocPageParams>) {
-  const routerSep = (await params).routerSep
+  const routerSep = (await params).slug?.join("/") || ""
 
   const doc = allDocs.find((doc) => doc.routerSep === routerSep)
 

@@ -1,5 +1,5 @@
 interface DocPageParams {
-  routerSep: string
+  slug: string[]
 }
 
 interface DocsLayoutParams {
