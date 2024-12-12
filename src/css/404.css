@@ -1,16 +1,15 @@
-body {
+.not-found {
   background: #000;
   height: 100vh;
   overflow: hidden;
   display: flex;
-  font-family: Anton, sans-serif;
   justify-content: center;
   align-items: center;
   -webkit-perspective: 1000px;
   perspective: 1000px;
 }
 
-div {
+.not-found div {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }

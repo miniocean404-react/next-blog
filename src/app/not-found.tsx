@@ -9,7 +9,7 @@ import "@/css/404.css"
 // 自定义 404 页面，在 pages 下创建 404.tsx 文件,返回 notFont() 函数
 export default function NotFound() {
   return (
-    <>
+    <div className="not-found">
       <div className="rail">
         <div className="stamp four">4</div>
         <div className="stamp zero">0</div>
@@ -44,6 +44,6 @@ export default function NotFound() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
