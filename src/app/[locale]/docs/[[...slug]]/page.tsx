@@ -42,14 +42,6 @@ export async function generateMetadata(
 
 // 如果是 /doc 根目录 slug 就是 undefind 没有参数，但是可以捕获
 export function generateStaticParams() {
-  console.log(
-    allDocs.map((doc) => {
-      return {
-        slug: doc.pathname.split("/"),
-      }
-    }),
-  )
-
   return allDocs.map((doc) => {
     return {
       slug: doc.pathname.split("/"),
