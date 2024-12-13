@@ -9,6 +9,16 @@ export default function FrameworkIcon() {
   const icons = [
     [
       {
+        url: "/svg/android.svg",
+        alt: "android",
+        color: "#34A853",
+      },
+      {
+        url: "/svg/kotlin.svg",
+        alt: "kotlin",
+        color: "#7F52FF",
+      },
+      {
         url: "/svg/javascript.svg",
         alt: "javascript",
         color: "#F7DF1E",
@@ -18,6 +28,12 @@ export default function FrameworkIcon() {
         alt: "typescript",
         color: "#3178C6",
       },
+      {
+        url: "/svg/css3.svg",
+        alt: "css3",
+        color: "#1572B6",
+      },
+
       {
         url: "/svg/nodejs.svg",
         alt: "nodejs",
@@ -29,6 +45,11 @@ export default function FrameworkIcon() {
         color: "#fcbbd0",
       },
       {
+        url: "/svg/wasm.svg",
+        alt: "wasm",
+        color: "#6f4bee",
+      },
+      {
         url: "/svg/rust.svg",
         alt: "rust",
         color: "#fed585",
@@ -38,27 +59,43 @@ export default function FrameworkIcon() {
         alt: "go",
         color: "#00ADD8",
       },
-      {
-        url: "/svg/android.svg",
-        alt: "android",
-        color: "#34A853",
-      },
-      {
-        url: "/svg/kotlin.svg",
-        alt: "kotlin",
-        color: "#7F52FF",
-      },
+
       {
         url: "/svg/dart.svg",
         alt: "flutter",
         color: "#0175C2",
       },
+      {
+        url: "/svg/mysql.svg",
+        alt: "mysql",
+        color: "#4479A1",
+      },
     ],
     [
+      {
+        url: "/svg/react-query.svg",
+        alt: "react-query",
+        color: "#FF4154",
+      },
+      {
+        url: "/svg/nest.svg",
+        alt: "rollup",
+        color: "#E0234E",
+      },
+      {
+        url: "/svg/drizzle.svg",
+        alt: "drizzle",
+        color: "#4faf52",
+      },
       {
         url: "/svg/react.svg",
         alt: "react",
         color: "#61DAFB",
+      },
+      {
+        url: "/svg/next.svg",
+        alt: "next",
+        color: "#fed585",
       },
       {
         url: "/svg/vue.svg",
@@ -81,19 +118,109 @@ export default function FrameworkIcon() {
         color: "#EC4A3F",
       },
       {
+        url: "/svg/esbuild.svg",
+        alt: "esbuild",
+        color: "#FFCF00",
+      },
+      {
         url: "/svg/tailwindcss.svg",
         alt: "rollup",
         color: "#06B6D4",
       },
+    ],
+    [
+      {
+        url: "/svg/github.svg",
+        alt: "github",
+        color: "#abf728",
+      },
+      {
+        url: "/svg/gitlab.svg",
+        alt: "gitlab",
+        color: "#FC6D26",
+      },
+      {
+        url: "/svg/git.svg",
+        alt: "git",
+        color: "#F05032",
+      },
+      {
+        url: "/svg/npm.svg",
+        alt: "npm",
+        color: "#CB3837",
+      },
+      {
+        url: "/svg/pnpm.svg",
+        alt: "pnpm",
+        color: "#f9ad00",
+      },
+      {
+        url: "/svg/vscode.svg",
+        alt: "vscode",
+        color: "#4c98d3",
+      },
+      {
+        url: "/svg/webstorm.svg",
+        alt: "webstorm",
+        color: "#387afc",
+      },
+      {
+        url: "/svg/chrome.svg",
+        alt: "fig",
+        color: "#4285F4",
+      },
+      {
+        url: "/svg/figma.svg",
+        alt: "figma",
+        color: "#F24E1E",
+      },
+      {
+        url: "/svg/linux.svg",
+        alt: "linux",
+        color: "#e9d74a",
+      },
+      {
+        url: "/svg/fig.svg",
+        alt: "fig",
+        color: "#412ff9",
+      },
+
+      {
+        url: "/svg/docker.svg",
+        alt: "docker",
+        color: "#2496ED",
+      },
+      {
+        url: "/svg/reqable.svg",
+        alt: "reqable",
+        color: "#f7b43c",
+      },
+    ],
+    [
+      {
+        url: "/svg/mini-program.svg",
+        alt: "mini-program",
+        color: "#1fc162",
+      },
+      {
+        url: "/svg/taro.svg",
+        alt: "taro",
+        color: "#3d79fb",
+      },
+      {
+        url: "/svg/uni-app.svg",
+        alt: "uni-app",
+        color: "#2b9938",
+      },
       {
         url: "/svg/electron.svg",
         alt: "electron",
-        color: "#47848F",
+        color: "#A2ECFB",
       },
       {
         url: "/svg/tauri.svg",
         alt: "tauri",
-        color: "#24C8D8",
+        color: "#FFC131",
       },
       {
         url: "/svg/flutter.svg",
@@ -101,10 +228,22 @@ export default function FrameworkIcon() {
         color: "#02569B",
       },
     ],
+    [
+      {
+        url: "/svg/chatgpt.svg",
+        alt: "chatgpt",
+        color: "#398038",
+      },
+      {
+        url: "/svg/github-copilot.svg",
+        alt: "github-copilot",
+        color: "#8000de",
+      },
+    ],
   ]
 
   return (
-    <section>
+    <section className="mt-20">
       <h2 className="relative z-mini-title mx-auto block w-max text-5xl">技术栈</h2>
 
       <div
