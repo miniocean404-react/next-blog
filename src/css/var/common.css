@@ -10,6 +10,7 @@
   --mini-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.16);
 
   --mini-z-index-bg: 0;
+  --mini-z-index-title: 1;
   --mini-z-index-footer: 10;
   --mini-z-index-local-nav: 20;
   --mini-z-index-nav: 30;

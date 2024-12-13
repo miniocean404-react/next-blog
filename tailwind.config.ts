@@ -65,6 +65,7 @@ const config: Config = {
       },
       zIndex: {
         "mini-bg": "var(--mini-z-index-bg)",
+        "mini-title": "var(--mini-z-index-title)",
         "mini-footer": "var(--mini-z-index-footer)",
         "mini-local-nav": "var(--mini-z-index-local-nav)",
         "mini-nav": "var(--mini-z-index-nav)",
