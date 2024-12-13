@@ -107,7 +107,10 @@ export default function FrameworkIcon() {
     <section>
       <h2 className="relative z-mini-title mx-auto block w-max text-5xl">技术栈</h2>
 
-      <div className={cn("relative z-mini-bg -mt-5 flex flex-col items-center overflow-hidden")}>
+      <div
+        className={cn("relative z-mini-bg -mt-5 flex flex-col items-center overflow-hidden")}
+        key={"framework"}
+      >
         <SiderMask top bottom left right></SiderMask>
 
         <div className="relative mb-3 grid translate-x-9 grid-flow-col gap-6">
