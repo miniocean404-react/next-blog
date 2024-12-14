@@ -46,8 +46,13 @@ export default async function Slogan() {
       </p>
 
       <div className="flex justify-center gap-5">
-        <Button> {t("buttons.left")}</Button>
-        <Button variant={"outline"}>{t("buttons.right")}</Button>
+        <Button>
+          <Link href={"/"}>{t("buttons.left")}</Link>
+        </Button>
+
+        <Button variant={"outline"}>
+          <Link href={"/docs"}>{t("buttons.right")}</Link>
+        </Button>
       </div>
     </section>
   )
