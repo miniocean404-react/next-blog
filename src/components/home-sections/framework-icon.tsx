@@ -243,8 +243,10 @@ export default function FrameworkIcon() {
   ]
 
   return (
-    <section className="mt-20">
-      <h2 className="relative z-mini-title mx-auto block w-max text-5xl">技术栈</h2>
+    <section className="py-14">
+      <h2 className="relative z-mini-title mx-auto block w-max text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        我的技术栈
+      </h2>
 
       <div
         className={cn("relative z-mini-bg -mt-5 flex flex-col items-center overflow-hidden")}
@@ -252,7 +254,7 @@ export default function FrameworkIcon() {
       >
         <SiderMask top bottom left right></SiderMask>
 
-        <div className="relative mb-3 grid translate-x-9 grid-flow-col gap-6">
+        <div className="relative mb-3 grid translate-x-9 grid-flow-col gap-2.5 md:gap-4 lg:gap-6">
           {new Array(LINE_TOTAL).fill(null).map((item, index) => {
             return <FrameworkIconElement key={`${index}-1`} />
           })}
@@ -261,7 +263,7 @@ export default function FrameworkIcon() {
         {icons.map((iconGroup, index) => {
           return (
             <div
-              className={cn("mb-3 grid grid-flow-col gap-6", {
+              className={cn("mb-3 grid grid-flow-col gap-2.5 md:gap-4 lg:gap-6", {
                 "translate-x-0": index % 2 === 0,
                 "translate-x-9": index % 2 === 1,
               })}
@@ -279,7 +281,7 @@ export default function FrameworkIcon() {
                     style={{ "--framework-icon": `${icon.color}` }}
                   >
                     <Image
-                      className="h-12"
+                      className="h-1/2"
                       src={icon.url}
                       alt={icon.alt}
                       width={48}
@@ -299,7 +301,7 @@ export default function FrameworkIcon() {
           )
         })}
 
-        <div className="mb-3 grid translate-x-9 grid-flow-col gap-6">
+        <div className="mb-3 grid translate-x-9 grid-flow-col gap-2.5 md:gap-4 lg:gap-6">
           {new Array(LINE_TOTAL).fill(null).map((item, index) => {
             return <FrameworkIconElement key={`${index}-2`} />
           })}
@@ -317,7 +319,8 @@ function FrameworkIconElement({
   return (
     <a
       className={cn(
-        "relative flex size-24 cursor-pointer items-center justify-center rounded-xl border bg-mini-background-soft",
+        "relative flex cursor-pointer items-center justify-center rounded-xl border bg-mini-background-soft",
+        "size-14 md:size-20 lg:size-24",
         {
           "before:absolute before:inset-[10%] before:-z-10 before:bg-[var(--framework-icon)] before:blur-xl before:duration-1000":
             children,

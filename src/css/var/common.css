@@ -19,4 +19,10 @@
   --mini-z-index-sidebar: 60;
   --mini-z-index-header: 70;
   --mini-z-index-rainbow: 80;
+
+  --mini-aurora-color-1: 0 100% 63%;
+  --mini-aurora-color-2: 270 100% 63%;
+  --mini-aurora-color-3: 210 100% 63%;
+  --mini-aurora-color-4: 195 100% 63%;
+  --mini-aurora-color-5: 90 100% 63%;
 }
