@@ -68,9 +68,28 @@
     }
   },
   "home": {
-    "slogan": {
-      "first": "Examine from an artist’s perspective",
-      "second": "Create and develop with craftsman spirit"
+    "section1": {
+      "slogan": {
+        "second": "Create and develop with craftsman spirit",
+        "first": {
+          "first": "Use ",
+          "second": "artist's perspective",
+          "third": " examine"
+        }
+      },
+      "plugin": "Vscode Mini Tool Plugin",
+      "buttons": {
+        "left": "Quick Start",
+        "right": "Read Blog"
+      },
+      "desc": {
+        "one": "Blog built using technologies like React, Typescript, Tailwind CSS, Framer Motion, and more",
+        "three": "Various code snippets for efficient development.",
+        "two": "Multiple beautiful articles, just to create beautiful pages."
+      }
+    },
+    "section2": {
+      "title": "My technology stack"
     }
   },
   "register": {

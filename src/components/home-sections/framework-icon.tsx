@@ -2,8 +2,11 @@ import { type PropsWithChildren } from "react"
 import { cn } from "@/utils/tw"
 import SiderMask from "~/lib/components/mini/sider-mask"
 import Image from "next/image"
+import { getTranslations } from "next-intl/server"
 
-export default function FrameworkIcon() {
+export default async function FrameworkIcon() {
+  const t = await getTranslations("home.section2")
+
   const LINE_TOTAL = 14
 
   const icons = [
@@ -245,7 +248,7 @@ export default function FrameworkIcon() {
   return (
     <section className="py-14">
       <h2 className="relative z-mini-title mx-auto block w-max text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-        我的技术栈
+        {t("title")}
       </h2>
 
       <div

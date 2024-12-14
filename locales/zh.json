@@ -68,9 +68,28 @@
     }
   },
   "home": {
-    "slogan": {
-      "first": "用艺术家的视角审视",
-      "second": "以工匠精神创造开发"
+    "section1": {
+      "slogan": {
+        "first": {
+          "first": "用",
+          "second": "艺术家的视角",
+          "third": "审视"
+        },
+        "second": "以工匠精神创造开发"
+      },
+      "plugin": "Vscode Mini Tool 插件",
+      "desc": {
+        "one": "使用 React、Typescript、Tailwind CSS 、Framer Motion 等技术构建的博客",
+        "two": "多篇精美文章，只为创建漂亮的页面。",
+        "three": "多种代码片段，只为高效开发。"
+      },
+      "buttons": {
+        "left": "快速开始",
+        "right": "阅读博客"
+      }
+    },
+    "section2": {
+      "title": "我的技术栈"
     }
   },
   "register": {
