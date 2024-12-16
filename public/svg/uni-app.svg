@@ -1,5 +1,1 @@
-<svg viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path opacity="0.954" fill-rule="evenodd" clip-rule="evenodd"
-    d="M0 0C13.6667 0 27.3333 0 41 0C41 13.6667 41 27.3333 41 41C27.3333 41 13.6667 41 0 41C0 27.3333 0 13.6667 0 0ZM10 11C11 11 12 11 13 11C13 17 13 23 13 29C18 29 23 29 28 29C28 23 28 17 28 11C29 11 30 11 31 11C31 18 31 25 31 32C24 32 17 32 10 32C10 25 10 18 10 11Z"
-    fill="#2B9938" />
-</svg>
+<svg viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity=".954" fill-rule="evenodd" clip-rule="evenodd" d="M0 0h41v41H0V0zm10 11h3v18h15V11h3v21H10V11z" fill="#2B9938"/></svg>
