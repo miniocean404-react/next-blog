@@ -25,7 +25,7 @@ export default function HeaderLayout({ children }: PropsWithChildren<any>) {
         className={cn(
           "backdrop-blur-md",
           "border-b",
-          "flex h-16 w-full items-center",
+          "flex h-mini-header w-full items-center",
           "px-2 md:px-8",
         )}
       >

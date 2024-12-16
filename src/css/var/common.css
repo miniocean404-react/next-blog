@@ -1,5 +1,6 @@
 :root {
   --mini-layout-max-width: 1600px;
+  --mini-header-height: 64px;
 
   --mini-backdrop-bg-color: rgba(0, 0, 0, 0.6);
 

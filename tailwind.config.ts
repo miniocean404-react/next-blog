@@ -49,7 +49,11 @@ const config: Config = {
         "mini-layout": "var(--mini-layout-max-width)",
       },
       height: {
-        "mini-layout-one-screen": "calc(100dvh - 4rem)",
+        "mini-layout-one-screen": "calc(100dvh - var(--mini-header-height))",
+        "mini-header": "var(--mini-header-height)",
+      },
+      inset: {
+        "mini-header": "var(--mini-header-height)",
       },
       boxShadow: {
         "mini-1": "var(--mini-shadow-1)",

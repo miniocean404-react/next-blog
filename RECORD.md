@@ -136,3 +136,7 @@ const config: Config = {
 // 就可以在 html 中使用 <div className="gunag gunagguang"></div>
 // 插件的方式或者 @layer 的方式都可以扩展。
 ```
+
+# Framer Motion
+
+1. 复杂 web 动画开发（Framer Motion 篇）: https://juejin.cn/post/7331180722215354380?searchId=202412161421305177297DF3DEFF279623

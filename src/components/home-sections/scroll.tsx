@@ -1,22 +1,53 @@
 "use client"
 
-import { motion, useScroll, useSpring } from "framer-motion"
+import { cn } from "@/utils/tw"
+import { motion, useScroll, useSpring, useTransform } from "framer-motion"
 import { useTranslations } from "next-intl"
-import { useRef } from "react"
+import Image from "next/image"
+import { useRef, useState } from "react"
+
+// background: linear-gradient(180deg, rgb(255, 255, 255), rgb(242, 208, 230));
+// background-image: linear-gradient(180deg, rgb(12, 18, 71), rgb(40, 51, 125) 28%, rgb(80, 93, 173) 46%, rgb(125, 142, 209) 60%, rgb(174, 188, 230) 75%, rgb(239, 236, 255) 90%, rgb(255, 255, 255));
 
 export default function Scroll() {
   const t = useTranslations()
-  // const ref = useRef<HTMLDivElement>(null)
-  // const { scrollY, scrollYProgress } = useScroll({ target: ref })
+  const targetRef = useRef<HTMLDivElement>(null)
+  const { scrollY, scrollYProgress } = useScroll({
+    target: targetRef,
+    axis: "y",
+    // ["目标元素,滚动容器","目标元素,滚动容器"]
+    // demo: ["start start", "end start"]
+    // 目标元素的的开始位置 与 滚动容器的开始位置交叉时候开始，目标元素的结束位置 与 滚动容器的开始位置交叉时候结束
+    offset: ["start end", "end end"],
+  })
 
   // useMotionValueEvent(scrollY, "change", (latest) => {})
-
   // const scaleX = useSpring(scrollY)
 
+  const position = useTransform(scrollYProgress, (pos) => {
+    if (0 < pos && pos < 1) return "fixed"
+    return "relative"
+  })
+
+  const y = useTransform(scrollYProgress, (pos) => {
+    if (pos === 1) return "100vh"
+  })
+
+  const clipPath = useTransform(scrollYProgress, [0, 1], ["inset(240px 380px)", "inset(0px 0px)"])
+  const color = useTransform(scrollYProgress, [0, 1], ["#000000", "#ffffff"])
+
   return (
-    <motion.div style={{ height: "200vh" }}>
-      {/* <span>{t("home.slogan.first")}</span>,<span>{t("home.slogan.second")}</span> */}
-      {/* <SiReact color="#61DAFB" size={300} strokeDasharray={0} strokeDashoffset={0}></SiReact> */}
-    </motion.div>
+    <section className="h-[200vh]" ref={targetRef}>
+      <motion.div className={cn("top-mini-header")} style={{ color, clipPath, position, y }}>
+        <Image
+          className="w-full"
+          src={"/image/mini-tool-plugin.jpg"}
+          width={3360}
+          height={1960}
+          alt={"logo"}
+          priority
+        />
+      </motion.div>
+    </section>
   )
 }

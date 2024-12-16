@@ -145,7 +145,7 @@ export const components = {
             value={__code__}
             src={__src__}
             // event={__event__}
-            className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
+            className={cn("absolute right-4 top-4", __withMeta__ && "top-mini-header")}
           />
         )}
 
@@ -157,7 +157,7 @@ export const components = {
               __pnpm_command__,
               __bun_command__,
             }}
-            className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
+            className={cn("absolute right-4 top-4", __withMeta__ && "top-mini-header")}
           />
         )}
       </div>

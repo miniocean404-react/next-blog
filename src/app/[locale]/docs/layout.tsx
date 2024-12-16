@@ -12,7 +12,7 @@ export default async function DocsLayout({ children }: LayoutPropsWith<DocsLayou
         "md:grid-cols-[180px_minmax(0,1fr)_260px] md:gap-6",
       )}
     >
-      <aside className="no-scrollbar sticky top-16 hidden h-mini-layout-one-screen overflow-auto py-8 md:block">
+      <aside className="no-scrollbar sticky top-mini-header hidden h-mini-layout-one-screen overflow-auto py-8 md:block">
         <DocsSidebarNav config={docsConfig}></DocsSidebarNav>
       </aside>
 

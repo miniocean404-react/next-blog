@@ -10,6 +10,7 @@ export default async function Home(props: { params: { locale: string } }) {
   return (
     <div>
       <Slogan />
+      <Scroll></Scroll>
       <FrameworkIcon />
       <FloatDock></FloatDock>
     </div>
