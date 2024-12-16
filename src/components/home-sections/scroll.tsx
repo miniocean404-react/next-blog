@@ -34,25 +34,30 @@ export default function Scroll() {
   })
 
   // const clipPath = useTransform(scrollYProgress, [0, 1], ["inset(240px 380px)", "inset(0px 0px)"])
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.6])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
   const borderRadius = useTransform(scrollYProgress, [0, 1], ["0px", "10px"])
   const color = useTransform(scrollYProgress, [0, 1], ["#000000", "#ffffff"])
 
   // 3600 2844/100:79
   return (
-    <section className="relative h-[200vh]" ref={targetRef}>
+    <section className="h-[200vh]" ref={targetRef}>
       <motion.div
-        className={cn("relative top-mini-header overflow-hidden will-change-transform")}
-        style={{ color, position, y, scale, borderRadius }}
+        className="left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-[rgb(255,255,255)] from-0% via-[rgb(242,208,230)] via-50% to-[rgb(255,255,255)] to-100%"
+        style={{ position }}
       >
-        <Image
-          className="w-full"
-          src={"/image/mini-tool-plugin.jpg"}
-          width={3600}
-          height={2844}
-          alt={"logo"}
-          priority
-        />
+        <motion.div
+          className={cn("mx-auto w-max overflow-hidden will-change-transform")}
+          style={{ color, scale, borderRadius }}
+        >
+          <Image
+            className="w-full"
+            src={"/image/mini-tool-plugin.jpg"}
+            width={1200}
+            height={800}
+            alt={"mini-tool-plugin"}
+            priority
+          />
+        </motion.div>
       </motion.div>
     </section>
   )
