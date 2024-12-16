@@ -19,6 +19,12 @@
   * {
     @apply border-border;
   }
+
+  html {
+    /* 处理 framer-motion useScroll 滚动警告: https://github.com/motiondivision/motion/issues/1853 */
+    position: relative;
+  }
+
   html,
   body {
     @apply scrollbar bg-background text-foreground;

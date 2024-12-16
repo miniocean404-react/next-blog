@@ -30,9 +30,8 @@ const config: Config = {
   // 为所有的 tailwindcss 类名添加前缀
   // prefix: "mini",
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}", // Note the addition of the `app` directory.
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./lib/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
     // mdx 组件需要包含
@@ -41,6 +40,9 @@ const config: Config = {
   theme: {
     container: {},
     extend: {
+      transitionDuration: {
+        "3": "3s",
+      },
       fontFamily: {
         sans: ["var(--mini-font-family-base)"],
         mono: ["var(--mini-font-family-mono)"],
@@ -175,6 +177,7 @@ const config: Config = {
       },
     },
   },
+  // tailwindcss-animate 插件导致自定义 duration 无发生效，但 shadcn-ui 需要: https://github.com/tailwindlabs/tailwindcss/discussions/13357
   plugins: [require("tailwindcss-animate")],
 }
 

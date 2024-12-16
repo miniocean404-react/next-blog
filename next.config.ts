@@ -140,7 +140,7 @@ const config: NextConfig = {
   },
 
   experimental: {
-    // optimizeCss: true,
+    optimizeCss: true,
     turbo: {
       rules: {
         "*.svg": {

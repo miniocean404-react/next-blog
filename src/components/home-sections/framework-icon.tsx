@@ -251,21 +251,19 @@ export default async function FrameworkIcon() {
         {t("title")}
       </h2>
 
-      <div
-        className={cn("relative z-mini-bg -mt-5 flex flex-col items-center overflow-hidden")}
-        key={"framework"}
-      >
-        <SiderMask top bottom left right></SiderMask>
+      <div className={cn("relative z-mini-bg -mt-5 flex flex-col items-center overflow-hidden")}>
+        <SiderMask top bottom left right key={"sidermask"}></SiderMask>
 
         <div className="relative mb-3 grid translate-x-9 grid-flow-col gap-2.5 md:gap-4 lg:gap-6">
           {new Array(LINE_TOTAL).fill(null).map((item, index) => {
-            return <FrameworkIconElement key={`${index}-1`} />
+            return <FrameworkIconElement key={index} />
           })}
         </div>
 
         {icons.map((iconGroup, index) => {
           return (
             <div
+              key={index}
               className={cn("mb-3 grid grid-flow-col gap-2.5 md:gap-4 lg:gap-6", {
                 "translate-x-0": index % 2 === 0,
                 "translate-x-9": index % 2 === 1,
@@ -274,7 +272,7 @@ export default async function FrameworkIcon() {
               {new Array(Math.ceil((LINE_TOTAL - iconGroup.length) / 2))
                 .fill(null)
                 .map((_, index) => {
-                  return <FrameworkIconElement key={`${index}-placeholder-1`} />
+                  return <FrameworkIconElement key={index} />
                 })}
 
               {iconGroup.map((icon) => {
@@ -284,7 +282,7 @@ export default async function FrameworkIcon() {
                     style={{ "--framework-icon": `${icon.color}` }}
                   >
                     <Image
-                      className="h-1/2"
+                      className="h-1/2 w-auto"
                       src={icon.url}
                       alt={icon.alt}
                       width={48}
@@ -298,7 +296,7 @@ export default async function FrameworkIcon() {
               {new Array(Math.ceil((LINE_TOTAL - iconGroup.length) / 2))
                 .fill(null)
                 .map((item, index) => {
-                  return <FrameworkIconElement key={`${index}-placeholder-2`} />
+                  return <FrameworkIconElement key={index} />
                 })}
             </div>
           )
@@ -306,7 +304,7 @@ export default async function FrameworkIcon() {
 
         <div className="mb-3 grid translate-x-9 grid-flow-col gap-2.5 md:gap-4 lg:gap-6">
           {new Array(LINE_TOTAL).fill(null).map((item, index) => {
-            return <FrameworkIconElement key={`${index}-2`} />
+            return <FrameworkIconElement key={index} />
           })}
         </div>
       </div>

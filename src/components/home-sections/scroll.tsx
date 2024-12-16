@@ -40,21 +40,19 @@ export default function Scroll() {
 
   // 3600 2844/100:79
   return (
-    <section className="h-[200vh]" ref={targetRef}>
+    <section className="relative h-[200vh]" ref={targetRef}>
       <motion.div
-        className={cn("top-mini-header overflow-hidden will-change-transform")}
+        className={cn("relative top-mini-header overflow-hidden will-change-transform")}
         style={{ color, position, y, scale, borderRadius }}
       >
-        {/* <Image
+        <Image
           className="w-full"
           src={"/image/mini-tool-plugin.jpg"}
           width={3600}
           height={2844}
           alt={"logo"}
           priority
-        /> */}
-
-        <div className="aspect-[100/79] w-screen bg-red-600"></div>
+        />
       </motion.div>
     </section>
   )
