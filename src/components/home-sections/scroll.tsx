@@ -34,7 +34,8 @@ export default function Scroll() {
   })
 
   // const clipPath = useTransform(scrollYProgress, [0, 1], ["inset(240px 380px)", "inset(0px 0px)"])
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.6])
+  const transformScale = useTransform(scrollYProgress, [0, 1], [1, 0.6])
+  const scale = useSpring(transformScale)
   const borderRadius = useTransform(scrollYProgress, [0, 1], ["0px", "10px"])
   const color = useTransform(scrollYProgress, [0, 1], ["#000000", "#ffffff"])
 
