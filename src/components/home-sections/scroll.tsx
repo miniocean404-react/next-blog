@@ -18,7 +18,7 @@ export default function Scroll() {
     // ["目标元素,滚动容器","目标元素,滚动容器"]
     // demo: ["start start", "end start"]
     // 目标元素的的开始位置 与 滚动容器的开始位置交叉时候开始，目标元素的结束位置 与 滚动容器的开始位置交叉时候结束
-    offset: ["start end", "end end"],
+    offset: ["start start", "end end"],
   })
 
   // useMotionValueEvent(scrollY, "change", (latest) => {})
@@ -33,12 +33,17 @@ export default function Scroll() {
     if (pos === 1) return "100vh"
   })
 
-  const clipPath = useTransform(scrollYProgress, [0, 1], ["inset(240px 380px)", "inset(0px 0px)"])
+  // const clipPath = useTransform(scrollYProgress, [0, 1], ["inset(240px 380px)", "inset(0px 0px)"])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.6])
+  const borderRadius = useTransform(scrollYProgress, [0, 1], ["0px", "10px"])
   const color = useTransform(scrollYProgress, [0, 1], ["#000000", "#ffffff"])
 
   return (
     <section className="h-[200vh]" ref={targetRef}>
-      <motion.div className={cn("top-mini-header")} style={{ color, clipPath, position, y }}>
+      <motion.div
+        className={cn("top-mini-header overflow-hidden")}
+        style={{ color, position, y, scale, borderRadius }}
+      >
         <Image
           className="w-full"
           src={"/image/mini-tool-plugin.jpg"}
