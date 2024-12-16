@@ -11,6 +11,7 @@
 
   --mini-z-index-bg: 0;
   --mini-z-index-title: 1;
+  --mini-z-index-dock: 2;
   --mini-z-index-footer: 10;
   --mini-z-index-local-nav: 20;
   --mini-z-index-nav: 30;
