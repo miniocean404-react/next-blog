@@ -34,25 +34,27 @@ export default function Scroll() {
   })
 
   // const clipPath = useTransform(scrollYProgress, [0, 1], ["inset(240px 380px)", "inset(0px 0px)"])
-  const transformScale = useTransform(scrollYProgress, [0, 1], [1, 0.6])
-  const scale = useSpring(transformScale)
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.6])
   const borderRadius = useTransform(scrollYProgress, [0, 1], ["0px", "10px"])
   const color = useTransform(scrollYProgress, [0, 1], ["#000000", "#ffffff"])
 
+  // 3600 2844/100:79
   return (
     <section className="h-[200vh]" ref={targetRef}>
       <motion.div
-        className={cn("top-mini-header overflow-hidden")}
+        className={cn("top-mini-header overflow-hidden will-change-transform")}
         style={{ color, position, y, scale, borderRadius }}
       >
-        <Image
+        {/* <Image
           className="w-full"
           src={"/image/mini-tool-plugin.jpg"}
-          width={3360}
-          height={1960}
+          width={3600}
+          height={2844}
           alt={"logo"}
           priority
-        />
+        /> */}
+
+        <div className="aspect-[100/79] w-screen bg-red-600"></div>
       </motion.div>
     </section>
   )
