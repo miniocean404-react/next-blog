@@ -140,3 +140,7 @@ const config: Config = {
 # Framer Motion
 
 1. 复杂 web 动画开发（Framer Motion 篇）: https://juejin.cn/post/7331180722215354380?searchId=202412161421305177297DF3DEFF279623
+
+# GSAP
+
+1. GSAP 动画开发小记： https://juejin.cn/post/7434828120470962176?searchId=2024121710560017F2065A95FC1EB0B35E
