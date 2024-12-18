@@ -4,57 +4,52 @@ import { cn } from "@/utils/tw"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
 import { useRef, useState } from "react"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react"
+import ScrollTrigger from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 // background: linear-gradient(180deg, rgb(255, 255, 255), rgb(242, 208, 230));
 // background-image: linear-gradient(180deg, rgb(12, 18, 71), rgb(40, 51, 125) 28%, rgb(80, 93, 173) 46%, rgb(125, 142, 209) 60%, rgb(174, 188, 230) 75%, rgb(239, 236, 255) 90%, rgb(255, 255, 255));
 
 export default function Scroll() {
-  const targetRef = useRef<HTMLDivElement>(null)
-  const { scrollY, scrollYProgress } = useScroll({
-    target: targetRef,
-    axis: "y",
-    // ["目标元素,滚动容器","目标元素,滚动容器"]
-    // demo: ["start start", "end start"]
-    // 目标元素的的开始位置 与 滚动容器的开始位置交叉时候开始，目标元素的结束位置 与 滚动容器的开始位置交叉时候结束
-    offset: ["start 64px", "end end"],
-  })
-
-  // useMotionValueEvent(scrollY, "change", (latest) => {})
-  // const scaleX = useSpring(scrollY)
-
-  const position = useTransform(scrollYProgress, (pos) => {
-    if (0 < pos && pos < 1) return "fixed"
-    return "relative"
-  })
-
-  const y = useTransform(scrollYProgress, (pos) => {
-    return `${pos * 100}vh`
-  })
-
-  // const clipPath = useTransform(scrollYProgress, [0, 1], ["inset(240px 380px)", "inset(0px 0px)"])
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
-  const borderRadius = useTransform(scrollYProgress, [0, 1], ["0px", "10px"])
-  const color = useTransform(scrollYProgress, [0, 1], ["#000000", "#ffffff"])
+  useGSAP(() => {
+    const t1 = gsap.timeline()
+    t1.to("#mini-tool-plugin", {
+      scrollTrigger: {
+        trigger: "#scrollBox",
+        // 辅助查看
+        markers: true,
+        // 在执行时固定触发器元素
+        pin: true,
+        // 固定时候的滚动的类型
+        pinType: "fixed",
+        // top top 代表目标元素 顶部与 触发器元素 顶部对齐时候开始
+        start: "top top",
+        // bottom bottom 代表目标元素 底部与 触发器元素 底部对齐时候结束
+        end: "bottom bottom",
+      },
+    })
+  }, [])
 
   // 3600 2844/100:79
   return (
-    <section className="h-[200vh]" ref={targetRef}>
-      <div className="relative h-mini-layout-one-screen w-full bg-gradient-to-b from-[rgb(255,255,255)] from-0% via-[rgb(242,208,230)] via-50% to-[rgb(255,255,255)] to-100%">
-        <motion.div
-          className={cn("w-max overflow-hidden will-change-transform")}
-          style={{ color, scale, borderRadius, y }}
-        >
-          {/*
-          <Image
-            className="w-full"
-            src={"/image/mini-tool-plugin.jpg"}
-            width={1200}
-            height={800}
-            alt={"mini-tool-plugin"}
-            priority
-          /> */}
-        </motion.div>
+    <div
+      id="scrollBox"
+      className="top-16 flex h-mini-layout-one-screen w-full items-center justify-center bg-gradient-to-b from-[rgb(255,255,255)] from-0% via-[rgb(242,208,230)] via-50% to-[rgb(255,255,255)] to-100%"
+    >
+      <div className={cn("image overflow-hidden")}>
+        <Image
+          id="mini-tool-plugin"
+          className="w-[1200px]"
+          src={"/image/mini-tool-plugin.jpg"}
+          width={1200}
+          height={800}
+          alt={"mini-tool-plugin"}
+          priority
+        />
       </div>
-    </section>
+    </div>
   )
 }
