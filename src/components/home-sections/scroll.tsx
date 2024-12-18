@@ -18,6 +18,7 @@ export default function Scroll() {
     const t1 = gsap.timeline()
     t1.to("#mini-tool-plugin", {
       scrollTrigger: {
+        // 触发滚动的容器
         trigger: "#scrollBox",
         // 辅助查看
         markers: true,
