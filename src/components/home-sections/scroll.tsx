@@ -1,8 +1,7 @@
 "use client"
 
 import { cn } from "@/utils/tw"
-import { motion, useScroll, useSpring, useTransform } from "framer-motion"
-import { useTranslations } from "next-intl"
+import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
 import { useRef, useState } from "react"
 
@@ -10,7 +9,6 @@ import { useRef, useState } from "react"
 // background-image: linear-gradient(180deg, rgb(12, 18, 71), rgb(40, 51, 125) 28%, rgb(80, 93, 173) 46%, rgb(125, 142, 209) 60%, rgb(174, 188, 230) 75%, rgb(239, 236, 255) 90%, rgb(255, 255, 255));
 
 export default function Scroll() {
-  const t = useTranslations()
   const targetRef = useRef<HTMLDivElement>(null)
   const { scrollY, scrollYProgress } = useScroll({
     target: targetRef,
@@ -18,7 +16,7 @@ export default function Scroll() {
     // ["目标元素,滚动容器","目标元素,滚动容器"]
     // demo: ["start start", "end start"]
     // 目标元素的的开始位置 与 滚动容器的开始位置交叉时候开始，目标元素的结束位置 与 滚动容器的开始位置交叉时候结束
-    offset: ["start start", "end end"],
+    offset: ["start 64px", "end end"],
   })
 
   // useMotionValueEvent(scrollY, "change", (latest) => {})
@@ -30,7 +28,7 @@ export default function Scroll() {
   })
 
   const y = useTransform(scrollYProgress, (pos) => {
-    if (pos === 1) return "100vh"
+    return `${pos * 100}vh`
   })
 
   // const clipPath = useTransform(scrollYProgress, [0, 1], ["inset(240px 380px)", "inset(0px 0px)"])
@@ -41,14 +39,12 @@ export default function Scroll() {
   // 3600 2844/100:79
   return (
     <section className="h-[200vh]" ref={targetRef}>
-      <motion.div
-        className="left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-[rgb(255,255,255)] from-0% via-[rgb(242,208,230)] via-50% to-[rgb(255,255,255)] to-100%"
-        style={{ position }}
-      >
+      <div className="relative h-mini-layout-one-screen w-full bg-gradient-to-b from-[rgb(255,255,255)] from-0% via-[rgb(242,208,230)] via-50% to-[rgb(255,255,255)] to-100%">
         <motion.div
-          className={cn("mx-auto w-max overflow-hidden will-change-transform")}
-          style={{ color, scale, borderRadius }}
+          className={cn("w-max overflow-hidden will-change-transform")}
+          style={{ color, scale, borderRadius, y }}
         >
+          {/*
           <Image
             className="w-full"
             src={"/image/mini-tool-plugin.jpg"}
@@ -56,9 +52,9 @@ export default function Scroll() {
             height={800}
             alt={"mini-tool-plugin"}
             priority
-          />
+          /> */}
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   )
 }
