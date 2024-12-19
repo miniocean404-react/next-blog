@@ -110,6 +110,7 @@ pnpx drizzle-kit push
 
 1. 快速掌握 Tailwind：最流行的原子化 CSS 框架（神说光）：https://juejin.cn/post/7231539903649398843?share_token=46882d88-1374-4aa4-84b7-4259040113b1
 2. Next.js 项目写 Tailwind CSS 基本都会遇到的两个问题: https://juejin.cn/post/7387611028988002314?share_token=fd22ddc1-6a98-4e38-a135-6f323fb15c71
+3. 优雅的使用 Tailwind: https://juejin.cn/post/7448832434387730466
 
 ## 自定义 tailwindcss 插件
 

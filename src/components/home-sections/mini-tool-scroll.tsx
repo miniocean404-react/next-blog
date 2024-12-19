@@ -42,23 +42,23 @@ export default function MiniToolScroll() {
           {
             ease: "power1.out",
             scale: 0.8,
-            x: 350,
+            x: 300,
           },
           "#mini-tool-plugin-label",
         )
         .to(
           "#desc",
           {
-            x: -350,
+            x: -450,
           },
           "#mini-tool-plugin-label",
         )
-        .call(toggleClass, ["#desc", "aaaaa"], ">")
+        .call(toggleClass, ["#desc", "text-red-600"], ">")
         .to("#desc", {}, ">+=1")
     })
   }, [])
 
-  // 3600 2844/100:79
+  // 100:79
   return (
     <div
       id="scrollBox"
