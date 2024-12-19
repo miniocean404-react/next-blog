@@ -107,8 +107,8 @@
   @supports selector(::-webkit-scrollbar) {
     /* Safari Chrome */
     .scrollbar::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
+      width: 11px;
+      height: 11px;
     }
 
     .scrollbar::-webkit-scrollbar-thumb {

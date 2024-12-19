@@ -1,257 +1,288 @@
+"use client"
+
 import { type PropsWithChildren } from "react"
 import { cn } from "@/utils/tw"
 import SiderMask from "~/lib/components/mini/sider-mask"
 import Image from "next/image"
-import { getTranslations } from "next-intl/server"
+import { useTranslations } from "next-intl"
+import { useListenElementsShow } from "@/utils/hook/element-show"
 
-export default async function FrameworkIcon() {
-  const t = await getTranslations("home.section2")
+const icons = [
+  [
+    {
+      url: "/svg/android.svg",
+      alt: "android",
+      color: "#34A853",
+    },
+    {
+      url: "/svg/kotlin.svg",
+      alt: "kotlin",
+      color: "#7F52FF",
+    },
+    {
+      url: "/svg/javascript.svg",
+      alt: "javascript",
+      color: "#F7DF1E",
+    },
+    {
+      url: "/svg/typescript.svg",
+      alt: "typescript",
+      color: "#3178C6",
+    },
+    {
+      url: "/svg/css3.svg",
+      alt: "css3",
+      color: "#1572B6",
+    },
+
+    {
+      url: "/svg/nodejs.svg",
+      alt: "nodejs",
+      color: "#5FA04E",
+    },
+    {
+      url: "/svg/bun.svg",
+      alt: "bun",
+      color: "#fcbbd0",
+    },
+    {
+      url: "/svg/wasm.svg",
+      alt: "wasm",
+      color: "#6f4bee",
+    },
+    {
+      url: "/svg/rust.svg",
+      alt: "rust",
+      color: "#fed585",
+    },
+    {
+      url: "/svg/go.svg",
+      alt: "go",
+      color: "#00ADD8",
+    },
+
+    {
+      url: "/svg/dart.svg",
+      alt: "flutter",
+      color: "#0175C2",
+    },
+    {
+      url: "/svg/mysql.svg",
+      alt: "mysql",
+      color: "#4479A1",
+    },
+  ],
+  [
+    {
+      url: "/svg/react-query.svg",
+      alt: "react-query",
+      color: "#FF4154",
+    },
+    {
+      url: "/svg/nest.svg",
+      alt: "rollup",
+      color: "#E0234E",
+    },
+    {
+      url: "/svg/drizzle.svg",
+      alt: "drizzle",
+      color: "#4faf52",
+    },
+    {
+      url: "/svg/react.svg",
+      alt: "react",
+      color: "#61DAFB",
+    },
+    {
+      url: "/svg/next.svg",
+      alt: "next",
+      color: "#fed585",
+    },
+    {
+      url: "/svg/vue.svg",
+      alt: "vue",
+      color: "#4FC08D",
+    },
+    {
+      url: "/svg/webpack.svg",
+      alt: "webpack",
+      color: "#8DD6F9",
+    },
+    {
+      url: "/svg/vite.svg",
+      alt: "vite",
+      color: "#646CFF",
+    },
+    {
+      url: "/svg/rollup.svg",
+      alt: "rollup",
+      color: "#EC4A3F",
+    },
+    {
+      url: "/svg/esbuild.svg",
+      alt: "esbuild",
+      color: "#FFCF00",
+    },
+    {
+      url: "/svg/tailwindcss.svg",
+      alt: "rollup",
+      color: "#06B6D4",
+    },
+  ],
+  [
+    {
+      url: "/svg/github.svg",
+      alt: "github",
+      color: "#abf728",
+    },
+    {
+      url: "/svg/gitlab.svg",
+      alt: "gitlab",
+      color: "#FC6D26",
+    },
+    {
+      url: "/svg/git.svg",
+      alt: "git",
+      color: "#F05032",
+    },
+    {
+      url: "/svg/npm.svg",
+      alt: "npm",
+      color: "#CB3837",
+    },
+    {
+      url: "/svg/pnpm.svg",
+      alt: "pnpm",
+      color: "#f9ad00",
+    },
+    {
+      url: "/svg/vscode.svg",
+      alt: "vscode",
+      color: "#4c98d3",
+    },
+    {
+      url: "/svg/webstorm.svg",
+      alt: "webstorm",
+      color: "#387afc",
+    },
+    {
+      url: "/svg/chrome.svg",
+      alt: "fig",
+      color: "#4285F4",
+    },
+    {
+      url: "/svg/figma.svg",
+      alt: "figma",
+      color: "#F24E1E",
+    },
+    {
+      url: "/svg/linux.svg",
+      alt: "linux",
+      color: "#e9d74a",
+    },
+    {
+      url: "/svg/fig.svg",
+      alt: "fig",
+      color: "#412ff9",
+    },
+
+    {
+      url: "/svg/docker.svg",
+      alt: "docker",
+      color: "#2496ED",
+    },
+    {
+      url: "/svg/reqable.svg",
+      alt: "reqable",
+      color: "#f7b43c",
+    },
+  ],
+  [
+    {
+      url: "/svg/mini-program.svg",
+      alt: "mini-program",
+      color: "#1fc162",
+    },
+    {
+      url: "/svg/taro.svg",
+      alt: "taro",
+      color: "#3d79fb",
+    },
+    {
+      url: "/svg/uni-app.svg",
+      alt: "uni-app",
+      color: "#2b9938",
+    },
+    {
+      url: "/svg/electron.svg",
+      alt: "electron",
+      color: "#A2ECFB",
+    },
+    {
+      url: "/svg/tauri.svg",
+      alt: "tauri",
+      color: "#FFC131",
+    },
+    {
+      url: "/svg/flutter.svg",
+      alt: "flutter",
+      color: "#02569B",
+    },
+  ],
+  [
+    {
+      url: "/svg/chatgpt.svg",
+      alt: "chatgpt",
+      color: "#398038",
+    },
+    {
+      url: "/svg/github-copilot.svg",
+      alt: "github-copilot",
+      color: "#8000de",
+    },
+  ],
+]
+
+// 即时设计(有 source-map)：https://js.design/
+export default function FrameworkIcon() {
+  const t = useTranslations("home.section2")
+
+  useListenElementsShow({
+    isAllEntries: true,
+    getElementsFunc: () => Array.from<Element>(document.querySelectorAll("#framework")),
+    callback: (entries) => {
+      for (const entry of entries) {
+        entry.target.classList.toggle("!translate-y-0", entry.isIntersecting)
+        entry.target.classList.toggle("!scale-100", entry.isIntersecting)
+        entry.target.classList.toggle("!opacity-100", entry.isIntersecting)
+      }
+    },
+    dependencies: [],
+  })
 
   const LINE_TOTAL = 14
 
-  const icons = [
-    [
-      {
-        url: "/svg/android.svg",
-        alt: "android",
-        color: "#34A853",
-      },
-      {
-        url: "/svg/kotlin.svg",
-        alt: "kotlin",
-        color: "#7F52FF",
-      },
-      {
-        url: "/svg/javascript.svg",
-        alt: "javascript",
-        color: "#F7DF1E",
-      },
-      {
-        url: "/svg/typescript.svg",
-        alt: "typescript",
-        color: "#3178C6",
-      },
-      {
-        url: "/svg/css3.svg",
-        alt: "css3",
-        color: "#1572B6",
-      },
-
-      {
-        url: "/svg/nodejs.svg",
-        alt: "nodejs",
-        color: "#5FA04E",
-      },
-      {
-        url: "/svg/bun.svg",
-        alt: "bun",
-        color: "#fcbbd0",
-      },
-      {
-        url: "/svg/wasm.svg",
-        alt: "wasm",
-        color: "#6f4bee",
-      },
-      {
-        url: "/svg/rust.svg",
-        alt: "rust",
-        color: "#fed585",
-      },
-      {
-        url: "/svg/go.svg",
-        alt: "go",
-        color: "#00ADD8",
-      },
-
-      {
-        url: "/svg/dart.svg",
-        alt: "flutter",
-        color: "#0175C2",
-      },
-      {
-        url: "/svg/mysql.svg",
-        alt: "mysql",
-        color: "#4479A1",
-      },
-    ],
-    [
-      {
-        url: "/svg/react-query.svg",
-        alt: "react-query",
-        color: "#FF4154",
-      },
-      {
-        url: "/svg/nest.svg",
-        alt: "rollup",
-        color: "#E0234E",
-      },
-      {
-        url: "/svg/drizzle.svg",
-        alt: "drizzle",
-        color: "#4faf52",
-      },
-      {
-        url: "/svg/react.svg",
-        alt: "react",
-        color: "#61DAFB",
-      },
-      {
-        url: "/svg/next.svg",
-        alt: "next",
-        color: "#fed585",
-      },
-      {
-        url: "/svg/vue.svg",
-        alt: "vue",
-        color: "#4FC08D",
-      },
-      {
-        url: "/svg/webpack.svg",
-        alt: "webpack",
-        color: "#8DD6F9",
-      },
-      {
-        url: "/svg/vite.svg",
-        alt: "vite",
-        color: "#646CFF",
-      },
-      {
-        url: "/svg/rollup.svg",
-        alt: "rollup",
-        color: "#EC4A3F",
-      },
-      {
-        url: "/svg/esbuild.svg",
-        alt: "esbuild",
-        color: "#FFCF00",
-      },
-      {
-        url: "/svg/tailwindcss.svg",
-        alt: "rollup",
-        color: "#06B6D4",
-      },
-    ],
-    [
-      {
-        url: "/svg/github.svg",
-        alt: "github",
-        color: "#abf728",
-      },
-      {
-        url: "/svg/gitlab.svg",
-        alt: "gitlab",
-        color: "#FC6D26",
-      },
-      {
-        url: "/svg/git.svg",
-        alt: "git",
-        color: "#F05032",
-      },
-      {
-        url: "/svg/npm.svg",
-        alt: "npm",
-        color: "#CB3837",
-      },
-      {
-        url: "/svg/pnpm.svg",
-        alt: "pnpm",
-        color: "#f9ad00",
-      },
-      {
-        url: "/svg/vscode.svg",
-        alt: "vscode",
-        color: "#4c98d3",
-      },
-      {
-        url: "/svg/webstorm.svg",
-        alt: "webstorm",
-        color: "#387afc",
-      },
-      {
-        url: "/svg/chrome.svg",
-        alt: "fig",
-        color: "#4285F4",
-      },
-      {
-        url: "/svg/figma.svg",
-        alt: "figma",
-        color: "#F24E1E",
-      },
-      {
-        url: "/svg/linux.svg",
-        alt: "linux",
-        color: "#e9d74a",
-      },
-      {
-        url: "/svg/fig.svg",
-        alt: "fig",
-        color: "#412ff9",
-      },
-
-      {
-        url: "/svg/docker.svg",
-        alt: "docker",
-        color: "#2496ED",
-      },
-      {
-        url: "/svg/reqable.svg",
-        alt: "reqable",
-        color: "#f7b43c",
-      },
-    ],
-    [
-      {
-        url: "/svg/mini-program.svg",
-        alt: "mini-program",
-        color: "#1fc162",
-      },
-      {
-        url: "/svg/taro.svg",
-        alt: "taro",
-        color: "#3d79fb",
-      },
-      {
-        url: "/svg/uni-app.svg",
-        alt: "uni-app",
-        color: "#2b9938",
-      },
-      {
-        url: "/svg/electron.svg",
-        alt: "electron",
-        color: "#A2ECFB",
-      },
-      {
-        url: "/svg/tauri.svg",
-        alt: "tauri",
-        color: "#FFC131",
-      },
-      {
-        url: "/svg/flutter.svg",
-        alt: "flutter",
-        color: "#02569B",
-      },
-    ],
-    [
-      {
-        url: "/svg/chatgpt.svg",
-        alt: "chatgpt",
-        color: "#398038",
-      },
-      {
-        url: "/svg/github-copilot.svg",
-        alt: "github-copilot",
-        color: "#8000de",
-      },
-    ],
-  ]
-
   return (
-    <section className="py-14">
-      <h2 className="relative z-mini-title mx-auto block w-max text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+    <section className={cn("py-14")}>
+      <h2
+        id="framework"
+        className={cn(
+          "relative z-mini-title mx-auto block w-max text-3xl font-bold tracking-tight text-foreground sm:text-4xl",
+          "translate-y-10 scale-95 opacity-0",
+          "transition-all duration-700 [transition-timing-function:cubic-bezier(.16,1,.3,1),cubic-bezier(.16,1,.3,1)]",
+        )}
+      >
         {t("title")}
       </h2>
 
-      <div className={cn("relative z-mini-bg -mt-5 flex flex-col items-center overflow-hidden")}>
+      <div
+        id="framework"
+        className={cn(
+          "relative z-mini-bg -mt-5 flex flex-col items-center overflow-hidden",
+          "translate-y-10 scale-95 opacity-0",
+          "transition-all duration-700 [transition-timing-function:cubic-bezier(.16,1,.3,1),cubic-bezier(.16,1,.3,1)]",
+        )}
+      >
         <SiderMask top bottom left right key={"sidermask"}></SiderMask>
 
         <div className="relative mb-3 grid translate-x-9 grid-flow-col gap-2.5 md:gap-4 lg:gap-6">
