@@ -10,7 +10,7 @@ import { MM_SM } from "@/constant/media"
 // background: linear-gradient(180deg, rgb(255, 255, 255), rgb(242, 208, 230));
 // background-image: linear-gradient(180deg, rgb(12, 18, 71), rgb(40, 51, 125) 28%, rgb(80, 93, 173) 46%, rgb(125, 142, 209) 60%, rgb(174, 188, 230) 75%, rgb(239, 236, 255) 90%, rgb(255, 255, 255));
 
-export default function Scroll() {
+export default function MiniToolScroll() {
   useGSAP(() => {
     const mm = gsap.matchMedia()
 

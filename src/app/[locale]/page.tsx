@@ -1,13 +1,13 @@
 import FloatDock from "@/components/home-sections/float-dock"
 import FrameworkIcon from "@/components/home-sections/framework-icon"
 import Slogan from "@/components/home-sections/slogan"
-import Scroll from "@/components/home-sections/scroll"
+import MiniToolScroll from "@/components/home-sections/mini-tool-scroll"
 
 export default async function Home(props: { params: { locale: string } }) {
   return (
     <div>
       <Slogan />
-      <Scroll />
+      <MiniToolScroll />
       <FrameworkIcon />
       <FloatDock></FloatDock>
     </div>
