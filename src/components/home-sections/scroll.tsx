@@ -19,8 +19,6 @@ export default function Scroll() {
     mm.add(MM_SM, () => {
       t1.to("#mini-tool-plugin", {
         scale: 0.8,
-        borderRadius: 10,
-        duration: 3000,
         scrollTrigger: {
           // 触发滚动的容器
           trigger: "#scrollBox",
@@ -31,9 +29,9 @@ export default function Scroll() {
           // 固定时候的滚动的类型
           pinType: "fixed",
           // top top 代表目标元素 顶部与 触发器元素 顶部对齐时候开始
-          start: "top top",
+          start: "top top+=64",
           // bottom bottom 代表目标元素 底部与 触发器元素 底部对齐时候结束
-          end: "bottom top",
+          end: "bottom top+=64",
           // 平滑拖动，数字表示 xx 秒才能“赶上”滚动条，boolean 表示动画可以重复执行改成 false 表示只执行一次
           scrub: true,
           // 如果为 true，则如果你以超过特定速度（默认 2500px/s）的速度离开当前 ScrollTrigger 的触发区域，它将强制当前 ScrollTrigger 的动画完成
@@ -53,7 +51,7 @@ export default function Scroll() {
         <Image
           id="mini-tool-plugin"
           className="h-auto w-[1200px]"
-          src={"/image/mini-tool-plugin.jpg"}
+          src={"/image/mini-tool-plugin.png"}
           width={1200}
           height={800}
           alt={"mini-tool-plugin"}
