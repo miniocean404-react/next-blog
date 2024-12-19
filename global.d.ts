@@ -51,3 +51,17 @@ declare namespace NodeJS {
     MYSQL_DATABASE: string
   }
 }
+
+function fade(target: TweenTarget): core.Tween
+
+declare namespace gsap {
+  interface EffectsMap {
+    fade: typeof fade
+  }
+}
+
+declare namespace gsap.core {
+  interface Timeline {
+    fade: typeof fade
+  }
+}

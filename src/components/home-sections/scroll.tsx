@@ -2,26 +2,26 @@
 
 import { cn } from "@/utils/tw"
 import Image from "next/image"
-import gsap from "gsap"
+import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react"
 import "@/utils/gsap"
+import { MM_SM } from "@/constant/media"
 
 // background: linear-gradient(180deg, rgb(255, 255, 255), rgb(242, 208, 230));
 // background-image: linear-gradient(180deg, rgb(12, 18, 71), rgb(40, 51, 125) 28%, rgb(80, 93, 173) 46%, rgb(125, 142, 209) 60%, rgb(174, 188, 230) 75%, rgb(239, 236, 255) 90%, rgb(255, 255, 255));
 
 export default function Scroll() {
   useGSAP(() => {
-    let mm = gsap.matchMedia()
+    const mm = gsap.matchMedia()
 
     const t1 = gsap.timeline()
 
-    mm.add("(min-width: 1280px)", () => {
+    mm.add(MM_SM, () => {
       t1.to("#mini-tool-plugin", {
         scale: 0.8,
         borderRadius: 10,
         duration: 3000,
         scrollTrigger: {
-          toggleActions: "",
           // 触发滚动的容器
           trigger: "#scrollBox",
           // 辅助查看
@@ -47,7 +47,7 @@ export default function Scroll() {
   return (
     <div
       id="scrollBox"
-      className="flex h-mini-layout-one-screen w-screen items-center justify-center bg-gradient-to-b from-[rgb(255,255,255)] from-0% via-[rgb(242,208,230)] via-50% to-[rgb(255,255,255)] to-100%"
+      className="flex h-mini-layout-one-screen w-full items-center justify-center bg-gradient-to-b from-[rgb(255,255,255)] from-0% via-[rgb(242,208,230)] via-50% to-[rgb(255,255,255)] to-100%"
     >
       <div className={cn("image overflow-hidden")}>
         <Image
