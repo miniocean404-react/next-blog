@@ -144,3 +144,4 @@ const config: Config = {
 # GSAP
 
 1. GSAP 动画开发小记： https://juejin.cn/post/7434828120470962176?searchId=2024121710560017F2065A95FC1EB0B35E
+2. 使用GSAP写出令人惊叹的动画！: https://juejin.cn/post/7184080621831422011?searchId=20241217160437BDBBC8393A688FDABC1E
