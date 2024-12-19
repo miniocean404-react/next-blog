@@ -269,7 +269,7 @@ export default function FrameworkIcon() {
         className={cn(
           "relative z-mini-title mx-auto block w-max text-3xl font-bold tracking-tight text-foreground sm:text-4xl",
           "translate-y-10 scale-95 opacity-0",
-          "transition-all duration-700 [transition-timing-function:cubic-bezier(.16,1,.3,1),cubic-bezier(.16,1,.3,1)]",
+          "transition-all duration-700 ease-title [transition-timing-function:cubic-bezier(.16,1,.3,1)]",
         )}
       >
         {t("title")}
@@ -280,7 +280,7 @@ export default function FrameworkIcon() {
         className={cn(
           "relative z-mini-bg -mt-5 flex flex-col items-center overflow-hidden",
           "translate-y-10 scale-95 opacity-0",
-          "transition-all duration-700 [transition-timing-function:cubic-bezier(.16,1,.3,1),cubic-bezier(.16,1,.3,1)]",
+          "transition-all duration-700 ease-title",
         )}
       >
         <SiderMask top bottom left right key={"sidermask"}></SiderMask>

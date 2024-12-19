@@ -40,6 +40,9 @@ const config: Config = {
   theme: {
     container: {},
     extend: {
+      transitionTimingFunction: {
+        title: "cubic-bezier(.16,1,.3,1)",
+      },
       transitionDuration: {
         "3": "3s",
       },

@@ -54,13 +54,7 @@ export default function MiniToolScroll() {
             },
             "#mini-tool-plugin-label",
           )
-          .to(
-            "#desc",
-            {
-              className: "text-red-600",
-            },
-            ">+=1",
-          )
+          .className("#desc", { class: "text-red-600", position: ">" })
       })
     },
     { dependencies: [] },
