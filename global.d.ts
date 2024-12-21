@@ -1,4 +1,11 @@
 declare global {
+  declare module "react" {
+    // 为 React style 添加 CSS 变量支持
+    interface CSSProperties {
+      [key: `--${string}`]: string | number
+    }
+  }
+
   declare module "next-auth" {
     interface User {
       role?: string | null
