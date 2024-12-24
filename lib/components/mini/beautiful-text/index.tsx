@@ -22,7 +22,7 @@ export default function BeautifulText(props: PropsWithChildren<BeautifulTextProp
           style={{
             backgroundColor: "hsl(var(--mini-aurora-color-1))",
             animation:
-              "mini-aurora-border 6s ease-in-out infinite, mini-aurora-1 12s ease-in-out infinite alternate",
+              "mini-aurora-border 6s ease-in-out infinite, mini-aurora-1 12s  infinite alternate",
           }}
           className={cn("absolute h-[60vw] w-[60vw] blur-lg", "mix-blend-overlay")}
         ></div>
@@ -31,7 +31,7 @@ export default function BeautifulText(props: PropsWithChildren<BeautifulTextProp
           style={{
             backgroundColor: "hsl(var(--mini-aurora-color-2))",
             animation:
-              "mini-aurora-border 6s ease-in-out infinite, mini-aurora-2 12s ease-in-out infinite alternate",
+              "mini-aurora-border 6s ease-in-out infinite, mini-aurora-2 12s  infinite alternate",
           }}
           className={cn("absolute h-[60vw] w-[60vw] blur-lg", "mix-blend-overlay")}
         ></div>
@@ -40,7 +40,7 @@ export default function BeautifulText(props: PropsWithChildren<BeautifulTextProp
           style={{
             backgroundColor: "hsl(var(--mini-aurora-color-3))",
             animation:
-              "mini-aurora-border 6s ease-in-out infinite, mini-aurora-3 12s ease-in-out infinite alternate",
+              "mini-aurora-border 6s ease-in-out infinite, mini-aurora-3 12s  infinite alternate",
           }}
           className={cn("absolute h-[60vw] w-[60vw] blur-lg", "mix-blend-overlay")}
         ></div>
@@ -49,7 +49,7 @@ export default function BeautifulText(props: PropsWithChildren<BeautifulTextProp
           style={{
             backgroundColor: "hsl(var(--mini-aurora-color-4))",
             animation:
-              "mini-aurora-border 6s ease-in-out infinite, mini-aurora-4 12s ease-in-out infinite alternate",
+              "mini-aurora-border 6s ease-in-out infinite, mini-aurora-4 12s infinite alternate",
           }}
           className={cn("absolute h-[60vw] w-[60vw] blur-lg", "mix-blend-overlay")}
         ></div>

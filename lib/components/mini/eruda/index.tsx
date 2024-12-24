@@ -1,10 +1,10 @@
 "use client"
 
-import { useIsMobile } from "@/utils/hook/use-mobile"
+import { useIsMobile } from "@/utils/hook/use-device"
 import { useEffect } from "react"
 
 export default function Eruda() {
-  const isMobile = useIsMobile()
+  const [isMobile] = useIsMobile()
 
   useEffect(() => {
     if (process.env.NODE_ENV === "development" && isMobile) {
