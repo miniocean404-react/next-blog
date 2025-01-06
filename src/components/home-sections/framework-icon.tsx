@@ -30,9 +30,9 @@ const icons = [
       color: "#3178C6",
     },
     {
-      url: "/svg/css3.svg",
-      alt: "css3",
-      color: "#1572B6",
+      url: "/svg/css.svg",
+      alt: "css",
+      color: "#663399",
     },
 
     {
