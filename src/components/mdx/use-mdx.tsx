@@ -135,7 +135,7 @@ export const components = {
       <div className="relative">
         <pre
           className={cn(
-            "new-scrollbar mb-4 mt-6 max-h-[650px] overflow-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
+            "mb-4 mt-6 max-h-[650px] overflow-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
             className,
           )}
           {...prop}

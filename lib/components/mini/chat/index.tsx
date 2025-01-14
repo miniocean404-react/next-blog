@@ -26,7 +26,7 @@ export function ChatWindow(props: PropsWithChildren<ChatWindowProps>) {
   return (
     <div
       className={clsx(
-        "flex-grow overflow-hidden ",
+        "flex-grow overflow-hidden",
         // 设置消息少的时候消息在顶部
         "flex flex-col justify-start",
         "mx-auto w-full",
@@ -35,9 +35,8 @@ export function ChatWindow(props: PropsWithChildren<ChatWindowProps>) {
     >
       <div
         className={clsx(
-          "overflow-auto flex flex-col-reverse justify-start p-4",
+          "flex flex-col-reverse justify-start overflow-auto p-4",
           // webkit 使用示例: "[&::-webkit-scrollbar]:block"
-          "scrollbar",
         )}
       >
         <div>
@@ -59,10 +58,10 @@ interface ChatMessageProps {
 export function ChatMessage(props: PropsWithChildren<ChatMessageProps>) {
   return (
     <div>
-      <div className={clsx("w-full flex", { ["flex-row-reverse"]: props.type === "user" })}>
+      <div className={clsx("flex w-full", { ["flex-row-reverse"]: props.type === "user" })}>
         <div
-          className={clsx("rounded bg-mini-background-soft text-primary p-2 w-fit max-w-[70%]", {
-            "bg-transparent max-w-full": props.type === "assistant",
+          className={clsx("w-fit max-w-[70%] rounded bg-mini-background-soft p-2 text-primary", {
+            "max-w-full bg-transparent": props.type === "assistant",
           })}
         >
           {props.children}
@@ -148,10 +147,10 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
   }
 
   return (
-    <div className={clsx("w-full mx-auto", props.className)}>
+    <div className={clsx("mx-auto w-full", props.className)}>
       <div
         className={clsx(
-          "relative rounded-2xl bg-background p-3 pl-3.5 shadow-lg border border-solid grid gap-2.5 grid-cols-[auto_1fr_auto]",
+          "relative grid grid-cols-[auto_1fr_auto] gap-2.5 rounded-2xl border border-solid bg-background p-3 pl-3.5 shadow-lg",
           "[grid-template-areas:'left-tools_input-area_right-tools']",
           {
             "[grid-template-areas:'input-area_input-area_input-area''left-tools_._right-tools']":
@@ -161,13 +160,12 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
       >
         <div
           className={
-            "relative text-base leading-6 self-center cursor-text w-full bg-inherit [grid-area:input-area]"
+            "relative w-full cursor-text self-center bg-inherit text-base leading-6 [grid-area:input-area]"
           }
         >
           <textarea
             className={clsx(
-              "w-full bg-inherit caret-blue-400 min-w-32 max-h-44 p-0 resize-none outline-none overflow-auto align-bottom",
-              "scrollbar",
+              "max-h-44 w-full min-w-32 resize-none overflow-auto bg-inherit p-0 align-bottom caret-blue-400 outline-none",
             )}
             ref={textareaRef}
             rows={props.rows}
@@ -182,7 +180,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
 
           <textarea
             className={clsx(
-              "w-full border-0 box-border not-italic font-normal tracking-normal p-0 indent-0 normal-case !min-h-0 !max-h-none !h-0 !invisible !overflow-hidden !absolute !z-[1000] !top-0 !right-0",
+              "!invisible !absolute !right-0 !top-0 !z-[1000] box-border !h-0 !max-h-none !min-h-0 w-full !overflow-hidden border-0 p-0 indent-0 font-normal normal-case not-italic tracking-normal",
               "[tab-size:8] [text-rendering:auto]",
             )}
             ref={calcRef}
@@ -190,12 +188,12 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
         </div>
 
         <div className={"flex items-center [grid-area:right-tools]"}>
-          <div className={"bg-border w-[1] h-5 my-0 ml-1 mr-3"}></div>
+          <div className={"my-0 ml-1 mr-3 h-5 w-[1] bg-border"}></div>
 
           <button
             className={clsx(
-              "w-8 h-8 rounded-[50%] bg-blue-600 text-white",
-              "flex justify-center items-center cursor-pointer",
+              "h-8 w-8 rounded-[50%] bg-blue-600 text-white",
+              "flex cursor-pointer items-center justify-center",
               "hover:bg-blue-700 hover:text-white/80",
             )}
             onClick={onSend}

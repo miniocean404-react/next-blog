@@ -27,7 +27,7 @@
 
   html,
   body {
-    @apply scrollbar bg-background text-foreground;
+    @apply bg-background text-foreground;
   }
 
   :root {
@@ -103,31 +103,33 @@
 }
 
 @layer utilities {
-  /* 火狐  */
+  /* Safari Chrome */
   @supports selector(::-webkit-scrollbar) {
-    /* Safari Chrome */
-    .scrollbar::-webkit-scrollbar {
+    *::-webkit-scrollbar {
       width: 11px;
       height: 11px;
     }
 
-    .scrollbar::-webkit-scrollbar-thumb {
+    *::-webkit-scrollbar-thumb {
       border-radius: 5px;
 
       /* 添加滚动条的边框 */
       background-clip: content-box;
       border: 2px solid transparent;
-      background-color: hsl(var(--border));
+      background-color: hsl(var(--border, 240 3.7% 15.9%));
     }
 
-    .scrollbar::-webkit-scrollbar-track {
+    *::-webkit-scrollbar-track {
       background: transparent;
     }
   }
 
-  .new-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--border)) transparent;
+  /* 火狐  */
+  @supports not selector(::-webkit-scrollbar) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: hsl(var(--border, 240 3.7% 15.9%)) transparent;
+    }
   }
 
   .no-scrollbar {
