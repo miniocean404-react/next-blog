@@ -33,7 +33,7 @@ export default function BackgroundFlow() {
       aria-hidden="true"
     >
       <div
-        className="aspect-[1.7] h-full w-full bg-gradient-to-r from-rose-500 to-white/10 opacity-50 transition-[clip-path] duration-3 [clip-path:circle(75%);] lg:opacity-30"
+        className="aspect-[1.7] h-full w-full bg-linear-to-r from-rose-500 to-white/10 opacity-50 transition-[clip-path] duration-3 [clip-path:circle(75%);] lg:opacity-30"
         style={{ clipPath: `polygon(${poly()})` }}
       />
     </div>

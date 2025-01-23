@@ -12,7 +12,7 @@ export function PcNavigation(props: PcNavProps) {
       {props.navigation.map((element) => {
         return (
           <Link
-            className="font-500 transition-color ease duration-250 cursor-pointer px-3 py-0 text-sm text-primary hover:text-primary/70"
+            className="font-500 transition-color ease text-primary hover:text-primary/70 cursor-pointer px-3 py-0 text-sm duration-250"
             href={element.link}
             key={element.text}
           >
@@ -25,7 +25,7 @@ export function PcNavigation(props: PcNavProps) {
         return (
           <Link
             key={element.title}
-            className="mx-2 inline-flex size-9 cursor-pointer items-center justify-center rounded-xl hover:bg-accent"
+            className="hover:bg-accent mx-2 inline-flex size-9 cursor-pointer items-center justify-center rounded-xl"
             href={element.link}
             title="GitHub"
             target="_blank"
@@ -48,13 +48,13 @@ export function MobileNavigation(props: PropsWithChildren<MobileNavProps>) {
   return (
     <>
       <menu className="flex h-10 cursor-pointer items-center px-3 lg:hidden" onClick={toggle}>
-        <AlignRight className="size-4 text-primary/70"></AlignRight>
+        <AlignRight className="text-primary/70 size-4"></AlignRight>
       </menu>
 
       <div
         className={cn(
-          "absolute left-0 top-[calc(100%+1px)]",
-          "invisible h-mini-layout-one-screen w-full bg-background px-16 opacity-0 transition-all duration-500",
+          "absolute top-[calc(100%+1px)] left-0",
+          "h-mini-layout-one-screen bg-background invisible w-full px-16 opacity-0 transition-all duration-500",
           "overflow-auto",
           "lg:hidden",
           {
@@ -64,7 +64,7 @@ export function MobileNavigation(props: PropsWithChildren<MobileNavProps>) {
         )}
       >
         <nav
-          className={cn("pb-24 pt-6 transition-transform duration-500", {
+          className={cn("pt-6 pb-24 transition-transform duration-500", {
             "-translate-y-2": !show,
           })}
         >
@@ -73,7 +73,7 @@ export function MobileNavigation(props: PropsWithChildren<MobileNavProps>) {
               <Link
                 key={element.text}
                 className={cn(
-                  "font-500 transition-color ease duration-250 cursor-pointer text-sm text-primary hover:text-primary/70",
+                  "font-500 transition-color ease text-primary hover:text-primary/70 cursor-pointer text-sm duration-250",
                   "inline-block w-full border-b py-3 text-left",
                 )}
                 href={element.link}
@@ -89,7 +89,7 @@ export function MobileNavigation(props: PropsWithChildren<MobileNavProps>) {
               return (
                 <Link
                   key={element.title}
-                  className="inline-flex size-12 cursor-pointer items-center justify-center rounded-xl hover:bg-accent"
+                  className="hover:bg-accent inline-flex size-12 cursor-pointer items-center justify-center rounded-xl"
                   href={element.link}
                   title="GitHub"
                   target="_blank"

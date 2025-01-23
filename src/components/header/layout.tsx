@@ -14,7 +14,7 @@ export default function HeaderLayout({ children }: PropsWithChildren<any>) {
   if (pathname.includes("passport")) return null
 
   return (
-    <header className="sticky top-0 z-mini-header">
+    <header className="z-mini-header sticky top-0">
       {/* 彩虹 */}
       <RainbowBackground />
 
@@ -25,11 +25,11 @@ export default function HeaderLayout({ children }: PropsWithChildren<any>) {
         className={cn(
           "backdrop-blur-md",
           "border-b",
-          "flex h-mini-header w-full items-center",
+          "h-mini-header flex w-full items-center",
           "px-2 md:px-8",
         )}
       >
-        <div className="mx-auto flex w-full max-w-mini-layout items-center lg:justify-between">
+        <div className="max-w-mini-layout mx-auto flex w-full items-center lg:justify-between">
           {children}
         </div>
       </div>

@@ -75,7 +75,7 @@ export default function Login() {
             />
 
             <h1 className="text-2xl">{t("card.title")}</h1>
-            <p className="text-sm text-muted-foreground">{t("card.desc")}</p>
+            <p className="text-muted-foreground text-sm">{t("card.desc")}</p>
           </div>
 
           <Form {...form}>
@@ -130,7 +130,7 @@ export default function Login() {
                   <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
 
                   <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
+                    <span className="bg-card text-muted-foreground px-2">{t("card.continue")}</span>
                   </div>
                 </div>
               </div>

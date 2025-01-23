@@ -26,7 +26,7 @@ export function ChatWindow(props: PropsWithChildren<ChatWindowProps>) {
   return (
     <div
       className={clsx(
-        "flex-grow overflow-hidden",
+        "grow overflow-hidden",
         // 设置消息少的时候消息在顶部
         "flex flex-col justify-start",
         "mx-auto w-full",
@@ -41,7 +41,7 @@ export function ChatWindow(props: PropsWithChildren<ChatWindowProps>) {
       >
         <div>
           {/* flex 内容底部填充这个可以在初始时候将对话内容撑起来，这是一种方法 */}
-          {/* <div className={"flex-grow flex-shrink"}></div> */}
+          {/* <div className={"grow shrink"}></div> */}
           {props.children}
         </div>
       </div>
@@ -60,7 +60,7 @@ export function ChatMessage(props: PropsWithChildren<ChatMessageProps>) {
     <div>
       <div className={clsx("flex w-full", { ["flex-row-reverse"]: props.type === "user" })}>
         <div
-          className={clsx("w-fit max-w-[70%] rounded bg-mini-background-soft p-2 text-primary", {
+          className={clsx("bg-mini-background-soft text-primary w-fit max-w-[70%] rounded p-2", {
             "max-w-full bg-transparent": props.type === "assistant",
           })}
         >
@@ -150,7 +150,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
     <div className={clsx("mx-auto w-full", props.className)}>
       <div
         className={clsx(
-          "relative grid grid-cols-[auto_1fr_auto] gap-2.5 rounded-2xl border border-solid bg-background p-3 pl-3.5 shadow-lg",
+          "bg-background relative grid grid-cols-[auto_1fr_auto] gap-2.5 rounded-2xl border border-solid p-3 pl-3.5 shadow-lg",
           "[grid-template-areas:'left-tools_input-area_right-tools']",
           {
             "[grid-template-areas:'input-area_input-area_input-area''left-tools_._right-tools']":
@@ -165,7 +165,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
         >
           <textarea
             className={clsx(
-              "max-h-44 w-full min-w-32 resize-none overflow-auto bg-inherit p-0 align-bottom caret-blue-400 outline-none",
+              "max-h-44 w-full min-w-32 resize-none overflow-auto bg-inherit p-0 align-bottom caret-blue-400 outline-hidden",
             )}
             ref={textareaRef}
             rows={props.rows}
@@ -180,7 +180,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
 
           <textarea
             className={clsx(
-              "!invisible !absolute !right-0 !top-0 !z-[1000] box-border !h-0 !max-h-none !min-h-0 w-full !overflow-hidden border-0 p-0 indent-0 font-normal normal-case not-italic tracking-normal",
+              "invisible! absolute! top-0! right-0! z-1000! box-border h-0! max-h-none! min-h-0! w-full overflow-hidden! border-0 p-0 indent-0 font-normal tracking-normal normal-case not-italic",
               "[tab-size:8] [text-rendering:auto]",
             )}
             ref={calcRef}
@@ -188,7 +188,7 @@ export function ChatInput(props: Readonly<PropsWithChildren<ChatInputProps>>) {
         </div>
 
         <div className={"flex items-center [grid-area:right-tools]"}>
-          <div className={"my-0 ml-1 mr-3 h-5 w-[1] bg-border"}></div>
+          <div className={"bg-border my-0 mr-3 ml-1 h-5 w-1"}></div>
 
           <button
             className={clsx(

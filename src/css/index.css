@@ -1,10 +1,156 @@
-@import "./var/common.css";
-@import "./var/light.css";
-@import "./var/dark.css";
+@import "./var/common.css" layer(base);
+@import "./var/light.css" layer(base);
+@import "./var/dark.css" layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --animate-*: initial;
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
+  --ease-title: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --transition-duration-3: 3s;
+
+  --font-sans: var(--mini-font-family-base);
+  --font-mono: var(--mini-font-family-mono);
+
+  --container-mini-layout: var(--mini-layout-max-width);
+
+  --height-mini-layout-one-screen: calc(100dvh - var(--mini-header-height));
+  --height-mini-header: var(--mini-header-height);
+
+  --inset-mini-header: var(--mini-header-height);
+
+  --shadow-mini-1: var(--mini-shadow-1);
+  --shadow-mini-2: var(--mini-shadow-2);
+  --shadow-mini-3: var(--mini-shadow-3);
+  --shadow-mini-4: var(--mini-shadow-4);
+  --shadow-mini-5: var(--mini-shadow-4);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --z-index-mini-bg: var(--mini-z-index-bg);
+  --z-index-mini-title: var(--mini-z-index-title);
+  --z-index-mini-dock: var(--mini-z-index-dock);
+  --z-index-mini-footer: var(--mini-z-index-footer);
+  --z-index-mini-local-nav: var(--mini-z-index-local-nav);
+  --z-index-mini-nav: var(--mini-z-index-nav);
+  --z-index-mini-layout-top: var(--mini-z-index-layout-top);
+  --z-index-mini-backdrop: var(--mini-z-index-backdrop);
+  --z-index-mini-sidebar: var(--mini-z-index-sidebar);
+  --z-index-mini-header: var(--mini-z-index-header);
+  --z-index-mini-rainbow: var(--mini-z-index-rainbow);
+
+  --color-mini-background: var(--mini-c-bg);
+  --color-mini-background-alt: var(--mini-c-bg-alt);
+  --color-mini-background-elv: var(--mini-c-bg-elv);
+  --color-mini-background-soft: var(--mini-c-bg-soft);
+  --color-mini-backdrop: var(--mini-backdrop-bg-color);
+  --color-mini-border: var(--mini-c-border);
+  --color-mini-divider: var(--mini-c-divider);
+  --color-mini-gutter: var(--mini-c-gutter);
+  --color-mini-text-1: var(--mini-c-text-1);
+  --color-mini-text-2: var(--mini-c-text-2);
+  --color-mini-text-3: var(--mini-c-text-3);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  @keyframes rainbow {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 200%;
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility no-scrollbar {
+  /* Safari Chrome */
+
+  /* 火狐  */
+  scrollbar-width: none;
+}
 
 /*
 处理重复样式，将 html 中 py-2 h-screen 重复的部分改为 className="btn-primary"
@@ -103,7 +249,6 @@
 }
 
 @layer utilities {
-  /* Safari Chrome */
   @supports selector(::-webkit-scrollbar) {
     *::-webkit-scrollbar {
       width: 11px;
@@ -123,17 +268,11 @@
       background: transparent;
     }
   }
-
-  /* 火狐  */
   @supports not selector(::-webkit-scrollbar) {
     * {
       scrollbar-width: thin;
       scrollbar-color: hsl(var(--border, 240 3.7% 15.9%)) transparent;
     }
-  }
-
-  .no-scrollbar {
-    scrollbar-width: none;
   }
 }
 

@@ -14,7 +14,7 @@ export default async function Slogan() {
       <Link
         href={VSCODE_PLUGIN_LINK}
         target="_blank"
-        className="group mx-auto inline-flex h-8 w-max items-center justify-center rounded-full border border-input bg-background px-3 text-xs font-medium text-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+        className="group border-input bg-background text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring mx-auto inline-flex h-8 w-max items-center justify-center rounded-full border px-3 text-xs font-medium shadow-xs transition-colors focus-visible:ring-1 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
       >
         🎉
         <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />
@@ -24,7 +24,7 @@ export default async function Slogan() {
 
       <h1
         className={cn(
-          "text-balance text-4xl font-semibold leading-none tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl",
+          "text-4xl leading-none font-semibold tracking-tighter text-balance sm:text-6xl md:text-7xl lg:text-8xl",
           "flex flex-col gap-6",
         )}
       >
@@ -37,7 +37,7 @@ export default async function Slogan() {
         <span className="ml-auto block">{t("slogan.second")}</span>
       </h1>
 
-      <p className="text-sm tracking-tight text-muted-foreground md:text-xl">
+      <p className="text-muted-foreground text-sm tracking-tight md:text-xl">
         {t("desc.one")}
         <br />
         {t("desc.two")}

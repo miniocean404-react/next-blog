@@ -252,9 +252,9 @@ export default function FrameworkIcon() {
     getElementsFunc: () => Array.from<Element>(document.querySelectorAll("#framework")),
     callback: (entries) => {
       for (const entry of entries) {
-        entry.target.classList.toggle("!translate-y-0", entry.isIntersecting)
-        entry.target.classList.toggle("!scale-100", entry.isIntersecting)
-        entry.target.classList.toggle("!opacity-100", entry.isIntersecting)
+        entry.target.classList.toggle("translate-y-0!", entry.isIntersecting)
+        entry.target.classList.toggle("scale-100!", entry.isIntersecting)
+        entry.target.classList.toggle("opacity-100!", entry.isIntersecting)
       }
     },
     dependencies: [],
@@ -267,9 +267,9 @@ export default function FrameworkIcon() {
       <h2
         id="framework"
         className={cn(
-          "relative z-mini-title mx-auto block w-max text-3xl font-bold tracking-tight text-foreground sm:text-4xl",
+          "z-mini-title text-foreground relative mx-auto block w-max text-3xl font-bold tracking-tight sm:text-4xl",
           "translate-y-10 scale-95 opacity-0",
-          "transition-all duration-700 ease-title [transition-timing-function:cubic-bezier(.16,1,.3,1)]",
+          "ease-title transition-all duration-700 [transition-timing-function:cubic-bezier(.16,1,.3,1)]",
         )}
       >
         {t("title")}
@@ -278,9 +278,9 @@ export default function FrameworkIcon() {
       <div
         id="framework"
         className={cn(
-          "relative z-mini-bg -mt-5 flex flex-col items-center overflow-hidden",
+          "z-mini-bg relative -mt-5 flex flex-col items-center overflow-hidden",
           "translate-y-10 scale-95 opacity-0",
-          "transition-all duration-700 ease-title",
+          "ease-title transition-all duration-700",
         )}
       >
         <SiderMask top bottom left right key={"sidermask"}></SiderMask>
@@ -351,7 +351,7 @@ function FrameworkIconElement({
   return (
     <a
       className={cn(
-        "relative flex cursor-pointer items-center justify-center rounded-xl border bg-mini-background-soft",
+        "bg-mini-background-soft relative flex cursor-pointer items-center justify-center rounded-xl border",
         "size-14 md:size-20 lg:size-24",
         {
           "before:absolute before:inset-[10%] before:-z-10 before:bg-[var(--framework-icon)] before:blur-xl before:duration-1000":

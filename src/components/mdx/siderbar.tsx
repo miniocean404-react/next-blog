@@ -70,7 +70,7 @@ export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProp
             key={index}
             href={item.href}
             className={cn(
-              "group flex w-full items-center px-2 py-1 font-normal text-foreground underline-offset-2 hover:underline",
+              "group text-foreground flex w-full items-center px-2 py-1 font-normal underline-offset-2 hover:underline",
               item.disabled && "cursor-not-allowed opacity-60",
               pathname === item.href && "underline",
             )}
@@ -88,13 +88,13 @@ export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProp
           <span
             key={index}
             className={cn(
-              "flex w-full cursor-not-allowed items-center rounded-md p-2 text-muted-foreground hover:underline",
+              "text-muted-foreground flex w-full cursor-not-allowed items-center rounded-md p-2 hover:underline",
               item.disabled && "cursor-not-allowed opacity-60",
             )}
           >
             {item.title}
             {item.label && (
-              <span className="ml-2 rounded-md bg-muted px-1.5 py-0.5 text-xs leading-none text-muted-foreground no-underline group-hover:no-underline">
+              <span className="bg-muted text-muted-foreground ml-2 rounded-md px-1.5 py-0.5 text-xs leading-none no-underline group-hover:no-underline">
                 {item.label}
               </span>
             )}

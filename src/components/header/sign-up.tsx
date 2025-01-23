@@ -35,7 +35,7 @@ export function Account(props: PropsWithChildren<AccountProps>) {
             <DropdownMenuTrigger asChild>
               <Avatar className="w-full sm:size-10">
                 <AvatarImage src={session.user?.image || undefined} alt="@avatar" />
-                <AvatarFallback className="bg-transparent lg:bg-muted">
+                <AvatarFallback className="lg:bg-muted bg-transparent">
                   <User size={16}></User>
                 </AvatarFallback>
               </Avatar>
@@ -47,7 +47,7 @@ export function Account(props: PropsWithChildren<AccountProps>) {
               <p>{t("menu.title")}</p>
 
               {session.user.name && (
-                <p className="truncate text-xs font-normal text-muted-foreground">
+                <p className="text-muted-foreground truncate text-xs font-normal">
                   {session.user.name}
                 </p>
               )}
@@ -78,7 +78,7 @@ export function Account(props: PropsWithChildren<AccountProps>) {
 
       {!session?.user && (
         <div className="flex h-10 items-center justify-center px-3 lg:hidden">
-          <Link href={"/passport/login"} className="cursor-pointer text-primary">
+          <Link href={"/passport/login"} className="text-primary cursor-pointer">
             <User size={16}></User>
           </Link>
         </div>

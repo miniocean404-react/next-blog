@@ -63,7 +63,7 @@ export default function MiniToolScroll() {
   return (
     <div
       id="scrollBox"
-      className="flex h-mini-layout-one-screen w-full items-center justify-center overflow-hidden bg-gradient-to-b from-[rgb(255,255,255)] from-0% via-[rgb(242,208,230)] via-50% to-[rgb(255,255,255)] to-100%"
+      className="h-mini-layout-one-screen flex w-full items-center justify-center overflow-hidden bg-linear-to-b from-[rgb(255,255,255)] from-0% via-[rgb(242,208,230)] via-50% to-[rgb(255,255,255)] to-100%"
     >
       <div id="desc">
         <h2 className="text-3xl">中文</h2>

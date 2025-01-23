@@ -76,7 +76,7 @@ export const components = {
     <CustomLink className={cn("font-medium underline underline-offset-4", className)} {...props} />
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p className={cn("leading-7 [&:not(:first-child)]:mt-6", className)} {...props} />
+    <p className={cn("leading-7 not-first:mt-6", className)} {...props} />
   ),
   ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
     <ul className={cn("ml-6 list-disc", className)} {...props} />
@@ -135,7 +135,7 @@ export const components = {
       <div className="relative">
         <pre
           className={cn(
-            "mb-4 mt-6 max-h-[650px] overflow-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
+            "mt-6 mb-4 max-h-[650px] overflow-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
             className,
           )}
           {...prop}
@@ -145,7 +145,7 @@ export const components = {
             value={__code__}
             src={__src__}
             // event={__event__}
-            className={cn("absolute right-4 top-4", __withMeta__ && "top-mini-header")}
+            className={cn("absolute top-4 right-4", __withMeta__ && "top-mini-header")}
           />
         )}
 
@@ -157,7 +157,7 @@ export const components = {
               __pnpm_command__,
               __bun_command__,
             }}
-            className={cn("absolute right-4 top-4", __withMeta__ && "top-mini-header")}
+            className={cn("absolute top-4 right-4", __withMeta__ && "top-mini-header")}
           />
         )}
       </div>
@@ -181,7 +181,7 @@ export const components = {
   LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
     <Link
       className={cn(
-        "flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors hover:bg-muted/50 sm:p-10",
+        "bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow-sm transition-colors sm:p-10",
         className,
       )}
       {...props}
