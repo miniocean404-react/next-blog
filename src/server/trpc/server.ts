@@ -2,9 +2,10 @@
 import { initTRPC } from "@trpc/server"
 import type { Context } from "./context"
 import { z, ZodError } from "zod"
-import { errorMap, formatZodError } from "@/utils/zod-helper"
+import { zhCN } from "zod/locales"
+import { formatZodError } from "@/utils/zod-helper"
 
-z.setErrorMap(errorMap)
+z.config(zhCN())
 
 export const t = initTRPC
   .context<Context>()
