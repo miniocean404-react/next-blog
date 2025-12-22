@@ -161,10 +161,10 @@
 ::view-transition-new(root) {
   z-index: 1;
 }
-/*
 
+/* ---break--- */
 /* shadcn 升级添加 */
----break--- */ @layer base {
+@layer base {
   * {
     @apply border-border;
   }
