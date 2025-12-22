@@ -1,8 +1,12 @@
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
-import path from "path"
-import { fileURLToPath } from "url"
 import { createContentlayerPlugin } from "next-contentlayer2"
+// @deprecated 升级注释
+// import path from "path"
+// import { fileURLToPath } from "url"
+
+// @deprecated 升级注释
+// const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // import {
 //   PHASE_DEVELOPMENT_SERVER,
@@ -10,8 +14,6 @@ import { createContentlayerPlugin } from "next-contentlayer2"
 //   PHASE_PRODUCTION_SERVER,
 // } from "next/constants.js"
 // import rehypePrettyCode from "rehype-pretty-code"
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const isDev = process.env.NODE_ENV === "development"
 const isProd = process.env.NODE_ENV === "production"
@@ -28,16 +30,7 @@ const config: NextConfig = {
     // process.env.customKey
     customKey: "value",
   },
-  publicRuntimeConfig: {
-    // 服务器，客户端可用
-    staticFolder: process.env.NEXT_PUBLIC_WEB_PREFIX,
-  },
-  // https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
-  serverRuntimeConfig: {
-    // 只运行在服务器
-    mySecret: "secret",
-    secondSecret: process.env.SECOND_SECRET,
-  },
+
   // CDN 前缀
   // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
   compress: true, // Next.js 提供gzip压缩来压缩渲染的内容和静态文件
@@ -68,7 +61,7 @@ const config: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/api/xxx:path*",
+        source: "/api/xxx/:path*",
         destination: "https://juejin.cn",
       },
     ]
@@ -93,10 +86,7 @@ const config: NextConfig = {
       },
     ]
   },
-  eslint: {
-    // 默认 false，是否在构建时忽略 eslint
-    ignoreDuringBuilds: false,
-  },
+
   // 默认 false，是否在构建时忽略 typescript 错误, (升级 react19 暂时关闭)
   typescript: {
     ignoreBuildErrors: true,
@@ -139,26 +129,42 @@ const config: NextConfig = {
     return config
   },
 
-  experimental: {
-    optimizeCss: true,
-    turbo: {
-      rules: {
-        "*.svg": {
-          loaders: ["@svgr/webpack"],
-          as: "*.js",
-        },
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
       },
     },
-    // 局部渲染（Partial Prerendering，PPR）-- 暂时无法使用，需要 next15 测试版本
-    // 如果使用了动态函数（如 cookies()、 headers()和未缓存的数据请求），将动态 UI 包装在 Suspense 中，Next.js 会先返回静态 HTML，
-    // 然后在同一 HTTP 请求中流式传输动态内容，并对之前的静态 HTML 进行替换
-    // export const experimental_ppr = true 路由配置项用于将特定的布局和页面选择到 PPR 中(页面中配置)
-    // ppr: true,
+  },
+  // 局部渲染（Partial Prerendering，PPR）-- 暂时无法使用，需要 next15 测试版本
+  // 如果使用了动态函数（如 cookies()、 headers()和未缓存的数据请求），将动态 UI 包装在 Suspense 中，Next.js 会先返回静态 HTML，
+  // 然后在同一 HTTP 请求中流式传输动态内容，并对之前的静态 HTML 进行替换
+  // export const experimental_ppr = true 路由配置项用于将特定的布局和页面选择到 PPR 中(页面中配置)
+  cacheComponents: true,
+  experimental: {
+    optimizeCss: true,
     // * 目前已正常使用
     // unstable_after: 它会在响应完成流式处理后安排要处理的工作，从而在不阻塞主要响应的情况下运行辅助任务
     // 在服务端组件、Server Actions、路由处理程序、中间件中都可以使用 after API
     // after: true,
   },
+
+  // @deprecated 可能已经废弃的配置
+  // publicRuntimeConfig: {
+  //   // 服务器，客户端可用
+  //   staticFolder: process.env.NEXT_PUBLIC_WEB_PREFIX,
+  // },
+  // // https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
+  // serverRuntimeConfig: {
+  //   // 只运行在服务器
+  //   mySecret: "secret",
+  //   secondSecret: process.env.SECOND_SECRET,
+  // },
+  // eslint: {
+  //   // 默认 false，是否在构建时忽略 eslint
+  //   ignoreDuringBuilds: false,
+  // },
 }
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
