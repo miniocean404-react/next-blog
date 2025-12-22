@@ -162,9 +162,9 @@
   z-index: 1;
 }
 /*
----break---
-*/
-@layer base {
+
+/* shadcn 升级添加 */
+---break--- */ @layer base {
   * {
     @apply border-border;
   }
