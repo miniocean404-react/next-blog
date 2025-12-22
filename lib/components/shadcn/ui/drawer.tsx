@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Drawer as DrawerPrimitive } from "vaul"
 
-import { cn } from "~/lib/utils"
+import { cn } from "@/utils/tw"
 
 const Drawer = ({
   shouldScaleBackground = true,
@@ -31,42 +31,25 @@ const DrawerOverlay = React.forwardRef<
 ))
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName
 
-interface DrawerContentProps
-  extends React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> {
-  direction?: "top" | "bottom" | "left" | "right"
-  indicator?: boolean
-}
-
 const DrawerContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
-  DrawerContentProps
->(({ className, children, direction, indicator, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
   <DrawerPortal>
     <DrawerOverlay />
     <DrawerPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed z-50 border bg-background",
-        {
-          "inset-x-0 bottom-0 mt-24 flex h-auto flex-col rounded-t-[10px]": direction === "bottom",
-          "inset-y-0 right-0 flex flex-col rounded-l-[10px]": direction === "right",
-        },
+        "fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background",
         className,
       )}
       {...props}
     >
-      {indicator && (
-        <div
-          aria-hidden="true"
-          className="mx-auto mt-4 w-12 h-1.5 flex-shrink-0 rounded-full bg-gray-300 mb-8"
-        ></div>
-      )}
-
+      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
       {children}
     </DrawerPrimitive.Content>
   </DrawerPortal>
 ))
-
 DrawerContent.displayName = "DrawerContent"
 
 const DrawerHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
