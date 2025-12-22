@@ -1,6 +1,5 @@
 import type { Metadata, ResolvingMetadata } from "next"
 
-import getConfig from "next/config"
 import Image from "next/image"
 import Link from "next/link"
 import Mac from "~/public/image/Mac.png"
@@ -20,8 +19,6 @@ export async function generateMetadata(
     title: locale,
   }
 }
-
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
 // SSG 缓存生效时间
 // 可以在浏览器观察到, 每10s 刷新后，时间才会发生变化，这是因为给整个页面设置了 revalidate 为 10s

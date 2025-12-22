@@ -1,7 +1,4 @@
-import getConfig from "next/config"
 import Header from "@/components/header"
-
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
 export default function HomeLayout({ children }: LayoutPropsWith<LayoutParams>) {
   return (
