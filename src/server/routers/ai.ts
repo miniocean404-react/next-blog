@@ -14,7 +14,7 @@ export const Ai = appRouter({
     .input(
       z.array(
         z.object({
-          role: z.string(),
+          role: z.enum(["system", "user", "assistant", "tool", "function"]),
           content: z.string().optional(),
         }),
       ),
