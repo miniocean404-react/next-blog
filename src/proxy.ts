@@ -24,7 +24,8 @@ export const config = {
   // ],
 }
 
-export async function middleware(request: NextRequest, event: NextFetchEvent) {
+// 代理中间件: https://nextjs.org/docs/messages/middleware-to-proxy#useful-links, 原(middleware)
+export async function proxy(request: NextRequest, event: NextFetchEvent) {
   let resp: NextResponse<unknown> = NextResponse.next()
 
   resp = intlWapperMiddleware(request, resp, event)
