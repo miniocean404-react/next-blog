@@ -7,7 +7,8 @@ import type { NextRequest } from "next/server"
 // API 代码将不会在 客户端 的 bundle 里。
 // API 这个文件夹就是创建服务端接口地址用的，就是个服务器 使用http://localhost:3000/xxxx/api访问
 
-export const runtime = "nodejs"
+// 注释原因: Route segment config "runtime" is not compatible with `nextConfig.cacheComponents`. Please remove it.
+// export const runtime = "nodejs"
 
 // 可以使用 http://localhost:3000/forum/api/products 访问这个接口
 export async function GET(
