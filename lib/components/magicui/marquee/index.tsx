@@ -10,12 +10,20 @@ interface MarqueeProps {
   [key: string]: any
 }
 
-export default function Marquee({ className, reverse, pauseOnHover = false, children, vertical = false, repeat = 4, ...props }: MarqueeProps) {
+export default function Marquee({
+  className,
+  reverse,
+  pauseOnHover = false,
+  children,
+  vertical = false,
+  repeat = 4,
+  ...props
+}: MarqueeProps) {
   return (
     <div
       {...props}
       className={clsx(
-        "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]",
+        "group flex gap-(--gap) overflow-hidden p-2 [--duration:40s] [--gap:1rem]",
         {
           "flex-row": !vertical,
           "flex-col": vertical,
@@ -28,7 +36,7 @@ export default function Marquee({ className, reverse, pauseOnHover = false, chil
         .map((_, i) => (
           <div
             key={i}
-            className={clsx("flex shrink-0 justify-around [gap:var(--gap)]", {
+            className={clsx("flex shrink-0 justify-around gap-(--gap)", {
               "animate-marquee flex-row": !vertical,
               "animate-marquee-vertical flex-col": vertical,
               "group-hover:[animation-play-state:paused]": pauseOnHover,

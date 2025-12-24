@@ -8,9 +8,19 @@ interface RippleProps {
   className?: string
 }
 
-const Ripple = React.memo(function Ripple({ mainCircleSize = 210, mainCircleOpacity = 0.24, numCircles = 8, className }: RippleProps) {
+const Ripple = React.memo(function Ripple({
+  mainCircleSize = 210,
+  mainCircleOpacity = 0.24,
+  numCircles = 8,
+  className,
+}: RippleProps) {
   return (
-    <div className={clsx("pointer-events-none select-none absolute inset-0 [mask-image:linear-gradient(to_bottom,white,transparent)]", className)}>
+    <div
+      className={clsx(
+        "pointer-events-none absolute inset-0 mask-[linear-gradient(to_bottom,white,transparent)] select-none",
+        className,
+      )}
+    >
       {Array.from({ length: numCircles }, (_, i) => {
         const size = mainCircleSize + i * 70
         const opacity = mainCircleOpacity - i * 0.03
@@ -21,7 +31,7 @@ const Ripple = React.memo(function Ripple({ mainCircleSize = 210, mainCircleOpac
         return (
           <div
             key={i}
-            className={`absolute animate-ripple rounded-full bg-foreground/25 shadow-xl border [--i:${i}]`}
+            className={`animate-ripple bg-foreground/25 absolute rounded-full border shadow-xl [--i:${i}]`}
             style={
               {
                 width: `${size}px`,

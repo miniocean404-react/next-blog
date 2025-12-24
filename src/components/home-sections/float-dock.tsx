@@ -9,7 +9,7 @@ import Notion from "~/public/svg/notion.svg"
 export default function FloatDock() {
   return (
     <Dock
-      className="fixed bottom-10 left-1/2 z-mini-dock hidden -translate-x-1/2 bg-background lg:flex"
+      className="z-mini-dock bg-background fixed bottom-10 left-1/2 hidden -translate-x-1/2 lg:flex"
       magnification={60}
       distance={100}
     >

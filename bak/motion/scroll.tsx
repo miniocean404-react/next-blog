@@ -37,7 +37,7 @@ export default function Scroll() {
     <section className="h-[200vh]" ref={targetRef}>
       <motion.div
         style={{ position }}
-        className="relative top-16 flex h-mini-layout-one-screen w-full items-center justify-center bg-gradient-to-b from-[rgb(255,255,255)] from-0% via-[rgb(242,208,230)] via-50% to-[rgb(255,255,255)] to-100%"
+        className="h-mini-layout-one-screen relative top-16 flex w-full items-center justify-center bg-linear-to-b from-[rgb(255,255,255)] from-0% via-[rgb(242,208,230)] via-50% to-[rgb(255,255,255)] to-100%"
       >
         <motion.div
           className={cn("w-[1200px] overflow-hidden will-change-transform")}

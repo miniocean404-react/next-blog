@@ -39,9 +39,9 @@ export function ComponentPreview({
 
     if (!Component) {
       return (
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Component{" "}
-          <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
+          <code className="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
             {name}
           </code>
           not found in registry.
@@ -70,16 +70,16 @@ export function ComponentPreview({
           alt={name}
           width={1440}
           height={900}
-          className="absolute left-0 top-0 z-20 w-[970px] max-w-none bg-background dark:hidden sm:w-[1280px] md:hidden md:dark:hidden"
+          className="bg-background absolute top-0 left-0 z-20 w-[970px] max-w-none sm:w-[1280px] md:hidden dark:hidden md:dark:hidden"
         />
         <Image
           src={`/images/blocks/${name}-dark.png`}
           alt={name}
           width={1440}
           height={900}
-          className="absolute left-0 top-0 z-20 hidden w-[970px] max-w-none bg-background dark:block sm:w-[1280px] md:hidden md:dark:hidden"
+          className="bg-background absolute top-0 left-0 z-20 hidden w-[970px] max-w-none sm:w-[1280px] md:hidden dark:block md:dark:hidden"
         />
-        <div className="absolute inset-0 hidden w-[1600px] bg-background md:block">
+        <div className="bg-background absolute inset-0 hidden w-[1600px] md:block">
           <iframe src={`/blocks/new-york/${name}`} className="size-full" />
         </div>
       </div>
@@ -94,13 +94,13 @@ export function ComponentPreview({
             <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
               <TabsTrigger
                 value="preview"
-                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                className="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pt-2 pb-3 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
               >
                 Preview
               </TabsTrigger>
               <TabsTrigger
                 value="code"
-                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                className="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pt-2 pb-3 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
               >
                 Code
               </TabsTrigger>
@@ -114,7 +114,7 @@ export function ComponentPreview({
               <CopyButton
                 value={codeString}
                 variant="outline"
-                className="h-7 w-7 text-foreground opacity-100 hover:bg-muted hover:text-foreground [&_svg]:h-3.5 [&_svg]:w-3.5"
+                className="text-foreground hover:bg-muted hover:text-foreground h-7 w-7 opacity-100 [&_svg]:h-3.5 [&_svg]:w-3.5"
               />
             </div>
           </div>
@@ -128,7 +128,7 @@ export function ComponentPreview({
           >
             <React.Suspense
               fallback={
-                <div className="flex w-full items-center justify-center text-sm text-muted-foreground">
+                <div className="text-muted-foreground flex w-full items-center justify-center text-sm">
                   {/* 图标 */}
                   {/* <Icons.spinner className="animate-spin mr-2 h-4 w-4" /> */}
                   Loading...

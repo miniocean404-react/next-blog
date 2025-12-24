@@ -28,10 +28,22 @@ export function Modal({ children }: { children: ReactNode }) {
   return <ModalProvider>{children}</ModalProvider>
 }
 
-export const ModalTrigger = ({ children, className }: { children: ReactNode; className?: string }) => {
+export const ModalTrigger = ({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) => {
   const { setOpen } = useModal()
   return (
-    <button className={clsx("px-4 py-2 rounded-md text-black dark:text-white text-center relative overflow-hidden", className)} onClick={() => setOpen(true)}>
+    <button
+      className={clsx(
+        "relative overflow-hidden rounded-md px-4 py-2 text-center text-black dark:text-white",
+        className,
+      )}
+      onClick={() => setOpen(true)}
+    >
       {children}
     </button>
   )
@@ -67,14 +79,14 @@ export const ModalBody = ({ children, className }: { children: ReactNode; classN
             opacity: 0,
             backdropFilter: "blur(0px)",
           }}
-          className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full  flex items-center justify-center z-50"
+          className="fixed inset-0 z-50 flex h-full w-full items-center justify-center perspective-midrange transform-3d"
         >
           <Overlay />
 
           <motion.div
             ref={modalRef}
             className={clsx(
-              "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden",
+              "relative z-50 flex max-h-[90%] min-h-[50%] flex-1 flex-col overflow-hidden border border-transparent bg-white md:max-w-[40%] md:rounded-2xl dark:border-neutral-800 dark:bg-neutral-950",
               className,
             )}
             initial={{
@@ -109,12 +121,28 @@ export const ModalBody = ({ children, className }: { children: ReactNode; classN
   )
 }
 
-export const ModalContent = ({ children, className }: { children: ReactNode; className?: string }) => {
-  return <div className={clsx("flex flex-col flex-1 p-8 md:p-10", className)}>{children}</div>
+export const ModalContent = ({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) => {
+  return <div className={clsx("flex flex-1 flex-col p-8 md:p-10", className)}>{children}</div>
 }
 
-export const ModalFooter = ({ children, className }: { children: ReactNode; className?: string }) => {
-  return <div className={clsx("flex justify-end p-4 bg-gray-100 dark:bg-neutral-900", className)}>{children}</div>
+export const ModalFooter = ({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) => {
+  return (
+    <div className={clsx("flex justify-end bg-gray-100 p-4 dark:bg-neutral-900", className)}>
+      {children}
+    </div>
+  )
 }
 
 const Overlay = ({ className }: { className?: string }) => {
@@ -131,7 +159,7 @@ const Overlay = ({ className }: { className?: string }) => {
         opacity: 0,
         backdropFilter: "blur(0px)",
       }}
-      className={`fixed inset-0 h-full w-full bg-black bg-opacity-50 z-50 ${className}`}
+      className={`bg-opacity-50 fixed inset-0 z-50 h-full w-full bg-black ${className}`}
     ></motion.div>
   )
 }
@@ -139,7 +167,7 @@ const Overlay = ({ className }: { className?: string }) => {
 const CloseIcon = () => {
   const { setOpen } = useModal()
   return (
-    <button onClick={() => setOpen(false)} className="absolute top-4 right-4 group">
+    <button onClick={() => setOpen(false)} className="group absolute top-4 right-4">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -150,7 +178,7 @@ const CloseIcon = () => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-black dark:text-white h-4 w-4 group-hover:scale-125 group-hover:rotate-3 transition duration-200"
+        className="h-4 w-4 text-black transition duration-200 group-hover:scale-125 group-hover:rotate-3 dark:text-white"
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M18 6l-12 12" />

@@ -48,7 +48,7 @@ export default function ThemeSwitch(props: PropsWithChildren<ThemeSwitchProps>) 
   return (
     <div className={cn("lg:px-2", props.className)}>
       <button
-        className="inline-flex size-12 cursor-pointer items-center justify-center rounded-xl hover:bg-accent lg:size-9"
+        className="hover:bg-accent inline-flex size-12 cursor-pointer items-center justify-center rounded-xl lg:size-9"
         onClick={toggle}
       >
         {theme === "light" && <Sun className="size-6 lg:size-5" />}

@@ -19,7 +19,7 @@
 }
 
 [data-rehype-pretty-code-figure] code {
-  @apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0;
+  @apply grid min-w-full rounded-none border-0 bg-transparent p-0 break-words;
   counter-reset: line;
   box-decoration-break: clone;
 }
@@ -59,7 +59,7 @@
 }
 
 [data-rehype-pretty-code-title] {
-  @apply mt-2 px-4 pt-6 text-sm font-medium text-foreground;
+  @apply text-foreground mt-2 px-4 pt-6 text-sm font-medium;
 }
 
 [data-rehype-pretty-code-title] + div > pre {
@@ -71,5 +71,5 @@
 }
 
 .steps > h3 {
-  @apply mb-4 mt-8 text-base font-semibold;
+  @apply mt-8 mb-4 text-base font-semibold;
 }

@@ -52,7 +52,7 @@ export default async function Header() {
     <HeaderLayout>
       <HeaderTitle></HeaderTitle>
 
-      <div className="ml-auto md:flex md:flex-grow md:pl-6">
+      <div className="ml-auto md:flex md:grow md:pl-6">
         <AlgoliaSearch />
       </div>
 

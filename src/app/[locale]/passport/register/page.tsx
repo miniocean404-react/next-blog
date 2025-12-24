@@ -112,7 +112,7 @@ export default function RegisterPage({
 
   return (
     <div className={cn("grid h-dvh items-center px-4", "lg:grid-cols-[4fr_3fr] lg:px-0")}>
-      <div className="hidden h-full bg-muted lg:block"></div>
+      <div className="bg-muted hidden h-full lg:block"></div>
 
       <div className="flex flex-col gap-6 sm:mx-auto sm:w-[350px]">
         <div className="flex flex-col items-center gap-2">
@@ -126,7 +126,7 @@ export default function RegisterPage({
           />
 
           <h1 className="text-2xl">{t("card.title")}</h1>
-          <p className="text-sm text-muted-foreground">{t("card.desc")}</p>
+          <p className="text-muted-foreground text-sm">{t("card.desc")}</p>
         </div>
 
         <Form {...registerForm}>
@@ -213,7 +213,7 @@ export default function RegisterPage({
               <Separator className="absolute top-1/2" orientation="horizontal"></Separator>
 
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">{t("card.continue")}</span>
+                <span className="bg-card text-muted-foreground px-2">{t("card.continue")}</span>
               </div>
             </div>
 
@@ -247,12 +247,12 @@ export default function RegisterPage({
 //       modules={[]}
 //     >
 //       {/* 注册 */}
-//       <SwiperSlide className="!h-auto">
+//       <SwiperSlide className="h-auto!">
 //         <Register />
 //       </SwiperSlide>
 
 //       {/* 验证码 */}
-//       <SwiperSlide className="!h-auto">
+//       <SwiperSlide className="h-auto!">
 //         <VerificationCode />
 //       </SwiperSlide>
 //     </Swiper>

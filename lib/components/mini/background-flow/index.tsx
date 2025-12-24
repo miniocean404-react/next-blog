@@ -28,12 +28,9 @@ export default function BackgroundFlow() {
   if (!mounted) return null
 
   return (
-    <div
-      className="absolute inset-0 -z-0 transform-gpu overflow-hidden blur-3xl"
-      aria-hidden="true"
-    >
+    <div className="absolute inset-0 z-0 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
       <div
-        className="aspect-[1.7] h-full w-full bg-gradient-to-r from-rose-500 to-white/10 opacity-50 transition-[clip-path] duration-3 [clip-path:circle(75%);] lg:opacity-30"
+        className="[clip-path:circle(75%);] aspect-[1.7] h-full w-full bg-linear-to-r from-rose-500 to-white/10 opacity-50 transition-[clip-path] duration-3 lg:opacity-30"
         style={{ clipPath: `polygon(${poly()})` }}
       />
     </div>
