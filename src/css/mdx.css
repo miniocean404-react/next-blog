@@ -1,3 +1,7 @@
+@reference "./index.css";
+
+/* @reference: 0 成本引用, Tailwind CSS v4 中每个 CSS 文件独立编译，@apply 需要通过 @reference 告诉当前文件去哪里查找类定义, 在编译时直接替换为对应的 css */
+
 [data-theme="light"] {
   display: block;
 }
