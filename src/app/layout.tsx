@@ -16,6 +16,7 @@ import BaiDuAnalytics from "~/lib/components/mini/analytics/baidu"
 import GoogleAnalytics from "~/lib/components/mini/analytics/google"
 
 import "@/css/index.css"
+import { Suspense } from "react"
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
@@ -206,38 +207,42 @@ export function generateStaticParams() {
 }
 
 export default async function RootLayout({ children }: LayoutPropsWith) {
-  const locale = await getLocale()
-
-  // 确保传入的“区域设置”是有效的
-  if (!routing.locales.includes(locale as any)) {
-    notFound()
-  }
-
-  setRequestLocale(locale)
-  const messages = await getMessages()
-
   return (
-    <html
-      lang={locale}
-      suppressHydrationWarning
-      className={cn(zh_inter.variable, roboto_mono.variable)}
-    >
+    <html suppressHydrationWarning className={cn(zh_inter.variable, roboto_mono.variable)}>
       <body>
         <TRPCProvider>
           <HydrateClient>
             <ThemeProvider attribute="class" enableSystem>
-              <NextIntlClientProvider messages={messages}>
-                <GoogleAnalytics />
-                <BaiDuAnalytics />
-                <Toast />
-                <Eruda />
+              <Suspense>
+                <NextIntlClientProviderServer>
+                  <GoogleAnalytics />
+                  <BaiDuAnalytics />
+                  <Toast />
+                  <Eruda />
 
-                {children}
-              </NextIntlClientProvider>
+                  {children}
+                </NextIntlClientProviderServer>
+              </Suspense>
             </ThemeProvider>
           </HydrateClient>
         </TRPCProvider>
       </body>
     </html>
+  )
+}
+
+async function NextIntlClientProviderServer({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale()
+
+  // 确保传入的“区域设置”是有效的
+  if (!routing.locales.includes(locale as any)) notFound()
+
+  setRequestLocale(locale)
+  const messages = await getMessages()
+
+  return (
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      {children}
+    </NextIntlClientProvider>
   )
 }
