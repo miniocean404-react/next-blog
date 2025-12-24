@@ -5,8 +5,8 @@ import {
   isNonJsonSerializable,
   loggerLink,
   splitLink,
-  unstable_httpBatchStreamLink,
-  unstable_httpSubscriptionLink,
+  httpBatchStreamLink,
+  httpSubscriptionLink,
 } from "@trpc/client"
 
 export const links = [
@@ -36,10 +36,10 @@ export const links = [
       false: splitLink({
         condition: (op) => op.type === "subscription" && !op.context["stream"],
         // 可以被序列化
-        true: unstable_httpSubscriptionLink({
+        true: httpSubscriptionLink({
           url: getBaseUrl(),
         }),
-        false: unstable_httpBatchStreamLink({
+        false: httpBatchStreamLink({
           url: getBaseUrl(),
         }),
       }),

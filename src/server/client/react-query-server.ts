@@ -7,8 +7,7 @@ import { createTRPCContext } from "@/server/trpc/context"
 import { createReactQueryClient } from "@/server/client/react-query-client"
 import { trpcRouter } from "@/server/routers"
 
-// IMPORTANT: Create a stable getter for the query client that
-//            will return the same client during the same request.
+// 重要：为查询客户端创建一个稳定的getter。在相同的请求期间返回相同的客户端。
 export const getQueryClient = cache(createReactQueryClient)
 const caller = createCallerFactory(trpcRouter)(createTRPCContext)
 export const { trpc: apiServer, HydrateClient } = createHydrationHelpers<typeof trpcRouter>(

@@ -17,7 +17,7 @@ export const User = appRouter({
   login: publicProcedure
     .input(
       z.object({
-        email: z.string().email(),
+        email: z.email(),
         password: z.string(),
       }),
     )
