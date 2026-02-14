@@ -10,6 +10,9 @@
 8. contentlayer2 中 mdxComponents 生产打包失败问题（Next15 升级 react 19 解决）
 9. contentlayer2 组件预览
 
+# AI
+1. 为 AI 提供 Next 文档索引: https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals#try-it-yourself
+
 # Next Cli 命令
 
 ```shell
